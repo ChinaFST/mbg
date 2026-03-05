@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Colony</string>
+    <string name="customactivityoncrash_error_activity_error_occurred_explanation" translatable="false">发生意外错误。\n抱歉，给您带来不便。</string>
+    <string name="customactivityoncrash_error_activity_restart_app" translatable="false">重新启动</string>
+    <string name="customactivityoncrash_error_activity_close_app" translatable="false">关闭程序</string>
+    <string name="customactivityoncrash_error_activity_error_details" translatable="false">错误日志</string>
+    <string name="customactivityoncrash_error_activity_error_details_title" translatable="false">错误详情</string>
+    <string name="customactivityoncrash_error_activity_error_details_close" translatable="false">关闭</string>
+    <string name="customactivityoncrash_error_activity_error_details_copy" translatable="false">复制日志</string>
+    <string name="customactivityoncrash_error_activity_error_details_copied" translatable="false">复制日志</string>
+    <string name="customactivityoncrash_error_activity_error_details_clipboard_label" translatable="false">错误信息</string>
+    <string name="openserialfirst">请先打开串口</string>
+
+</resources>

@@ -1,0 +1,15 @@
+/local.properties
+/opencvsdk480/.cxx/
+/opencvsdk480/build/
+/.idea/
+# Log Files
+*.log
+# MacOS
+.DS_Store
+/.gradle/
+# Built application files
+*.apk
+*.ap_
+
+# Files for the ART/Dalvik VM
+*.dex

@@ -1,0 +1,4 @@
+include ':opencvsdk480'
+include ':arms'
+include ':app'
+rootProject.name = "mbg"

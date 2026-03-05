@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dy.colony">
+    <!-- 必要的三个权限 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- 粗略的位置权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 精确的位置权限 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 读扩展存，从扩展卡读数据 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+
+    <application
+        android:name=".MyAppLocation"
+        android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:icon="@mipmap/ic_launcher"
+        android:largeHeap="true"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_congig"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".mvp.ui.activity.CountActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".mvp.ui.activity.HomeActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".app.service.UvcCameraService"
+            android:screenOrientation="portrait" />
+        <service
+            android:name=".app.service.VoicePlayService"
+            android:screenOrientation="portrait" />
+        <service
+            android:name=".app.service.MyMqttService"
+            android:screenOrientation="portrait" />
+        <service
+            android:name=".app.service.MultiScreenService"
+            android:screenOrientation="portrait" />
+        <service
+            android:name=".app.service.SerialDataService"
+            android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="com.dy.colony.app.GlobalConfiguration"
+            android:value="ConfigModule" />
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="${DESIGN_WIDTH}" />
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="${DESIGN_HEIGHT}" />
+    </application>
+
+</manifest>

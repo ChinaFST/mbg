@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include layout="@layout/include_title" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btnstart"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="拍照"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/btn_bottom_confirm_bg"/>
+                <Button
+                    android:id="@+id/btn_color"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="颜色调整"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/btn_bottom_confirm_bg"/>
+            </LinearLayout>
+
+
+            <!--<SurfaceView
+                android:id="@+id/surfaceview01"
+                android:layout_width="match_parent"
+                android:layout_height="700dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="#00000000" />-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.github.chrisbanes.photoview.PhotoView
+                    android:id="@+id/photoview1"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"/>
+                <com.github.chrisbanes.photoview.PhotoView
+                    android:id="@+id/photoview2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:orientation="horizontal">
+
+                <SurfaceView
+                    android:id="@+id/surfaceview01"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#00000000" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:orientation="horizontal">
+
+
+
+
+                <SurfaceView
+                    android:id="@+id/surfaceview02"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#00000000" />
+
+                <SurfaceView
+                    android:id="@+id/surfaceview03"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#00000000" />
+
+                <SurfaceView
+                    android:id="@+id/surfaceview04"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#00000000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:orientation="horizontal">
+
+
+                <SurfaceView
+                    android:id="@+id/surfaceview05"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#00000000" />
+
+                <SurfaceView
+                    android:id="@+id/surfaceview06"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#00000000" />
+
+                <SurfaceView
+                    android:id="@+id/surfaceview07"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#00000000" />
+
+                <SurfaceView
+                    android:id="@+id/surfaceview08"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#00000000" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:orientation="horizontal">
+
+
+                <SurfaceView
+                    android:id="@+id/surfaceview09"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#00000000" />
+
+                <SurfaceView
+                    android:id="@+id/surfaceview10"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#00000000" />
+
+                <SurfaceView
+                    android:id="@+id/surfaceview11"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#00000000" />
+
+                <SurfaceView
+                    android:id="@+id/surfaceview12"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#00000000" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:orientation="horizontal">
+
+
+                <SurfaceView
+                    android:id="@+id/surfaceview13"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#00000000" />
+
+                <SurfaceView
+                    android:id="@+id/surfaceview14"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#00000000" />
+
+                <SurfaceView
+                    android:id="@+id/surfaceview15"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#00000000" />
+
+                <SurfaceView
+                    android:id="@+id/surfaceview16"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#00000000" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

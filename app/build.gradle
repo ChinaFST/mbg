@@ -1,0 +1,229 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+android {
+
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    //原来是Android 6.0不再支持 Apache HTTP client， 建议使用 HttpURLConnection 代替。如果还想要继续使用 Apache HTTP client 的，请在build.gradle中添加下面的代码
+    useLibrary 'org.apache.http.legacy'
+    //java8
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    //默认配置,所有 productFlavors 都会继承 defaultConfig 中配置的属性
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
+        multiDexEnabled true
+
+    }
+
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('/Users/wangzhenxiong/android_project/wangzhx.jks')
+            storePassword '123456'
+            keyAlias 'key'
+            keyPassword '123456'
+        }
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            //f配置文件
+            buildConfigField "boolean", "USE_CANARY", "true"
+            //f配置文件 BuildConfig
+            buildConfigField "boolean", "INITCRASH", "false"
+            //测试版
+            buildConfigField "boolean", "ISBETA", "true"
+
+            minifyEnabled false  //是否进行混淆
+            //混淆文件位置
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            multiDexKeepProguard file('multidex-config.pro')  //multiDex文件位置
+
+            buildConfigField "boolean", "IS_beta", "true"
+        }
+
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            buildConfigField "boolean", "USE_CANARY", "false"
+            buildConfigField "boolean", "INITCRASH", "true"
+            //测试版
+            buildConfigField "boolean", "ISBETA", "false"
+
+            minifyEnabled false   //是否进行混淆
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            multiDexKeepProguard file('multidex-config.pro')
+            signingConfig signingConfigs.release
+
+
+        }
+
+
+    }
+
+    flavorDimensions "moudle" //多维度打包
+    productFlavors {
+
+        productFlavor_TongYeJunChuang_Land {
+
+            dimension "moudle"
+            //替换百度appkey
+            manifestPlaceholders = [ DESIGN_WIDTH: "1024", DESIGN_HEIGHT: "768"]
+        }
+
+        
+
+
+    }
+
+
+    greendao {
+        schemaVersion rootProject.ext.android["greendaoVersion"]
+        daoPackage 'com.dy.colony.greendao.daos'
+        targetGenDir 'src/main/java'
+    }
+    //移除lint检测error
+    lintOptions {
+        disable 'InvalidPackage'
+        disable "ResourceType"
+        checkReleaseBuilds false
+        //true 错误发生后停止构建
+        abortOnError false
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+        }
+    }
+
+
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                if (variant.buildType.name.equals("release")) {
+                    def value = getBuildConfigFieldValue(variant, "DEVICE_UPDATA_NAME")
+                    //在这里修改apk文件名
+                    outputFileName = "${variant.name}_${variant.versionName}_${variant.versionCode}_${new Date().format("yyyyMMddHHmmss")}.apk"
+                }
+            }
+    }
+}
+
+def static String getBuildConfigFieldValue(def variant, def fiedName) {
+    def properties = variant.productFlavors[0].properties
+    def name = properties.get("name")
+    if (name != variant.flavorName) {
+        return ""
+    }
+    def configs = properties.get("buildConfigFields")
+    def address = null
+    for (Map.Entry<String, Object> item : configs) {
+        def key = item.key
+        if (key == fiedName) {
+            address = item.value
+        }
+    }
+    if (address == null) return ""
+    def field = address.getClass().getDeclaredField("value")
+    field.setAccessible(true)
+    return field.get(address)
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //support
+    implementation rootProject.ext.dependencies["cardview-v7"]
+    implementation rootProject.ext.dependencies["design"]
+    //implementation rootProject.ext.dependencies["androideventbus"]
+    implementation rootProject.ext.dependencies["eventbus"]
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation files('libs/cron4j-2.2.5.jar')
+    implementation files('libs/core-3.2.1.jar')
+    annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
+    implementation rootProject.ext.dependencies["progressmanager"]
+    implementation rootProject.ext.dependencies["retrofit-url-manager"]
+    implementation rootProject.ext.dependencies["lifecyclemodel"]
+
+    //view
+    annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {
+        exclude module: 'support-annotations'
+    }
+    dependencies {
+        annotationProcessor 'com.jakewharton:butterknife-compiler:x.y.z'
+    }
+    implementation rootProject.ext.dependencies["paginate"]
+
+    //arms
+    //implementation project(':arms')
+
+    //所以旧项目只要依赖 arms-autolayout 即可兼容之前的旧页面, 新页面可以使用 AndroidAutoSize 进行适配, 等有时间了再将旧页面全部替换为 AndroidAutoSize
+    implementation rootProject.ext.dependencies["autosize"]
+    implementation 'me.jessyan:arms-imageloader-glide:2.5.0'
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+    //test
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testImplementation rootProject.ext.dependencies["junit"]
+    debugImplementation rootProject.ext.dependencies["canary-debug"]
+    releaseImplementation rootProject.ext.dependencies["canary-release"]
+    testImplementation rootProject.ext.dependencies["canary-release"]
+    //greendao
+    implementation rootProject.ext.dependencies["greendao"]
+    implementation rootProject.ext.dependencies["GreenDaoUpgradeHelper"]
+    //multidex
+    implementation rootProject.ext.dependencies["multidex"]
+    //logutils
+    implementation rootProject.ext.dependencies["logutils"]
+    implementation rootProject.ext.dependencies["rxandroid"]
+    //BaseRecyclerViewAdapterHelper
+    implementation rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
+    //jxl
+    implementation 'net.sourceforge.jexcelapi:jxl:2.6.12'
+    //SportDialog
+    implementation rootProject.ext.dependencies["SportDialog"]
+    // retrofit-url-manager 运行时动态切换url
+    implementation rootProject.ext.dependencies["retrofit-url-manager"]
+    //PickerView
+    implementation rootProject.ext.dependencies["PickerView"]
+    implementation rootProject.ext.dependencies["fastjson"]
+    compile 'com.google.android.gms:play-services-auth:11.8.0'
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
+    api 'com.github.shenbengit:PagerGridLayoutManager:1.1.7'
+    //MQTT
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0'
+    implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+    //implementation 'com.github.itfitness:MQTTAndroid:1.0.0'
+    implementation 'com.blankj:utilcode:1.30.7'
+    implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.2'
+    //implementation 'org.quartz-scheduler:quartz:2.3.0'
+    //implementation rootProject.ext.dependencies["usb-serial-for-android"]
+    //arms
+    implementation project(':arms')
+    //opencv
+    implementation project(path: ':opencvsdk480')
+    // PhotoView
+    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
+    //取色盘
+    implementation 'com.dingmouren.colorpicker:colorpicker:1.0.1'
+}
+
