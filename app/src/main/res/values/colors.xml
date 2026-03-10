@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--应用的主要色调，actionBar默认使用该颜色，Toolbar导航栏的底色-->
-    <color name="colorPrimary">#5C026F</color>
+    <color name="colorPrimary">#3856FC</color>
     <!--应用的主要暗色调，statusBarColor默认使用该颜色-->
-    <color name="colorPrimaryDark">#752386</color>
+    <color name="colorPrimaryDark">#448AFF</color>
     <!--状态栏颜色，默认使用colorPrimaryDark-->
     <!-- <color name="statusBarColor">#448AFF</color>-->
+    <!--CheckBox，RadioButton，SwitchCompat等一般控件的选中效果默认采用该颜色-->
+    <color name="colorAccent">#00a9f5</color>
+    <!-- 透明色 -->
+    <color name="transparent">#00000000</color>
 
-
-    <color name="colorAccent">#764380</color>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="gray">#cccccc</color>
     <color name="red">#FF0000</color>
+
+    <color name="card_blue">#1A237E</color>
+    <color name="card_green">#00C853</color>
+    <color name="bg_light_gray">#F5F5F5</color>
+    <color name="text_dark">#333333</color>
+    <color name="text_light">#777777</color>
+    <color name="sync_btn_green">#00BFA5</color>
+    <color name="black60">#99000000</color>
+    <color name="common_window_background_color">#F4F4F4</color>
 </resources>
