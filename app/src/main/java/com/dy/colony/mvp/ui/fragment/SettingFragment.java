@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ import com.dy.colony.mvp.contract.SettingContract;
 import com.dy.colony.mvp.presenter.SettingPresenter;
 import com.dy.colony.mvp.ui.activity.LoginActivity;
 import com.jess.arms.base.BaseFragment;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 
@@ -84,6 +86,17 @@ public class SettingFragment extends BaseFragment<SettingPresenter> implements S
         // 初始化开关状态
         boolean isAutoUpload = (boolean) SPUtils.get(getActivity(), Constants.KEY_AUTO_UPLOAD_ENABLED, false);
         switchAutoUpload.setChecked(isAutoUpload);
+        switchAutoUpload.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SPUtils.put(getActivity(), Constants.KEY_AUTO_UPLOAD_ENABLED, isChecked);
+                if (isChecked) {
+                    showMessage(getString(R.string.auto_upload_enabled));
+                } else {
+                    showMessage(getString(R.string.autoupload_disabled));
+                }
+            }
+        });
     }
 
     @OnClick(R.id.btn_logout)
@@ -95,18 +108,11 @@ public class SettingFragment extends BaseFragment<SettingPresenter> implements S
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        killMyself();
-    }
-
-    @OnCheckedChanged(R.id.switch_auto_upload)
-    void onAutoUploadChanged(boolean isChecked) {
-        SPUtils.put(getActivity(), Constants.KEY_AUTO_UPLOAD_ENABLED, isChecked);
-        if (isChecked) {
-            showMessage("自动上传已开启");
-        } else {
-            showMessage("自动上传已关闭");
+        if (getActivity() != null) {
+            getActivity().finish();
         }
     }
+
 
     @Override
     public void setData(@Nullable Object data) {

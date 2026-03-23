@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_title_fggd_test" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="70dp"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_4"
+                android:layout_marginEnd="@dimen/dp_4"
+                android:scrollbars="none"
+                tools:listitem="@layout/fggd_recycle_item_hidetaskmessage" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/dimen_6dp"
+                android:background="#DDDDDD" />
+
+            <LinearLayout
+                android:id="@+id/contro_value_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="8dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/contro_value_show"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/controlvalue"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <ScrollView
+                android:id="@+id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:scrollbars="none">
+
+                <include layout="@layout/include_gallery_message_fggd" />
+
+            </ScrollView>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/btn_bottom_confirm_bg"
+            android:gravity="center"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/btn_clear"
+                style="@style/button_base"
+                android:layout_marginStart="0dp"
+                android:background="@drawable/btn_bottom_confirm_bg"
+                android:text="@string/str_clear"
+                android:textColor="#f30505" />
+
+            <Button
+                android:id="@+id/btn_sampletest"
+                style="@style/button_base"
+                android:background="@drawable/btn_bottom_confirm_bg"
+                android:text="@string/str_sample"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/btn_controtest"
+                style="@style/button_base"
+                android:background="@drawable/btn_bottom_confirm_bg"
+                android:text="@string/str_contrast" />
+
+
+            <Button
+                android:id="@+id/btn_step"
+                style="@style/button_base"
+                android:background="@drawable/btn_bottom_confirm_bg"
+                android:text="@string/str_step"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_video"
+                style="@style/button_base"
+                android:background="@drawable/btn_bottom_confirm_bg"
+                android:text="@string/str_video"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_adjust"
+                style="@style/button_base"
+                android:background="@drawable/btn_bottom_confirm_bg"
+                android:text="@string/str_adjust"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/btn_query"
+                style="@style/button_base"
+                android:background="@drawable/btn_bottom_confirm_bg"
+                android:text="@string/test_record"
+                android:visibility="visible" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

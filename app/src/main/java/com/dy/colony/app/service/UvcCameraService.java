@@ -81,7 +81,9 @@ public class UvcCameraService extends Service {
         initUvcCamera();
         return binder;
     }
-   public Bitmap bmp;
+
+    public Bitmap bmp;
+
     public class MyBinder extends Binder {
         public UvcCameraService getService() {
             return UvcCameraService.this;
@@ -101,6 +103,7 @@ public class UvcCameraService extends Service {
 
     HashMap<Integer, UvcCameraPreview> openedUvcCameraList = new HashMap<>();
     Status status = new Status(Status.MyEvent.BITMAPRECEVER);
+
     private void openCamera() {
 
         LogUtils.d("openCamera");
@@ -124,7 +127,7 @@ public class UvcCameraService extends Service {
                 });
                 mScheduledThreadPoolExecutor.execute(cameraPreview);
                 return;
-            }else {
+            } else {
                 cameraPreview.recycleBmp();
             }
         }
@@ -168,7 +171,7 @@ public class UvcCameraService extends Service {
         registerReceiver(reciverUSBStatus, intentFilter);
     }
 
-    public void addStatusListener(CameraCallBack status)  {
+    public void addStatusListener(CameraCallBack status) {
         if (null == status) {
             return;
         }
@@ -219,6 +222,19 @@ public class UvcCameraService extends Service {
                 }
             }
 
+            if (action.equals(mUsbPermission)) {
+                UsbDevice device = intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
+                LogUtils.d(device);
+                if (intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)) {
+                    if (device != null) {
+                        LogUtils.d("用户点击了同意，权限获取成功！");
+                    }
+                } else {
+                    LogUtils.d("用户拒绝了权限");
+
+                }
+            }
+
 
         }
     };
@@ -249,7 +265,6 @@ public class UvcCameraService extends Service {
             return;
         }
         cameraCallBack.onCallBack(status);
-
 
 
     }

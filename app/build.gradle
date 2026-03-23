@@ -78,11 +78,12 @@ android {
         productFlavor_TongYeJunChuang_Land {
 
             dimension "moudle"
+            //分光模块 分为6通道 和8 通道 不同通道ad值得算法不一样
+            buildConfigField "int", "FGGD_TYPE", "8"
             //替换百度appkey
-            manifestPlaceholders = [ DESIGN_WIDTH: "720", DESIGN_HEIGHT: "1280"]
+            manifestPlaceholders = [ DESIGN_WIDTH: "360", DESIGN_HEIGHT: "806"]
+//            manifestPlaceholders = [DESIGN_WIDTH: "1024", DESIGN_HEIGHT: "768"]
         }
-
-        
 
 
     }
@@ -212,6 +213,8 @@ dependencies {
     //MQTT
     implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0'
     implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+//使用第三方jar代替本地自己配置ndk Android studio 更新后ndk抽疯用不了
+    implementation rootProject.ext.dependencies["AndroidSerialPort"]
     //implementation 'com.github.itfitness:MQTTAndroid:1.0.0'
     implementation 'com.blankj:utilcode:1.30.7'
     implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.2'
@@ -226,5 +229,10 @@ dependencies {
     //取色盘
     implementation 'com.dingmouren.colorpicker:colorpicker:1.0.1'
     implementation 'com.github.getActivity:TitleBar:10.5'
+    implementation 'com.github.getActivity:ShapeView:10.0'
+    implementation rootProject.ext.dependencies["materialsearchview"]
+    //MPAndroidChart
+    implementation rootProject.ext.dependencies["MPAndroidChart"]
+    implementation rootProject.ext.dependencies["swipelayout"]
 }
 

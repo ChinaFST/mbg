@@ -3,6 +3,12 @@ package com.dy.colony.app.utils;
 import android.graphics.Bitmap;
 
 import com.apkfuns.logutils.LogUtils;
+import com.dy.colony.BuildConfig;
+import com.dy.colony.Constants;
+import com.dy.colony.mvp.model.opencvDetector.CardDetector;
+import com.dy.colony.mvp.model.opencvDetector.CardType;
+import com.dy.colony.mvp.model.opencvDetector.DataSource;
+import com.jess.arms.utils.ArmsUtils;
 
 import org.opencv.android.Utils;
 import org.opencv.core.Core;
@@ -10,6 +16,7 @@ import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfInt;
 import org.opencv.core.MatOfPoint;
+import org.opencv.core.MatOfPoint2f;
 import org.opencv.core.Point;
 import org.opencv.core.RotatedRect;
 import org.opencv.core.Scalar;
@@ -17,7 +24,12 @@ import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import static org.opencv.imgproc.Imgproc.MORPH_ELLIPSE;
 
 /**
  * 　 ┏┓　  ┏┓+ +
@@ -47,10 +59,6 @@ import java.util.List;
  * Description:
  */
 public class OpenCvUtils {
-
-
-
-
 
     private static Mat cropPicture(Mat cpsrcMat, RotatedRect rotatedRect, double maxrectbian, double minrectbian) {
         // String name = UUID.randomUUID().toString();
@@ -195,7 +203,6 @@ public class OpenCvUtils {
     }
 
 
-
     public static MatOfPoint matOfIntToPoints(MatOfPoint contour, MatOfInt indexes) {
         int[] arrIndex = indexes.toArray();
         Point[] arrContour = contour.toArray();
@@ -209,7 +216,6 @@ public class OpenCvUtils {
         hull.fromArray(arrPoints);
         return hull;
     }
-
 
 
     public static Mat mergeBitmaptoMat(List<Bitmap> list) {
@@ -255,8 +261,6 @@ public class OpenCvUtils {
         Utils.matToBitmap(dst, bitmap1);
         return bitmap1;
     }
-
-
 
 
     public static Mat gaussi(Mat src, int kernel) {
@@ -309,7 +313,528 @@ public class OpenCvUtils {
     }
 
 
-    //菌落计数处理
+    /**
+     * 寻找三个卡条
+     *
+     * @param bitmap
+     * @return
+     */
+    public static List<Bitmap> getCardBitmap_External(Bitmap bitmap, CardType cardType) {
+        List<Bitmap> list = new ArrayList<>();
+        Mat dst = new Mat();
+        Utils.bitmapToMat(bitmap, dst);
+        if (BuildConfig.DEBUG) {
 
+        }
+
+        //动态处理图片
+        //List<DataSource> list1 = dynamicProcessing(rgb2gray, Constants.ALPHAXVALUE, Constants.ALPHAYVALUE, Constants.THRESHOLDVALUE, Constants.DEKEENELVALUE);
+        CardDetector detector = new CardDetector(dst, cardType);
+        List<DataSource> list1 = detector.startSeachCards_External();
+        LogUtils.d(list1);
+        for (int i = 0; i < list1.size(); i++) {
+            DataSource source = list1.get(i);
+            ArrayList<RotatedRect> rectArrayList = source.getUsefulRotatedRect();
+            for (int i1 = 0; i1 < rectArrayList.size(); i1++) {
+                RotatedRect rect = rectArrayList.get(i1);
+                Mat mat = guiyihuaMatByRoi_(dst, rect);
+                if (null == mat) {
+                    continue;
+                }
+                Bitmap bmp = Bitmap.createBitmap(mat.width(), mat.height(), Bitmap.Config.RGB_565);
+                Utils.matToBitmap(mat, bmp);
+                list.add(bmp);
+                mat.release();
+            }
+        }
+        dst.release();
+        return list;
+    }
+
+    public static DataSource processingKeyRect_new(ArrayList<MatOfPoint> src) {
+
+        ArrayList<MatOfPoint> usefulpoint = new ArrayList<>();
+        for (int i = 0; i < src.size(); i++) {
+            MatOfPoint point = src.get(i);
+            if (point.toArray().length > 40) {
+                usefulpoint.add(point);
+            }
+
+        }
+        LogUtils.d(usefulpoint.size());
+        ArrayList<RotatedRect> usefulRotatedRect = new ArrayList<>();
+        ArrayList<MatOfPoint> usefules = new ArrayList<>();
+        List<MatOfPoint> hullList = new ArrayList<MatOfPoint>();
+        for (int i = 0; i < usefulpoint.size(); i++) {
+            MatOfInt hull = new MatOfInt();
+            Imgproc.convexHull(usefulpoint.get(i), hull);
+            MatOfPoint point = matOfIntToPoints(usefulpoint.get(i), hull);
+            hullList.add(point);
+
+            //MatOfPoint point = usefulpoint.get(i);
+            List<Point> points1 = new ArrayList<>(point.toList());
+            Point[] a = new Point[points1.size()];
+            points1.toArray(a);
+            MatOfPoint2f points = new MatOfPoint2f(a);
+
+            RotatedRect rect = Imgproc.minAreaRect(points);
+
+            double width = rect.size.width;
+            double height = rect.size.height;
+            //宽度限制
+            if (width < Constants.MINWIDTH) {
+                //LogUtils.d("宽度限制 "+width);
+                continue;
+            }
+            //高度限制
+            if (height < Constants.MINHEIGHT) {
+                //LogUtils.d("高度限制 "+height);
+                continue;
+            }
+            //宽高比例限制
+            double v = width / height;
+            if (height > width) {
+                v = height / width;
+            }
+            if (v < 3 || v > 6) {
+                continue;
+            }
+            //角度限制
+            if (Constants.LIMITANGLEA < rect.angle && rect.angle < Constants.LIMITANGLEB) {
+                continue;
+            }
+
+
+            usefulRotatedRect.add(rect);
+            usefules.add(point);
+
+        }
+
+        DataSource source = new DataSource();
+        source.setUsefules(usefules);
+        Map<Double, RotatedRect> map = new TreeMap<>(new Comparator<Double>() {
+            @Override
+            public int compare(Double o1, Double o2) {
+                return o1.compareTo(o2);
+            }
+        });
+        for (int i = 0; i < usefulRotatedRect.size(); i++) {
+            RotatedRect rect = usefulRotatedRect.get(i);
+            double x = rect.center.x;
+            map.put(x, rect);
+        }
+        usefulRotatedRect.clear();
+        for (Double aDouble : map.keySet()) {
+            usefulRotatedRect.add(map.get(aDouble));
+        }
+        source.setUsefulRotatedRect(usefulRotatedRect);
+        return source;
+    }
+
+    /**
+     * 需要找出三个通道
+     *
+     * @param src
+     * @return
+     */
+    public static DataSource processingKeyRect(ArrayList<MatOfPoint> src, CardType cardType, int matwidth, int matheight) {
+        int limitwidth = 0;
+        int limitheight = 0;
+        int limitProportion = 0;
+        int limitangle = 0;
+        int limitLocation = 0;
+
+        ArrayList<MatOfPoint> usefulpoint = new ArrayList<>();
+        for (int i = 0; i < src.size(); i++) {
+            MatOfPoint point = src.get(i);
+            if (point.toArray().length > 40) {
+                usefulpoint.add(point);
+            }
+
+        }
+        LogUtils.d(src.size() + "--->" + usefulpoint.size());
+        ArrayList<RotatedRect> rotatedRect = new ArrayList<>();
+        ArrayList<RotatedRect> usefulRotatedRect = new ArrayList<>();
+        ArrayList<MatOfPoint> usefules = new ArrayList<>();
+        for (int i = 0; i < usefulpoint.size(); i++) {
+            MatOfPoint point = usefulpoint.get(i);
+            List<Point> points1 = new ArrayList<>(point.toList());
+            Point[] a = new Point[points1.size()];
+            points1.toArray(a);
+            MatOfPoint2f points = new MatOfPoint2f(a);
+
+            RotatedRect rect = Imgproc.minAreaRect(points);
+            rotatedRect.add(rect);
+            double width = rect.size.height;
+            double height = rect.size.width;
+            if (rect.size.width > rect.size.height) {
+                width = rect.size.width;
+                height = rect.size.height;
+            }
+
+            rect.size.height = height;
+            rect.size.width = width;
+
+            //宽度限制
+            if (width < Constants.MINWIDTH) {
+                limitwidth++;
+                //LogUtils.d("宽度限制 "+width);
+                continue;
+            }
+            //高度限制
+            if (height < Constants.MINHEIGHT) {
+                limitheight++;
+                //LogUtils.d("高度限制 "+height);
+                continue;
+            }
+
+            //宽高比例限制
+            double v = width / height;
+            if (v < 3 || v > 6) {
+                limitProportion++;
+                //LogUtils.d("宽高比例限制 "+v);
+                continue;
+            }
+
+            //角度限制
+            if (Constants.LIMITANGLEA < rect.angle && rect.angle < Constants.LIMITANGLEB) {
+                limitangle++;
+                //LogUtils.d("角度限制 "+rect.angle);
+                continue;
+            }
+            //单卡的卡条必须是居中，宽分成三份，必须处于中间一份上
+            if (cardType == CardType.ONE) {
+                if (matwidth / 3 > rect.center.x || rect.center.x > matwidth / 3 * 2) {
+                    limitLocation++;
+                    LogUtils.d("单卡位置不对 " + rect.center + " " + matwidth / 3 + " " + matwidth / 3 * 2);
+                    continue;
+                }
+            }
+            //LogUtils.d(rect);
+            usefulRotatedRect.add(rect);
+            usefules.add(point);
+
+            if (cardType == CardType.ONE) {
+                LogUtils.d(usefulRotatedRect);
+                if (usefulRotatedRect.size() == 1) {
+                    break;
+                }
+            }
+
+        }
+        LogUtils.d(rotatedRect);
+        LogUtils.d(
+                "宽度限制:" + limitwidth + "\r\n" +
+                        "高度限制:" + limitheight + "\r\n" +
+                        "宽高比例限制:" + limitProportion + "\r\n" +
+                        "角度限制:" + limitangle + "\r\n" +
+                        "单卡位置不对:" + limitLocation + "\r\n"
+        );
+
+        if (cardType == CardType.ONE) {
+            if (usefulRotatedRect.size() != 1) {
+                LogUtils.d("返回位置 识别数量不对");
+                return null;
+            }
+        } else if (cardType == CardType.THREE) {
+            if (usefulRotatedRect.size() != 3) {
+                LogUtils.d("返回位置 识别数量不对");
+                return null;
+            }
+        } else if (cardType == CardType.FOUR) {
+            if (usefulRotatedRect.size() != 4) {
+                LogUtils.d("返回位置 识别数量不对");
+                return null;
+            }
+        }
+
+
+        DataSource source = new DataSource();
+        source.setUsefules(usefules);
+        Map<Double, RotatedRect> map = new TreeMap<>(new Comparator<Double>() {
+            @Override
+            public int compare(Double o1, Double o2) {
+                return o1.compareTo(o2);
+            }
+        });
+        source.setUsefulRotatedRect(usefulRotatedRect);
+        if (cardType == CardType.THREE) {
+            //排序
+            for (int i = 0; i < usefulRotatedRect.size(); i++) {
+                RotatedRect rect = usefulRotatedRect.get(i);
+                double x = rect.center.x;
+                map.put(x, rect);
+            }
+            usefulRotatedRect.clear();
+            for (Double aDouble : map.keySet()) {
+                usefulRotatedRect.add(map.get(aDouble));
+            }
+            source.setUsefulRotatedRect(usefulRotatedRect);
+            LogUtils.d(usefulRotatedRect);
+            RotatedRect rect1 = usefulRotatedRect.get(0);
+            RotatedRect rect2 = usefulRotatedRect.get(1);
+            RotatedRect rect3 = usefulRotatedRect.get(2);
+            double abs = Math.abs(Math.abs(rect2.center.x - rect1.center.x) - Math.abs(rect3.center.x - rect2.center.x));
+
+            if (abs > Constants.LIMITCHANNL) {
+                LogUtils.d("返回位置");
+                return null;
+            }
+            double width1 = rect1.size.width;
+            double width2 = rect2.size.width;
+            double width3 = rect3.size.width;
+
+            double height1 = rect1.size.height;
+            double height2 = rect2.size.height;
+            double height3 = rect3.size.height;
+
+            double angle1 = rect1.angle;
+            double angle2 = rect1.angle;
+            double angle3 = rect1.angle;
+
+            double minw;
+            double averageValuew;
+            double abs1 = Math.abs(width1 - width2);
+            minw = abs1;
+            averageValuew = (width1 + width2) / 2;
+            double abs2 = Math.abs(width2 - width3);
+            if (abs2 < minw) {
+                minw = abs2;
+                averageValuew = (width2 + width3) / 2;
+            }
+            double abs3 = Math.abs(width3 - width1);
+            if (abs3 < minw) {
+                minw = abs3;
+                averageValuew = (width3 + width1) / 2;
+            }
+            double minh;
+            double averageValueh;
+            double abs4 = Math.abs(height1 - height2);
+            minh = abs4;
+            averageValueh = (height1 + height2) / 2;
+            double abs5 = Math.abs(height2 - height3);
+            if (abs5 < minh) {
+                minh = abs3;
+                averageValueh = (height2 + height3) / 2;
+            }
+            double abs6 = Math.abs(height3 - height1);
+            if (abs6 < minh) {
+                minh = abs6;
+                averageValueh = (height3 + height1) / 2;
+            }
+
+            double mina;
+            double averageValuea;
+            double abs7 = Math.abs(angle1 - angle2);
+            mina = abs7;
+            averageValuea = (angle1 + angle2) / 2;
+
+            double abs8 = Math.abs(angle2 - angle3);
+            if (abs8 < mina) {
+                mina = abs8;
+                averageValuea = (angle2 + angle3) / 2;
+            }
+            double abs9 = Math.abs(angle3 - angle1);
+            if (abs9 < mina) {
+                mina = abs9;
+                averageValuea = (angle3 + angle1) / 2;
+            }
+
+
+            if (minw > Constants.MINWDIFFERENCEVALUE) {
+                LogUtils.d("返回位置 " + minw);
+                return null;
+            }
+            if (minh > Constants.MINHDIFFERENCEVALUE) {
+                LogUtils.d("返回位置 " + minh);
+                return null;
+            }
+
+            rect1.size.width = averageValuew;
+            rect2.size.width = averageValuew;
+            rect3.size.width = averageValuew;
+
+            rect1.size.height = averageValueh;
+            rect2.size.height = averageValueh;
+            rect3.size.height = averageValueh;
+
+            rect1.angle = averageValuea;
+            rect2.angle = averageValuea;
+            rect3.angle = averageValuea;
+
+            usefulRotatedRect.clear();
+            usefulRotatedRect.add(rect1);
+            usefulRotatedRect.add(rect2);
+            usefulRotatedRect.add(rect3);
+
+        } else if (cardType == CardType.FOUR) {
+            //排序
+            for (int i = 0; i < usefulRotatedRect.size(); i++) {
+                RotatedRect rect = usefulRotatedRect.get(i);
+                double x = rect.center.x;
+                map.put(x, rect);
+            }
+            usefulRotatedRect.clear();
+            for (Double aDouble : map.keySet()) {
+                usefulRotatedRect.add(map.get(aDouble));
+            }
+            source.setUsefulRotatedRect(usefulRotatedRect);
+            LogUtils.d(usefulRotatedRect);
+            RotatedRect rect1 = usefulRotatedRect.get(0);
+            RotatedRect rect2 = usefulRotatedRect.get(1);
+            RotatedRect rect3 = usefulRotatedRect.get(2);
+            RotatedRect rect4 = usefulRotatedRect.get(3);
+            double abs = Math.abs(
+                    Math.abs(
+                            rect2.center.x - rect1.center.x
+                    )
+                            -
+                            Math.abs(
+                                    rect3.center.x - rect2.center.x
+                            )
+            );
+
+            if (abs > Constants.LIMITCHANNL) {
+                LogUtils.d("返回位置");
+                return null;
+            }
+            double width1 = rect1.size.width;
+            double width2 = rect2.size.width;
+            double width3 = rect3.size.width;
+            double width4 = rect4.size.width;
+
+            double height1 = rect1.size.height;
+            double height2 = rect2.size.height;
+            double height3 = rect3.size.height;
+            double height4 = rect4.size.height;
+
+            double angle1 = rect1.angle;
+            double angle2 = rect2.angle;
+            double angle3 = rect3.angle;
+            double angle4 = rect4.angle;
+
+            double minw;
+            double averageValuew;
+            double abs1 = Math.abs(width1 - width2);
+            minw = abs1;
+            averageValuew = (width1 + width2) / 2;
+            double abs2 = Math.abs(width2 - width3);
+            if (abs2 < minw) {
+                minw = abs2;
+                averageValuew = (width2 + width3) / 2;
+            }
+            double abs3 = Math.abs(width3 - width1);
+            if (abs3 < minw) {
+                minw = abs3;
+                averageValuew = (width3 + width1) / 2;
+            }
+            double minh;
+            double averageValueh;
+            double abs4 = Math.abs(height1 - height2);
+            minh = abs4;
+            averageValueh = (height1 + height2) / 2;
+            double abs5 = Math.abs(height2 - height3);
+            if (abs5 < minh) {
+                minh = abs3;
+                averageValueh = (height2 + height3) / 2;
+            }
+            double abs6 = Math.abs(height3 - height1);
+            if (abs6 < minh) {
+                minh = abs6;
+                averageValueh = (height3 + height1) / 2;
+            }
+
+            double mina;
+            double averageValuea;
+            double abs7 = Math.abs(angle1 - angle2);
+            mina = abs7;
+            averageValuea = (angle1 + angle2) / 2;
+
+            double abs8 = Math.abs(angle2 - angle3);
+            if (abs8 < mina) {
+                mina = abs8;
+                averageValuea = (angle2 + angle3) / 2;
+            }
+            double abs9 = Math.abs(angle3 - angle1);
+            if (abs9 < mina) {
+                mina = abs9;
+                averageValuea = (angle3 + angle1) / 2;
+            }
+
+
+            if (minw > Constants.MINWDIFFERENCEVALUE) {
+                LogUtils.d("返回位置 " + minw);
+                return null;
+            }
+            if (minh > Constants.MINHDIFFERENCEVALUE) {
+                LogUtils.d("返回位置 " + minh);
+                return null;
+            }
+
+            rect1.size.width = averageValuew;
+            rect2.size.width = averageValuew;
+            rect3.size.width = averageValuew;
+            rect4.size.width = averageValuew;
+
+            rect1.size.height = averageValueh;
+            rect2.size.height = averageValueh;
+            rect3.size.height = averageValueh;
+            rect4.size.height = averageValueh;
+
+            rect1.angle = averageValuea;
+            rect2.angle = averageValuea;
+            rect3.angle = averageValuea;
+            rect4.angle = averageValuea;
+
+            usefulRotatedRect.clear();
+            usefulRotatedRect.add(rect1);
+            usefulRotatedRect.add(rect2);
+            usefulRotatedRect.add(rect3);
+            usefulRotatedRect.add(rect4);
+
+        }
+
+
+        return source;
+    }
+
+    public static Mat psMap(Mat dst, int ksize) {
+        try{
+            Mat gaussi1 = OpenCvUtils.gaussi(dst, ksize==-1?3:7);
+
+            Mat rgb2gray = OpenCvUtils.rgb2gray(gaussi1);
+
+            // Mat medianBlur1 = new Mat();
+            //Imgproc.medianBlur(rgb2gray, medianBlur1, 5);
+
+            Mat adaptiveThresh = new Mat();
+            Imgproc.adaptiveThreshold(rgb2gray, adaptiveThresh, 255, Imgproc.ADAPTIVE_THRESH_MEAN_C, Imgproc.THRESH_BINARY, 9, 2);
+
+
+            Mat medianBlur = new Mat();
+            Imgproc.medianBlur(adaptiveThresh, medianBlur, ksize==-1?3:ksize);
+
+
+            Mat laplacian = new Mat();
+            Imgproc.Laplacian(medianBlur, laplacian, -1, ksize==-1?3:ksize);
+
+
+            Mat structuringElement = Imgproc.getStructuringElement(MORPH_ELLIPSE, new org.opencv.core.Size(ksize==-1?13:11, ksize==-1?13:11));
+            Mat dilate = new Mat();
+            Imgproc.dilate(laplacian, dilate, structuringElement);
+            if (ksize==-1){
+                return dilate;
+            }
+
+            Mat keenel9 = Imgproc.getStructuringElement(Imgproc.RETR_CCOMP, new org.opencv.core.Size(7, 7));
+            Mat erode = new Mat();
+            Imgproc.erode(dilate, erode, keenel9);  // 腐蚀 黑色扩张
+
+            return erode;
+        }catch (Exception e){
+            ArmsUtils.snackbarText(e.toString());
+        }
+        return dst;
+    }
 
 }

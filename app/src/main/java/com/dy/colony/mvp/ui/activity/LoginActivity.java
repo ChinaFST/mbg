@@ -40,7 +40,7 @@ import me.jessyan.autosize.internal.CancelAdapt;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
-public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View  , CancelAdapt {
+public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View, CancelAdapt {
 
     @BindView(R.id.usename)
     EditText mUsename;
@@ -104,11 +104,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         initUserInfor();
         initVersion();
 
-        if (Constants.ISREMBERUSERNAME) {
+        /*if (Constants.ISREMBERUSERNAME) {
             login();
-        }
-
-
+        }*/
         if (BuildConfig.DEBUG) {
             mUsename.setText("admin");
             mPassword.setText("123456");
@@ -120,7 +118,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @SuppressLint("SetTextI18n")
     private void initVersion() {
         LogUtils.d(mVersion);
-        mVersion.setText("V"+BuildConfig.VERSION_NAME);
+        mVersion.setText("V" + BuildConfig.VERSION_NAME);
     }
 
     private void initCb() {
@@ -202,7 +200,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
 
-    @OnClick({R.id.cb, R.id.login, R.id.callours, R.id.online_register})
+    @OnClick({R.id.cb, R.id.login, R.id.callours, R.id.online_register, R.id.offline})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.cb:
@@ -220,6 +218,11 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 break;
             case R.id.online_register:
                 //launchActivity(new Intent(getActivity(), RegisterOnLineActivity.class));
+                break;
+
+            case R.id.offline:
+                launchActivity(new Intent(getActivity(), HomeActivity.class));
+                killMyself();
                 break;
         }
     }

@@ -7,6 +7,8 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.apkfuns.logutils.LogUtils;
+import com.dy.colony.BuildConfig;
+import com.dy.colony.Constants;
 import com.dy.colony.MyAppLocation;
 
 import java.io.BufferedInputStream;
@@ -1838,6 +1840,28 @@ public final class FileUtils {
         return content;
     }
 
+    public static void saveErrorJTJCardBitmap(Bitmap bitmap, String path) {
+        if (bitmap==null){
+            return;
+        }
+        try {
+            FileOutputStream fout = new FileOutputStream(path);
+            BufferedOutputStream bos = new BufferedOutputStream(fout);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+            bos.flush();
+            bos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            bitmap.recycle();
+            bitmap=null;
+        }
+    }
 
-
+    public static Bitmap getControlBitmap(int gallery) {
+        String path = "/data/data/" + BuildConfig.APPLICATION_ID + "/";
+        String s = path + Constants.controBitmapNocardFileName + gallery + ".jpg";
+        LogUtils.d(s);
+        return BitmapFactory.decodeFile(s);
+    }
 }

@@ -13,3 +13,4 @@
 
 # Files for the ART/Dalvik VM
 *.dex
+/app/src/main/java/com/dy/colony/greendao/daos/

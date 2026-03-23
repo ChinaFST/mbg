@@ -81,21 +81,12 @@ public class ActivityLifecycleCallbacksImpl implements Application.ActivityLifec
             if (activity.findViewById(R.id.toolbar_title) != null) {
                 ((TextView) activity.findViewById(R.id.toolbar_title)).setText(activity.getTitle());
             }
-           /* if (activity.findViewById(R.id.toolbar_back) != null) {
+            if (activity.findViewById(R.id.toolbar_back) != null) {
                 activity.findViewById(R.id.toolbar_back).setOnClickListener(v -> {
                     activity.onBackPressed();
                 });
-            }*/
-           /* if (activity.findViewById(R.id.toolbar_home) != null) {
-                if (MyAppLocation.myAppLocation.mExamOperationService.isStartExamOperation()){
-                    activity.findViewById(R.id.toolbar_home).setVisibility(View.GONE);
-                }else {
-                    activity.findViewById(R.id.toolbar_home).setVisibility(View.VISIBLE);
-                }
-                activity.findViewById(R.id.toolbar_home).setOnClickListener(v -> {
-                    activity.startActivity(new Intent(activity, HomeActivity.class));
-                });
-            }*/
+            }
+
             View decorView = activity.getWindow().getDecorView();
             decorView.setFocusable(true);
             decorView.setFocusableInTouchMode(true);

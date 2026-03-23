@@ -19,9 +19,9 @@
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingStart="@dimen/dp_10"
-            android:paddingTop="24dp"
+            android:paddingTop="20dp"
             android:paddingEnd="@dimen/dp_10"
-            android:paddingBottom="24dp">
+            android:paddingBottom="20dp">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_avatar"
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:text="Admin"
                     android:textColor="@color/text_dark"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -79,29 +79,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/dp_10"
-            android:paddingTop="24dp"
+            android:paddingTop="20dp"
             android:paddingEnd="@dimen/dp_10"
-            android:paddingBottom="24dp">
+            android:paddingBottom="20dp">
 
             <TextView
                 android:id="@+id/tv_auto_upload"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:text="@string/auto_upload"
                 android:textColor="#6b6b6b"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <CheckBox
                 android:id="@+id/switch_auto_upload"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/tv_auto_upload"
                 android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:background="@drawable/auto_upload_sel"
                 android:button="@null" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
+
+
 
     <View
         android:layout_width="match_parent"
@@ -114,10 +117,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:background="@drawable/btn_bottom_confirm_bg"
-        android:paddingTop="24dp"
-        android:paddingBottom="24dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
         android:text="@string/login_out"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
 </LinearLayout>

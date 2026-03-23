@@ -1,6 +1,7 @@
 package com.dy.colony;
 
 import android.app.ActivityManager;
+import android.app.Application;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -15,11 +16,14 @@ import com.dy.colony.app.service.MyMqttService;
 import com.dy.colony.app.service.SerialDataService;
 import com.dy.colony.app.service.UvcCameraService;
 import com.dy.colony.app.service.VoicePlayService;
+import com.dy.colony.app.utils.DataBaseUtil;
+import com.dy.colony.app.utils.SPUtils;
 import com.dy.colony.crash.CaocConfig;
 import com.dy.colony.crash.CustomActivityOnCrash;
 import com.dy.colony.mvp.ui.activity.HomeActivity;
 import com.jess.arms.base.BaseApplication;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Locale;
 
@@ -275,4 +279,6 @@ public class MyAppLocation extends BaseApplication implements TextToSpeech.OnIni
             }
         }
     }
+
+
 }

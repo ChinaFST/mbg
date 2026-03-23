@@ -22,7 +22,7 @@
     <application
         android:name=".MyAppLocation"
         android:allowBackup="true"
-        android:hardwareAccelerated="false"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic"
         android:label="@string/app_name"
         android:largeHeap="true"
@@ -31,15 +31,49 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".mvp.ui.activity.TestRecordNewActivity"
+            android:label="@string/test_record"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".mvp.ui.activity.ChoseSampleTypeActivity"
+            android:label="@string/ChoseSampleTypeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.ui.activity.EdtorSampleActivity"
+            android:label="@string/EdtorSampleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.ui.activity.ChoseUnitActivity"
+            android:label="@string/ChoseUnitActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.ui.activity.ChoseSampleActivity"
+            android:label="@string/ChoseSampleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.ui.activity.ChoseProjectActivity"
+            android:label="@string/ChoseProjectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.ui.activity.JTJ_TestActivity"
+            android:label="@string/JTJ_TestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.ui.activity.FGGDAdjustingActivity"
+            android:label="@string/FGGDAdjustingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.ui.activity.FGGD_TestActivity"
+            android:label="@string/FGGD_TestActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.ui.activity.SplashActivity"
             android:exported="true"
-            android:theme="@style/SplashTheme">
-
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".mvp.ui.activity.LoginActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -51,9 +85,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.ui.activity.HomeActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".app.service.UvcCameraService"

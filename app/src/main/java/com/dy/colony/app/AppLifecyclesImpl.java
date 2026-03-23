@@ -24,6 +24,10 @@ import androidx.multidex.MultiDex;
 import com.apkfuns.logutils.LogLevel;
 import com.apkfuns.logutils.LogUtils;
 import com.dy.colony.BuildConfig;
+import com.dy.colony.Constants;
+import com.dy.colony.R;
+import com.dy.colony.app.utils.DataBaseUtil;
+import com.dy.colony.app.utils.SPUtils;
 import com.dy.colony.language.LanguageListener;
 import com.dy.colony.language.LanguageUtils;
 import com.dy.colony.language.MultiLanguage;
@@ -33,6 +37,7 @@ import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 
+import java.io.IOException;
 import java.util.Locale;
 
 import butterknife.ButterKnife;
@@ -50,7 +55,7 @@ public class AppLifecyclesImpl implements AppLifecycles {
 
     @Override
     public void attachBaseContext(@NonNull Context base) {
-         MultiDex.install(base);  //这里比 onCreate 先执行,常用于 MultiDex 初始化,插件化框架的初始化
+        MultiDex.install(base);  //这里比 onCreate 先执行,常用于 MultiDex 初始化,插件化框架的初始化
         LanguageUtils.saveSystemCurrentLanguage(base);
     }
 
@@ -82,7 +87,7 @@ public class AppLifecyclesImpl implements AppLifecycles {
 //                    });
             LogUtils.getLogConfig()
                     .configAllowLog(true)
-                    .configTagPrefix("colony")
+                    .configTagPrefix("colony_log")
                     .configFormatTag("%d{HH:mm:ss:SSS} %t %c{-5}")
                     .configShowBorders(true)
 //                .configMethodOffset(1)
@@ -101,6 +106,8 @@ public class AppLifecyclesImpl implements AppLifecycles {
             ButterKnife.setDebug(false);
         }
 
+        Constants.init(application);
+        copyDatabase(application);
 
         //opencv库初始化
         BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(application) {
@@ -119,18 +126,50 @@ public class AppLifecyclesImpl implements AppLifecycles {
             }
         };
         if (!OpenCVLoader.initDebug()) {
-            LogUtils.d( "Internal OpenCV library not found. Using OpenCV Manager for initialization");
+            LogUtils.d("Internal OpenCV library not found. Using OpenCV Manager for initialization");
             OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION, application, mLoaderCallback);
         } else {
-            LogUtils.d( "OpenCV library found inside package. Using it!");
+            LogUtils.d("OpenCV library found inside package. Using it!");
             mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
         }
 
 
-
     }
 
+    private void copyDatabase(Application application) {
+        boolean database = (boolean) SPUtils.get(application, "database", false);
+        if (!database) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        //用户列表
+                        DataBaseUtil.copyDataBase(application, R.raw.user_db, "USER-db");
+                        DataBaseUtil.copyDataBase(application, R.raw.user_db_journal, "USER-db-journal");
+                        //检测项目和标准关联信息
+                        DataBaseUtil.copyDataBase(application, R.raw.food_item_and_standard_db, "FOOD_ITEM_AND_STANDARD-db");
+                        DataBaseUtil.copyDataBase(application, R.raw.food_item_and_standard_db_journal, "FOOD_ITEM_AND_STANDARD-db-journal");
+                        //食品33大类
+                        DataBaseUtil.copyDataBase(application, R.raw.simple33_db, "SIMPLE33-db");
+                        DataBaseUtil.copyDataBase(application, R.raw.simple33_db_journal, "SIMPLE33-db-journal");
+                        //胶体金检测项目
+                        DataBaseUtil.copyDataBase(application, R.raw.jtjtest_item_db, "JTJTEST_ITEM-db");
+                        DataBaseUtil.copyDataBase(application, R.raw.jtjtest_item_db_journal, "JTJTEST_ITEM-db-journal");
+                        //分光光度检测项目
+                        DataBaseUtil.copyDataBase(application, R.raw.fggdtest_item_db, "FGGDTEST_ITEM-db");
+                        DataBaseUtil.copyDataBase(application, R.raw.fggdtest_item_db_journal, "FGGDTEST_ITEM-db-journal");
 
+                        SPUtils.put(application, "database", true);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }).start();
+
+        }
+
+    }
 
 
     /**

@@ -233,6 +233,7 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
 
     private void hideFragments(FragmentTransaction transaction) {
         if (mMainFragment != null) transaction.hide(mMainFragment);
+        if (mTestRecordFragment != null) transaction.hide(mTestRecordFragment);
         if (mSettingFragment != null) transaction.hide(mSettingFragment);
     }
 

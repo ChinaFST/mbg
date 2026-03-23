@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Colony</string>
+    <string name="app_name">MBG</string>
     <string name="customactivityoncrash_error_activity_error_occurred_explanation" translatable="false">发生意外错误。\n抱歉，给您带来不便。</string>
     <string name="customactivityoncrash_error_activity_restart_app" translatable="false">重新启动</string>
     <string name="customactivityoncrash_error_activity_close_app" translatable="false">关闭程序</string>
@@ -35,16 +35,219 @@
     <string name="hint_loginfail2">登录失败，密码不正确</string>
     <string name="login_toast_nousername">请输入用户名！</string>
     <string name="login_toast_nopassword">请输入密码！</string>
-    <string name="hint_exit_app" >再按一次退出程序</string>
+    <string name="hint_exit_app">再按一次退出程序</string>
     <string name="home">首页</string>
     <string name="settings">设置</string>
     <string name="sync_data">同步数据</string>
     <string name="test_record">检测记录</string>
     <string name="conventional_food_safety">常规食品安全</string>
     <string name="start_test">开始检测</string>
-    <string name="conventional_formaldehyde">常规食品安全筛查\n(甲醛、硼砂、农残)</string>
+    <string name="conventional_formaldehyde">常规食品安全筛查</string>
     <string name="halal_verification">清真核查</string>
     <string name="pork_alcohol">猪肉成分/酒精检测</string>
     <string name="login_out">退出登录</string>
     <string name="auto_upload">自动上传</string>
+
+    <string name="mothod1" translatable="false">抑制率法</string>
+    <string name="mothod2" translatable="false">标准曲线法</string>
+    <string name="mothod3" translatable="false">动力学法</string>
+    <string name="mothod4" translatable="false">系数法</string>
+    <string name="method_xiaoxian" translatable="false">定性消线法</string>
+    <string name="method_bise" translatable="false">定性比色法</string>
+
+    <string name="txt_invalid" translatable="false">无效</string>
+    <string name="yin" translatable="false">阴性</string>
+    <string name="yang" translatable="false">阳性</string>
+    <string name="keyi" translatable="false">可疑</string>
+    <string name="ok" translatable="false">合格</string>
+    <string name="ng" translatable="false">不合格</string>
+    <string name="JTJ_TestMoudle_P" translatable="false">胶体金</string>
+    <string name="FGGD_TestMoudle" translatable="false">分光光度</string>
+    <string name="str_clear">清零</string>
+    <string name="str_sample">样品</string>
+    <string name="str_contrast">对照</string>
+    <string name="str_step">步骤</string>
+    <string name="str_video">视频</string>
+    <string name="str_adjust">校准</string>
+    <string name="controlvalue">对照值</string>
+    <string name="errormesage1" translatable="false">通道异常，建议进行清零或校准</string>
+    <string name="testproject" translatable="false">检测项目</string>
+    <string name="inspectedunit" translatable="false">被检单位</string>
+    <string name="testtask" translatable="false">检测任务</string>
+    <string name="makecontrole" translatable="false">对照</string>
+    <string name="makesample" translatable="false">样品</string>
+    <string name="errormessage2" translatable="false">通道%s异常，建议进行清零或校准</string>
+    <string name="errormessage3" translatable="false">通道%s异常，该通道选用的检测项目对应的波长段AD值为0</string>
+    <string name="place_choseproject" translatable="false">请选择检测项目</string>
+    <string name="doingcontrol" translatable="false">正在进行对照测试</string>
+    <string name="samplename" translatable="false">样品名称</string>
+    <string name="project" translatable="false">检测项目</string>
+    <string name="method" translatable="false">检测方法</string>
+    <string name="fyy_number" translatable="false">反应液滴数/稀释倍数</string>
+    <string name="change" translatable="false">修改</string>
+    <string name="searinumber" translatable="false">流水号</string>
+    <string name="edit_samplename" translatable="false">编辑样品名称</string>
+    <string name="standnum" translatable="false">判定依据</string>
+    <string name="limitvalue" translatable="false">限量值</string>
+    <string name="testresult" translatable="false">检测结果</string>
+    <string name="jujerment" translatable="false">判定结果</string>
+    <string name="units" translatable="false">被检单位</string>
+    <string name="testtime" translatable="false">检测时间</string>
+    <string name="testplace" translatable="false">检测地点</string>
+    <string name="testpeople" translatable="false">检测人员</string>
+    <string name="sampleplace" translatable="false">样品产地</string>
+    <string name="retest" translatable="false">复检</string>
+    <string name="loading" translatable="false">正在加载</string>
+    <string name="contro_ad" translatable="false">对照AD值</string>
+    <string name="now_ad" translatable="false">实时AD值</string>
+    <string name="transmittance" translatable="false">透光率</string>
+    <string name="absorbance" translatable="false">吸光度</string>
+    <string name="channel_undetected_hint" translatable="false">当前通道未检测到比色皿（测试液透光率较高），是否继续进行测试？</string>
+    <string name="continue_testing" translatable="false">继续测试</string>
+    <string name="cancel" translatable="false">取消</string>
+    <string name="sure" translatable="false">确定</string>
+    <string name="hint" translatable="false">提示</string>
+    <string name="controlled_needed_first" translatable="false">需要先进行对照测试</string>
+    <string name="sample_testing" translatable="false">正在进行样品测试</string>
+    <string name="testinng" translatable="false">测试中！</string>
+    <string name="titledetailnomore" translatable="false">通道详细信息</string>
+    <string name="cleansuccess" translatable="false">清零成功</string>
+    <string name="allgalleryistesting" translatable="false">所有通道正在测试</string>
+    <string name="hint_howtousermessage1" translatable="false">请先给检测通道选择相应的检测项目，样品信息等（对照通道默认为选择了相同检测项目的首个通道，做对照的通道只需要选择检测项目即可），然后再将比色皿放入通道内\r\n等待通道颜色变为淡蓝色后，点击下方【对照】按钮就可以同时开始检测</string>
+    <string name="hint_howtousermessage2" translatable="false">请先给检测通道选择相应的检测项目，样品信息等，然后再将比色皿放入通道内\r\n等待通道颜色变为淡蓝色后，点击下方【样品】按钮就可以同时开始检测</string>
+    <string name="hint_pleaceselectgallery" translatable="false">请先选择相应的通道</string>
+    <string name="hint_inputsampleplace" translatable="false">请输入样品产地</string>
+    <string name="select_all">全选</string>
+    <string name="select_standard_limit">请选择检测标准与限量值</string>
+    <string name="testing_standards">检测标准</string>
+    <string name="contrast_symbols">对比符号</string>
+    <string name="limit_unit">限量值单位</string>
+    <string name="camera_module">摄像头模块</string>
+    <string name="channel_label">通道%1$d</string>
+    <string name="no_standard_found">未找到适合的标准依据，请更新本地样品</string>
+    <string name="inputdirnumber" translatable="false">请输入稀释倍数</string>
+    <string name="number_reaction_drops" translatable="false">请输入反应液滴数</string>
+    <string name="hintnotnull" translatable="false">非法输入，输入不能为空</string>
+    <string name="channeldetails" translatable="false">第%s通道详细信息</string>
+    <string name="gallery" translatable="false">通道</string>
+    <string name="detail_msg" translatable="false">详细信息</string>
+    <string name="hideresult" translatable="false">隐藏结果</string>
+    <string name="showresult" translatable="false">显示结果</string>
+    <string name="testing" translatable="false">正在检测中</string>
+    <string name="choseprojectFirst" translatable="false">请先选择检测项目</string>
+    <string name="Module_initialization" translatable="false">模块初始化</string>
+    <string name="testing_wait" translatable="false">该通道正在检测，请稍后</string>
+    <string name="select_appropriate_channel" translatable="false">请先选择相应的通道</string>
+    <string name="start_detection" translatable="false">开始检测</string>
+    <string name="select_detection_mode" translatable="false">请选择检测方式</string>
+    <string name="start_countdown" translatable="false">开始倒计时</string>
+    <string name="invalid_input_value" translatable="false">输入值无效</string>
+    <string name="check_test_card" translatable="false">*请检查测试卡条是否放入通道内</string>
+    <string name="will_be" translatable="false">将在</string>
+    <string name="no_free_channel" translatable="false">暂无空闲通道</string>
+    <string name="pleacechoseitemfirst" translatable="false">请先选择检测项目和样品</string>
+    <string name="projectname" translatable="false">项目:</string>
+    <string name="project_method" translatable="false">方法:</string>
+    <string name="project_remark" translatable="false">备注:</string>
+    <string name="editor" translatable="false">编辑</string>
+    <string name="delete" translatable="false">删除</string>
+    <string name="areyousuretodeletesample" translatable="false">确定要删除该条样品数据吗</string>
+    <string name="nomore_data">没有更多数据了</string>
+    <string name="unitname" translatable="false">*企业名称</string>
+    <string name="unitadress" translatable="false">详细地址</string>
+    <string name="legalpersonname" translatable="false">法人名称</string>
+    <string name="linkman" translatable="false">联系人</string>
+    <string name="organizationnumber" translatable="false">所属组织机构编号</string>
+    <string name="chose" translatable="false">选择</string>
+    <string name="busynisiss_name" translatable="false">经营户名称</string>
+    <string name="operat_number" translatable="false">档口编号</string>
+    <string name="keyword" translatable="false">搜索关键字</string>
+    <string name="seach" translatable="false">搜索</string>
+    <string name="start_scanning_second" translatable="false">秒后开始扫描</string>
+    <string name="type" translatable="false">类型</string>
+    <string name="wave410" translatable="false">410\n波长段</string>
+    <string name="wava536" translatable="false">536\n波长段</string>
+    <string name="wava595" translatable="false">595\n波长段</string>
+    <string name="wava620" translatable="false">620\n波长段</string>
+    <string name="adjustmoudle1" translatable="false">模块一校准</string>
+    <string name="adjustmoudle2" translatable="false">模块二校准</string>
+    <string name="adjust_message1" translatable="false">请在检测完成后再进行校准</string>
+    <string name="failed_open" translatable="false">打开失败！</string>
+    <string name="contro_erromessage1" translatable="false">开始或结束时吸光度无穷大，此次对照无效！</string>
+    <string name="lastcontrovalue" translatable="false">缺少对照值，检测无效！</string>
+    <string name="sampleerro_message2" translatable="false">检测前吸光度大于检测后吸光度，此次对照无效！</string>
+    <string name="sampleerro_message3" translatable="false">对照值小于规定值，此次对照无效！</string>
+    <string name="absorbance_infinite_end">结束时吸光度无穷大，此次检测无效！</string>
+    <string name="control_less_0">对照值小于0，检测无效！</string>
+    <string name="absorbance_outside_range">吸光度超出判断范围，请检查检测方法参数是否正确！</string>
+    <string name="reference_national_standards">参考国标</string>
+    <string name="use_appropriate">适量使用</string>
+    <string name="no_limit_set">没有设置限量值，请自行判断</string>
+    <string name="rice_freshness">大米新鲜度</string>
+    <string name="Fresh_rice">新鲜米</string>
+    <string name="Chen_Mi">陈米</string>
+    <string name="Aged_rice">陈化米</string>
+    <string name="parerror" translatable="false">参数错误</string>
+    <string name="newsample" translatable="false">新建样品</string>
+    <string name="editersample" translatable="false">编辑样品</string>
+    <string name="enter_or_select_item" translatable="false">请先输入或选择检测项目！</string>
+    <string name="ea_sampleerro1" translatable="false">未找到本地检测项目，请联系仪器厂家</string>
+    <string name="local_standards_not_found" translatable="false">未找到本地相关检测标准，请联系仪器厂家</string>
+    <string name="please_enter_keyword" translatable="false">请输入关键字</string>
+    <string name="hintmessage_requiredfieldscannotbeempty" translatable="false">必填项不能为空</string>
+    <string name="str_number">序号</string>
+    <string name="category_name">食品/种类名称</string>
+    <string name="food_alias">食品/种类别名</string>
+    <string name="dialog_message_top" translatable="false">当前已经是顶层</string>
+    <string name="dialog_message_nomordata" translatable="false">已经没有内容了！</string>
+    <string name="edit_hint1" translatable="false">*检测项目（长按输入框选择）</string>
+    <string name="edit_hint2" translatable="false">*样品种类编号（长按输入框选择）</string>
+    <string name="edit_hint3" translatable="false">*样品种类名称</string>
+    <string name="edit_hint4" translatable="false">*样品名称</string>
+    <string name="edit_hint5" translatable="false">*样品编号</string>
+    <string name="edit_hint6" translatable="false">*标准依据（长按输入框选择）</string>
+    <string name="edit_hint7" translatable="false">*判定符号</string>
+    <string name="edit_hint8" translatable="false">*限量值</string>
+    <string name="edit_hint9" translatable="false">*限量单位</string>
+    <string name="channel_data_loss">通道数据丢失</string>
+    <string name="FGGDAdjustingActivity" translatable="false">分光AD值校准</string>
+    <string name="JTJ_TestActivity" translatable="false">胶体金检测</string>
+    <string name="FGGD_TestActivity" translatable="false">分光光度检测</string>
+    <string name="ChoseProjectActivity" translatable="false">选择检测项目</string>
+    <string name="ChoseUnitActivity" translatable="false">选择被检单位</string>
+    <string name="ChoseSampleActivity" translatable="false">选择样品名称</string>
+    <string name="EdtorSampleActivity" translatable="false">编辑样品</string>
+    <string name="ChoseSampleTypeActivity" translatable="false">选择样品种类</string>
+    <string name="auto_upload_enabled">自动上传已开启</string>
+    <string name="autoupload_disabled">自动上传已关闭</string>
+    <string name="select_time" translatable="false">请选择时间</string>
+    <string name="testmoudle" translatable="false">检测模块</string>
+    <string name="all" translatable="false">全部</string>
+    <string name="details" translatable="false">详情</string>
+    <string name="hint_pleaceselecedeletedata" translatable="false">请选择需要删除的检测记录</string>
+    <string name="testresultitem" translatable="false">条检测记录吗？</string>
+    <string name="areyousuredelete" translatable="false">确定需要删除当前所选中的</string>
+    <string name="deleteing" translatable="false">删除数据中</string>
+    <string name="general" translatable="false">共</string>
+    <string name="page" translatable="false">页，</string>
+    <string name="item" translatable="false">条</string>
+    <string name="offline_use">离线使用</string>
+    <string name="other" translatable="false">其它</string>
+    <string name="pleaceinputkeyword" translatable="false">请输入搜索关键字</string>
+    <string name="save" translatable="false">保存</string>
+    <string name="card_4" translatable="false">卡条4</string>
+    <string name="card_3" translatable="false">卡条3</string>
+    <string name="card_2" translatable="false">卡条2</string>
+    <string name="card_1" translatable="false">卡条1</string>
+    <string name="pork_testing" translatable="false">猪肉成分/酒精检测</string>
+    <string name="seachresult" translatable="false">搜索%s结果</string>
+    <string name="upload" translatable="false">上传</string>
+    <string name="record_has_uploaded" translatable="false">该条检测记录已上传</string>
+    <string name="str_continue" translatable="false">继续</string>
+    <string name="contain_positive_data">所选的检测记录包含阳性数据，是否继续上传？</string>
+    <string name="Upload_not_supported">不支持上传</string>
+    <string name="sel_need_test_record">请选择需要上传的检测记录，上传检测结果只支持合格与不合格</string>
+    <string name="selected_data_has_upload">当前所选数据已经上传，不可重复上传</string>
+
+
 </resources>
