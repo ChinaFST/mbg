@@ -68,6 +68,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.ui.activity.FGGD_TestActivity"
+            android:windowSoftInputMode="adjustPan"
             android:label="@string/FGGD_TestActivity"
             android:screenOrientation="portrait" />
         <activity

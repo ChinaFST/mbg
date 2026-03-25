@@ -2,7 +2,7 @@
 <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/swipe"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="300dp"
     android:layout_marginStart="6dp"
     android:layout_marginTop="10dp">
 
@@ -72,11 +72,77 @@
                     android:src="@drawable/jtj_start_icn" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4dp">
+
+                <Button
+                    android:id="@+id/choseproject"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="start|center_vertical"
+                    android:hint="@string/project"
+                    android:paddingStart="2dp"
+                    android:textColorHint="#FF0000"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/samplename_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="start|center_vertical"
+                    android:hint="@string/samplename"
+                    android:paddingLeft="2dp"
+                    android:textColor="#1F1F1F"
+                    android:textColorHint="#FF0000"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4dp">
+
+                <Button
+                    android:id="@+id/unit_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="start|center_vertical"
+                    android:hint="@string/units"
+                    android:paddingLeft="2dp"
+                    android:textColor="#1F1F1F"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/message_result"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:text="合格"
+                    android:gravity="start|center_vertical"
+                    android:paddingLeft="2dp"
+                    android:textColor="#1F1F1F"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
             <SurfaceView
                 android:id="@+id/surfaceview"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="6dp"
+                android:visibility="gone"
                 android:layout_weight="3" />
 
             <RelativeLayout

@@ -1,17 +1,27 @@
 package com.dy.colony.mvp.ui.widget;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Looper;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -30,15 +40,21 @@ import com.dy.colony.mvp.model.entity.base.BaseProjectMessage;
 import com.dy.colony.mvp.model.entity.base.BaseSampleMessage;
 import com.dy.colony.mvp.model.entity.base.GalleryBean;
 import com.dy.colony.mvp.model.entity.eventbus.ExternTestMessageBean;
+import com.dy.colony.mvp.ui.activity.ChoseProjectActivity;
+import com.dy.colony.mvp.ui.activity.ChoseSampleActivity;
+import com.dy.colony.mvp.ui.activity.ChoseUnitActivity;
 import com.dy.colony.mvp.ui.activity.JTJ_TestActivity;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.google.android.material.textfield.TextInputLayout;
 import com.jess.arms.utils.ArmsUtils;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -48,6 +64,8 @@ import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * ━━━━━━神兽出没━━━━━━
@@ -78,6 +96,7 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
     private int mIndex;
     private SurfaceHolder mSurfaceHolder;
     private boolean showTestResultNumber = false;
+    private Unbinder mBind;
 
     @Override
     public GalleryBean getGallery() {
@@ -106,6 +125,7 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
         inflate = LayoutInflater.from(mContext).inflate(R.layout.myjtjtest_view_p_newui_layout_300_external, this);
 
         mViewHolder = new ViewHolder(inflate);
+        mBind = ButterKnife.bind(this);
         //初始化SurfaceView
         initSurfaceView();
         //初始化显示信息
@@ -115,6 +135,7 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
         initChartView();
         lineData.setValueTypeface(mTf);
         LogUtils.d("??");
+        initMessage();
     }
 
     private void initChartView() {
@@ -715,6 +736,107 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
         }
     }
 
+    @OnClick({R.id.choseproject, R.id.samplename_btn, R.id.unit_btn})
+    public void onClick(View view) {
+        Intent intent;
+        switch (view.getId()) {
+            case R.id.choseproject:
+                //选择检测项目
+                if (judgeState(0)) return;
+
+                intent = new Intent(mContext, ChoseProjectActivity.class);
+                intent.putExtra("from", "jtj_1");
+                intent.putExtra("index", mIndex);
+                mContext.startActivity(intent);
+
+                break;
+            case R.id.samplename_btn:
+                //选择样品名称
+                if (judgeState(1)) return;
+
+                intent = new Intent(mContext, ChoseSampleActivity.class);
+                intent.putExtra("from", "jtj");
+                intent.putExtra("index", mIndex);
+                mContext.startActivity(intent);
+
+                break;
+
+            case R.id.unit_btn:
+                //选择被检单位
+                if (judgeState(0)) return;
+                showEditUnitsDialog();
+                break;
+
+
+        }
+    }
+
+    private boolean judgeState(int type) {
+        GalleryBean gallery = getGallery();
+
+        if (gallery.getState() == 1) {
+            ArmsUtils.snackbarText(mContext.getString(R.string.testing_wait));
+            return true;
+        }
+        if (type == 1) {
+            if (null == gallery.getProjectMessage()) {
+                ArmsUtils.snackbarText(mContext.getString(R.string.place_choseproject));
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void showEditUnitsDialog() {
+        Detection_Record_FGGD_NC galleryBean = (Detection_Record_FGGD_NC) getGallery();
+        FrameLayout container = new FrameLayout(mContext);
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.leftMargin = getResources().getDimensionPixelSize(R.dimen.dimen_20dp);
+        params.rightMargin = getResources().getDimensionPixelSize(R.dimen.dimen_20dp);
+        params.topMargin = getResources().getDimensionPixelSize(R.dimen.dimen_10dp);
+
+        final EditText editText = new EditText(mContext);
+        editText.setLayoutParams(params);
+        String prosecutedunits = galleryBean.getProsecutedunits();
+        editText.setText(prosecutedunits);
+        editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+        editText.setHint(mContext.getString(R.string.enter_inspect_unit));
+        editText.setSingleLine(true);
+        // 自动把光标移到末尾
+        if (prosecutedunits != null) {
+            editText.setSelection(prosecutedunits.length());
+        }
+
+        container.addView(editText);
+
+        // 2. 构建对话框
+        AlertDialog dialog = new AlertDialog.Builder(mContext)
+                .setTitle(R.string.enter_inspect_unit)
+                .setView(container)
+                .setPositiveButton(R.string.sure, (dialogInterface, i) -> {
+                    String inputText = editText.getText().toString().trim();
+                    galleryBean.setProsecutedunits(inputText);
+                    mViewHolder.mUnitBtn.setText(inputText);
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .create();
+
+        editText.setFocusable(true);
+        editText.setFocusableInTouchMode(true);
+        editText.requestFocus();
+
+        editText.postDelayed(() -> {
+            InputMethodManager imm = (InputMethodManager)  mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (imm != null) {
+                // 3. 显式调用 showSoftInput，并传入强制显示的标志
+                // 注意：第一个参数必须是当前获得焦点的 View
+                imm.showSoftInput(editText, InputMethodManager.SHOW_FORCED);
+            }
+        }, 160);
+
+        dialog.show();
+    }
 
     private List<Bitmap> mBitmaps = new ArrayList<>();
 
@@ -814,10 +936,45 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
         ImageButton mJtjStartTest;
         @BindView(R.id.testresult)
         TextView mTestResult;
+        @BindView(R.id.choseproject)
+        Button mChoseproject;
+        @BindView(R.id.samplename_btn)
+        Button mSamplenameBtn;
+        @BindView(R.id.unit_btn)
+        Button mUnitBtn;
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
+    }
+
+    // 接收事件
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onProjectSelected(ExternTestMessageBean bean) {
+        // 如果你有多个 View 实例，这里需要判断一下是否是发给自己的
+        // 比如：if (event.position == this.myPosition)
+        if (bean.tag == 0) {
+            /*if (bean.index != -1) {
+                mIndex = bean.index;
+            }
+            LogUtils.d(mIndex);
+            GalleryBean nowShowBean = MyAppLocation.myAppLocation.mSerialDataService.mJTJGalleryBeanList.get(mIndex);*/
+            initMessage();
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void initMessage() {
+        Detection_Record_FGGD_NC bean = (Detection_Record_FGGD_NC) getGallery();
+        mViewHolder.mChoseproject.setText(bean.getTest_project());
+        mViewHolder.mSamplenameBtn.setText(bean.getSamplename());
+        mViewHolder.mUnitBtn.setText(bean.getProsecutedunits());
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -825,6 +982,10 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
         mSurfaceHolder.removeCallback(this);
         //getGallery().removeJTJResultReciverListener();
         //mHandler.removeCallbacksAndMessages(null);
+        EventBus.getDefault().unregister(this);
+        if (mBind != null) {
+            mBind.unbind();
+        }
         for (int i = 0; i < mBitmaps.size(); i++) {
             Bitmap bitmap = mBitmaps.get(i);
             bitmap.recycle();

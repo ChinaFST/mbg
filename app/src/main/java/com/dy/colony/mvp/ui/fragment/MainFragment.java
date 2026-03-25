@@ -63,13 +63,13 @@ public class MainFragment extends BaseFragment<MainPresenter> implements MainCon
                 launchActivity(new Intent(getActivity(), FGGD_TestActivity.class));
                 break;
             case R.id.card_2:
-                launchActivity(new Intent(getActivity(), FGGD_TestActivity.class));
-                break;
-            case R.id.card_3:
                 launchActivity(new Intent(getActivity(), JTJ_TestActivity.class));
                 break;
-            case R.id.card_4:
+            case R.id.card_3:
                 launchActivity(new Intent(getActivity(), JTJ_TestActivity.class).putExtra("type",1));
+                break;
+            case R.id.card_4:
+                launchActivity(new Intent(getActivity(), JTJ_TestActivity.class).putExtra("type",2));
                 break;
         }
     }

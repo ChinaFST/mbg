@@ -62,20 +62,36 @@ public class FGGDAdapter extends BaseQuickAdapter<GalleryBean, BaseViewHolder> {
                 .setText(R.id.fg_item_btn_chosesample, item2.getSamplename())
                 .setText(R.id.fg_testresult, "".equals(item2.getTestresult()) ? "" : item2.getTestresult() + item2.getCov_unit())
                 .setText(R.id.fg_item_chose_task, item2.getReservedfield6());
-        if (item2.getTest_project().equals("大米新鲜度")) {
-            helper.setText(R.id.fg_testresult, item2.getTestresult());
-        }
 
+
+        if (item.getDowhat() == 2) {
+            BaseProjectMessage message = item.getProjectMessage();
+            if (null != message) {
+                String method = message.getMethod();
+                //LogUtils.d(method);
+                if ("0".equals(method) || "1".equals(method)) {
+                    helper.setText(R.id.fg_testresult, mContext.getString(R.string.controlvalue) + message.getControValue());
+                }
+            }
+
+        } else {
+            helper.setText(R.id.fg_testresult, "".equals(item2.getTestresult()) ? "" : item2.getTestresult() + item2.getCov_unit());
+            if (item2.getTest_project().equals(mContext.getString(R.string.rice_freshness))) {
+                helper.setText(R.id.fg_testresult, item2.getTestresult());
+            }
+        }
         helper.setText(R.id.fg_item_chose_units, item2.getProsecutedunits());
         helper.setText(R.id.fg_item_chose_task, item2.getPlanName());
+        helper.setText(R.id.bt_chose_units, item2.getProsecutedunits());
 
         //这两种方法不需要对照值，所以将对照按钮隐藏
-        if ("动力学法".equals(item2.getTest_method()) || "系数法".equals(item2.getTest_method())) {
+        if (mContext.getString(R.string.mothod3).equals(item2.getTest_method()) || mContext.getString(R.string.mothod4).equals(item2.getTest_method())) {
             helper.setVisible(R.id.fg_item_btn_control, false);
         } else {
             helper.setVisible(R.id.fg_item_btn_control, true);
         }
 
+        helper.addOnClickListener(R.id.bt_chose_units);
         helper.setOnTouchListener(R.id.fg_item_gallerynum, new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event1) {
@@ -396,6 +412,7 @@ public class FGGDAdapter extends BaseQuickAdapter<GalleryBean, BaseViewHolder> {
 
 
     }
+
 
     private void postEvent(int i, int position) {
         FGTestMessageBean event = new FGTestMessageBean(i);

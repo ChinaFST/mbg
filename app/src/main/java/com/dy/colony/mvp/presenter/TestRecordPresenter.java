@@ -321,8 +321,6 @@ public class TestRecordPresenter extends BasePresenter<TestRecordContract.Model,
                             if (moudle.contains(mRootView.getActivity().getString(R.string.JTJ_TestMoudle_P))) {
                                 FileUtils.deleteBitmapByUUID_LEVEL1(code);
                                 FileUtils.deleteBitmapByUUID_LEVEL2(code);
-
-
                             }
                             DBHelper.getDetection_Record_FGGD_NCDao(mRootView.getActivity()).delete(entity);
                             mList.remove(entity);

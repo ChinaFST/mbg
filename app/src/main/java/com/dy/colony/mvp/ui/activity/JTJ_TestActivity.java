@@ -190,12 +190,14 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
             e.setJTJModel(1);
             e.setJTJCardModel(0);
             if (type == 1) {
-                ((Detection_Record_FGGD_NC) e).setTest_project(getString(R.string.pork_testing));
+                ((Detection_Record_FGGD_NC) e).setTest_project(getString(R.string.halal_verification));
+            }else  if (type == 2) {
+                ((Detection_Record_FGGD_NC) e).setTest_project(getString(R.string.pork_alcohol));
             }
             MyAppLocation.myAppLocation.mSerialDataService.mJTJGalleryBeanList.add(e);
             MyJTJ_TestView_External p = new MyJTJ_TestView_External(this, i); //新建通道，将baan与该自定义view绑定
             mJTJTestViews.add(p);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             mGroupChart.addView(p, layoutParams);//添加到视图容器
             LogUtils.d(e);
             LogUtils.d(mGroupChart.getChildCount());
@@ -351,7 +353,7 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
     }
 
 
-    @OnClick({R.id.choseproject, R.id.samplename_btn, R.id.samplenum_btn, R.id.unit_btn, R.id.start_test})
+    @OnClick({R.id.choseproject, R.id.samplename_btn, R.id.samplenum_btn, R.id.unit_btn, R.id.start_test, R.id.iv_record})
     public void onClick(View view) {
         int state;
         Intent intent;
@@ -405,6 +407,11 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
 
             case R.id.start_test:
                 mPresenter.makeChoseSeachMethodDialog(mJTJTestViews);
+                break;
+            case R.id.iv_record:
+                startActivity(new Intent(getActivity(), TestRecordNewActivity.class));
+                break;
+            default:
                 break;
 
 

@@ -8,7 +8,7 @@
     android:focusableInTouchMode="true"
     android:orientation="vertical">
 
-    <include layout="@layout/include_title" />
+    <include layout="@layout/include_title_jtj" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                     android:id="@+id/group_chart"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:paddingEnd="@dimen/dimen_6dp">
 
 
@@ -39,6 +39,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/dimen_20dp"
                 android:background="#DDDDDD" />
 
@@ -46,6 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:visibility="gone"
                 android:background="@drawable/background_item_gray">
 
                 <include layout="@layout/include_jtj_gallery_message_hidetaskmessage" />
