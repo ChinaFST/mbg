@@ -186,8 +186,8 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
         for (int i = 0; i < 2; i++) {
             GalleryBean e = new Detection_Record_FGGD_NC();
             e.setGalleryNum(i + 1);
-            e.setTestMoudle(4 + "");
-            e.setJTJModel(4);
+            e.setTestMoudle(2 + "");
+            e.setJTJModel(1);
             e.setJTJCardModel(0);
             if (type == 1) {
                 ((Detection_Record_FGGD_NC) e).setTest_project(getString(R.string.pork_testing));

@@ -25,6 +25,7 @@ import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * ================================================
@@ -35,7 +36,7 @@ import retrofit2.http.POST;
  */
 public interface Platform_Service {
 
-    String URL = "http://edu.chinafst.cn/sajyApi";
+    String URL = "http://fstest.chinafst.cn:9005/fst";
     String SUCCESS = "0X00000";
     String offLinetoken = "15a42fe518874966f9c551d3adf283d6";
 
@@ -45,8 +46,13 @@ public interface Platform_Service {
      * @return
      */
     @Headers({"Domain-Name: xxx"})
-    @POST("/api/iUser/login")
-    Observable<Platform_LoginBack> login(@Body RequestBody body);
+    @POST("/interfaces/userLogin/login")
+    Observable<Platform_LoginBack> login(@Query("userName") String username,
+                                         @Query("password") String password,
+                                         @Query("deviceCode") String devicecode,
+                                         @Query("softWareVersion") String softWareVersion,
+                                         @Query("place") String place,
+                                         @Query("ip") String ip);
 
     /**
      * 用户退出登录
@@ -59,14 +65,14 @@ public interface Platform_Service {
 
 
     /**
-     * 上传检测记录
-     *
+     * 6.2.仪器上传(不校验样品和检测项目)
      * @param body
      * @return
      */
     @Headers({"Domain-Name: xxx"})
-    @POST("/api/iCheck/upload")
-    Observable<Platform_UploadBack> upload(@Body RequestBody body);
+    @POST("/iDataChecking/uploadUcData")
+    Observable<Platform_UploadBack> uploadUcData(
+            @Body RequestBody body);
 
 
 }

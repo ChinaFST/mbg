@@ -520,7 +520,7 @@ public class FGGD_TestPresenter extends BasePresenter<FGGD_TestContract.Model, F
         } else if ("3".equals(method) || mApplication.getString(R.string.mothod4).equals(method)) { //3 eve
             number = detectionRecordFggdNc.getEveryresponse();
             mNumber.setText(String.format("%s", number));
-            mAlertDialog.setTitle(R.string.number_reaction_drops);
+            mAlertDialog.setTitle(R.string.enter_number_reaction_drops);
         }
         view2.findViewById(R.id.sub).setOnClickListener(new View.OnClickListener() {
             @Override

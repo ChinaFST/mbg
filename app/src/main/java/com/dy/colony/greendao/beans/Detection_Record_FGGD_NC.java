@@ -9,11 +9,11 @@ import com.dy.colony.R;
 import com.dy.colony.mvp.model.entity.base.GalleryBean;
 
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Transient;
 
 import java.text.SimpleDateFormat;
-import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by 王振雄 on 2017/5/25.
@@ -680,17 +680,17 @@ public class Detection_Record_FGGD_NC extends GalleryBean implements Parcelable 
 
     @Generated(hash = 1869665736)
     public Detection_Record_FGGD_NC(Long id, String sysCode, int gallery, String samplenum, String samplename,
-            String sampletype, String foodCode, String symbol, String cov, String cov_unit, String stand_num,
-            String prosecutedunits, String prosecutedunits_adress, double dilutionratio, double everyresponse,
-            String controlvalue, String serialNumber, String testresult, String decisionoutcome, String inspector,
-            Long testingtime, double longitude, double latitude, String testsite, String test_method,
-            String test_project, String test_moudle, String planName, int isupload, String unique_sample,
-            String unique_method, String unique_testproject, String unique_beunit, String unique_task,
-            String platform_tag, String test_unit_id, String test_unit_name, String test_unit_reserved,
-            String sampleplace, String qrcode, int retest, String parentSysCode, String reservedfield1,
-            String reservedfield2, String reservedfield3, String reservedfield4, String reservedfield5,
-            String reservedfield6, String reservedfield7, String reservedfield8, String reservedfield9,
-            String reservedfield10) {
+                                    String sampletype, String foodCode, String symbol, String cov, String cov_unit, String stand_num,
+                                    String prosecutedunits, String prosecutedunits_adress, double dilutionratio, double everyresponse,
+                                    String controlvalue, String serialNumber, String testresult, String decisionoutcome, String inspector,
+                                    Long testingtime, double longitude, double latitude, String testsite, String test_method,
+                                    String test_project, String test_moudle, String planName, int isupload, String unique_sample,
+                                    String unique_method, String unique_testproject, String unique_beunit, String unique_task,
+                                    String platform_tag, String test_unit_id, String test_unit_name, String test_unit_reserved,
+                                    String sampleplace, String qrcode, int retest, String parentSysCode, String reservedfield1,
+                                    String reservedfield2, String reservedfield3, String reservedfield4, String reservedfield5,
+                                    String reservedfield6, String reservedfield7, String reservedfield8, String reservedfield9,
+                                    String reservedfield10) {
         this.id = id;
         this.sysCode = sysCode;
         this.gallery = gallery;
@@ -930,6 +930,107 @@ public class Detection_Record_FGGD_NC extends GalleryBean implements Parcelable 
 
     public void setTest_moudle(String test_moudle) {
         this.test_moudle = test_moudle;
+    }
+
+
+    public String toMyString() {
+        SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        if (test_project == null) {
+            test_project = "-----";
+        }
+        if (test_method == null) {
+            test_method = "-----";
+        }
+        if (serialNumber == null) {
+            serialNumber = "-----";
+        }
+        if (samplename == null) {
+            samplename = "-----";
+        }
+        if (gallery > 20 && gallery != 101 && gallery != 102) {
+            gallery = gallery - 20;
+        } else if (gallery == 101) {
+            gallery = 01;
+        } else if (gallery == 102) {
+            gallery = 02;
+        }
+        if (stand_num == null) {
+            stand_num = "-----";
+        }
+        if (symbol == null) {
+            symbol = "-----";
+        }
+        if (controlvalue == null) {
+            controlvalue = "-----";
+        }
+        if (testresult == null) {
+            testresult = "-----";
+        }
+        if (decisionoutcome == null) {
+            decisionoutcome = "-----";
+        }
+        if (inspector == null) {
+            inspector = "-----";
+        }
+
+        if (testsite == null) {
+            testsite = "-----";
+        }
+        if (prosecutedunits == null) {
+            prosecutedunits = "-----";
+        }
+        if (cov == null) {
+            cov = "-----";
+        }
+        if (cov_unit == null) {
+            cov_unit = "-----";
+        }
+        String s = "";
+        String s1 = "";
+        String s2 = "";
+
+        s = (symbol) + (cov) + (cov_unit);
+        s1 = testresult;
+        s2 = decisionoutcome;
+
+
+        String useSampleNum = samplenum;
+
+        String use_test_moudle = test_moudle;
+        if (test_moudle.contains(getTxt(R.string.JTJ_TestMoudle_P))) {
+            use_test_moudle = getTxt(R.string.JTJ_TestMoudle_P);
+        }
+
+
+        StringBuilder builder = new StringBuilder();
+        builder.append(getTxt(R.string.detect_result_split) + "\n");
+        builder.append(getTxt(R.string.testmoudle_colon) + use_test_moudle + "\n");
+        builder.append(getTxt(R.string.test_project_colon) + test_project + " " + "\n");
+        builder.append(getTxt(R.string.test_method_colon) + (test_method) + "\n");
+        builder.append(getTxt(R.string.sample_number_colon) + (useSampleNum) + "\n");
+
+        builder.append(getTxt(R.string.serial_number_colon) + (serialNumber) + "\n");
+        builder.append(getTxt(R.string.sample_name_colon) + (samplename) + "\n");
+        builder.append(getTxt(R.string.channel_number_colon) + (gallery) + "\n");
+        builder.append(getTxt(R.string.judgment_basis_colon) + (stand_num) + "\n");
+        builder.append(getTxt(R.string.dilution_factor) + (dilutionratio) + "\n");
+        builder.append(getTxt(R.string.number_reaction_drops) + (everyresponse) + "\n");
+        builder.append(getTxt(R.string.control_value_colon) + (controlvalue) + "\n");
+        String str = (test_moudle.contains(getTxt(R.string.JTJ_TestMoudle_P)) ? (getTxt(R.string.code_testing_card) + qrcode + "\n") : "");
+        builder.append(str);
+        builder.append(getTxt(R.string.test_result_colon) + s1 + "\n");
+        builder.append(getTxt(R.string.limit_value_colon) + s + "\n");
+        builder.append(getTxt(R.string.judgment_result_colon) + s2 + "\n");
+        //String unit = getTxt(R.string.inspected_unit_colon) + (prosecutedunits);
+        //builder.append(unit + "\n");
+        builder.append(getTxt(R.string.sample_origin_colon) + (sampleplace) + "\n");
+        builder.append(getTxt(R.string.inspectors_colon) + inspector + "\n");
+        String str1 = (test_moudle.contains(getTxt(R.string.JTJ_TestMoudle_P)) ? getTxt(R.string.reading_time_colon) : getTxt(R.string.detect_time_colon)) + (df1.format(testingtime)) + "\n";
+        builder.append(str1);
+        builder.append(getTxt(R.string.testing_locations_colon) + (testsite) + "\n");
+        builder.append(getTxt(R.string.longitude_colon) + (longitude) + "\n");
+        builder.append(getTxt(R.string.latitude_colon) + (latitude) + "\n");
+        return builder.toString();
     }
 
 

@@ -954,9 +954,15 @@ public class SerialDataService extends BaseService implements OnOpenSerialPortLi
 
         long insert = DBHelper.getDetection_Record_FGGD_NCDao(this).insert(detection_record_fggd_nc);
         //检测完成后的操作，自动打印，自动上传等
-        //printAndUpload(detection_record_fggd_nc, insert);
+        printAndUpload(insert);
 
 
+    }
+
+    private void printAndUpload(long insert) {
+        if (Constants.AUTO_UPLOAD && !Constants.IS_OFFLINE_MODE) {
+            UpLoadIntentService.startUpLoad(this, insert);
+        }
     }
 
     /**

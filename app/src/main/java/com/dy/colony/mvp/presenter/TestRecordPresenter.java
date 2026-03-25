@@ -70,7 +70,6 @@ public class TestRecordPresenter extends BasePresenter<TestRecordContract.Model,
     private int seach_preEndIndex;
 
 
-
     @Inject
     public TestRecordPresenter(TestRecordContract.Model model, TestRecordContract.View rootView) {
         super(model, rootView);
@@ -250,6 +249,7 @@ public class TestRecordPresenter extends BasePresenter<TestRecordContract.Model,
                                 detection_record_fggd_nc.setTestresult("测试结果" + i);
                                 detection_record_fggd_nc.setTestingtime(1774251098982L);
                                 detection_record_fggd_nc.setInspector("检测人员" + i);
+                                detection_record_fggd_nc.setTest_Moudle(i % 2 == 0 ? "分光" : "胶体金");
                                 mList.add(detection_record_fggd_nc);
                             }
 
@@ -290,8 +290,7 @@ public class TestRecordPresenter extends BasePresenter<TestRecordContract.Model,
         List<Detection_Record_FGGD_NC> checkData = new ArrayList<>();
         List<Detection_Record_FGGD_NC> data = mAdapter.getData();
         for (int i = 0; i < data.size(); i++) {
-            Detection_Record_FGGD_NC entity = data.get(i);
-            Detection_Record_FGGD_NC nc = (Detection_Record_FGGD_NC) entity;
+            Detection_Record_FGGD_NC nc = data.get(i);
             if (nc.checkState) {
                 checkData.add(nc);
             }
@@ -359,9 +358,7 @@ public class TestRecordPresenter extends BasePresenter<TestRecordContract.Model,
     public void uploadData() {
         List<Detection_Record_FGGD_NC> checkData = new ArrayList<>();
         List<Detection_Record_FGGD_NC> isuped = new ArrayList<>();
-        List<Detection_Record_FGGD_NC> erro = new ArrayList<>();
         List<Detection_Record_FGGD_NC> data = mAdapter.getData();
-        List<String> decisionoutcomeList = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
             Detection_Record_FGGD_NC entity = data.get(i);
 
@@ -373,7 +370,6 @@ public class TestRecordPresenter extends BasePresenter<TestRecordContract.Model,
                     ArmsUtils.snackbarText(getString(R.string.testresult) + "：" + getString(R.string.Upload_not_supported));
                     continue;
                 }
-
                 // LogUtils.d(new Gson().toJson(nc));
                 checkData.add(nc);
 
@@ -382,9 +378,7 @@ public class TestRecordPresenter extends BasePresenter<TestRecordContract.Model,
                     isuped.add(nc);
                 }
 
-
             }
-
 
         }
         if (checkData.size() == 0) {
@@ -398,34 +392,12 @@ public class TestRecordPresenter extends BasePresenter<TestRecordContract.Model,
                 return;
             }
         }
-        if (!decisionoutcomeList.isEmpty() && decisionoutcomeList.contains(getString(R.string.ng))) {
-            showHint(checkData);
-            return;
-        }
-
 
         //list 倒叙
         Collections.reverse(checkData);
-
-
         uploadByIntentService(checkData);
-
-
     }
 
-    private void showHint(List<Detection_Record_FGGD_NC> checkData) {
-        DiaLogUtils.showAlert(mRootView.getActivity(), getString(R.string.hint), getString(R.string.contain_positive_data), getString(R.string.str_continue), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Collections.reverse(checkData);
-                uploadByIntentService(checkData);
-            }
-        }, mRootView.getActivity().getString(R.string.cancel), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        }).show();
-    }
 
     private String getString(@StringRes int id) {
         return mRootView.getActivity().getString(id);

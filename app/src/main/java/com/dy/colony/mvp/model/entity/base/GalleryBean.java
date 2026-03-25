@@ -8,6 +8,7 @@ import com.dy.colony.Constants;
 import com.dy.colony.MyAppLocation;
 import com.dy.colony.R;
 import com.dy.colony.app.WorkerThreadFactory;
+import com.dy.colony.app.service.UpLoadIntentService;
 import com.dy.colony.app.utils.BitmapUtils;
 import com.dy.colony.app.utils.DataUtils;
 import com.dy.colony.app.utils.FileUtils;
@@ -515,88 +516,6 @@ public abstract class GalleryBean implements UsbReadWriteHelper.onUsbReciver {
 
     }
 
-    public void setReStestData(Detection_Record_FGGD_NC nc) {
-        // 设置检测项目，样品信息，被检单位，检测任务 等
-        String testprojectid = ((Detection_Record_FGGD_NC) nc).getUnique_testproject();
-        LogUtils.d(testprojectid);
-        String test_method = nc.getTest_method();
-        if (((Detection_Record_FGGD_NC) nc).getTest_Moudle()
-                .equals(ArmsUtils.getString(MyAppLocation.myAppLocation, R.string.FGGD_TestMoudle))) {
-            List<FGGDTestItem> list = DBHelper.getFGGDTestItemDao(MyAppLocation.myAppLocation).queryBuilder()
-                    .where(FGGDTestItemDao.Properties.Unique_testproject.eq(testprojectid)).list();
-            if (list.size() > 0) {
-                mProjectMessage = list.get(0);
-            }
-            LogUtils.d(list);
-
-        } else if (((Detection_Record_FGGD_NC) nc).getTest_Moudle().contains("胶体金")) {
-            String name = nc.getReservedfield2();
-
-            String method = test_method.contains("比色法") ? "2" : "1";
-            int jtjModel = (this.getJTJModel() == 2 || this.getJTJModel() == 4) ? 2 : this.getJTJModel();
-            LogUtils.d(name);
-            LogUtils.d(test_method);
-            LogUtils.d(jtjModel);
-            LogUtils.d(method);
-            List<JTJTestItem> list1 = DBHelper.getJTJTestItemDao(MyAppLocation.myAppLocation)
-                    .queryBuilder()
-                    .where(JTJTestItemDao.Properties.ProjectName.eq(name))
-                    .where(JTJTestItemDao.Properties.Item_type.eq(jtjModel))
-                    .where(JTJTestItemDao.Properties.TestMethod.eq(method))
-                    .list();
-            if (list1.size() == 0) {
-                String modle = jtjModel == 1 ? "扫描模块" : "摄像头模块";
-                ArmsUtils.snackbarText("检测项目查找失败!\r\n请新建" + modle + "的 " + name + " 检测项目，或者重新匹配检测项目后重试！");
-                return;
-            }
-            mProjectMessage = list1.get(0);//不可能没有
-        }
-
-
-        ((Detection_Record_FGGD_NC) this).setSamplenum(nc.getSamplenum());
-        ((Detection_Record_FGGD_NC) this).setSamplename(nc.getSamplename());
-        ((Detection_Record_FGGD_NC) this).setSampletype(nc.getSampletype());
-        ((Detection_Record_FGGD_NC) this).setFoodCode(nc.getFoodCode());
-        ((Detection_Record_FGGD_NC) this).setSymbol(nc.getSymbol());
-        ((Detection_Record_FGGD_NC) this).setCov(nc.getCov());
-        ((Detection_Record_FGGD_NC) this).setCov_unit(nc.getCov_unit());
-        ((Detection_Record_FGGD_NC) this).setStand_num(nc.getStand_num());
-        ((Detection_Record_FGGD_NC) this).setProsecutedunits(nc.getProsecutedunits());
-        ((Detection_Record_FGGD_NC) this).setProsecutedunits_adress(nc.getProsecutedunits_adress());
-        ((Detection_Record_FGGD_NC) this).setDilutionratio(nc.getDilutionratio());
-        ((Detection_Record_FGGD_NC) this).setEveryresponse(nc.getEveryresponse());
-        ((Detection_Record_FGGD_NC) this).setControlvalue(nc.getControlvalue());
-
-        ((Detection_Record_FGGD_NC) this).setTest_method(test_method);
-        ((Detection_Record_FGGD_NC) this).setTest_project(nc.getTest_project());
-        ((Detection_Record_FGGD_NC) this).setTest_moudle(nc.getTest_moudle());
-        ((Detection_Record_FGGD_NC) this).setPlanName(nc.getPlanName());
-        ((Detection_Record_FGGD_NC) this).setUnique_sample(nc.getUnique_sample());
-        ((Detection_Record_FGGD_NC) this).setUnique_method(nc.getUnique_method());
-        ((Detection_Record_FGGD_NC) this).setUnique_testproject(nc.getUnique_testproject());
-        ((Detection_Record_FGGD_NC) this).setUnique_beunit(nc.getUnique_beunit());
-        ((Detection_Record_FGGD_NC) this).setUnique_task(nc.getUnique_task());
-        //platform_tag
-        ((Detection_Record_FGGD_NC) this).setTest_unit_id(nc.getTest_unit_id());
-        ((Detection_Record_FGGD_NC) this).setTest_unit_name(nc.getTest_unit_name());
-        ((Detection_Record_FGGD_NC) this).setTest_unit_reserved(nc.getTest_unit_reserved());
-        ((Detection_Record_FGGD_NC) this).setSampleplace(nc.getSampleplace());
-
-
-        ((Detection_Record_FGGD_NC) this).setReservedfield1(nc.getReservedfield1());
-        ((Detection_Record_FGGD_NC) this).setReservedfield2(nc.getReservedfield2());
-        ((Detection_Record_FGGD_NC) this).setReservedfield3(nc.getReservedfield3());
-        ((Detection_Record_FGGD_NC) this).setReservedfield4(nc.getReservedfield4());
-        ((Detection_Record_FGGD_NC) this).setReservedfield5(nc.getReservedfield5());
-        ((Detection_Record_FGGD_NC) this).setReservedfield6(nc.getReservedfield6());
-        ((Detection_Record_FGGD_NC) this).setReservedfield7(nc.getReservedfield7());
-        ((Detection_Record_FGGD_NC) this).setReservedfield8(nc.getReservedfield8());
-        ((Detection_Record_FGGD_NC) this).setReservedfield9(nc.getReservedfield9());
-        ((Detection_Record_FGGD_NC) this).setReservedfield10(nc.getReservedfield10());
-
-        ((Detection_Record_FGGD_NC) this).setParentSysCode(nc.getSysCode());
-        ((Detection_Record_FGGD_NC) this).setRetest(1);
-    }
 
     public BaseProjectMessage getProjectMessage() {
 
@@ -1181,51 +1100,6 @@ public abstract class GalleryBean implements UsbReadWriteHelper.onUsbReciver {
     private List<Bitmap> mBitmapList;
 
 
-    public void checkData_P() {
-        LogUtils.d("checkData_P()");
-
-        //判断是否接受成功
-        if (null == mBitmapList || mBitmapList.size() < 2) {
-            setState(3);
-            if (mReciveWeakReference != null) {
-                onJTJResultRecive recive = mReciveWeakReference.get();
-                if (recive != null) {
-                    recive.onReciverfail();
-                }
-            }
-            return;
-        }
-        Bitmap bitmap = mBitmapList.get(1);
-        //裁剪图片 1 的上下 20 的部分，检查 rgb 值
-        if (!checkCard(mBitmapList.get(0))) {
-            setState(0);
-            ArmsUtils.snackbarText("未检测到胶体金卡");
-            return;
-        }
-        List<List<Float>> lists = PictureToolUtils.bitmap2RGB_list(bitmap);
-        List<Float> userfuldata = lists.get(3);
-        //设置可用数据到bean
-        setUserfullData(userfuldata);
-        //设置检测状态
-        setState(2);
-        //计算检测结果 耗时操作，需要在子线程运行
-
-        double[] data = getData_P(userfuldata);
-        LogUtils.d(data);
-        setJTJResultData(data);
-        //判断和保存检测结果
-        judgeAndSaveJTJData_P(data);
-        //将数据回调给 view做更新
-        if (mReciveWeakReference != null) {
-            onJTJResultRecive recive = mReciveWeakReference.get();
-            if (recive != null) {
-                recive.onReciverSuccess(userfuldata, data);
-            }
-        }
-
-
-    }
-
     private boolean checkCard(Bitmap bitmap) {
         return PictureToolUtils.checkCard(bitmap);
     }
@@ -1798,10 +1672,9 @@ public abstract class GalleryBean implements UsbReadWriteHelper.onUsbReciver {
             }
         }
 
-
-        /*if (Constants.UPLOADSELF) {
+        if (Constants.AUTO_UPLOAD && !Constants.IS_OFFLINE_MODE) {
             UpLoadIntentService.startUpLoad(MyAppLocation.myAppLocation, insert);
-        }*/
+        }
 
     }
 }

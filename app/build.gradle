@@ -234,5 +234,7 @@ dependencies {
     //MPAndroidChart
     implementation rootProject.ext.dependencies["MPAndroidChart"]
     implementation rootProject.ext.dependencies["swipelayout"]
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
 }
 

@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbarly"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorAccent"
-    android:theme="@style/AppTheme.AppBarOverlay">
+    style="@style/AppTitleBarStyle">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorAccent"
-        app:contentInsetStart="0dp">
+        style="@style/AppTitleToolbarStyle">
 
         <RelativeLayout
             android:id="@+id/toolbar_back"
@@ -21,20 +14,19 @@
             android:gravity="start">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@mipmap/ic_arrow_back_white_24dp" />
+                android:src="@drawable/icon_back" />
         </RelativeLayout>
 
         <TextView
             android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginStart="10dp"
+            android:layout_gravity="center"
             android:textColor="@color/white"
             android:textSize="@dimen/title_bar_size" />
 

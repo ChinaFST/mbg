@@ -2,10 +2,17 @@ package com.dy.colony.mvp.model;
 
 import android.app.Application;
 
+import com.alibaba.fastjson.JSONObject;
 import com.apkfuns.logutils.LogUtils;
+import com.dy.colony.BuildConfig;
+import com.dy.colony.Constants;
+import com.dy.colony.app.utils.MD5Utils_kjc;
+import com.dy.colony.app.utils.MethodUtil;
 import com.dy.colony.greendao.DBHelper;
 import com.dy.colony.greendao.beans.User;
 import com.dy.colony.greendao.daos.UserDao;
+import com.dy.colony.mvp.model.api.service.Platform_Service;
+import com.dy.colony.mvp.model.entity.Platform_LoginBack;
 import com.google.gson.Gson;
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
@@ -24,6 +31,9 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.http.Query;
 
 @ActivityScope
 public class LoginModel extends BaseModel implements LoginContract.Model {
@@ -84,4 +94,14 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
                 .observeOn(Schedulers.io());
 
     }
+
+    @Override
+    public Observable<Platform_LoginBack> login_Platform(String username, String password, String devicecode, String softWareVersion, String place, String ip) {
+        return mRepositoryManager.obtainRetrofitService(Platform_Service.class)
+                .login(username, password, devicecode, softWareVersion, place, ip)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io());
+    }
+
+
 }

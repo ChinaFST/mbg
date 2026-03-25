@@ -31,9 +31,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".mvp.ui.activity.TestRecordNewActivity"
-            android:label="@string/test_record"
+        <activity android:name=".mvp.ui.activity.TestRecordMessageActivity"
+            android:label="@string/TestRecordMessageActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".mvp.ui.activity.TestRecordNewActivity"
+            android:label="@string/test_record"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.ui.activity.ChoseSampleTypeActivity"
             android:label="@string/ChoseSampleTypeActivity"

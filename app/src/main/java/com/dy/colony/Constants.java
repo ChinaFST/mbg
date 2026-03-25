@@ -5,6 +5,7 @@ import android.app.Application;
 import com.dy.colony.app.utils.CRC8Util;
 import com.dy.colony.app.utils.SPUtils;
 import com.dy.colony.greendao.beans.User;
+import com.dy.colony.mvp.model.entity.ObjUserData;
 import com.dy.colony.usbhelp.UsbControl;
 
 /**
@@ -21,16 +22,32 @@ public class Constants {
     public static String KEY_REMBERUSERNAME = "KEY_REMBERUSERNAME";
 
     /**
+     * {@link #ISREMBERUSERNAME}是否离线模式（登录页面）<p>
+     * {@link #KEY_REMBERUSERNAME}<p>
+     */
+    public static boolean IS_OFFLINE_MODE;
+    public static String KEY_IS_OFFLINE_MODE = "KEY_IS_OFFLINE_MODE";
+
+    /**
      * 保存当前用户的key
      */
     public static final String KEY_USERINFOR_JSON = "KEY_USERINFOR_JSON";
+
 
     /**
      * 当前登录用户 仪器本身
      */
     public static User NOWUSER;
-
-    public static String KEY_AUTO_UPLOAD_ENABLED = "auto_upload_enabled";
+    /**
+     * 当前登录用户 平台
+     */
+    public static ObjUserData USER_PLATFORM;
+    /**
+     * {@link #AUTO_UPLOAD}是否离线模式（登录页面）<p>
+     * {@link #KEY_REMBERUSERNAME}<p>
+     */
+    public static boolean AUTO_UPLOAD;
+    public static String KEY_AUTO_UPLOAD = "auto_upload_enabled";
     public static int MINWIDTH = 250;
     public static String KEY_MINWIDTH = "KEY_MINWIDTH";
     public static int MINHEIGHT = 40;
@@ -50,6 +67,14 @@ public class Constants {
 
     public static int MINHDIFFERENCEVALUE = 10;
     public static String KEY_MINHDIFFERENCEVALUE = "KEY_MINHDIFFERENCEVALUE";
+
+    /**
+     * 该编号保留，作为用户可以自行输入，后续使用的devicenum使用@AppUtils.getSN()
+     * {@link #DEVICENUM}仪器编号<p>
+     * {@link #KEY_DEVICENUM}仪器编号KEY<p>
+     */
+    public static String DEVICENUM;
+    public static final String KEY_DEVICENUM = "KEY_DEVICENUM";
     /**
      * 仪器百度定位数据 经纬度
      */
@@ -75,7 +100,7 @@ public class Constants {
     public static int FGGD_SEARINUM;
     public static String KEY_FGGD_SEARINUM = "key_fggd_searinum";
 
-    public static String JUMP_PARAM_TYPE="type";
+    public static String JUMP_PARAM_TYPE = "type";
 
     public static int PLATFORM_TAG;
     /**
@@ -154,6 +179,12 @@ public class Constants {
     public static void init(Application application) {
         //是否记住用户（登录界面）
         Constants.ISREMBERUSERNAME = (boolean) SPUtils.get(application, Constants.KEY_REMBERUSERNAME, false);
+        //仪器编号
+        Constants.DEVICENUM = (String) SPUtils.get(application, Constants.KEY_DEVICENUM, "");
+        Constants.AUTO_UPLOAD = (boolean) SPUtils.get(application, Constants.KEY_AUTO_UPLOAD, false);
+        if (BuildConfig.DEBUG) {
+            Constants.AUTO_UPLOAD = false;
+        }
     }
 
 

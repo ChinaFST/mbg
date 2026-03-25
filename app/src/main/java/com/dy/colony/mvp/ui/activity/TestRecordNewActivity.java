@@ -29,21 +29,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.apkfuns.logutils.LogUtils;
-import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dy.colony.Constants;
+import com.dy.colony.R;
+import com.dy.colony.di.component.DaggerTestRecordNewComponent;
 import com.dy.colony.greendao.beans.Detection_Record_FGGD_NC;
+import com.dy.colony.mvp.contract.TestRecordNewContract;
+import com.dy.colony.mvp.presenter.TestRecordNewPresenter;
 import com.dy.colony.mvp.ui.adapter.TestRecordAdapter;
 import com.dy.colony.mvp.ui.widget.MyDatePickerDialog;
 import com.google.android.material.appbar.AppBarLayout;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
-
-import com.dy.colony.di.component.DaggerTestRecordNewComponent;
-import com.dy.colony.mvp.contract.TestRecordNewContract;
-import com.dy.colony.mvp.presenter.TestRecordNewPresenter;
-
-import com.dy.colony.R;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.paginate.Paginate;
 
@@ -51,7 +49,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -155,8 +152,6 @@ public class TestRecordNewActivity extends BaseActivity<TestRecordNewPresenter> 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
         initRecycle();
-        mAdapter.setEmptyView(R.layout.emptyview, (ViewGroup) mRecyclerView.getParent());
-        mRecyclerView.setAdapter(mAdapter);
         //initPaginate();
         initSearcchView();
         initSpinner();
@@ -241,6 +236,7 @@ public class TestRecordNewActivity extends BaseActivity<TestRecordNewPresenter> 
     }
 
     private void initSearcchView() {
+        starttime=getString(R.string.all);
         mSearchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -279,9 +275,10 @@ public class TestRecordNewActivity extends BaseActivity<TestRecordNewPresenter> 
     }
 
     private void initRecycle() {
-
         mSwipeRefreshLayout.setOnRefreshListener(this);
         ArmsUtils.configRecyclerView(mRecyclerView, mLayoutManager);
+        mAdapter.setEmptyView(R.layout.emptyview, (ViewGroup) mRecyclerView.getParent());
+        mRecyclerView.setAdapter(mAdapter);
         //((SimpleItemAnimator) mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
         mRecyclerView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -302,6 +299,18 @@ public class TestRecordNewActivity extends BaseActivity<TestRecordNewPresenter> 
                         break;
                 }
                 return false;
+            }
+        });
+
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Detection_Record_FGGD_NC item = mAdapter.getData().get(position);
+                Intent intent = new Intent(TestRecordNewActivity.this, TestRecordMessageActivity.class);
+                Bundle extras = new Bundle();
+                extras.putParcelable("data", item);
+                intent.putExtras(extras);
+                startActivity(intent);
             }
         });
     }
@@ -358,7 +367,10 @@ public class TestRecordNewActivity extends BaseActivity<TestRecordNewPresenter> 
         menuInflater.inflate(R.menu.testrecord_toobar_menu, menu);
         MenuItem item = menu.findItem(R.id.action_search);
         mMenuItemDelete = menu.findItem(R.id.menu_delete_testitem);
-        //menu.findItem(R.id.menu_upload_testitem).setVisible(false);
+        MenuItem upload_menu = menu.findItem(R.id.menu_upload_testitem);
+        if (Constants.IS_OFFLINE_MODE) {
+            upload_menu.setVisible(false);
+        }
         mSearchView.setMenuItem(item);
         return true;
     }
@@ -500,7 +512,6 @@ public class TestRecordNewActivity extends BaseActivity<TestRecordNewPresenter> 
     }
 
 
-
     @Override
     public Activity getActivity() {
         return this;
@@ -561,7 +572,7 @@ public class TestRecordNewActivity extends BaseActivity<TestRecordNewPresenter> 
         }
     }
 
-    private String starttime = "全部";
+    private String starttime ;
     private String stoptime;
 
     private void choseTime1() {

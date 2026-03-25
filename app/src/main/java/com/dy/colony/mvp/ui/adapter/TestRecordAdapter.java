@@ -2,27 +2,18 @@ package com.dy.colony.mvp.ui.adapter;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import com.apkfuns.logutils.LogUtils;
-import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.dy.colony.Constants;
-import com.dy.colony.MyAppLocation;
 import com.dy.colony.R;
 import com.dy.colony.greendao.beans.Detection_Record_FGGD_NC;
-import com.jess.arms.utils.ArmsUtils;
+import com.dy.colony.mvp.ui.activity.TestRecordMessageActivity;
 
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -50,8 +41,8 @@ import java.util.List;
 public class TestRecordAdapter extends BaseQuickAdapter<Detection_Record_FGGD_NC, BaseViewHolder> {
     List<Detection_Record_FGGD_NC> mList;
 
-    public TestRecordAdapter(int layoutResId,   @Nullable List<Detection_Record_FGGD_NC> data) {
-        super(layoutResId,data);
+    public TestRecordAdapter(int layoutResId, @Nullable List<Detection_Record_FGGD_NC> data) {
+        super(layoutResId, data);
         mList = data;
 
     }
@@ -79,7 +70,7 @@ public class TestRecordAdapter extends BaseQuickAdapter<Detection_Record_FGGD_NC
         }
         //int i = mList.indexOf(item);
         String sn = item.getSn();
-        helper.setText(R.id.num,   sn)
+        helper.setText(R.id.num, sn)
                 .setText(R.id.samplename, item.getSamplename())
                 .setText(R.id.Inspectedunit, item.getProsecutedunits())
                 .setText(R.id.testproject, test_project)
@@ -96,11 +87,11 @@ public class TestRecordAdapter extends BaseQuickAdapter<Detection_Record_FGGD_NC
                 .setOnClickListener(R.id.detailmessage, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                                /*Intent intent = new Intent(mContext, TestRecordMessageActivity.class);
-                                Bundle extras = new Bundle();
-                                extras.putParcelable("data", item);
-                                intent.putExtras(extras);
-                                mContext.startActivity(intent);*/
+                        Intent intent = new Intent(mContext, TestRecordMessageActivity.class);
+                        Bundle extras = new Bundle();
+                        extras.putParcelable("data", item);
+                        intent.putExtras(extras);
+                        mContext.startActivity(intent);
                     }
                 });
         String decisionoutcome = item.getDecisionoutcome();
