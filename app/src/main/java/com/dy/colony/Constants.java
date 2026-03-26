@@ -124,8 +124,10 @@ public class Constants {
      */
     public static UsbControl mControl;
 
-    public static final byte[] SPECTRAL_AD_CALIBRATION_REQUEST_1 = new byte[]{0x7e, 0x11, 0x02, 0x00, 0x01, 0x32, 0x46, (byte) 0xaa},
-            SPECTRAL_AD_CALIBRATION_REQUEST_2 = new byte[]{0x7e, 0x11, 0x02, 0x00, 0x02, 0x32, 0x47, (byte) 0xaa}, SPECTRAL_DATA_REQUEST_DY1000 = new byte[]{0x7e, 0x15, 0x00, 0x00, 0x15, 0x7e};
+    public static final byte[]
+            SPECTRAL_AD_CALIBRATION_REQUEST_1 = new byte[]{0x7e, 0x40, 0x02, 0x00, (byte) 0xf4, 0x01, 0x46, (byte) 0xaa},
+            SPECTRAL_AD_CALIBRATION_REQUEST_2 = new byte[]{0x7e, 0x40, 0x02, 0x00, (byte) 0xf4, 0x01, 0x46, (byte) 0xaa},
+            SPECTRAL_DATA_REQUEST_DY1000 = new byte[]{0x7e, 0x02, 0x00, 0x00, 0x15, (byte) 0xaa};
 
     public static byte[] COLLAURUM_DATA_REQUEST_P = new byte[]{0x7E, 0x15, 0x00, 0x00, (byte) 0xcb, 0x7E}, COLLAURUM_NUMBER_ASK_P = new byte[]{0x7e, 0x1b, 0x00, 0x00, (byte) CRC8Util.FindCRC(new byte[]{0x1b, 0x00, 0x00}), 0x7e},
             COLLAURUM_STATE_REQUEST_P = new byte[]{0x7E, 0x13, 0x00, 0x00, (byte) CRC8Util.FindCRC(new byte[]{0x13, 0x00, 0x00}), 0x7E};
@@ -133,7 +135,7 @@ public class Constants {
     /**
      * 串口相关 两种Android板子的串口名称是不一样的，具体看代码
      */
-    public static final String DATA_SERIAPort = "/dev/ttyS4", NEW_DATA_SERIAPort = "/dev/ttyS0", DATA_SERIALBaudRate = "115200";
+    public static final String DATA_SERIAPort = "/dev/ttyS0", NEW_DATA_SERIAPort = "/dev/ttyS0", DATA_SERIALBaudRate = "9600";
     /**
      * 外接胶体金模块的检测区域参数<p>
      * {@link #drowrectheight} 所画的红色框的高<p>

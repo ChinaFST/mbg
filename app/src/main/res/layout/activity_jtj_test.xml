@@ -10,6 +10,11 @@
 
     <include layout="@layout/include_title_jtj" />
 
+    <com.dy.colony.mvp.ui.widget.MyJavaCameraView
+        android:id="@+id/myjavacam"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -39,16 +44,16 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:visibility="gone"
                 android:layout_marginTop="@dimen/dimen_20dp"
-                android:background="#DDDDDD" />
+                android:background="#DDDDDD"
+                android:visibility="gone" />
 
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:visibility="gone"
-                android:background="@drawable/background_item_gray">
+                android:background="@drawable/background_item_gray"
+                android:visibility="gone">
 
                 <include layout="@layout/include_jtj_gallery_message_hidetaskmessage" />
             </ScrollView>

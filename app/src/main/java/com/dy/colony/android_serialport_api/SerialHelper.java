@@ -2,9 +2,10 @@ package com.dy.colony.android_serialport_api;
 
 
 import com.aill.androidserialport.SerialPort;
+import com.apkfuns.logutils.LogUtils;
 import com.dy.colony.MyAppLocation;
 import com.dy.colony.app.service.SerialDataService;
-import com.dy.colony.app.utils.CRC8Util;
+import com.dy.colony.app.utils.ByteUtils;
 import com.jess.arms.utils.ArmsUtils;
 
 import java.io.File;
@@ -77,6 +78,7 @@ public abstract class SerialHelper {
 
     //----------------------------------------------------
     public void send(byte[] bOutArray) {
+        LogUtils.d(ByteUtils.byte2HexStr2(bOutArray));
        /* for (int i = 0; i < bOutArray.length; i++) {
             byte b = bOutArray[i];
             String s = ByteUtils.byteToHex(b);
@@ -151,19 +153,21 @@ public abstract class SerialHelper {
                     size = mInputStream.read(buffer);
 
                     if (size > 0) {
-                        //	LogUtils.d(buffer[1]);
+
                         switch (buffer[1]) {
-                            case 22:
+                            case 03:
                                 if (null != onFGGDDataReceiveListener) {
-                                    //LogUtils.d(buffer);
+                                    LogUtils.d(ByteUtils.byte2HexStr2(buffer));
                                     //LogUtils.d(size);
                                     if (buffer[2] == 0 && buffer[3] == 0) {
+                                        LogUtils.d("长度不对");
                                         break;
                                     }
                                     //头部校验
                                     int hear = buffer[0] & 0xff;
                                     //LogUtils.d(hear);
                                     if (hear != 126) {
+                                        LogUtils.d("头部不对");
                                         break;
                                     }
                                     //尾部校验
@@ -171,16 +175,18 @@ public abstract class SerialHelper {
                                     //LogUtils.d(end);
                                     //DY1000的数据返回是0x7e结尾 DY3500P的是0xaa结尾，目前就这两种，这里没具体去区分仪器型号
                                     if ((end != 126) && (end != 170)) {
+                                        LogUtils.d("尾部不对");
                                         break;
                                     }
                                     //和校验
-                                    int crc_sun = CRC8Util.byteCheckSum(buffer, size, 1, 1);
+                                   // int crc_sun = CRC8Util.byteCheckSum(buffer, size, 1, 1);
                                     //LogUtils.d(crc_sun);
-                                    int sun = buffer[size - 2] & 0xff;
+                                    //int sun = buffer[size - 2] & 0xff;
                                     //LogUtils.d(sun);
-                                    if (crc_sun != sun) {
+                                    /*if (crc_sun != sun) {
+                                        LogUtils.d("和校验不对");
                                         break;
-                                    }
+                                    }*/
                                     onFGGDDataReceiveListener.onDataReceive(buffer, size);
                                 }
                                 break;
