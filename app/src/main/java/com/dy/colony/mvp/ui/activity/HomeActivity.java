@@ -3,9 +3,12 @@ package com.dy.colony.mvp.ui.activity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -20,7 +23,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.apkfuns.logutils.LogUtils;
 import com.dy.colony.R;
-import com.dy.colony.app.utils.GpioUtils;
+import com.dy.colony.app.utils.FileUtils;
 import com.dy.colony.di.component.DaggerHomeComponent;
 import com.dy.colony.mvp.contract.HomeContract;
 import com.dy.colony.mvp.presenter.HomePresenter;
@@ -31,6 +34,7 @@ import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,7 +84,8 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
         mFragmentManager = getSupportFragmentManager();
         showFragment(0);
         //GpioUtils.writeGpioDirectly("/sys/class/gpiocontrol/gpiocontrol/gpiocontrol150",1+"");
-        GpioUtils.writeGpioWithSu("/sys/class/gpiocontrol/gpiocontrol/gpiocontrol150",1+"");
+       // GpioUtils.writeGpioWithSu("/sys/class/gpiocontrol/gpiocontrol/gpiocontrol150",1+"");
+        checkAndRequestManageStoragePermission();
     }
 
     List<String> permissionDeniedList = new ArrayList<>();
@@ -119,6 +124,48 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
             ActivityCompat.requestPermissions(this, deniedPermissions, REQUEST_CODE_PERMISSION_LOCATION);
         }
 
+    }
+
+
+    private static final int REQUEST_CODE_MANAGE_STORAGE = 2001;
+
+    // 核心黑魔法：利用反射调用 isExternalStorageManager
+    private boolean isExternalStorageManager() {
+        if (Build.VERSION.SDK_INT >= 30) { // 直接硬编码 30 代替 Build.VERSION_CODES.R
+            try {
+                // 动态查找并调用 Environment 类的 isExternalStorageManager 方法
+                Method method = Environment.class.getMethod("isExternalStorageManager");
+                return (Boolean) method.invoke(null);
+            } catch (Exception e) {
+                Log.e("Permission", "反射检测权限失败", e);
+            }
+        }
+        return false;
+    }
+
+    // 检查并申请权限
+    private void checkAndRequestManageStoragePermission() {
+        if (Build.VERSION.SDK_INT >= 30) {
+            if (!isExternalStorageManager()) {
+                // 没有权限，强行使用字符串常量跳转设置页
+                try {
+                    Intent intent = new Intent("android.settings.MANAGE_APP_ALL_FILES_ACCESS_PERMISSION");
+                    intent.setData(Uri.parse("package:" + getPackageName()));
+                    startActivityForResult(intent, REQUEST_CODE_MANAGE_STORAGE);
+                } catch (Exception e) {
+                    // 兜底方案：如果找不到具体应用的页面，就跳到总的全局文件权限管理页
+                    Intent intent = new Intent("android.settings.MANAGE_ALL_FILES_ACCESS_PERMISSION");
+                    startActivityForResult(intent, REQUEST_CODE_MANAGE_STORAGE);
+                }
+            } else {
+                // 已经有权限了，去建文件夹吧！
+                FileUtils.initPathlevel1();
+                FileUtils.initPathlevel2();
+            }
+        } else {
+            // Android 10 及以下，走传统的 ActivityCompat.requestPermissions 读写权限申请
+            // ... 你原有的低版本权限申请逻辑 ...
+        }
     }
 
     @Override
