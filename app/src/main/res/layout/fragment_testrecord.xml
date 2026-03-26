@@ -6,20 +6,19 @@
     android:orientation="vertical">
 
     <include
-        layout="@layout/include_title_center"
-        android:visibility="visible" />
+        layout="@layout/include_title_samplemessage"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="6dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="6dp"
         android:layout_marginRight="6dp">
 
         <LinearLayout
             android:id="@+id/layout_moudle"
             android:layout_width="0dp"
-            android:gravity="center_vertical"
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
@@ -43,7 +42,6 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:layout_marginStart="6dp"
             android:layout_weight="1"
             android:visibility="gone">
@@ -71,8 +69,7 @@
             android:id="@+id/layout_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="6dp"
             android:layout_weight="1.2">
 
             <TextView
@@ -98,8 +95,7 @@
             android:id="@+id/layout_result"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="6dp"
             android:layout_weight="1">
 
             <TextView
@@ -131,7 +127,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="38dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
         android:gravity="center"
@@ -222,7 +218,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/relativeLayout8"
-                android:paddingTop="1dp"
+                android:paddingTop="4dp"
                 tools:listitem="@layout/testrecord_item_layout" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

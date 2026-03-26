@@ -2,21 +2,14 @@ package com.dy.colony.mvp.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Application;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -30,7 +23,6 @@ import androidx.lifecycle.OnLifecycleEvent;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.apkfuns.logutils.LogUtils;
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dy.colony.MyAppLocation;
 import com.dy.colony.R;
 import com.dy.colony.app.utils.DataBaseUtil;
@@ -275,70 +267,9 @@ public class FGGD_TestActivity extends BaseActivity<FGGD_TestPresenter> implemen
     }
 
     private void initClickListener() {
-        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                if (view.getId() == R.id.bt_chose_units) {
-                    Detection_Record_FGGD_NC item = (Detection_Record_FGGD_NC) mAdapter.getData().get(position);
-                    if (item.getState() == 1) {
-                        ArmsUtils.snackbarText(getString(R.string.testinng));
-                        return;
-                    }
 
-                    showEditUnitsDialog(position, item.getProsecutedunits());
-                }
-            }
-        });
     }
 
-    private void showEditUnitsDialog(int position, String currentContent) {
-        // 1. 创建一个容器，用来给输入框加边距（Margin），直接放 EditText 会贴边很难看
-        FrameLayout container = new FrameLayout(this);
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.leftMargin = getResources().getDimensionPixelSize(R.dimen.dimen_20dp);
-        params.rightMargin = getResources().getDimensionPixelSize(R.dimen.dimen_20dp);
-        params.topMargin = getResources().getDimensionPixelSize(R.dimen.dimen_10dp);
-
-        final EditText editText = new EditText(this);
-        editText.setLayoutParams(params);
-        editText.setText(currentContent);
-        editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-        editText.setHint(getString(R.string.enter_inspect_unit));
-        editText.setSingleLine(true);
-        // 自动把光标移到末尾
-        if (currentContent != null) {
-            editText.setSelection(currentContent.length());
-        }
-
-        container.addView(editText);
-
-        // 2. 构建对话框
-        AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.enter_inspect_unit)
-                .setView(container)
-                .setPositiveButton(R.string.sure, (dialogInterface, i) -> {
-                    String inputText = editText.getText().toString().trim();
-                    Detection_Record_FGGD_NC galleryBean = (Detection_Record_FGGD_NC) mAdapter.getData().get(position);
-                    galleryBean.setProsecutedunits(inputText);
-                    mAdapter.notifyItemChanged(position);
-                })
-                .setNegativeButton(R.string.cancel, null)
-                .create();
-        editText.setFocusable(true);
-        editText.setFocusableInTouchMode(true);
-        editText.requestFocus();
-
-        editText.postDelayed(() -> {
-            InputMethodManager imm = (InputMethodManager)  getSystemService(Context.INPUT_METHOD_SERVICE);
-            if (imm != null) {
-                // 3. 显式调用 showSoftInput，并传入强制显示的标志
-                // 注意：第一个参数必须是当前获得焦点的 View
-                imm.showSoftInput(editText, InputMethodManager.SHOW_FORCED);
-            }
-        }, 160);
-        dialog.show();
-    }
 
     private void initOnTouchListener() {
         mBtnChangeSampleplace.setOnTouchListener(new View.OnTouchListener() {
@@ -408,7 +339,7 @@ public class FGGD_TestActivity extends BaseActivity<FGGD_TestPresenter> implemen
 
         } else {
             if (fggd_nc.getDowhat() == 2) {
-                mControValueParent.setVisibility(View.GONE);
+                mControValueParent.setVisibility(View.VISIBLE);
                 mScrollView.setVisibility(View.GONE);
                 BaseProjectMessage message = fggd_nc.getProjectMessage();
                 if (null != message) {
@@ -422,7 +353,7 @@ public class FGGD_TestActivity extends BaseActivity<FGGD_TestPresenter> implemen
                 return;
             }
             mControValueParent.setVisibility(View.GONE);
-            mScrollView.setVisibility(View.GONE);
+            mScrollView.setVisibility(View.VISIBLE);
             BaseProjectMessage message = fggd_nc.getProjectMessage();
             String method1 = fggd_nc.getTest_method();
 

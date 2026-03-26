@@ -18,7 +18,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.apkfuns.logutils.LogUtils;
-import com.blankj.utilcode.util.StringUtils;
 import com.dy.colony.BuildConfig;
 import com.dy.colony.Constants;
 import com.dy.colony.R;
@@ -26,7 +25,6 @@ import com.dy.colony.app.utils.SPUtils;
 import com.dy.colony.di.component.DaggerLoginComponent;
 import com.dy.colony.greendao.beans.User;
 import com.dy.colony.mvp.contract.LoginContract;
-import com.dy.colony.mvp.model.entity.ObjUserData;
 import com.dy.colony.mvp.presenter.LoginPresenter;
 import com.google.gson.Gson;
 import com.jess.arms.base.BaseActivity;
@@ -110,8 +108,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             login();
         }*/
         if (BuildConfig.DEBUG) {
-            mUsename.setText("Scy001");
-            mPassword.setText("Scy@12346");
+            mUsename.setText("admin");
+            mPassword.setText("123456");
+            mCb.setChecked(true);
         }
     }
 
@@ -127,37 +126,17 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         mCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                //SPUtils.put(getActivity(), Constants.KEY_REMBERUSERNAME, isChecked);
+                SPUtils.put(getActivity(), Constants.KEY_REMBERUSERNAME, isChecked);
             }
         });
     }
 
     private void initUserInfor() {
         if (Constants.ISREMBERUSERNAME) {
-            setPlatformUser();
-        }
-    }
-
-    private void setUser() {
-        String userJson = (String) SPUtils.get(getActivity(), Constants.KEY_USERINFOR_JSON, mGson.toJson(new User()));
-        if (StringUtils.isEmpty(userJson)) {
-            return;
-        }
-        User user = mGson.fromJson(userJson, User.class);
-        mUsename.setText(user.getUsername());
-        mPassword.setText(user.getPassword());
-    }
-
-    private void setPlatformUser() {
-        String userJson = (String) SPUtils.get(getActivity(), Constants.KEY_USERINFOR_JSON, mGson.toJson(new User()));
-        LogUtils.d(userJson);
-        if (StringUtils.isEmpty(userJson)) {
-            return;
-        }
-        ObjUserData user = mGson.fromJson(userJson, ObjUserData.class);
-        if (user != null) {
-            mUsename.setText(user.getUser().getUser_name());
-            mPassword.setText(user.getUser().getPassword());
+            String userJson = (String) SPUtils.get(getActivity(), Constants.KEY_USERINFOR_JSON, mGson.toJson(new User()));
+            User user = mGson.fromJson(userJson, User.class);
+            mUsename.setText(user.getUsername());
+            mPassword.setText(user.getPassword());
         }
     }
 
@@ -205,7 +184,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     public void loginSuccess(String s, User user) {
-        SPUtils.put(this, Constants.KEY_REMBERUSERNAME, Constants.ISREMBERUSERNAME);
+        SPUtils.put(this, "remenberpassword", Constants.ISREMBERUSERNAME);
         if (Constants.ISREMBERUSERNAME) {
             SPUtils.put(getActivity(), Constants.KEY_USERINFOR_JSON, mGson.toJson(user));
         }
@@ -242,7 +221,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 break;
 
             case R.id.offline:
-                Constants.IS_OFFLINE_MODE = true;
                 launchActivity(new Intent(getActivity(), HomeActivity.class));
                 killMyself();
                 break;
@@ -265,8 +243,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         } else if (password.isEmpty()) {
             ArmsUtils.snackbarText(this.getString(R.string.login_toast_nopassword));
         } else {
-            //mPresenter.login(username, password);
-            mPresenter.login_platform(username, password, mCb.isChecked());
+            mPresenter.login(username, password);
         }
     }
 }

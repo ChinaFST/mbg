@@ -18,7 +18,8 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
-
+    <uses-permission android:name="android.permission.CAMERA" />
+    
     <application
         android:name=".MyAppLocation"
         android:allowBackup="true"
@@ -31,13 +32,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".mvp.ui.activity.TestRecordMessageActivity"
-            android:label="@string/TestRecordMessageActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".mvp.ui.activity.TestRecordNewActivity"
+        <activity android:name=".mvp.ui.activity.TestRecordNewActivity"
             android:label="@string/test_record"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".mvp.ui.activity.ChoseSampleTypeActivity"
             android:label="@string/ChoseSampleTypeActivity"
@@ -68,7 +65,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.ui.activity.FGGD_TestActivity"
-            android:windowSoftInputMode="adjustPan"
             android:label="@string/FGGD_TestActivity"
             android:screenOrientation="portrait" />
         <activity

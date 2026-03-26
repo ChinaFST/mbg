@@ -21,22 +21,6 @@
         <item name="android:layout_marginStart">10dp</item>
     </style>
 
-    <!-- 统一的标题栏布局样式 -->
-    <style name="AppTitleBarStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/colorPrimaryDark</item>
-        <item name="android:theme">@style/AppTheme.AppBarOverlay</item>
-    </style>
-
-    <style name="AppTitleToolbarStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">?attr/actionBarSize</item>
-        <item name="android:background">@color/colorPrimaryDark</item>
-        <item name="contentInsetStart">0dp</item>
-        <item name="contentInsetStartWithNavigation">0dp</item>
-    </style>
-
     <style name="MyMaterialSearchViewStyle">
         <!-- Background for the search bar -->
         <item name="searchBackground">@color/colorPrimaryDark</item>

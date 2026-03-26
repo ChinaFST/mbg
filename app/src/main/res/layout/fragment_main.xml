@@ -77,7 +77,7 @@
                         android:gravity="center"
                         android:text="@string/start_test"
                         android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -117,9 +117,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:gravity="center"
-                        android:text="@string/JTJ_TestMoudle_P"
+                        android:text="@string/conventional_formaldehyde"
                         android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </GridLayout>
@@ -195,7 +195,7 @@
                         android:gravity="center"
                         android:text="@string/halal_verification"
                         android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -237,7 +237,7 @@
                         android:gravity="center"
                         android:text="@string/pork_alcohol"
                         android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </GridLayout>

@@ -22,7 +22,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="@dimen/dimen_8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_4"
@@ -33,7 +33,6 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:visibility="gone"
                 android:layout_marginTop="@dimen/dimen_6dp"
                 android:background="#DDDDDD" />
 
@@ -59,7 +58,6 @@
                 android:id="@+id/scrollView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:visibility="gone"
                 android:layout_weight="2"
                 android:scrollbars="none">
 

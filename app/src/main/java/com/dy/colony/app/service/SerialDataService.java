@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 
 import com.apkfuns.logutils.LogUtils;
 import com.apkfuns.logutils.utils.ObjectUtil;
-import com.dy.colony.BuildConfig;
 import com.dy.colony.Constants;
 import com.dy.colony.MyAppLocation;
 import com.dy.colony.R;
@@ -24,12 +23,9 @@ import com.dy.colony.app.utils.FileUtils;
 import com.dy.colony.greendao.DBHelper;
 import com.dy.colony.greendao.beans.Detection_Record_FGGD_NC;
 import com.dy.colony.greendao.beans.FGGDTestItem;
-import com.dy.colony.greendao.daos.FGGDTestItemDao;
 import com.dy.colony.mvp.model.entity.base.BaseProjectMessage;
 import com.dy.colony.mvp.model.entity.base.GalleryBean;
 import com.dy.colony.mvp.model.entity.eventbus.FGTestMessageBean;
-import com.dy.colony.serialport.ConfigurationSdk;
-import com.dy.colony.serialport.SerialPortManager;
 import com.dy.colony.serialport.listener.OnOpenSerialPortListener;
 import com.dy.colony.serialport.listener.OnSerialPortDataListener;
 import com.jess.arms.base.BaseService;
@@ -39,10 +35,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -57,7 +50,6 @@ import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 
 public class SerialDataService extends BaseService implements OnOpenSerialPortListener, OnSerialPortDataListener {
     private IBinder bind = new MyBinder();
-    public SerialPortManager mSerialPortManager_TTYS1;
     /**
      * 是否进行16进制转化
      */
@@ -87,7 +79,7 @@ public class SerialDataService extends BaseService implements OnOpenSerialPortLi
     public void init() {
         mHandler = new Handler(Looper.getMainLooper());
         mScheduledThreadPoolExecutor = ((ScheduledThreadPoolExecutor) ArmsUtils.obtainAppComponentFromContext(MyAppLocation.myAppLocation).executorService());
-        initTTYS1();
+        //initTTYS1();
         //初始化串口
         initSerialcontrol();
         receiveDatas();
@@ -101,21 +93,7 @@ public class SerialDataService extends BaseService implements OnOpenSerialPortLi
         FileUtils.deleteDir(path);
     }
 
-    private void initTTYS1() {
-        if (mSerialPortManager_TTYS1 != null) {
-            mSerialPortManager_TTYS1.closeSerialPort();
-        } else {
-            mSerialPortManager_TTYS1 = new SerialPortManager().setOnOpenSerialPortListener(this);
-            mSerialPortManager_TTYS1.setOnSerialPortDataListener(this);
-        }
 
-        //构建初始化参数
-        ConfigurationSdk sdk = new ConfigurationSdk.ConfigurationBuilder(new File("/dev/ttyS1"), 115200)
-                .log("TAG", false, false)
-                //打开说明需要效验
-                .build();
-        mSerialPortManager_TTYS1.init(sdk);
-    }
 
 
     private void receiveDatas() {
@@ -131,34 +109,16 @@ public class SerialDataService extends BaseService implements OnOpenSerialPortLi
                     mData_SerialControl.setOnFGGDDataReceiveListener(new SerialHelper.OnFGGDDataReceiveListener() {
                         @Override
                         public void onDataReceive(byte[] buffer, int size) {
-                            //LogUtils.d("fggd_reciver");
+                            LogUtils.d("fggd_reciver");
+                            LogUtils.d(ByteUtils.byte2HexStr2(buffer));
                             //需要区分新旧固件 旧的固件固定返回24个通道的数据
                             // 新的固件有多少通道返回多少通道
                             // 所以现在的方法就会存在16通道的仪器会出现24个检测通道
                             //每个通道有8个字节 截取后6个或8个通道的值，看是否为0 为0则舍去
                             int mSize = size;
-                            if (BuildConfig.FGGD_TYPE == 6) {
-                                byte[] bytes = ByteUtils.subBytes(buffer, ((size - 6) / 8 - 6) * 8 + 4, 6 * 8);
-                                //LogUtils.d(bytes);
-                                String s1 = Arrays.toString(bytes);
-                                //LogUtils.d(s1);
-                                if (s6.equals(s1)) {
-                                    //都为0 ，需要去掉
-                                    mSize = mSize - 6 * 8;
-                                }
-                            } else if (BuildConfig.FGGD_TYPE == 8) {
-                                byte[] bytes = ByteUtils.subBytes(buffer, ((size - 6) / 8 - 8) * 8 + 4, 8 * 8);
-                                //LogUtils.d(bytes);
-                                String s1 = Arrays.toString(bytes);
-                                //LogUtils.d(s1);
-                                if (s8.equals(s1)) {
-                                    //都为0 ，需要去掉
-                                    mSize = mSize - 8 * 8;
-                                }
-                            }
-
-
-                            if (mFGGDGalleryBeanList.size() != (mSize - 6) / 8) {
+                            int i1 = (mSize - 6) / 8;
+                            LogUtils.d(i1);
+                            if (mFGGDGalleryBeanList.size() != i1) {
                                 if (mFGGDGalleryBeanList.size() != 0) {
                                     MyAppLocation.myAppLocation.speak(getString(R.string.channel_data_loss));
                                     ArmsUtils.snackbarText(getString(R.string.channel_data_loss));
@@ -188,37 +148,21 @@ public class SerialDataService extends BaseService implements OnOpenSerialPortLi
                 List<Integer> mlist = new ArrayList<>();
                 int b = 4;
                 for (int i = 0; i < mFGGDGalleryBeanList.size(); i++) {  //遍历解析数据
-
-                    //波长 1
-                    String byte1 = ByteUtils.byte2HexStr(ByteUtils.subBytes(buffer, b + 0, 2)).toString();
-                    //波长2
-                    String byte2 = ByteUtils.byte2HexStr(ByteUtils.subBytes(buffer, b + 2, 2)).toString();
-                    //波长3
-                    String byte3 = ByteUtils.byte2HexStr(ByteUtils.subBytes(buffer, b + 4, 2)).toString();
-                    //波长4
-                    String byte4 = ByteUtils.byte2HexStr(ByteUtils.subBytes(buffer, b + 6, 2)).toString();
                     int w1 = 0;
                     int w2 = 0;
                     int w3 = 0;
                     int w4 = 0;
-                    if (BuildConfig.FGGD_TYPE == 6) {
-                        w1 = ((ByteUtils.HexToInt(byte1.substring(2, 4)) * 256 + ByteUtils.HexToInt(byte1.substring(0, 2))));  //波长1 ad值
-                        w2 = ((ByteUtils.HexToInt(byte2.substring(2, 4)) * 256 + ByteUtils.HexToInt(byte2.substring(0, 2))));
-                        w3 = ((ByteUtils.HexToInt(byte3.substring(2, 4)) * 256 + ByteUtils.HexToInt(byte3.substring(0, 2))));
-                        w4 = ((ByteUtils.HexToInt(byte4.substring(2, 4)) * 256 + ByteUtils.HexToInt(byte4.substring(0, 2))));
-                    } else if (BuildConfig.FGGD_TYPE == 8) {
-                        w1 = ((ByteUtils.HexToInt(byte1.substring(2, 4)) * 256 + ByteUtils.HexToInt(byte1.substring(0, 2))) * 1000) / 65535;  //波长1 ad值
-                        w2 = ((ByteUtils.HexToInt(byte2.substring(2, 4)) * 256 + ByteUtils.HexToInt(byte2.substring(0, 2))) * 1000) / 65535;
-                        w3 = ((ByteUtils.HexToInt(byte3.substring(2, 4)) * 256 + ByteUtils.HexToInt(byte3.substring(0, 2))) * 1000) / 65535;
-                        w4 = ((ByteUtils.HexToInt(byte4.substring(2, 4)) * 256 + ByteUtils.HexToInt(byte4.substring(0, 2))) * 1000) / 65535;
+                    w1 = ByteUtils.bytes2Int(buffer, b + 0);
+                    w2 = ByteUtils.bytes2Int(buffer, b + 2);
+                    w3 = ByteUtils.bytes2Int(buffer, b + 4);
+                    w4 = ByteUtils.bytes2Int(buffer, b + 6);
 
-                    }
 
                     mlist.add(w1);
                     mlist.add(w2);
                     mlist.add(w3);
                     mlist.add(w4);
-                    //LogUtils.d(w1+"-"+w2+"-"+w3+"-"+w4+"-");
+                    LogUtils.d(w1+"-"+w2+"-"+w3+"-"+w4+"-");
 
                     b = b + 8;
                 }
@@ -954,15 +898,9 @@ public class SerialDataService extends BaseService implements OnOpenSerialPortLi
 
         long insert = DBHelper.getDetection_Record_FGGD_NCDao(this).insert(detection_record_fggd_nc);
         //检测完成后的操作，自动打印，自动上传等
-        printAndUpload(insert);
+        //printAndUpload(detection_record_fggd_nc, insert);
 
 
-    }
-
-    private void printAndUpload(long insert) {
-        if (Constants.AUTO_UPLOAD && !Constants.IS_OFFLINE_MODE) {
-            UpLoadIntentService.startUpLoad(this, insert);
-        }
     }
 
     /**

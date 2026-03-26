@@ -30,20 +30,14 @@ import com.jess.arms.http.log.FormatPrinter;
 import com.jess.arms.http.log.RequestInterceptor;
 import com.jess.arms.integration.ConfigModule;
 
-import java.security.cert.CertificateException;
 import java.util.List;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.X509TrustManager;
-
 import me.jessyan.progressmanager.ProgressManager;
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.logging.HttpLoggingInterceptor;
 import timber.log.Timber;
 
 /**
@@ -151,44 +145,33 @@ public final class GlobalConfiguration implements ConfigModule {
                 .retrofitConfiguration((context1, retrofitBuilder) -> {//这里可以自己自定义配置 Retrofit 的参数, 甚至您可以替换框架配置好的 OkHttpClient 对象 (但是不建议这样做, 这样做您将损失框架提供的很多功能)
 
 
-                    retrofitBuilder.addConverterFactory(FastJsonConverterFactory.create());//使用 FastJson 替代 Gson
+                        retrofitBuilder.addConverterFactory(FastJsonConverterFactory.create());//使用 FastJson 替代 Gson
                 })
                 .okhttpConfiguration((context1, okhttpBuilder) -> {//这里可以自己自定义配置 Okhttp 的参数
 //                    okhttpBuilder.sslSocketFactory(); //支持 Https, 详情请百度
                     okhttpBuilder.connectTimeout(10, TimeUnit.SECONDS);
-                    if (BuildConfig.DEBUG) {
-                        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-                        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-                        okhttpBuilder.addNetworkInterceptor(loggingInterceptor);
-                    }
+                   /* if (BuildConfig.DEFAULT_PLATFORM_TAG == 5) {
+                        //下载经营户时服务器反应时间太长 60秒左右
+                        okhttpBuilder.writeTimeout(2, TimeUnit.MINUTES);
+                        okhttpBuilder.connectTimeout(2, TimeUnit.MINUTES);
+                        okhttpBuilder.readTimeout(2, TimeUnit.MINUTES);
+                    }*/
 
                     //使用一行代码监听 Retrofit／Okhttp 上传下载进度监听,以及 Glide 加载进度监听, 详细使用方法请查看 https://github.com/JessYanCoding/ProgressManager
                     ProgressManager.getInstance().with(okhttpBuilder);
                     //让 Retrofit 同时支持多个 BaseUrl 以及动态改变 BaseUrl, 详细使用方法请查看 https://github.com/JessYanCoding/RetrofitUrlManager
                     RetrofitUrlManager.getInstance().with(okhttpBuilder);
-                    try {
-                        // 自定义一个信任所有证书的TrustManager，添加SSLSocketFactory的时候要用到
-                        final X509TrustManager trustAllCert =
-                                new X509TrustManager() {
-                                    @Override
-                                    public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
-                                    }
-
-                                    @Override
-                                    public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
-                                    }
-
-                                    @Override
-                                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                                        return new java.security.cert.X509Certificate[]{};
-                                    }
-                                };
-                        final SSLSocketFactory sslSocketFactory = new SSLSocketFactoryCompat(trustAllCert);
-                        okhttpBuilder.sslSocketFactory(sslSocketFactory, trustAllCert);
+                    /*if (BuildConfig.DEFAULT_PLATFORM_TAG == 5
+                            || BuildConfig.DEFAULT_PLATFORM_TAG == 6
+                            || BuildConfig.DEFAULT_PLATFORM_TAG == 13
+                            || BuildConfig.DEFAULT_PLATFORM_TAG == 15
+                            || BuildConfig.DEFAULT_PLATFORM_TAG == 42
+                            || BuildConfig.DEFAULT_PLATFORM_TAG == 43
+                    ) {
+                        okhttpBuilder.sslSocketFactory(SSLSocketClient.getSSLSocketFactory());
                         okhttpBuilder.hostnameVerifier(SSLSocketClient.getHostnameVerifier());
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
+
+                    }*/
 
 
                 })
@@ -199,7 +182,6 @@ public final class GlobalConfiguration implements ConfigModule {
                     return null;
                 });
     }
-
 
     @Override
     public void injectAppLifecycle(@NonNull Context context, @NonNull List<AppLifecycles> lifecycles) {

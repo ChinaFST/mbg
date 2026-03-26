@@ -47,6 +47,7 @@ public class User implements Parcelable {
     private String email;
 
 
+
     public Long getId() {
         return id;
     }
@@ -151,8 +152,8 @@ public class User implements Parcelable {
 
     @Generated(hash = 871544755)
     public User(Long id, @NotNull String username, @NotNull String password,
-                String name, String phone, String jobname, String unit, String sex,
-                String email) {
+            String name, String phone, String jobname, String unit, String sex,
+            String email) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -170,13 +171,13 @@ public class User implements Parcelable {
 
     public static final Creator<User> CREATOR = new Creator<User>() {
         @Override
-        public User createFromParcel(Parcel source) {
-            return new User(source);
+        public  User createFromParcel(Parcel source) {
+            return new  User(source);
         }
 
         @Override
-        public User[] newArray(int size) {
-            return new User[size];
+        public  User[] newArray(int size) {
+            return new  User[size];
         }
     };
 }

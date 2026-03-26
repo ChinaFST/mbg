@@ -5,13 +5,13 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
@@ -28,32 +28,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.apkfuns.logutils.LogUtils;
 import com.dy.colony.Constants;
 import com.dy.colony.MyAppLocation;
-import com.dy.colony.app.utils.DiaLogUtils;
-import com.dy.colony.greendao.DBHelper;
+import com.dy.colony.R;
+import com.dy.colony.di.component.DaggerJTJ_TestComponent;
 import com.dy.colony.greendao.beans.Detection_Record_FGGD_NC;
-import com.dy.colony.mvp.model.entity.base.BaseSampleMessage;
-import com.dy.colony.mvp.model.entity.base.BaseUntilMessage;
+import com.dy.colony.mvp.contract.JTJ_TestContract;
 import com.dy.colony.mvp.model.entity.base.GalleryBean;
 import com.dy.colony.mvp.model.entity.eventbus.ExternTestMessageBean;
-import com.dy.colony.mvp.model.entity.eventbus.JTJTestMessageBean;
+import com.dy.colony.mvp.presenter.JTJ_TestPresenter;
 import com.dy.colony.mvp.ui.widget.BaseJTJTestView;
 import com.dy.colony.mvp.ui.widget.MyJTJ_TestView_External;
+import com.dy.colony.mvp.ui.widget.MyJavaCameraView;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.gson.Gson;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 
-import com.dy.colony.di.component.DaggerJTJ_TestComponent;
-import com.dy.colony.mvp.contract.JTJ_TestContract;
-import com.dy.colony.mvp.presenter.JTJ_TestPresenter;
-
-import com.dy.colony.R;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.opencv.android.CameraBridgeViewBase;
+import org.opencv.core.Mat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,11 +57,13 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static com.jess.arms.utils.Preconditions.checkNotNull;
+import static org.opencv.android.CameraBridgeViewBase.CAMERA_ID_FRONT;
 
 public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements JTJ_TestContract.View {
     @Inject
@@ -126,12 +124,21 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
     AutoCompleteTextView mMessageTestpeople;
     @BindView(R.id.start_test)
     FloatingActionButton mStartTest;
+    @BindView(R.id.toolbarly)
+    AppBarLayout mToolbarly;
+    @BindView(R.id.myjavacam)
+    MyJavaCameraView mJavacamrea;
+    @BindView(R.id.retestdata)
+    Button mRetestdata;
+    @BindView(R.id.parent_layout)
+    LinearLayout mParentLayout;
 
     private List<BaseJTJTestView> mJTJTestViews = new ArrayList<>();
     private GalleryBean nowShowBean;
     private int mIndex;
 
     private int type;
+    private Mat mat;
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
@@ -176,8 +183,58 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
                 return true;
             }
         });
+        mJavacamrea.setCameraPermissionGranted();
+        mJavacamrea.setVisibility(SurfaceView.VISIBLE);
+        mJavacamrea.setCvCameraViewListener(new CameraBridgeViewBase.CvCameraViewListener() {
+            @Override
+            public void onCameraViewStarted(int width, int height) {
+
+            }
+
+            @Override
+            public void onCameraViewStopped() {
+
+            }
+
+            @Override
+            public Mat onCameraFrame(Mat inputFrame) {
+                mat=inputFrame;
+                //Log.d("wzx","  "+inputFrame.width() + " " + inputFrame.height());
+
+                //Imgproc.rectangle(inputFrame, rect_show,new Scalar(255,0,0,255),2);
+                return inputFrame;
+            }
+        });
+        mJavacamrea.enableFpsMeter();
+        mJavacamrea.setCameraIndex(CAMERA_ID_FRONT);
+
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mJavacamrea != null) {
+            mJavacamrea.disableView();
+        }
+        MyAppLocation.myAppLocation.mSerialDataService.mData_SerialControl.send(new byte[]{0x7E,0x14,0x01,0x00,0x00, (byte) 0xCC, (byte) 0xAA});
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mJavacamrea != null) {
+            mJavacamrea.enableView();
+        }
+        MyAppLocation.myAppLocation.mSerialDataService.mData_SerialControl.send(new byte[]{0x7E,0x14,0x01,0x00,0x01, (byte) 0xCC, (byte) 0xAA});
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mJavacamrea != null) {
+            mJavacamrea.disableView();
+        }
+    }
     private void initGallery() {
         mGroupChart.removeAllViews();
         mJTJTestViews.clear();
@@ -186,18 +243,16 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
         for (int i = 0; i < 2; i++) {
             GalleryBean e = new Detection_Record_FGGD_NC();
             e.setGalleryNum(i + 1);
-            e.setTestMoudle(2 + "");
-            e.setJTJModel(1);
+            e.setTestMoudle(4 + "");
+            e.setJTJModel(4);
             e.setJTJCardModel(0);
             if (type == 1) {
-                ((Detection_Record_FGGD_NC) e).setTest_project(getString(R.string.halal_verification));
-            }else  if (type == 2) {
-                ((Detection_Record_FGGD_NC) e).setTest_project(getString(R.string.pork_alcohol));
+                ((Detection_Record_FGGD_NC) e).setTest_project(getString(R.string.pork_testing));
             }
             MyAppLocation.myAppLocation.mSerialDataService.mJTJGalleryBeanList.add(e);
             MyJTJ_TestView_External p = new MyJTJ_TestView_External(this, i); //新建通道，将baan与该自定义view绑定
             mJTJTestViews.add(p);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f);
             mGroupChart.addView(p, layoutParams);//添加到视图容器
             LogUtils.d(e);
             LogUtils.d(mGroupChart.getChildCount());
@@ -353,7 +408,7 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
     }
 
 
-    @OnClick({R.id.choseproject, R.id.samplename_btn, R.id.samplenum_btn, R.id.unit_btn, R.id.start_test, R.id.iv_record})
+    @OnClick({R.id.choseproject, R.id.samplename_btn, R.id.samplenum_btn, R.id.unit_btn, R.id.start_test})
     public void onClick(View view) {
         int state;
         Intent intent;
@@ -406,16 +461,17 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
                 break;
 
             case R.id.start_test:
-                mPresenter.makeChoseSeachMethodDialog(mJTJTestViews);
-                break;
-            case R.id.iv_record:
-                startActivity(new Intent(getActivity(), TestRecordNewActivity.class));
-                break;
-            default:
+                //mPresenter.makeChoseSeachMethodDialog(mJTJTestViews);
+                startTest();
                 break;
 
 
         }
+    }
+
+    private void startTest() {
+        Mat clone = mat.clone();
+
     }
 
     @Override
@@ -455,5 +511,12 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
     @Override
     public void killMyself() {
         finish();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

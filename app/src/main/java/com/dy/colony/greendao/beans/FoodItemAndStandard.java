@@ -34,18 +34,18 @@ public class FoodItemAndStandard extends BaseSampleMessage implements Parcelable
      * standardValue : 50.0
      * uDate : 2017-09-30 15:16:33.0
      */
-    public String toMyString() {
-        return getMyString(R.string.sample_details) + "\r\n" +
-                getMyString(R.string.unique_id) + checkId + "\r\n" +
-                getMyString(R.string.sample_name_colon) + sampleName + "\r\n" +
-                getMyString(R.string.test_project_colon) + itemName + "\r\n" +
-                getMyString(R.string.sample_number_colon) + sampleNum + "\r\n" +
-                getMyString(R.string.parent_class_number_colon) + foodPCode + "\r\n" +
-                getMyString(R.string.testing_standards_colon) + standardName + "\r\n" +
-                getMyString(R.string.limit_value_colon) + checkSign + standardValue + checkValueUnit + "\r\n" +
-                getMyString(R.string.update_date_colon) + uDate + "\r\n" +
-                getMyString(R.string.manually_add_colon) + (flag == 2 ? getMyString(R.string.txt_yes) : getMyString(R.string.txt_no));
-    }
+    /*public String toMyString() {
+        return getMyString(R.string.result_hint24) + "\r\n" +
+                getMyString(R.string.result_hint25) + checkId + "\r\n" +
+                getMyString(R.string.result_hint26) + sampleName + "\r\n" +
+                getMyString(R.string.result_hint27) + itemName + "\r\n" +
+                getMyString(R.string.result_hint28) + sampleNum + "\r\n" +
+                getMyString(R.string.result_hint29) + foodPCode + "\r\n" +
+                getMyString(R.string.result_hint30) + standardName + "\r\n" +
+                getMyString(R.string.result_hint31) + checkSign + standardValue + checkValueUnit + "\r\n" +
+                getMyString(R.string.result_hint32) + uDate + "\r\n" +
+                getMyString(R.string.result_hint33) + (flag == 2 ? getMyString(R.string.txt_yes) : getMyString(R.string.txt_no));
+    }*/
 
     @Id(autoincrement = true)
     private Long id;

@@ -362,10 +362,13 @@ public class TestRecordNewPresenter extends BasePresenter<TestRecordNewContract.
     public void uploadData() {
         List<Detection_Record_FGGD_NC> checkData = new ArrayList<>();
         List<Detection_Record_FGGD_NC> isuped = new ArrayList<>();
+        List<Detection_Record_FGGD_NC> erro = new ArrayList<>();
         List<Detection_Record_FGGD_NC> data = mAdapter.getData();
+        List<String> decisionoutcomeList = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
-            Detection_Record_FGGD_NC nc = data.get(i);
+            Detection_Record_FGGD_NC entity = data.get(i);
 
+            Detection_Record_FGGD_NC nc = (Detection_Record_FGGD_NC) entity;
             if (nc.checkState) {
                 String decisionoutcome = nc.getDecisionoutcome();
 
@@ -382,6 +385,7 @@ public class TestRecordNewPresenter extends BasePresenter<TestRecordNewContract.
                     isuped.add(nc);
                 }
 
+
             }
 
 
@@ -397,15 +401,34 @@ public class TestRecordNewPresenter extends BasePresenter<TestRecordNewContract.
                 return;
             }
         }
+        if (!decisionoutcomeList.isEmpty() && decisionoutcomeList.contains(getString(R.string.ng))) {
+            showHint(checkData);
+            return;
+        }
+
 
         //list 倒叙
         Collections.reverse(checkData);
+
 
         uploadByIntentService(checkData);
 
 
     }
 
+    private void showHint(List<Detection_Record_FGGD_NC> checkData) {
+        DiaLogUtils.showAlert(mRootView.getActivity(), getString(R.string.hint), getString(R.string.contain_positive_data), getString(R.string.str_continue), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Collections.reverse(checkData);
+                uploadByIntentService(checkData);
+            }
+        }, mRootView.getActivity().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        }).show();
+    }
 
     private String getString(@StringRes int id) {
         return mRootView.getActivity().getString(id);

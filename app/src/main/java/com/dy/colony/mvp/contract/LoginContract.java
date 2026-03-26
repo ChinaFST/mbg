@@ -3,7 +3,6 @@ package com.dy.colony.mvp.contract;
 import android.app.Activity;
 
 import com.dy.colony.greendao.beans.User;
-import com.dy.colony.mvp.model.entity.Platform_LoginBack;
 import com.jess.arms.mvp.IView;
 import com.jess.arms.mvp.IModel;
 
@@ -19,14 +18,10 @@ public interface LoginContract {
 
         void loginFail(String s);
 
-
-
     }
 
     //Model层定义接口,外部只需关心Model返回的数据,无需关心内部细节,即是否使用缓存
     interface Model extends IModel {
         Observable<Integer> login(String username, String password);
-
-        Observable<Platform_LoginBack> login_Platform(String username, String password, String devicecode, String softWareVersion, String place, String ip);
     }
 }

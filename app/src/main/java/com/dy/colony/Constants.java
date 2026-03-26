@@ -5,7 +5,6 @@ import android.app.Application;
 import com.dy.colony.app.utils.CRC8Util;
 import com.dy.colony.app.utils.SPUtils;
 import com.dy.colony.greendao.beans.User;
-import com.dy.colony.mvp.model.entity.ObjUserData;
 import com.dy.colony.usbhelp.UsbControl;
 
 /**
@@ -22,32 +21,16 @@ public class Constants {
     public static String KEY_REMBERUSERNAME = "KEY_REMBERUSERNAME";
 
     /**
-     * {@link #ISREMBERUSERNAME}是否离线模式（登录页面）<p>
-     * {@link #KEY_REMBERUSERNAME}<p>
-     */
-    public static boolean IS_OFFLINE_MODE;
-    public static String KEY_IS_OFFLINE_MODE = "KEY_IS_OFFLINE_MODE";
-
-    /**
      * 保存当前用户的key
      */
     public static final String KEY_USERINFOR_JSON = "KEY_USERINFOR_JSON";
-
 
     /**
      * 当前登录用户 仪器本身
      */
     public static User NOWUSER;
-    /**
-     * 当前登录用户 平台
-     */
-    public static ObjUserData USER_PLATFORM;
-    /**
-     * {@link #AUTO_UPLOAD}是否离线模式（登录页面）<p>
-     * {@link #KEY_REMBERUSERNAME}<p>
-     */
-    public static boolean AUTO_UPLOAD;
-    public static String KEY_AUTO_UPLOAD = "auto_upload_enabled";
+
+    public static String KEY_AUTO_UPLOAD_ENABLED = "auto_upload_enabled";
     public static int MINWIDTH = 250;
     public static String KEY_MINWIDTH = "KEY_MINWIDTH";
     public static int MINHEIGHT = 40;
@@ -67,14 +50,6 @@ public class Constants {
 
     public static int MINHDIFFERENCEVALUE = 10;
     public static String KEY_MINHDIFFERENCEVALUE = "KEY_MINHDIFFERENCEVALUE";
-
-    /**
-     * 该编号保留，作为用户可以自行输入，后续使用的devicenum使用@AppUtils.getSN()
-     * {@link #DEVICENUM}仪器编号<p>
-     * {@link #KEY_DEVICENUM}仪器编号KEY<p>
-     */
-    public static String DEVICENUM;
-    public static final String KEY_DEVICENUM = "KEY_DEVICENUM";
     /**
      * 仪器百度定位数据 经纬度
      */
@@ -100,7 +75,7 @@ public class Constants {
     public static int FGGD_SEARINUM;
     public static String KEY_FGGD_SEARINUM = "key_fggd_searinum";
 
-    public static String JUMP_PARAM_TYPE = "type";
+    public static String JUMP_PARAM_TYPE="type";
 
     public static int PLATFORM_TAG;
     /**
@@ -124,8 +99,10 @@ public class Constants {
      */
     public static UsbControl mControl;
 
-    public static final byte[] SPECTRAL_AD_CALIBRATION_REQUEST_1 = new byte[]{0x7e, 0x11, 0x02, 0x00, 0x01, 0x32, 0x46, (byte) 0xaa},
-            SPECTRAL_AD_CALIBRATION_REQUEST_2 = new byte[]{0x7e, 0x11, 0x02, 0x00, 0x02, 0x32, 0x47, (byte) 0xaa}, SPECTRAL_DATA_REQUEST_DY1000 = new byte[]{0x7e, 0x15, 0x00, 0x00, 0x15, 0x7e};
+    public static final byte[]
+            SPECTRAL_AD_CALIBRATION_REQUEST_1 = new byte[]{0x7e, 0x40, 0x02, 0x00, (byte) 0xf4, 0x01, 0x46, (byte) 0xaa},
+            SPECTRAL_AD_CALIBRATION_REQUEST_2 = new byte[]{0x7e, 0x40, 0x02, 0x00, (byte) 0xf4, 0x01, 0x46, (byte) 0xaa},
+            SPECTRAL_DATA_REQUEST_DY1000 = new byte[]{0x7e, 0x02, 0x00, 0x00, 0x15, (byte) 0xaa};
 
     public static byte[] COLLAURUM_DATA_REQUEST_P = new byte[]{0x7E, 0x15, 0x00, 0x00, (byte) 0xcb, 0x7E}, COLLAURUM_NUMBER_ASK_P = new byte[]{0x7e, 0x1b, 0x00, 0x00, (byte) CRC8Util.FindCRC(new byte[]{0x1b, 0x00, 0x00}), 0x7e},
             COLLAURUM_STATE_REQUEST_P = new byte[]{0x7E, 0x13, 0x00, 0x00, (byte) CRC8Util.FindCRC(new byte[]{0x13, 0x00, 0x00}), 0x7E};
@@ -133,7 +110,7 @@ public class Constants {
     /**
      * 串口相关 两种Android板子的串口名称是不一样的，具体看代码
      */
-    public static final String DATA_SERIAPort = "/dev/ttyS4", NEW_DATA_SERIAPort = "/dev/ttyS0", DATA_SERIALBaudRate = "115200";
+    public static final String DATA_SERIAPort = "/dev/ttyS0", NEW_DATA_SERIAPort = "/dev/ttyS0", DATA_SERIALBaudRate = "9600";
     /**
      * 外接胶体金模块的检测区域参数<p>
      * {@link #drowrectheight} 所画的红色框的高<p>
@@ -179,12 +156,6 @@ public class Constants {
     public static void init(Application application) {
         //是否记住用户（登录界面）
         Constants.ISREMBERUSERNAME = (boolean) SPUtils.get(application, Constants.KEY_REMBERUSERNAME, false);
-        //仪器编号
-        Constants.DEVICENUM = (String) SPUtils.get(application, Constants.KEY_DEVICENUM, "");
-        Constants.AUTO_UPLOAD = (boolean) SPUtils.get(application, Constants.KEY_AUTO_UPLOAD, false);
-        if (BuildConfig.DEBUG) {
-            Constants.AUTO_UPLOAD = false;
-        }
     }
 
 

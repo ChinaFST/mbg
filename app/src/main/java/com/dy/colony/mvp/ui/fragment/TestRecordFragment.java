@@ -3,12 +3,9 @@ package com.dy.colony.mvp.ui.fragment;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,11 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.apkfuns.logutils.LogUtils;
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.dy.colony.Constants;
 import com.dy.colony.greendao.beans.Detection_Record_FGGD_NC;
-import com.dy.colony.mvp.ui.activity.TestRecordMessageActivity;
-import com.dy.colony.mvp.ui.activity.TestRecordNewActivity;
 import com.dy.colony.mvp.ui.adapter.TestRecordAdapter;
 import com.dy.colony.mvp.ui.widget.MyDatePickerDialog;
 import com.google.android.material.appbar.AppBarLayout;
@@ -163,53 +156,12 @@ public class TestRecordFragment extends BaseFragment<TestRecordPresenter> implem
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
         initRecycle();
-        initToolbar();
+        mAdapter.setEmptyView(R.layout.emptyview, (ViewGroup) mRecyclerView.getParent());
+        mRecyclerView.setAdapter(mAdapter);
         initSearcchView();
         initSpinner();
         mPresenter.loadMore(true);
         initPaginate();
-    }
-
-    private void initToolbar() {
-        setHasOptionsMenu(true);
-        if (getActivity() instanceof androidx.appcompat.app.AppCompatActivity) {
-            androidx.appcompat.app.AppCompatActivity activity = (androidx.appcompat.app.AppCompatActivity) getActivity();
-            activity.setSupportActionBar(mToolbar);
-            if (activity.getSupportActionBar() != null) {
-                // 隐藏默认的 App 名字标题
-                activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
-            }
-        }
-        mToolbarBack.setVisibility(View.GONE);
-        mToolbarTitle.setText(R.string.test_record);
-        mToolbarTitle.setTextColor(Color.WHITE);
-        // 背景颜色已通过 XML 中的 Style (@style/AppTitleBarStyle) 统一设置为 @color/colorPrimaryDark
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.testrecord_toobar_menu, menu);
-        MenuItem item = menu.findItem(R.id.action_search);
-        mMenuItemDelete = menu.findItem(R.id.menu_delete_testitem);
-        MenuItem upload_menu = menu.findItem(R.id.menu_upload_testitem);
-        if (Constants.IS_OFFLINE_MODE) {
-            upload_menu.setVisible(false);
-        }
-        mSearchView.setMenuItem(item);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_delete_testitem:
-                mPresenter.deleteData();
-                break;
-            case R.id.menu_upload_testitem:
-                mPresenter.uploadData();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
 
@@ -286,7 +238,6 @@ public class TestRecordFragment extends BaseFragment<TestRecordPresenter> implem
     }
 
     private void initSearcchView() {
-        starttime = getString(R.string.all);
         mSearchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -325,10 +276,9 @@ public class TestRecordFragment extends BaseFragment<TestRecordPresenter> implem
     }
 
     private void initRecycle() {
+
         mSwipeRefreshLayout.setOnRefreshListener(this);
         ArmsUtils.configRecyclerView(mRecyclerView, mLayoutManager);
-        mAdapter.setEmptyView(R.layout.emptyview, (ViewGroup) mRecyclerView.getParent());
-        mRecyclerView.setAdapter(mAdapter);
         //((SimpleItemAnimator) mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
         mRecyclerView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -349,18 +299,6 @@ public class TestRecordFragment extends BaseFragment<TestRecordPresenter> implem
                         break;
                 }
                 return false;
-            }
-        });
-
-        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Detection_Record_FGGD_NC item = mAdapter.getData().get(position);
-                Intent intent = new Intent(getActivity(), TestRecordMessageActivity.class);
-                Bundle extras = new Bundle();
-                extras.putParcelable("data", item);
-                intent.putExtras(extras);
-                startActivity(intent);
             }
         });
     }
@@ -550,7 +488,7 @@ public class TestRecordFragment extends BaseFragment<TestRecordPresenter> implem
         }
     }
 
-    private String starttime;
+    private String starttime = "全部";
     private String stoptime;
 
     private void choseTime1() {

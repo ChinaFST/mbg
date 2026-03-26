@@ -41,10 +41,10 @@
     <string name="sync_data">同步数据</string>
     <string name="test_record">检测记录</string>
     <string name="conventional_food_safety">常规食品安全</string>
-    <string name="start_test">分光</string>
+    <string name="start_test">开始检测</string>
     <string name="conventional_formaldehyde">常规食品安全筛查</string>
     <string name="halal_verification">清真核查</string>
-    <string name="pork_alcohol">猪源检测</string>
+    <string name="pork_alcohol">猪肉成分/酒精检测</string>
     <string name="login_out">退出登录</string>
     <string name="auto_upload">自动上传</string>
 
@@ -126,7 +126,7 @@
     <string name="channel_label">通道%1$d</string>
     <string name="no_standard_found">未找到适合的标准依据，请更新本地样品</string>
     <string name="inputdirnumber" translatable="false">请输入稀释倍数</string>
-    <string name="enter_number_reaction_drops" translatable="false">请输入反应液滴数</string>
+    <string name="number_reaction_drops" translatable="false">请输入反应液滴数</string>
     <string name="hintnotnull" translatable="false">非法输入，输入不能为空</string>
     <string name="channeldetails" translatable="false">第%s通道详细信息</string>
     <string name="gallery" translatable="false">通道</string>
@@ -248,65 +248,6 @@
     <string name="Upload_not_supported">不支持上传</string>
     <string name="sel_need_test_record">请选择需要上传的检测记录，上传检测结果只支持合格与不合格</string>
     <string name="selected_data_has_upload">当前所选数据已经上传，不可重复上传</string>
-    <string name="TestRecordMessageActivity" translatable="false">检测记录详情</string>
-    <string name="look_fail" translatable="false">查看失败</string>
-    <string name="qr_code_result" translatable="false">检测结果二维码</string>
-    <string name="detection_curve" translatable="false">检测曲线</string>
-    <string name="judgment_criteria" translatable="false">判定标准</string>
-    <string name="detect_unit" translatable="false">检测单位</string>
-    <string name="detection_value">检测值</string>
-    <string name="enter_test_value">请输入检测值和检测结果</string>
-    <string name="print_mothed1" translatable="false">检测方法：抑制率法</string>
-    <string name="print_mothed2" translatable="false">检测方法：标准曲线法</string>
-    <string name="print_mothed3" translatable="false">检测方法：动力学法</string>
-    <string name="print_mothed4" translatable="false">检测方法：系数法</string>
-    <string name="query_fail" translatable="false">查询失败</string>
-    <string name="txt_red_green_blue" translatable="false">1-红 2-绿 3-蓝 4-黑</string>
-    <string name="detect_unit_name" translatable="false">检测单位名称：</string>
-    <string name="detect_unit_id" translatable="false">检测单位ID：</string>
-    <string name="local_sample_not_found" translatable="false">本地样品库未查询到该信息</string>
-    <string name="standard_file_not_found" translatable="false">未找到相关标准文件</string>
-    <string name="file_is_empty" translatable="false">文件为空</string>
-    <string name="dilution_factor" translatable="false">稀释倍数：</string>
-    <string name="number_reaction_drops" translatable="false">反应液滴数：</string>
-    <string name="pdf_file_corruption" translatable="false">pdf文件损坏</string>
-
-    <string name="sample_details" translatable="false">样品详细信息</string>
-    <string name="unique_id" translatable="false">唯一ID：</string>
-    <string name="sample_name_colon" translatable="false">样品名称：</string>
-    <string name="test_project_colon" translatable="false">检测项目：</string>
-    <string name="test_method_colon" translatable="false">检测方法：</string>
-    <string name="sample_number_colon" translatable="false">样品编号：</string>
-    <string name="serial_number_colon" translatable="false">流水号：</string>
-    <string name="channel_number_colon" translatable="false">通道编号：</string>
-    <string name="judgment_basis_colon" translatable="false">判定依据：</string>
-    <string name="control_value_colon" translatable="false">对照值：</string>
-    <string name="code_testing_card" translatable="false">检测卡二维码：</string>
-    <string name="test_result_colon" translatable="false">检测结果：</string>
-    <string name="judgment_result_colon" translatable="false">判定结果：</string>
-    <string name="sample_origin_colon" translatable="false">样品产地：</string>
-    <string name="inspectors_colon" translatable="false">检测人员：</string>
-    <string name="reading_time_colon" translatable="false">读取时间：</string>
-    <string name="detect_time_colon" translatable="false">检测时间：</string>
-    <string name="testing_locations_colon" translatable="false">检测地点：</string>
-    <string name="longitude_colon" translatable="false">经度：</string>
-    <string name="latitude_colon" translatable="false">纬度：</string>
-    <string name="parent_class_number_colon" translatable="false">父类编号：</string>
-    <string name="testing_standards_colon" translatable="false">检测标准：</string>
-    <string name="limit_value_colon" translatable="false">限量值：</string>
-    <string name="update_date_colon" translatable="false">更新日期：</string>
-    <string name="manually_add_colon" translatable="false">是否手动新增：</string>
-    <string name="txt_yes" translatable="false">是</string>
-    <string name="txt_no" translatable="false">否</string>
-    <string name="inspected_unit_colon" translatable="false">被检单位：</string>
-    <string name="detect_result_split" translatable="false">------检测结果------</string>
-    <string name="testmoudle_colon" translatable="false">检测模块：</string>
-    <string name="not_login_hint" translatable="false">当前为离线使用模式，是否登录？</string>
-    <string name="fggd_module" translatable="false">分光光度模块</string>
-    <string name="jtj_module" translatable="false">胶体金模块</string>
-    <string name="handheld_device" translatable="false">手持数字化检测仪</string>
-    <string name="offline_mode_hint" translatable="false">当前为离线使用模式，请先登录</string>
-    <string name="enter_inspect_unit" translatable="false">输入被检单位</string>
 
 
 </resources>

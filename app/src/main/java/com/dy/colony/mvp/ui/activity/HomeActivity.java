@@ -19,8 +19,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.apkfuns.logutils.LogUtils;
-import com.dy.colony.Constants;
 import com.dy.colony.R;
+import com.dy.colony.app.utils.GpioUtils;
 import com.dy.colony.di.component.DaggerHomeComponent;
 import com.dy.colony.mvp.contract.HomeContract;
 import com.dy.colony.mvp.presenter.HomePresenter;
@@ -79,6 +79,8 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
         checkLocationPermission();
         mFragmentManager = getSupportFragmentManager();
         showFragment(0);
+        //GpioUtils.writeGpioDirectly("/sys/class/gpiocontrol/gpiocontrol/gpiocontrol150",1+"");
+        GpioUtils.writeGpioWithSu("/sys/class/gpiocontrol/gpiocontrol/gpiocontrol150",1+"");
     }
 
     List<String> permissionDeniedList = new ArrayList<>();
@@ -101,6 +103,7 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
         permissionDeniedList.add(Manifest.permission.VIBRATE);
         permissionDeniedList.add(Manifest.permission.READ_PHONE_STATE);
         permissionDeniedList.add(Manifest.permission.INTERNET);
+        permissionDeniedList.add(Manifest.permission.CAMERA);
 
         //检查权限
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

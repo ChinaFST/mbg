@@ -31,7 +31,7 @@ public abstract class FGGD_TestModule {
     @ActivityScope
     @Provides
     static RecyclerView.LayoutManager provideLayoutManager(FGGD_TestContract.View view) {
-        return new GridLayoutManager(view.getActivity(), 1);
+        return new GridLayoutManager(view.getActivity(), 2);
     }
 
     @ActivityScope

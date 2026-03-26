@@ -30,15 +30,25 @@ import java.util.List;
  * Description:
  */
 public class Platform_UploadBack {
-    /**
-     * msg : 操作成功
-     * obj : {"failNum":1,"successNum":0,"failRecords":[{"errMsg":"regId不存在","id":"201807111630166300007"}]}
-     * resultCode : 0X00000
-     */
-
+    private String code;
+    private DataBean data;
     private String msg;
-    private ObjBean obj;
-    private String resultCode;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public DataBean getData() {
+        return data;
+    }
+
+    public void setData(DataBean data) {
+        this.data = data;
+    }
 
     public String getMsg() {
         return msg;
@@ -48,95 +58,44 @@ public class Platform_UploadBack {
         this.msg = msg;
     }
 
-    public ObjBean getObj() {
-        return obj;
-    }
+    public static class DataBean {
+        private int success;
+        private List<FailsBean> fails;
 
-    public void setObj(ObjBean obj) {
-        this.obj = obj;
-    }
-
-    public String getResultCode() {
-        return resultCode;
-    }
-
-    public void setResultCode(String resultCode) {
-        this.resultCode = resultCode;
-    }
-
-    public static class ObjBean {
-        /**
-         * failNum : 1
-         * successNum : 0
-         * failRecords : [{"errMsg":"regId不存在","id":"201807111630166300007"}]
-         */
-
-        private int failNum;
-        private int successNum;
-        private List<FailRecordsBean> failRecords;
-
-        public int getFailNum() {
-            return failNum;
+        public int getSuccess() {
+            return success;
         }
 
-        public void setFailNum(int failNum) {
-            this.failNum = failNum;
+        public void setSuccess(int success) {
+            this.success = success;
         }
 
-        public int getSuccessNum() {
-            return successNum;
+        public List<FailsBean> getFails() {
+            return fails;
         }
 
-        public void setSuccessNum(int successNum) {
-            this.successNum = successNum;
+        public void setFails(List<FailsBean> fails) {
+            this.fails = fails;
         }
 
-        public List<FailRecordsBean> getFailRecords() {
-            return failRecords;
-        }
+        public static class FailsBean {
+            private String failMsg;
+            private String checkCode;
 
-        public void setFailRecords(List<FailRecordsBean> failRecords) {
-            this.failRecords = failRecords;
-        }
-
-        @Override
-        public String toString() {
-            return "ObjBean{" +
-                    "failNum=" + failNum +
-                    ", successNum=" + successNum +
-                    ", failRecords=" + failRecords +
-                    '}';
-        }
-
-        public static class FailRecordsBean {
-            /**
-             * errMsg : regId不存在
-             * id : 201807111630166300007
-             */
-
-            private String errMsg;
-            private String id;
-
-            public String getErrMsg() {
-                return errMsg;
+            public String getFailMsg() {
+                return failMsg;
             }
 
-            public void setErrMsg(String errMsg) {
-                this.errMsg = errMsg;
+            public void setFailMsg(String failMsg) {
+                this.failMsg = failMsg;
             }
 
-            public String getId() {
-                return id;
+            public String getCheckCode() {
+                return checkCode;
             }
 
-            public void setId(String id) {
-                this.id = id;
-            }
-
-            @Override
-            public String toString() {
-                return "失败原因：'" + errMsg + '\'' +
-                        "条目ID：" + id + '\'' ;
+            public void setCheckCode(String checkCode) {
+                this.checkCode = checkCode;
             }
         }
     }
