@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.text.Editable;
@@ -49,6 +50,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.opencv.android.CameraBridgeViewBase;
+import org.opencv.android.Utils;
 import org.opencv.core.Mat;
 
 import java.util.ArrayList;
@@ -57,7 +59,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static android.view.View.GONE;
@@ -140,6 +141,9 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
     private int type;
     private Mat mat;
 
+    private Bitmap mBitmap1;
+    private Bitmap mBitmap2;
+
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
         DaggerJTJ_TestComponent //如找不到该类,请编译一下项目
@@ -198,9 +202,25 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
 
             @Override
             public Mat onCameraFrame(Mat inputFrame) {
-                mat = inputFrame;
+                if (mBitmap1==null){
+                    mBitmap1 = Bitmap.createBitmap(inputFrame.width() / 2, inputFrame.height(), Bitmap.Config.ARGB_8888);
+                }
+                if (mBitmap2==null){
+                    mBitmap2 = Bitmap.createBitmap(inputFrame.width() / 2, inputFrame.height(), Bitmap.Config.ARGB_8888);
+                }
+                if (mat!=null){
+                    mat.release();
+                }
+               // mat = inputFrame.clone();
                 //Log.d("wzx","  "+inputFrame.width() + " " + inputFrame.height());
-
+                Mat mMat1 = inputFrame.submat(0, inputFrame.rows(), 0, inputFrame.cols() / 2);
+                MyJTJ_TestView_External myJTJ_testView_external1 = (MyJTJ_TestView_External) mJTJTestViews.get(0);
+                Utils.matToBitmap(mMat1, mBitmap1);
+                myJTJ_testView_external1.onReciverSuccess(mBitmap1);
+                Mat mMat2 = inputFrame.submat(0, inputFrame.rows(), inputFrame.cols() / 2, inputFrame.cols());
+                MyJTJ_TestView_External myJTJ_testView_external2 = (MyJTJ_TestView_External) mJTJTestViews.get(1);
+                Utils.matToBitmap(mMat2, mBitmap2);
+                myJTJ_testView_external2.onReciverSuccess(mBitmap2);
                 //Imgproc.rectangle(inputFrame, rect_show,new Scalar(255,0,0,255),2);
                 return inputFrame;
             }
@@ -473,7 +493,9 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
     }
 
     private void startTest() {
-        Mat clone = mat.clone();
+        for (BaseJTJTestView mJTJTestView : mJTJTestViews) {
+            mJTJTestView.startTest();
+        }
 
     }
 

@@ -1443,7 +1443,7 @@ public final class FileUtils {
      *
      * @return
      */
-    private static String initPathlevel1() {
+    public static String initPathlevel1() {
         if ("".equals(storagePathlevel1)) {
             storagePathlevel1 = parentPath.getAbsolutePath() + "/" + DST_FOLDER_NAME;
             File f = new File(storagePathlevel1);
@@ -1464,7 +1464,7 @@ public final class FileUtils {
      *
      * @return
      */
-    private static String initPathlevel2() {
+    public static String initPathlevel2() {
         if ("".equals(storagePathlevel2)) {
             storagePathlevel2 = parentPath.getAbsolutePath() + "/" + DST_FOLDER_NAME;
             File f = new File(storagePathlevel2);

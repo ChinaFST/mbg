@@ -308,6 +308,7 @@
     <string name="handheld_device" translatable="false">手持数字化检测仪</string>
     <string name="offline_mode_hint" translatable="false">当前为离线使用模式，请先登录</string>
     <string name="enter_inspect_unit" translatable="false">输入被检单位</string>
+    <string name="fg_data_anomaly">分光数据异常</string>
 
 
 </resources>

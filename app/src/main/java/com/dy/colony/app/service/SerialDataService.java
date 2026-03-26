@@ -173,7 +173,7 @@ public class SerialDataService extends BaseService implements OnOpenSerialPortLi
                 .onErrorReturn(new Function<Throwable, List<Integer>>() {
                     @Override
                     public List<Integer> apply(Throwable throwable) throws Exception {
-                        ArmsUtils.snackbarText("分光数据异常");
+                        ArmsUtils.snackbarText(getString(R.string.fg_data_anomaly));
 
                         return new ArrayList<>(mFGGDGalleryBeanList.size());
                     }

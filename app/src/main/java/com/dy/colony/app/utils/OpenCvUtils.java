@@ -323,6 +323,11 @@ public class OpenCvUtils {
         List<Bitmap> list = new ArrayList<>();
         Mat dst = new Mat();
         Utils.bitmapToMat(bitmap, dst);
+        // 参数 flipCode: 翻转模式
+//    0: 沿 X 轴翻转（垂直翻转）
+//    1: 沿 Y 轴翻转（水平翻转）
+//   -1: 沿两个轴翻转（等同于旋转 180°）
+        Core.flip(dst, dst, 0);
         if (BuildConfig.DEBUG) {
 
         }

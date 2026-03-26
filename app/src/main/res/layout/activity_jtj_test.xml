@@ -12,8 +12,8 @@
 
     <com.dy.colony.mvp.ui.widget.MyJavaCameraView
         android:id="@+id/myjavacam"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="1dp"
+        android:layout_height="1dp" />
 
     <FrameLayout
         android:layout_width="match_parent"

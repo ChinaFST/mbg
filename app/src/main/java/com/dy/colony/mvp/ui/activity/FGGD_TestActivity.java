@@ -230,7 +230,7 @@ public class FGGD_TestActivity extends BaseActivity<FGGD_TestPresenter> implemen
 
         initClickListener();
         initOnTouchListener();
-        mock();
+        //mock();
     }
 
     private void mock() {

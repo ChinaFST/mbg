@@ -62,7 +62,9 @@ public class FGGDAdapter extends BaseQuickAdapter<GalleryBean, BaseViewHolder> {
                 .setText(R.id.fg_item_btn_chosesample, item2.getSamplename())
                 .setText(R.id.fg_testresult, "".equals(item2.getTestresult()) ? "" : item2.getTestresult() + item2.getCov_unit())
                 .setText(R.id.fg_item_chose_task, item2.getReservedfield6());
-
+        if (item2.getTest_project().equals(mContext.getString(R.string.rice_freshness))) {
+            helper.setText(R.id.fg_testresult, item2.getTestresult());
+        }
 
         if (item.getDowhat() == 2) {
             BaseProjectMessage message = item.getProjectMessage();
@@ -70,15 +72,12 @@ public class FGGDAdapter extends BaseQuickAdapter<GalleryBean, BaseViewHolder> {
                 String method = message.getMethod();
                 //LogUtils.d(method);
                 if ("0".equals(method) || "1".equals(method)) {
-                    helper.setText(R.id.fg_testresult, mContext.getString(R.string.controlvalue) + message.getControValue());
+                   if (message.getControValue() != 0) {
+                       helper.setText(R.id.fg_control_result, mContext.getString(R.string.controlvalue) + message.getControValue());
+                   }
                 }
             }
 
-        } else {
-            helper.setText(R.id.fg_testresult, "".equals(item2.getTestresult()) ? "" : item2.getTestresult() + item2.getCov_unit());
-            if (item2.getTest_project().equals(mContext.getString(R.string.rice_freshness))) {
-                helper.setText(R.id.fg_testresult, item2.getTestresult());
-            }
         }
         helper.setText(R.id.fg_item_chose_units, item2.getProsecutedunits());
         helper.setText(R.id.fg_item_chose_task, item2.getPlanName());
