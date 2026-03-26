@@ -63,10 +63,11 @@
                         android:background="@drawable/shape_circle_white">
 
                         <ImageView
+                            android:id="@+id/iv_fg"
                             android:layout_width="32dp"
                             android:layout_height="32dp"
                             android:layout_gravity="center"
-                            android:src="@android:drawable/ic_menu_edit"
+                            android:src="@drawable/icon_fggd_detect"
                             app:tint="@color/card_blue" />
                     </FrameLayout>
 

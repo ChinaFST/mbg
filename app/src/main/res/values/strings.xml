@@ -87,6 +87,7 @@
     <string name="change" translatable="false">修改</string>
     <string name="searinumber" translatable="false">流水号</string>
     <string name="edit_samplename" translatable="false">编辑样品名称</string>
+    <string name="EditorProjectActivity" translatable="false">编辑检测项目</string>
     <string name="standnum" translatable="false">判定依据</string>
     <string name="limitvalue" translatable="false">限量值</string>
     <string name="testresult" translatable="false">检测结果</string>
