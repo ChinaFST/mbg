@@ -29,4 +29,18 @@
         <item>阴性</item>
         <item>阳性</item>
     </string-array>
+
+    <string-array name="methods">
+        <item>抑制率法</item>
+        <item>标准曲线法</item>
+        <item>动力学法</item>
+        <item>系数法</item>
+    </string-array>
+
+    <string-array name="lengths">
+        <item>410</item>
+        <item>536 </item>
+        <item>595</item>
+        <item>620</item>
+    </string-array>
 </resources>

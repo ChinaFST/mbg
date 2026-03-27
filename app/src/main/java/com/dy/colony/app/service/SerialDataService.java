@@ -268,7 +268,7 @@ public class SerialDataService extends BaseService implements OnOpenSerialPortLi
                             bean.setLuminousness2(i2);
                             bean.setLuminousness3(i3);
                             bean.setLuminousness4(i4);
-                            // LogUtils.d(i1 + "-" + i2 + "-" + i3 + "-" + i4 + "-");
+                             LogUtils.d(i1 + "-" + i2 + "-" + i3 + "-" + i4 + "-");
                             //吸光度
                             bean.setAbsorbance1(absorbance1);
                             bean.setAbsorbance2(absorbance2);
@@ -389,6 +389,7 @@ public class SerialDataService extends BaseService implements OnOpenSerialPortLi
                     }
                     if (mFGGDGalleryBeanList.size() > 0) {
                         //发送更新
+                        LogUtils.d("发送更新");
                         EventBus.getDefault().post(new FGTestMessageBean(0));
                     }
                 }
@@ -977,7 +978,7 @@ public class SerialDataService extends BaseService implements OnOpenSerialPortLi
                 testresult = testresult - v * 2;//加了随机数后的值
             }
         } else if (testresult >= keyi_a2 && testresult < keyi_b2) {
-            conclusion = "可疑";
+            conclusion = getString(R.string.keyi);
         }
         if (testresult < 0) {
             testresult = 0;

@@ -7,6 +7,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.apkfuns.logutils.LogUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.dy.colony.Constants;
@@ -343,8 +344,7 @@ public class FGGDAdapter extends BaseQuickAdapter<GalleryBean, BaseViewHolder> {
         if (null != message) {
             //LogUtils.d(message);
             //LogUtils.d(((Detection_Record_FGGD_NC) item));
-            int wavelength = 0;
-            wavelength = message.getWavelength();
+            int wavelength = message.getWavelength();
 
             double luminousness = 0;
             switch (wavelength) {
@@ -363,20 +363,20 @@ public class FGGDAdapter extends BaseQuickAdapter<GalleryBean, BaseViewHolder> {
             }
             if (luminousness != 0) {
                 if (luminousness < Constants.FGLIMITVALUE_LOW) {
-                    //LogUtils.d("1");
+                    //LogUtils.d("FGGD 1");
                     helper.setVisible(R.id.error_message, false);
                     helper.setBackgroundColor(R.id.parent_layoutforcolor, Color.argb(86, 2, 202, 250));
                 } else if (luminousness > Constants.FGLIMITVALUE_HEIGHT()) {
-                    //LogUtils.d("2");
+                    //LogUtils.d("FGGD 2");
                     helper.setVisible(R.id.error_message, true).setText(R.id.error_message, value);
                     helper.setBackgroundColor(R.id.parent_layoutforcolor, Color.argb(50, 255, 0, 0));
                 } else {
-                    //LogUtils.d("3");
+                    //LogUtils.d("FGGD 3");
                     helper.setVisible(R.id.error_message, false);
                     helper.setBackgroundColor(R.id.parent_layoutforcolor, Color.argb(0, 0, 0, 0));
                 }
             } else {
-                //LogUtils.d("4");
+                //LogUtils.d("FGGD 4");
                 helper.setVisible(R.id.error_message, true)
                         .setText(R.id.error_message, value1);
             }
@@ -391,18 +391,18 @@ public class FGGDAdapter extends BaseQuickAdapter<GalleryBean, BaseViewHolder> {
                     (luminousness2 != 0 && luminousness2 < Constants.FGLIMITVALUE_LOW) ||
                     (luminousness3 != 0 && luminousness3 < Constants.FGLIMITVALUE_LOW) ||
                     (luminousness4 != 0 && luminousness4 < Constants.FGLIMITVALUE_LOW)) {
-                //LogUtils.d("5");
+                LogUtils.d("FGGD 5");
                 helper.setVisible(R.id.error_message, false);
                 helper.setBackgroundColor(R.id.parent_layoutforcolor, Color.argb(86, 2, 202, 250));
             } else if (luminousness1 > Constants.FGLIMITVALUE_HEIGHT() ||
                     luminousness2 > Constants.FGLIMITVALUE_HEIGHT() ||
                     luminousness3 > Constants.FGLIMITVALUE_HEIGHT() ||
                     luminousness4 > Constants.FGLIMITVALUE_HEIGHT()) {
-                //LogUtils.d("6");
+                LogUtils.d("FGGD 6");
                 helper.setVisible(R.id.error_message, true).setText(R.id.error_message, value);
                 helper.setBackgroundColor(R.id.parent_layoutforcolor, Color.argb(50, 255, 0, 0));
             } else {
-                //LogUtils.d("7");
+                LogUtils.d("FGGD 7");
                 helper.setVisible(R.id.error_message, false);
                 helper.setBackgroundColor(R.id.parent_layoutforcolor, Color.argb(0, 0, 0, 0));
             }

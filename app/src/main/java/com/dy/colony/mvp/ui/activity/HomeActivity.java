@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.PersistableBundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -26,6 +28,7 @@ import com.dy.colony.R;
 import com.dy.colony.app.utils.FileUtils;
 import com.dy.colony.di.component.DaggerHomeComponent;
 import com.dy.colony.mvp.contract.HomeContract;
+import com.dy.colony.mvp.contract.IBackPressed;
 import com.dy.colony.mvp.presenter.HomePresenter;
 import com.dy.colony.mvp.ui.fragment.MainFragment;
 import com.dy.colony.mvp.ui.fragment.SettingFragment;
@@ -84,7 +87,7 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
         mFragmentManager = getSupportFragmentManager();
         showFragment(0);
         //GpioUtils.writeGpioDirectly("/sys/class/gpiocontrol/gpiocontrol/gpiocontrol150",1+"");
-       // GpioUtils.writeGpioWithSu("/sys/class/gpiocontrol/gpiocontrol/gpiocontrol150",1+"");
+        // GpioUtils.writeGpioWithSu("/sys/class/gpiocontrol/gpiocontrol/gpiocontrol150",1+"");
         checkAndRequestManageStoragePermission();
     }
 
@@ -289,8 +292,17 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
 
     @Override
     public void onBackPressed() {
+        if (mCurrentFragment instanceof TestRecordFragment) {
+            boolean consumed = ((IBackPressed) mCurrentFragment).onBackPressed();
+            if (consumed) {
+                return;
+            }
+        }
         _exit();
+
+
     }
+
 
     /**
      * 退出

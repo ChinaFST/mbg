@@ -3,7 +3,6 @@ package com.dy.colony.mvp.ui.activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -33,8 +31,6 @@ import com.apkfuns.logutils.LogUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dy.colony.MyAppLocation;
 import com.dy.colony.R;
-import com.dy.colony.app.utils.DataBaseUtil;
-import com.dy.colony.app.utils.SPUtils;
 import com.dy.colony.di.component.DaggerFGGD_TestComponent;
 import com.dy.colony.greendao.beans.Detection_Record_FGGD_NC;
 import com.dy.colony.greendao.beans.FGGDTestItem;
@@ -53,8 +49,6 @@ import com.jess.arms.utils.ArmsUtils;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -330,7 +324,7 @@ public class FGGD_TestActivity extends BaseActivity<FGGD_TestPresenter> implemen
         editText.requestFocus();
 
         editText.postDelayed(() -> {
-            InputMethodManager imm = (InputMethodManager)  getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             if (imm != null) {
                 // 3. 显式调用 showSoftInput，并传入强制显示的标志
                 // 注意：第一个参数必须是当前获得焦点的 View

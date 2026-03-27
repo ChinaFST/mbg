@@ -42,6 +42,7 @@ import com.dy.colony.mvp.contract.ChoseProjectContract;
 import com.dy.colony.mvp.presenter.ChoseProjectPresenter;
 
 import com.dy.colony.R;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -88,8 +89,8 @@ public class ChoseProjectActivity extends BaseActivity<ChoseProjectPresenter> im
     Button mBtnDetermine;
     @BindView(R.id.linearLayout5)
     LinearLayout mLinearLayout5;
-    /*@BindView(R.id.search_view)
-    MaterialSearchView mSearchView;*/
+    @BindView(R.id.search_view)
+    MaterialSearchView mSearchView;
     @BindView(R.id.toolbar_container)
     FrameLayout mToolbarContainer;
     private Map<Integer, CheckBox> mMap = new HashMap<>();
@@ -253,7 +254,7 @@ public class ChoseProjectActivity extends BaseActivity<ChoseProjectPresenter> im
     }
 
     private void initSearcchView() {
-       /* mSearchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+        mSearchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 mPresenter.loadProject(mFrom,query);
@@ -281,7 +282,7 @@ public class ChoseProjectActivity extends BaseActivity<ChoseProjectPresenter> im
             public void onSearchViewClosed() {
                 //Do some magic
             }
-        });*/
+        });
 
     }
     @Override
@@ -314,5 +315,22 @@ public class ChoseProjectActivity extends BaseActivity<ChoseProjectPresenter> im
     @Override
     public Activity getActivity() {
         return this;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isSeaching) {
+            isSeaching = false;
+            keyWord = "";
+            mPresenter.loadProject(mFrom);
+            mToolbarTitle.setText(R.string.ChoseProjectActivity);
+        } else {
+            if (mSearchView.isSearchOpen()) {
+                mSearchView.closeSearch();
+            } else {
+                super.onBackPressed();
+            }
+        }
+
     }
 }

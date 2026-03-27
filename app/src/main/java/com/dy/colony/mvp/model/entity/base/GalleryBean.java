@@ -29,6 +29,7 @@ import com.dy.colony.greendao.daos.FGGDTestItemDao;
 import com.dy.colony.greendao.daos.JTJTestItemDao;
 import com.dy.colony.greendao.daos.Simple33Dao;
 import com.dy.colony.mvp.model.entity.JTJDataModel_P;
+import com.dy.colony.mvp.model.entity.ObjUserData;
 import com.dy.colony.mvp.model.opencvDetector.CardType;
 import com.dy.colony.mvp.ui.widget.JTJDataModel_P_6270;
 import com.dy.colony.usbhelp.UsbReadWriteHelper;
@@ -1617,8 +1618,15 @@ public abstract class GalleryBean implements UsbReadWriteHelper.onUsbReciver {
         detection_record_fggd_nc.setPlatform_tag(Constants.PLATFORM_TAG + "");
         //对照值
         //detection_record_fggd_nc.setControlvalue(Constants.FGGD_YIZHILV_CONTROL_VALUE + "");
+        String userName;
+        if (Constants.IS_OFFLINE_MODE) {
+            userName = "";
+        } else {
+            ObjUserData userPlatform = Constants.USER_PLATFORM;
+            userName = userPlatform.getUser().getUser_name();
+        }
         //检测人员   这里填的是本地登录的账号名称
-        detection_record_fggd_nc.setInspector(Constants.NOWUSER.getUsername());
+        detection_record_fggd_nc.setInspector(userName);
         //设置检测模块
         detection_record_fggd_nc.setTest_Moudle(ArmsUtils.getString(MyAppLocation.myAppLocation, R.string.JTJ_TestMoudle_P));
         // 保存至数据库

@@ -37,13 +37,13 @@
                 android:textSize="@dimen/title_bar_size" />
         </androidx.appcompat.widget.Toolbar>
 
-        <!--<com.miguelcatalan.materialsearchview.MaterialSearchView
+        <com.miguelcatalan.materialsearchview.MaterialSearchView
             android:id="@+id/search_view"
             style="@style/MyMaterialSearchViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/pleaceinputkeyword"
-            android:textColor="@color/white" />-->
+            android:textColor="@color/white" />
     </FrameLayout>
 
 </com.google.android.material.appbar.AppBarLayout>

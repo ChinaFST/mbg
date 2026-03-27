@@ -161,7 +161,7 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
         //mViewHolder.mChart.setBackgroundColor(Color.rgb(0, 200, 245));
 
         // set custom chart offsets (automatic offset calculation is hereby disabled)
-        mViewHolder.mChart.setViewPortOffsets(10, 0, 10, 0);
+        mViewHolder.mChart.setViewPortOffsets(8, 0, 8, 0);
 
         // add data
 

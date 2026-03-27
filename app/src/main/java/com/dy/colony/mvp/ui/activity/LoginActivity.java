@@ -225,17 +225,17 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.cb:
-                if (Constants.ISREMBERUSERNAME) {
+                /*if (Constants.ISREMBERUSERNAME) {
                     Constants.ISREMBERUSERNAME = false;
                 } else {
                     Constants.ISREMBERUSERNAME = true;
-                }
+                }*/
                 break;
             case R.id.login:
                 login();
                 break;
             case R.id.callours:
-                //launchActivity(new Intent(getActivity(), CallUsActivity.class));
+                launchActivity(new Intent(getActivity(), CallUsActivity.class));
                 break;
             case R.id.online_register:
                 //launchActivity(new Intent(getActivity(), RegisterOnLineActivity.class));

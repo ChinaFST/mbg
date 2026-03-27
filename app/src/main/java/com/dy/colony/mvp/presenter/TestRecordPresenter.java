@@ -241,7 +241,7 @@ public class TestRecordPresenter extends BasePresenter<TestRecordContract.Model,
                             mList.clear();//如果是下拉刷新则清空列表
                         }
                         preEndIndex = mList.size();//更新之前列表总长度,用于确定加载更多的起始位置
-                        if (mList.size() == 0) {
+                        /*if (mList.size() == 0) {
                             for (int i = 0; i < 6; i++) {
                                 Detection_Record_FGGD_NC detection_record_fggd_nc = new Detection_Record_FGGD_NC();
                                 detection_record_fggd_nc.setSamplename("测试" + i);
@@ -253,7 +253,7 @@ public class TestRecordPresenter extends BasePresenter<TestRecordContract.Model,
                                 mList.add(detection_record_fggd_nc);
                             }
 
-                        }
+                        }*/
                         mList.addAll(standards);
                         for (int i = 0; i < mList.size(); i++) {
                             Detection_Record_FGGD_NC entity = mList.get(i);

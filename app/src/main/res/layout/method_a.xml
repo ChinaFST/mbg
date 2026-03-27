@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:hint="@string/yure_tiem">
+
+            <AutoCompleteTextView
+                android:id="@+id/yrsj"
+                style="@style/AutoCompleteTextViewStyle"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:hint="@string/test_time">
+
+            <AutoCompleteTextView
+                android:id="@+id/jcsj"
+                style="@style/AutoCompleteTextViewStyle"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:hint="@string/unit_input">
+
+            <AutoCompleteTextView
+                android:id="@+id/unit_input"
+                style="@style/AutoCompleteTextViewStyle" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:hint="@string/yin_from">
+
+            <AutoCompleteTextView
+                android:id="@+id/yin_xfwa"
+                style="@style/AutoCompleteTextViewStyle"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:hint="@string/yin_to">
+
+            <AutoCompleteTextView
+                android:id="@+id/yin_xfwb"
+                style="@style/AutoCompleteTextViewStyle"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:hint="@string/yang_from">
+
+            <AutoCompleteTextView
+                android:id="@+id/yang_xfwa"
+                style="@style/AutoCompleteTextViewStyle"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:hint="@string/yang_to">
+
+            <AutoCompleteTextView
+                android:id="@+id/yang_xfwb"
+                style="@style/AutoCompleteTextViewStyle"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:hint="@string/keyi_from">
+
+            <AutoCompleteTextView
+                android:id="@+id/kya"
+                style="@style/AutoCompleteTextViewStyle"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:hint="@string/keyi_to">
+
+            <AutoCompleteTextView
+                android:id="@+id/kyb"
+                style="@style/AutoCompleteTextViewStyle"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

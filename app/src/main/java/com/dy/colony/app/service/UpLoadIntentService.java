@@ -172,7 +172,7 @@ public class UpLoadIntentService extends IntentService {
                 bean.setId(nc.getSysCode());
                 //任务相关信息
 
-                bean.setTaskName(nc.getPlanName());
+                //bean.setTaskName(nc.getPlanName());
                 //样品相关信息
 
                 bean.setFoodName(nc.getSamplename());
@@ -204,7 +204,7 @@ public class UpLoadIntentService extends IntentService {
                 bean.setUploadName(user.getRealname());
                 //bean.setUploadDate();
                 //检测仪器相关信息
-                bean.setStatusFalg(1 + "");
+                //bean.setStatusFalg(1 + "");
 
                 bean.setDeviceName(getString(R.string.handheld_device));
                 String moudle = nc.getTest_Moudle();
@@ -236,7 +236,9 @@ public class UpLoadIntentService extends IntentService {
 
             }
             LogUtils.d(upLoadBeans);
-            return URLEncoder.encode(JSON.toJSONString(upLoadBeans));
+            String s = JSON.toJSONString(upLoadBeans);
+            LogUtils.d(s);
+            return URLEncoder.encode(s);
         } catch (Exception e) {
             ArmsUtils.snackbarText(e.getMessage());
         }

@@ -309,6 +309,89 @@
     <string name="offline_mode_hint" translatable="false">当前为离线使用模式，请先登录</string>
     <string name="enter_inspect_unit" translatable="false">输入被检单位</string>
     <string name="fg_data_anomaly">分光数据异常</string>
+    <string name="projectpassword" translatable="false">检测项目密码</string>
+    <string name="deletesuccess" translatable="false">删除成功！</string>
+    <string name="passworderro" translatable="false">密码输入错误，请重新输入！</string>
+    <string name="moudleproject_fggd" translatable="false">分光光度检测项目</string>
+    <string name="moudleproject_jtj" translatable="false">胶体金检测项目</string>
+    <string name="projectversionnmessage" translatable="false">检测项目版本信息</string>
+    <string name="serviceversion" translatable="false">服务器版本：</string>
+    <string name="localversion" translatable="false">仪器本地版本：</string>
+    <string name="whihoutnewversion" translatable="false">暂无版本</string>
+    <string name="download" translatable="false">立即下载</string>
+    <string name="downloadfail" translatable="false">下载失败</string>
+    <string name="filetypeerro" translatable="false">文件类型错误</string>
+    <string name="weichartnum" translatable="false">微信号：shiankeji</string>
+    <string name="qqnum" translatable="false">联系QQ：2851265715</string>
+    <string name="service_phone" translatable="false">服务热线：400-696-6968</string>
+    <string name="ed_projectname" translatable="false">检测项目名称</string>
+    <string name="ed_serinumber" translatable="false">流水编号</string>
+    <string name="ed_waves" translatable="false">波长段：</string>
+    <string name="yure_tiem" translatable="false">预热时间(S)</string>
+    <string name="test_time" translatable="false">检测时间(S)</string>
+    <string name="unit_input" translatable="false">检测值单位</string>
+    <string name="yin_from" translatable="false">阴性范围(from)</string>
+    <string name="yin_to" translatable="false">阴性范围(to)</string>
+    <string name="yang_from" translatable="false">阳性范围(from)</string>
+    <string name="yang_to" translatable="false">阳性范围(to)</string>
+    <string name="keyi_from" translatable="false">可疑范围(from)</string>
+    <string name="keyi_to" translatable="false">可疑范围(to)</string>
+    <string name="jiaozhenga" translatable="false">校正A</string>
+    <string name="jiaozhengb" translatable="false">校正B</string>
+    <string name="use_tuise" translatable="false">是否使用褪色法：</string>
+    <string name="jiaozhuna" translatable="false">校准曲线A</string>
+    <string name="jiaozhunb" translatable="false">校准曲线B</string>
+    <string name="jiaozhengc" translatable="false">校正C</string>
+    <string name="jiaozhengd" translatable="false">校正D</string>
+    <string name="fggditem_message1" translatable="false">检测项目修改成功！</string>
+    <string name="fggditem_message2" translatable="false">检测项目新建成功！</string>
+    <string name="fggditem_message3" translatable="false">请输入检测项目名称</string>
+    <string name="fggditem_message4" translatable="false">请输入检测项目密码</string>
+    <string name="fggditem_message5" translatable="false">请输入流水编号</string>
+    <string name="enter_yure_time" translatable="false">请输入预热时间</string>
+    <string name="enter_detect_time" translatable="false">请输入检测时间</string>
+    <string name="enter_unit_value" translatable="false">请输入检测值单位</string>
+    <string name="enter_yin_range" translatable="false">请输入阴性范围</string>
+    <string name="enter_yang_range" translatable="false">请输入阳性范围</string>
+    <string name="enter_keyi_range" translatable="false">请输入可疑范围</string>
+    <string name="fggditem_message18" translatable="false">请输入AX0参数</string>
+    <string name="fggditem_message19" translatable="false">请输入AX1参数</string>
+    <string name="fggditem_message20" translatable="false">请输入AX2参数</string>
+    <string name="fggditem_message21" translatable="false">请输入AX3参数</string>
+    <string name="fggditem_message22" translatable="false">请输入AFROM参数</string>
+    <string name="fggditem_message23" translatable="false">请输入ATO参数</string>
+    <string name="fggditem_message24" translatable="false">请输入BX0参数</string>
+    <string name="fggditem_message25" translatable="false">请输入BX1参数</string>
+    <string name="fggditem_message26" translatable="false">请输入BX2参数</string>
+    <string name="fggditem_message27" translatable="false">请输入BX3参数</string>
+    <string name="fggditem_message28" translatable="false">请输入BFROM参数</string>
+    <string name="fggditem_message29" translatable="false">请输入BTO参数</string>
+    <string name="enter_jz_curve_a" translatable="false">请输入校正曲线A</string>
+    <string name="enter_jz_curve_b" translatable="false">请输入校正曲线B</string>
+    <string name="fggditem_message35" translatable="false">请输入校准曲线A</string>
+    <string name="fggditem_message36" translatable="false">请输入校准曲线B</string>
+    <string name="enter_jz_curve_c" translatable="false">请输入校正曲线C</string>
+    <string name="enter_jz_curve_d" translatable="false">请输入校正曲线D</string>
+    <string name="new_testing_items" translatable="false">新建检测项目</string>
+    <string name="jtj_hint_1" translatable="false">* 模块类型(1为扫描模块，2为摄像头模块，3为真菌毒素模块)</string>
+    <string name="jtj_hint_2" translatable="false">* 项目名称</string>
+    <string name="jtj_hint_3" translatable="false">* 检测方法(1为定性消线法，2为定性比色法)</string>
+    <string name="jtj_hint_4" translatable="false">* 通道一C线出线值</string>
+    <string name="jtj_hint_5" translatable="false">* 通道一T线区间A</string>
+    <string name="jtj_hint_6" translatable="false">* 通道一T线区间B</string>
+    <string name="jtj_hint_7" translatable="false">* 通道一T/C区间A</string>
+    <string name="jtj_hint_8" translatable="false">* 通道一T/C区间B</string>
+    <string name="jtj_hint_9" translatable="false">* 通道二C线出线值</string>
+    <string name="jtj_hint_10" translatable="false">* 通道二T线区间A</string>
+    <string name="jtj_hint_11" translatable="false">* 通道二T线区间B</string>
+    <string name="jtj_hint_12" translatable="false">* 通道二T/C区间A</string>
+    <string name="jtj_hint_13" translatable="false">* 通道二T/C区间B</string>
+    <string name="jtj_hint_14" translatable="false">* 检测时间</string>
+    <string name="jtj_hint_15" translatable="false">* 项目密码</string>
+    <string name="hintmessage_mustinput" translatable="false">红色带*的选项为必填</string>
+
+
+
 
 
 </resources>

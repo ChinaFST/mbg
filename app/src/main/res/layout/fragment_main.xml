@@ -50,6 +50,16 @@
                 app:cardCornerRadius="8dp"
                 app:cardElevation="2dp">
 
+                <ImageButton
+                    android:id="@+id/editor_project_fggd"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="end|top"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/icon_edit" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
@@ -67,7 +77,7 @@
                             android:layout_width="32dp"
                             android:layout_height="32dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/icon_fggd_detect"
+                            android:src="@drawable/icon_fg_test"
                             app:tint="@color/card_blue" />
                     </FrameLayout>
 
@@ -93,6 +103,16 @@
                 app:cardCornerRadius="8dp"
                 app:cardElevation="2dp">
 
+                <ImageButton
+                    android:id="@+id/editor_project_jtj"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="end|top"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/icon_edit" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
@@ -109,7 +129,8 @@
                             android:layout_width="32dp"
                             android:layout_height="32dp"
                             android:layout_gravity="center"
-                            android:src="@android:drawable/ic_menu_search"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_jtj_test"
                             app:tint="@color/card_blue" />
                     </FrameLayout>
 
@@ -185,7 +206,8 @@
                             android:layout_width="32dp"
                             android:layout_height="32dp"
                             android:layout_gravity="center"
-                            android:src="@android:drawable/ic_menu_gallery"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_halal_verification"
                             app:tint="@color/card_green" />
                     </FrameLayout>
 
@@ -227,7 +249,7 @@
                             android:layout_width="32dp"
                             android:layout_height="32dp"
                             android:layout_gravity="center"
-                            android:src="@android:drawable/ic_menu_info_details"
+                            android:src="@drawable/ic_pig"
                             app:tint="@color/card_green" />
                     </FrameLayout>
 

@@ -38,7 +38,7 @@ public class JTJTestItem extends BaseProjectMessage implements Parcelable {
     private String password;
     private int serialNumber;
     private String unique_testproject;
-    private String item_type;//1 扫描模块 2 摄像头模块 3 V9000
+    private String item_type;//1 摄像头模块
     private String version;
 
     private Long priority;//优先级

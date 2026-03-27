@@ -105,8 +105,9 @@
                 android:id="@+id/callours"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:drawableStart="@drawable/phone_icn"
+                android:drawablePadding="2dp"
+                android:gravity="center_vertical"
                 android:text="@string/callus"
                 android:textColor="#000000" />
 
@@ -117,18 +118,19 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="10dp"
-                android:visibility="gone"
                 android:drawableStart="@drawable/user_icn"
                 android:text="@string/register_online"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/offline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="10dp"
                 android:drawableStart="@drawable/off_line_icn"
+                android:drawablePadding="2dp"
+                android:gravity="center_vertical"
                 android:text="@string/offline_use"
                 android:textColor="#000000" />
         </RelativeLayout>

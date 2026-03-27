@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -34,6 +36,7 @@ import com.apkfuns.logutils.LogUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dy.colony.Constants;
 import com.dy.colony.greendao.beans.Detection_Record_FGGD_NC;
+import com.dy.colony.mvp.contract.IBackPressed;
 import com.dy.colony.mvp.ui.activity.TestRecordMessageActivity;
 import com.dy.colony.mvp.ui.activity.TestRecordNewActivity;
 import com.dy.colony.mvp.ui.adapter.TestRecordAdapter;
@@ -67,7 +70,7 @@ import dmax.dialog.SpotsDialog;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
-public class TestRecordFragment extends BaseFragment<TestRecordPresenter> implements TestRecordContract.View, SwipeRefreshLayout.OnRefreshListener {
+public class TestRecordFragment extends BaseFragment<TestRecordPresenter> implements TestRecordContract.View, SwipeRefreshLayout.OnRefreshListener, IBackPressed {
     @Inject
     RecyclerView.LayoutManager mLayoutManager;
     @Inject
@@ -158,6 +161,29 @@ public class TestRecordFragment extends BaseFragment<TestRecordPresenter> implem
     @Override
     public View initView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_testrecord, container, false);
+    }
+
+
+
+    @Override
+    public boolean onBackPressed() {
+        // 核心判断：如果正在搜索且有关键词
+        if (isSeaching && !TextUtils.isEmpty(keyWord)) {
+            // 执行清空逻辑
+            keyWord = "";
+            isSeaching = false;
+            mPresenter.loadMore(true);
+            mToolbarTitle.setText(R.string.test_record);
+
+            if (mSearchView != null&& mSearchView.isSearchOpen()) {
+                mSearchView.closeSearch();
+            }
+
+            return true;
+        }
+
+        // 如果没有搜索内容，返回 false，让 Activity 去走“双击退出”
+        return false;
     }
 
     @Override
@@ -518,6 +544,7 @@ public class TestRecordFragment extends BaseFragment<TestRecordPresenter> implem
             }
         }
     }
+
 
     @Override
     public void onRefresh() {
