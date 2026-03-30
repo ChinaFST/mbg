@@ -73,9 +73,9 @@ public class FGGDAdapter extends BaseQuickAdapter<GalleryBean, BaseViewHolder> {
                 String method = message.getMethod();
                 //LogUtils.d(method);
                 if ("0".equals(method) || "1".equals(method)) {
-                   if (message.getControValue() != 0) {
-                       helper.setText(R.id.fg_control_result, mContext.getString(R.string.controlvalue) + message.getControValue());
-                   }
+                    if (message.getControValue() != 0) {
+                        helper.setText(R.id.fg_control_result, mContext.getString(R.string.controlvalue) + message.getControValue());
+                    }
                 }
             }
 
@@ -387,6 +387,8 @@ public class FGGDAdapter extends BaseQuickAdapter<GalleryBean, BaseViewHolder> {
             double luminousness2 = item.getLuminousness2();
             double luminousness3 = item.getLuminousness3();
             double luminousness4 = item.getLuminousness4();
+
+            //LogUtils.d(luminousness1 + "--" + luminousness2 + "--" + luminousness3 + "--" + luminousness4);
             if ((luminousness1 != 0 && luminousness1 < Constants.FGLIMITVALUE_LOW) ||
                     (luminousness2 != 0 && luminousness2 < Constants.FGLIMITVALUE_LOW) ||
                     (luminousness3 != 0 && luminousness3 < Constants.FGLIMITVALUE_LOW) ||

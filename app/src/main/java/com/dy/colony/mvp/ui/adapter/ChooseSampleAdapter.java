@@ -65,7 +65,7 @@ public class ChooseSampleAdapter extends BaseQuickAdapter<BaseSampleMessage, Bas
                     .setText(R.id.testprojectname, item1.getItemName())
                     .setText(R.id.standnum, item1.getStandardName())
                     .setText(R.id.standvalue, item1.getCheckSign() + item1.getStandardValue() + item1.getCheckValueUnit());
-            helper.setVisible(R.id.sample_delete, false)
+            helper.setGone(R.id.sample_delete, false)
                     .setVisible(R.id.sample_edtor, true);
 
         }

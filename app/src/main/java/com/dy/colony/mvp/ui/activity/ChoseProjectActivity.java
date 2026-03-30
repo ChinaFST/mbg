@@ -5,6 +5,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -148,6 +151,7 @@ public class ChoseProjectActivity extends BaseActivity<ChoseProjectPresenter> im
     private void initRecyclerView() {
         ArmsUtils.configRecyclerView(mRecyclerView, mLayoutManager);
     }
+
     private void initGallery() {
         List<GalleryBean> list;
         if ("fggd".equals(mFrom)) {
@@ -159,7 +163,7 @@ public class ChoseProjectActivity extends BaseActivity<ChoseProjectPresenter> im
                 if (bean.getState() != 1) {
                     CheckBox box = new CheckBox(getActivity());
                     box.setPadding(0, 10, 10, 10);
-                    box.setText(getString(R.string.channel_label, num ));
+                    box.setText(getString(R.string.channel_label, num));
                     if (mIndex == num) {
                         box.setChecked(true);
                         box.setEnabled(false);
@@ -185,7 +189,7 @@ public class ChoseProjectActivity extends BaseActivity<ChoseProjectPresenter> im
                     CheckBox box = new CheckBox(getActivity());
                     box.setPadding(0, 10, 10, 10);
                     int gallery = bean1.getGalleryNum();
-                    box.setText(getString(R.string.channel_label, gallery ));
+                    box.setText(getString(R.string.channel_label, gallery));
                     //box.setText("通道" + gallery);
 
                     if (i == mIndex) {
@@ -225,7 +229,7 @@ public class ChoseProjectActivity extends BaseActivity<ChoseProjectPresenter> im
             CheckBox box = mMap.get(key);
             if (box.isChecked()) {
                 GalleryBean bean;
-                if (mFrom.contains("jtj") || mFrom.contains("myyg")|| mFrom.contains("external")) {
+                if (mFrom.contains("jtj") || mFrom.contains("myyg") || mFrom.contains("external")) {
                     bean = list.get(key);
                 } else {
                     bean = list.get(key - 1);
@@ -257,7 +261,7 @@ public class ChoseProjectActivity extends BaseActivity<ChoseProjectPresenter> im
         mSearchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                mPresenter.loadProject(mFrom,query);
+                mPresenter.loadProject(mFrom, query);
                 isSeaching = true;
                 keyWord = query;
                 mToolbarTitle.setText(String.format(getString(R.string.seachresult), keyWord));
@@ -285,6 +289,7 @@ public class ChoseProjectActivity extends BaseActivity<ChoseProjectPresenter> im
         });
 
     }
+
     @Override
     public void showLoading() {
 
@@ -315,6 +320,16 @@ public class ChoseProjectActivity extends BaseActivity<ChoseProjectPresenter> im
     @Override
     public Activity getActivity() {
         return this;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.search_menu, menu);
+
+        MenuItem item = menu.findItem(R.id.action_search);
+        mSearchView.setMenuItem(item);
+        return true;
     }
 
     @Override

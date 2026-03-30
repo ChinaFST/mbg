@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">MBG</string>
+    <string name="app_name">IA600</string>
+    <string name="device_name" translatable="false">IA600 Smart-Check Reader</string>
     <string name="customactivityoncrash_error_activity_error_occurred_explanation" translatable="false">发生意外错误。\n抱歉，给您带来不便。</string>
     <string name="customactivityoncrash_error_activity_restart_app" translatable="false">重新启动</string>
     <string name="customactivityoncrash_error_activity_close_app" translatable="false">关闭程序</string>
@@ -389,9 +390,14 @@
     <string name="jtj_hint_14" translatable="false">* 检测时间</string>
     <string name="jtj_hint_15" translatable="false">* 项目密码</string>
     <string name="hintmessage_mustinput" translatable="false">红色带*的选项为必填</string>
-
-
-
+    <string name="new_project" translatable="false">新增</string>
+    <string name="input_project" translatable="false">导入</string>
+    <string name="output_project" translatable="false">导出</string>
+    <string name="updata_database" translatable="false">数据库更新</string>
+    <string name="withoutnewversionn" translatable="false">暂无更新</string>
+    <string name="fileaddressexception" translatable="false">文件地址异常\r\n</string>
+    <string name="start_time">开始时间</string>
+    <string name="end_time">终止时间</string>
 
 
 </resources>

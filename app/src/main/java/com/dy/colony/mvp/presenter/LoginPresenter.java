@@ -100,7 +100,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.Model, LoginCont
     public void login_platform(String username, String password, boolean remember) {
         LogUtils.d(remember);
         RetrofitUrlManager.getInstance().putDomain("xxx", Platform_Service.URL);
-        mModel.login_Platform(username, MethodUtil.MD5(MethodUtil.MD5(password)),Constants.DEVICENUM, BuildConfig.VERSION_NAME,Constants.LATITUDE + "," + Constants.LONTITUDE,"")
+        mModel.login_Platform(username, MethodUtil.MD5(MethodUtil.MD5(password)), Constants.DEVICENUM, BuildConfig.VERSION_NAME, Constants.LATITUDE + "," + Constants.LONTITUDE, "")
                 .retryWhen(new RetryWithDelay(2, 1))//遇到错误时重试,第一个参数为重试几次,第二个参数为重试的间隔
                 .doOnSubscribe(disposable -> {
                     mRootView.showLoading();
@@ -125,8 +125,10 @@ public class LoginPresenter extends BasePresenter<LoginContract.Model, LoginCont
                             Constants.IS_OFFLINE_MODE = false;
                             mRootView.launchActivity(new Intent(mRootView.getActivity(), HomeActivity.class));
                             mRootView.killMyself();
+                        } else {
+                            ArmsUtils.snackbarText(loginBack.getMsg());
                         }
-                        ArmsUtils.snackbarText(loginBack.getMsg());
+
                     }
                 });
     }

@@ -5,6 +5,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -16,6 +19,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.apkfuns.logutils.LogUtils;
+import com.dy.colony.Constants;
 import com.dy.colony.R;
 import com.dy.colony.di.component.DaggerEditorProjectComponent;
 import com.dy.colony.greendao.DBHelper;
@@ -329,5 +333,43 @@ public class EditorProjectActivity extends BaseActivity<EditorProjectPresenter> 
         }
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.editor_project_toobar_menu, menu);
+        MenuItem item = menu.findItem(R.id.menu_seach);
+        mSearchView.setMenuItem(item);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.menu_new_testitem:
+                if ("fggd".equals(mFrom)) {
+                    launchActivity(new Intent(getActivity(), FGGD_NewTestItemActivity.class));
+                } else if ("jtj".equals(mFrom)) {
+                    launchActivity(new Intent(getActivity(), JTJ_NewTestItemActivity.class));
+                }
+
+                break;
+            case R.id.menu_input_testitem:
+                //JxlUtils.openFilechose_File(getActivity());
+                break;
+            case R.id.menu_output_testitem:
+                //JxlUtils.openFilechose_Folder(getActivity());
+                break;
+
+            case R.id.action_updata:
+                mPresenter.checkNewVersion(mFrom);
+                break;
+            default:
+                break;
+        }
+
+        return true;
     }
 }

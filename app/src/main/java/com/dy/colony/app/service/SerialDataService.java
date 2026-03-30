@@ -94,8 +94,6 @@ public class SerialDataService extends BaseService implements OnOpenSerialPortLi
     }
 
 
-
-
     private void receiveDatas() {
         RxErrorHandler mRxErrorHandler = ArmsUtils.obtainAppComponentFromContext(this).rxErrorHandler();
         //分光光度信息接收处理
@@ -109,15 +107,15 @@ public class SerialDataService extends BaseService implements OnOpenSerialPortLi
                     mData_SerialControl.setOnFGGDDataReceiveListener(new SerialHelper.OnFGGDDataReceiveListener() {
                         @Override
                         public void onDataReceive(byte[] buffer, int size) {
-                            LogUtils.d("fggd_reciver");
-                            LogUtils.d(ByteUtils.byte2HexStr2(buffer));
+                            //LogUtils.d("fggd_reciver");
+                            //LogUtils.d(ByteUtils.byte2HexStr2(buffer));
                             //需要区分新旧固件 旧的固件固定返回24个通道的数据
                             // 新的固件有多少通道返回多少通道
                             // 所以现在的方法就会存在16通道的仪器会出现24个检测通道
                             //每个通道有8个字节 截取后6个或8个通道的值，看是否为0 为0则舍去
                             int mSize = size;
                             int i1 = (mSize - 6) / 8;
-                            LogUtils.d(i1);
+                            //LogUtils.d(i1);
                             if (mFGGDGalleryBeanList.size() != i1) {
                                 if (mFGGDGalleryBeanList.size() != 0) {
                                     MyAppLocation.myAppLocation.speak(getString(R.string.channel_data_loss));
@@ -162,7 +160,7 @@ public class SerialDataService extends BaseService implements OnOpenSerialPortLi
                     mlist.add(w2);
                     mlist.add(w3);
                     mlist.add(w4);
-                    LogUtils.d(w1+"-"+w2+"-"+w3+"-"+w4+"-");
+                    //LogUtils.d(w1+"-"+w2+"-"+w3+"-"+w4+"-");
 
                     b = b + 8;
                 }
@@ -268,7 +266,7 @@ public class SerialDataService extends BaseService implements OnOpenSerialPortLi
                             bean.setLuminousness2(i2);
                             bean.setLuminousness3(i3);
                             bean.setLuminousness4(i4);
-                             LogUtils.d(i1 + "-" + i2 + "-" + i3 + "-" + i4 + "-");
+                            //LogUtils.d(i1 + "-" + i2 + "-" + i3 + "-" + i4 + "-");
                             //吸光度
                             bean.setAbsorbance1(absorbance1);
                             bean.setAbsorbance2(absorbance2);
@@ -515,7 +513,8 @@ public class SerialDataService extends BaseService implements OnOpenSerialPortLi
         //对照值
         detection_record_fggd_nc.setControlvalue(message2.getControValue() + "");
         //检测人员   这里填的是本地登录的账号名称
-        detection_record_fggd_nc.setInspector(Constants.NOWUSER.getUsername());
+        String userName = Constants.getUserName();
+        detection_record_fggd_nc.setInspector(userName);
         //设置检测模块
         detection_record_fggd_nc.setTest_Moudle(ArmsUtils.getString(MyAppLocation.myAppLocation, R.string.FGGD_TestMoudle));
         // 保存至数据库
@@ -887,7 +886,8 @@ public class SerialDataService extends BaseService implements OnOpenSerialPortLi
         //detection_record_fggd_nc.setControlvalue(Constants.FGGD_BIAOZHUN_CONTROL_VALUE + "");
         detection_record_fggd_nc.setControlvalue(projectMessage.getControValue() + "");
         //检测人员   这里填的是本地登录的账号名称
-        detection_record_fggd_nc.setInspector(Constants.NOWUSER.getUsername());
+        String userName = Constants.getUserName();
+        detection_record_fggd_nc.setInspector(userName);
         //设置检测模块
         detection_record_fggd_nc.setTest_Moudle(ArmsUtils.getString(MyAppLocation.myAppLocation, R.string.FGGD_TestMoudle));
         // 保存至数据库
@@ -903,7 +903,6 @@ public class SerialDataService extends BaseService implements OnOpenSerialPortLi
 
 
     }
-
 
 
     /**
@@ -1001,7 +1000,8 @@ public class SerialDataService extends BaseService implements OnOpenSerialPortLi
         //当前平台
         detection_record_fggd_nc.setPlatform_tag(Constants.PLATFORM_TAG + "");
         //检测人员   这里填的是本地登录的账号名称
-        detection_record_fggd_nc.setInspector(Constants.NOWUSER.getUsername());
+        String userName = Constants.getUserName();
+        detection_record_fggd_nc.setInspector(userName);
         //设置检测模块
         detection_record_fggd_nc.setTest_Moudle(ArmsUtils.getString(MyAppLocation.myAppLocation, R.string.FGGD_TestMoudle));
         // 保存至数据库
@@ -1165,7 +1165,8 @@ public class SerialDataService extends BaseService implements OnOpenSerialPortLi
         //稀释倍数
         detection_record_fggd_nc.setControlvalue(everyresponse + "");
         //检测人员   这里填的是本地登录的账号名称
-        detection_record_fggd_nc.setInspector(Constants.NOWUSER.getUsername());
+        String userName = Constants.getUserName();
+        detection_record_fggd_nc.setInspector(userName);
         //设置检测模块
         detection_record_fggd_nc.setTest_Moudle(ArmsUtils.getString(MyAppLocation.myAppLocation, R.string.FGGD_TestMoudle));
         // 保存至数据库

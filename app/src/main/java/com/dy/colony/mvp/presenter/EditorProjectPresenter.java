@@ -1,11 +1,14 @@
 package com.dy.colony.mvp.presenter;
 
 import android.app.Application;
+import android.webkit.URLUtil;
 
 import com.apkfuns.logutils.LogUtils;
 import com.dy.colony.BuildConfig;
+import com.dy.colony.Constants;
 import com.dy.colony.R;
 import com.dy.colony.app.utils.FileIOUtils;
+import com.dy.colony.mvp.model.entity.UpdateFileMessage;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.di.scope.ActivityScope;
@@ -18,6 +21,7 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.schedulers.Schedulers;
+import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 import okhttp3.OkHttpClient;
@@ -60,9 +64,61 @@ public class EditorProjectPresenter extends BasePresenter<EditorProjectContract.
         this.mApplication = null;
     }
 
+    public void checkNewVersion(String from) {
+        /*RetrofitUrlManager.getInstance().putDomain("xxx", BuildConfig.DEVICE_UPDATA_URL);
+        mModel.upgradeFile(BuildConfig.DEVICE_UPDATA_NAME)
+                .subscribeOn(Schedulers.io())
+                .doOnSubscribe(disposable -> {
+                    mRootView.showLoading();
+                }).subscribeOn(AndroidSchedulers.mainThread())
+                .doFinally(() -> {
+                    mRootView.hideLoading();
+                }).compose(RxLifecycleUtils.bindToLifecycle(mRootView))
+                .subscribe(new ErrorHandleSubscriber<UpdateFileMessage>(mErrorHandler) {
+                    @Override
+                    public void onNext(UpdateFileMessage message) {
+                        mRootView.hideLoading();
+                        LogUtils.d(message);
+                        String code = message.getResultCode();
+                        if (!"success1".equals(code)) {
+                            ArmsUtils.snackbarText(message.getResultDescripe());
+                            return;
+                        }
+                        UpdateFileMessage.ResultBean result = message.getResult();
+                        if (null == result) {
+                            ArmsUtils.snackbarText(mApplication.getString(R.string.withoutnewversionn));
+                            return;
+                        }
+                        String linkurl = "";
+                        String local = "";
+                        if ("fggd".equals(from)) {
+                            linkurl = result.getFgItemlink();
+                            //local = Constants.FGITEMLINK;
+                        } else if (from.contains("jtj")) {
+                            linkurl = result.getJtjlink();
+                            //local = Constants.JTJLINK;
+                        }
+                        LogUtils.d(local);
+                        LogUtils.d(linkurl);
 
 
+                        if (linkurl.isEmpty()) {
+                            ArmsUtils.snackbarText(mApplication.getString(R.string.withoutnewversionn));
+                            return;
+                        }
+                        if (!URLUtil.isValidUrl(linkurl)) {
+                            ArmsUtils.snackbarText(mApplication.getString(R.string.fileaddressexception) + linkurl);
+                            return;
+                        }
+                        String filename = null;
+                        String[] split = linkurl.split("/");
+                        filename = split[split.length - 1];
+                        mRootView.makeDialogNewVersion(filename, local, from, linkurl, message);
 
+                        //ArmsUtils.snackbarText("请稍后重试");
+                    }
+                });*/
+    }
 
 
     public void downLoadProject(String filename, String from, String url) {
@@ -85,18 +141,18 @@ public class EditorProjectPresenter extends BasePresenter<EditorProjectContract.
                         InputStream stream = body.byteStream();
                         File file = new File("/data/data/" + BuildConfig.APPLICATION_ID + "/" + filename);
                         boolean b = FileIOUtils.writeFileFromIS(file, stream);
-                        if (b){
+                        if (b) {
                             emitter.onNext(file);
                             emitter.onComplete();
                         }
-                    }else {
+                    } else {
                         ArmsUtils.snackbarText(mApplication.getString(R.string.downloadfail));
                         emitter.onComplete();
                     }
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                    ArmsUtils.snackbarText("IO\r\n"+e.getMessage());
+                    ArmsUtils.snackbarText("IO\r\n" + e.getMessage());
                     emitter.onComplete();
                 }
             }
@@ -112,7 +168,7 @@ public class EditorProjectPresenter extends BasePresenter<EditorProjectContract.
                     @Override
                     public void onNext(@NonNull File file) {
                         LogUtils.d(file);
-                        mRootView.inputProject(file,filename,from);
+                        mRootView.inputProject(file, filename, from);
 
                     }
                 });

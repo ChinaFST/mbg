@@ -1618,13 +1618,8 @@ public abstract class GalleryBean implements UsbReadWriteHelper.onUsbReciver {
         detection_record_fggd_nc.setPlatform_tag(Constants.PLATFORM_TAG + "");
         //对照值
         //detection_record_fggd_nc.setControlvalue(Constants.FGGD_YIZHILV_CONTROL_VALUE + "");
-        String userName;
-        if (Constants.IS_OFFLINE_MODE) {
-            userName = "";
-        } else {
-            ObjUserData userPlatform = Constants.USER_PLATFORM;
-            userName = userPlatform.getUser().getUser_name();
-        }
+        String userName=Constants.getUserName();
+
         //检测人员   这里填的是本地登录的账号名称
         detection_record_fggd_nc.setInspector(userName);
         //设置检测模块

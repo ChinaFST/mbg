@@ -161,7 +161,8 @@ public class Constants {
      */
     public static float FGLIMITVALUE_HEIGHT() {
 
-        return 1.01f;
+        //return 1.01f;
+        return 1.05f;
     }
 
 
@@ -184,9 +185,18 @@ public class Constants {
         //仪器编号
         Constants.DEVICENUM = (String) SPUtils.get(application, Constants.KEY_DEVICENUM, "");
         Constants.AUTO_UPLOAD = (boolean) SPUtils.get(application, Constants.KEY_AUTO_UPLOAD, false);
-        if (BuildConfig.DEBUG) {
-            Constants.AUTO_UPLOAD = false;
+
+    }
+
+    public static String getUserName(){
+        String userName;
+        if (Constants.IS_OFFLINE_MODE) {
+            userName = "";
+        } else {
+            ObjUserData userPlatform = Constants.USER_PLATFORM;
+            userName = userPlatform.getUser().getUser_name();
         }
+        return userName;
     }
 
 

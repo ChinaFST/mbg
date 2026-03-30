@@ -82,4 +82,8 @@
         <item name="android:layout_marginLeft">10dp</item>
     </style>
 
+    <style name="MyDatePickerText" parent="Theme.AppCompat.Light">
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>

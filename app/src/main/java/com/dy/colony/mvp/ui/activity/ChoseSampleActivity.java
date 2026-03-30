@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +30,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.apkfuns.logutils.LogUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.dy.colony.Constants;
 import com.dy.colony.MyAppLocation;
 import com.dy.colony.greendao.DBHelper;
 import com.dy.colony.greendao.beans.Detection_Record_FGGD_NC;
@@ -46,6 +50,7 @@ import com.dy.colony.mvp.contract.ChoseSampleContract;
 import com.dy.colony.mvp.presenter.ChoseSamplePresenter;
 
 import com.dy.colony.R;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.paginate.Paginate;
 
 import java.util.HashMap;
@@ -66,8 +71,8 @@ public class ChoseSampleActivity extends BaseActivity<ChoseSamplePresenter> impl
     TextView mToolbarTitle;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    /*@BindView(R.id.search_view)
-    MaterialSearchView mSearchView;*/
+    @BindView(R.id.search_view)
+    MaterialSearchView mSearchView;
     @BindView(R.id.toolbar_container)
     FrameLayout mToolbarContainer;
     @BindView(R.id.toolbarly)
@@ -362,11 +367,11 @@ public class ChoseSampleActivity extends BaseActivity<ChoseSamplePresenter> impl
     }
 
     private void initSearcchView() {
-        /*mSearchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+        mSearchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                    mPresenter.seachFromFoodItemAndStand(query, mProjectName, true, mFrom);
+                mPresenter.seachFromFoodItemAndStand(query, mProjectName, true, mFrom);
 
 
                 isSeaching = true;
@@ -395,7 +400,7 @@ public class ChoseSampleActivity extends BaseActivity<ChoseSamplePresenter> impl
                 //Do some magic
                 LogUtils.d("onSearchViewClosed");
             }
-        });*/
+        });
     }
 
     @Override
@@ -502,5 +507,49 @@ public class ChoseSampleActivity extends BaseActivity<ChoseSamplePresenter> impl
     public void sethasLoadedAllItemsfase() {
         LogUtils.d("sethasLoadedAllItemsfase");
         hasLoadedAllItems = false;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.chosesample_menu, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        MenuItem newitem = menu.findItem(R.id.action_new);
+        newitem.setVisible(false);
+        mSearchView.setMenuItem(item);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.action_new:
+                Intent intent = new Intent(getActivity(), EdtorSampleActivity.class);
+                intent.putExtra("ProjectName", mProjectName);
+                intent.putExtra("data", 1);
+                launchActivity(intent);
+                break;
+
+        }
+
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isSeaching) {
+            isSeaching = false;
+            keyWord = "";
+            mPresenter.lodaMore(mProjectName, true, mFrom);
+            mToolbarTitle.setText(R.string.ChoseSampleActivity);
+        } else {
+            if (mSearchView.isSearchOpen()) {
+                mSearchView.closeSearch();
+            } else {
+                super.onBackPressed();
+            }
+        }
+
     }
 }

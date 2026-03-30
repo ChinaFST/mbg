@@ -49,6 +49,7 @@
         <activity
             android:name=".mvp.ui.activity.EditorProjectActivity"
             android:label="@string/EditorProjectActivity"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.ui.activity.TestRecordMessageActivity"
@@ -88,6 +89,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.ui.activity.FGGD_TestActivity"
+            android:windowSoftInputMode="adjustPan"
             android:label="@string/FGGD_TestActivity"
             android:screenOrientation="portrait" />
         <activity
