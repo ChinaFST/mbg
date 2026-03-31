@@ -35,9 +35,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".mvp.ui.activity.JTJ_NewTestItemActivity"
+        <activity
+            android:name=".mvp.ui.activity.SampleMessageActivity"
+            android:label="@string/title_samplemessage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.ui.activity.JTJ_NewTestItemActivity"
             android:label="@string/new_testing_items"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.ui.widget.filePicker.LFilePickerActivity"
+            android:label="@string/pleacechosefile"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.ui.activity.FGGD_NewTestItemActivity"
             android:label="@string/new_testing_items"
@@ -49,8 +58,8 @@
         <activity
             android:name=".mvp.ui.activity.EditorProjectActivity"
             android:label="@string/EditorProjectActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".mvp.ui.activity.TestRecordMessageActivity"
             android:label="@string/TestRecordMessageActivity"
@@ -89,9 +98,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.ui.activity.FGGD_TestActivity"
-            android:windowSoftInputMode="adjustPan"
             android:label="@string/FGGD_TestActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".mvp.ui.activity.SplashActivity"
             android:exported="true"

@@ -29,9 +29,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
-                    android:textSize="14sp"
                     android:singleLine="true"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -48,9 +48,9 @@
                     android:layout_below="@+id/textInputLayout"
                     android:layout_alignStart="@+id/textInputLayout"
                     android:maxLines="1"
-                    android:textSize="14sp"
                     android:singleLine="true"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -66,9 +66,9 @@
                     android:layout_below="@+id/textInputLayout"
                     android:layout_alignStart="@+id/textInputLayout"
                     android:maxLines="1"
-                    android:textSize="14sp"
                     android:singleLine="true"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -84,9 +84,9 @@
                     android:layout_below="@+id/textInputLayout"
                     android:layout_alignStart="@+id/textInputLayout"
                     android:maxLines="1"
-                    android:textSize="14sp"
                     android:singleLine="true"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -102,9 +102,9 @@
                     android:layout_below="@+id/textInputLayout"
                     android:layout_alignStart="@+id/textInputLayout"
                     android:maxLines="1"
-                    android:textSize="14sp"
                     android:singleLine="true"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -120,9 +120,9 @@
                     android:layout_below="@+id/textInputLayout"
                     android:layout_alignStart="@+id/textInputLayout"
                     android:maxLines="1"
-                    android:textSize="14sp"
                     android:singleLine="true"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -167,10 +167,10 @@
                     android:layout_below="@+id/textInputLayout"
                     android:layout_alignStart="@+id/textInputLayout"
                     android:inputType="numberDecimal"
-                    android:textSize="14sp"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -183,12 +183,12 @@
                     android:id="@+id/Unit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
                     android:layout_below="@+id/textInputLayout"
                     android:layout_alignStart="@+id/textInputLayout"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
@@ -200,22 +200,22 @@
                 <Button
                     android:id="@+id/btn_cancle"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="36dp"
                     android:background="@drawable/btn_bottom_confirm_bg"
                     android:text="@string/cancel"
                     android:textColor="#DC000F"
-                    android:textSize="18dp"
+                    android:textSize="16sp"
                     android:visibility="visible" />
 
                 <Button
                     android:id="@+id/btn_determine"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="36dp"
                     android:layout_marginStart="20dp"
                     android:background="@drawable/btn_bottom_confirm_bg"
                     android:text="@string/sure"
                     android:textColor="#fff"
-                    android:textSize="18dp"
+                    android:textSize="16sp"
                     android:visibility="visible" />
             </LinearLayout>
         </LinearLayout>

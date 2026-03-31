@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:editable="false"
-                android:hint="@string/project"
+                android:hint="@string/testproject"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textSize="14sp" />
@@ -247,7 +247,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:editable="false"
-            android:hint="@string/units"
+            android:hint="@string/inspectedunit"
             android:maxLines="1"
             android:singleLine="true"
             android:textSize="14sp" />

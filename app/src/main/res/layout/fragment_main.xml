@@ -50,15 +50,30 @@
                 app:cardCornerRadius="8dp"
                 app:cardElevation="2dp">
 
-                <ImageButton
-                    android:id="@+id/editor_project_fggd"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_gravity="end|top"
+                <FrameLayout
+                    android:id="@+id/fl_fggd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:visibility="gone"
-                    android:layout_marginEnd="10dp"
-                    android:background="@drawable/icon_edit" />
+                    android:visibility="gone">
+
+                    <ImageButton
+                        android:id="@+id/editor_sample_fggd"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="start|top"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/icon_sample_edit" />
+
+                    <ImageButton
+                        android:id="@+id/editor_project_fggd"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_gravity="end|top"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/icon_edit_project" />
+                </FrameLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -103,15 +118,30 @@
                 app:cardCornerRadius="8dp"
                 app:cardElevation="2dp">
 
-                <ImageButton
-                    android:id="@+id/editor_project_jtj"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_gravity="end|top"
+                <FrameLayout
+                    android:id="@+id/fl_jtj"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:visibility="gone"
-                    android:layout_marginEnd="10dp"
-                    android:background="@drawable/icon_edit" />
+                    android:visibility="gone">
+
+                    <ImageButton
+                        android:id="@+id/editor_sample_jtj"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="start|top"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/icon_sample_edit" />
+
+                    <ImageButton
+                        android:id="@+id/editor_project_jtj"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_gravity="end|top"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/icon_edit_project" />
+                </FrameLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"

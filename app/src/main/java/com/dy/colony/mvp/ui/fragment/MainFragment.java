@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import com.dy.colony.mvp.presenter.MainPresenter;
 import com.dy.colony.mvp.ui.activity.EditorProjectActivity;
 import com.dy.colony.mvp.ui.activity.FGGD_TestActivity;
 import com.dy.colony.mvp.ui.activity.JTJ_TestActivity;
+import com.dy.colony.mvp.ui.activity.SampleMessageActivity;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
 
@@ -29,10 +31,10 @@ public class MainFragment extends BaseFragment<MainPresenter> implements MainCon
     CardView card_1;
     @BindView(R.id.card_2)
     CardView card_2;
-    @BindView(R.id.editor_project_fggd)
-    ImageButton editor_project_fggd;
-    @BindView(R.id.editor_project_jtj)
-    ImageButton editor_project_jtj;
+    @BindView(R.id.fl_jtj)
+    FrameLayout fl_jtj;
+    @BindView(R.id.fl_fggd)
+    FrameLayout fl_fggd;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -62,10 +64,10 @@ public class MainFragment extends BaseFragment<MainPresenter> implements MainCon
         card_1.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if (editor_project_fggd.getVisibility() == View.GONE) {
-                    editor_project_fggd.setVisibility(View.VISIBLE);
+                if (fl_fggd.getVisibility() == View.GONE) {
+                    fl_fggd.setVisibility(View.VISIBLE);
                 } else {
-                    editor_project_fggd.setVisibility(View.GONE);
+                    fl_fggd.setVisibility(View.GONE);
                 }
 
                 return true;
@@ -74,10 +76,10 @@ public class MainFragment extends BaseFragment<MainPresenter> implements MainCon
         card_2.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if (editor_project_jtj.getVisibility() == View.GONE) {
-                    editor_project_jtj.setVisibility(View.VISIBLE);
+                if (fl_jtj.getVisibility() == View.GONE) {
+                    fl_jtj.setVisibility(View.VISIBLE);
                 } else {
-                    editor_project_jtj.setVisibility(View.GONE);
+                    fl_jtj.setVisibility(View.GONE);
                 }
                 return true;
             }
@@ -94,7 +96,7 @@ public class MainFragment extends BaseFragment<MainPresenter> implements MainCon
 
     }
 
-    @OnClick({R.id.card_1, R.id.card_2, R.id.card_3, R.id.card_4, R.id.editor_project_fggd, R.id.editor_project_jtj})
+    @OnClick({R.id.card_1, R.id.card_2, R.id.card_3, R.id.card_4, R.id.editor_project_fggd, R.id.editor_project_jtj,R.id.editor_sample_jtj,R.id.editor_sample_fggd})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.card_1:
@@ -118,6 +120,10 @@ public class MainFragment extends BaseFragment<MainPresenter> implements MainCon
                 Intent intent1 = new Intent(mContext, EditorProjectActivity.class);
                 intent1.putExtra("from", "jtj");
                 launchActivity(intent1);
+                break;
+            case R.id.editor_sample_jtj:
+            case R.id.editor_sample_fggd:
+                launchActivity(new Intent(getContext(), SampleMessageActivity.class));
                 break;
             default:
                 break;

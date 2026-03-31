@@ -16,18 +16,19 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:textSize="16dp" />
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/btn_seach"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="@dimen/dp_4"
             android:layout_weight="1"
             android:background="@drawable/btn_bottom_confirm_bg"
             android:text="@string/seach"
             android:textColor="#ffffff"
-            android:textSize="16dp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 
@@ -37,6 +38,5 @@
         android:layout_height="match_parent"
         android:layout_below="@id/seachlayout"
         android:paddingTop="4dp" />
-
 
 </RelativeLayout>

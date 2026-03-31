@@ -9,11 +9,11 @@
         android:id="@+id/projectname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/dp_4"
         android:gravity="start"
+        android:paddingStart="@dimen/dp_4"
         android:text="121"
         android:textColor="@color/black"
-        android:textSize="16dp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
 </RelativeLayout>

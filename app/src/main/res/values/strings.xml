@@ -8,7 +8,6 @@
     <string name="customactivityoncrash_error_activity_error_details_title" translatable="false">错误详情</string>
     <string name="customactivityoncrash_error_activity_error_details_close" translatable="false">关闭</string>
     <string name="customactivityoncrash_error_activity_error_details_copy" translatable="false">复制日志</string>
-    <string name="customactivityoncrash_error_activity_error_details_copied" translatable="false">复制日志</string>
     <string name="customactivityoncrash_error_activity_error_details_clipboard_label" translatable="false">错误信息</string>
     <string name="openserialfirst">请先打开串口</string>
     <string name="login_username_hint">请输入用户名</string>
@@ -65,8 +64,6 @@
     <string name="JTJ_TestMoudle_P" translatable="false">胶体金</string>
     <string name="FGGD_TestMoudle" translatable="false">分光光度</string>
     <string name="str_clear">清零</string>
-    <string name="str_sample">样品</string>
-    <string name="str_contrast">对照</string>
     <string name="str_step">步骤</string>
     <string name="str_video">视频</string>
     <string name="str_adjust">校准</string>
@@ -82,7 +79,6 @@
     <string name="place_choseproject" translatable="false">请选择检测项目</string>
     <string name="doingcontrol" translatable="false">正在进行对照测试</string>
     <string name="samplename" translatable="false">样品名称</string>
-    <string name="project" translatable="false">检测项目</string>
     <string name="method" translatable="false">检测方法</string>
     <string name="fyy_number" translatable="false">反应液滴数/稀释倍数</string>
     <string name="change" translatable="false">修改</string>
@@ -93,7 +89,6 @@
     <string name="limitvalue" translatable="false">限量值</string>
     <string name="testresult" translatable="false">检测结果</string>
     <string name="jujerment" translatable="false">判定结果</string>
-    <string name="units" translatable="false">被检单位</string>
     <string name="testtime" translatable="false">检测时间</string>
     <string name="testplace" translatable="false">检测地点</string>
     <string name="testpeople" translatable="false">检测人员</string>
@@ -398,6 +393,50 @@
     <string name="fileaddressexception" translatable="false">文件地址异常\r\n</string>
     <string name="start_time">开始时间</string>
     <string name="end_time">终止时间</string>
+
+    <string name="pleacechosefile" translatable="false">请选择文件</string>
+    <string name="lfile_NotFoundBooks" translatable="false">请选择导入的文件</string>
+    <string name="lfile_NotFoundPath" translatable="false">SD 存储卡状态不可用</string>
+    <string name="lfile_UpOneLevel" translatable="false">上一级</string>
+    <string name="lfile_Selected" translatable="false">选中</string>
+    <string name="lfile_LItem" translatable="false">项</string>
+    <string name="lfile_FileSize" translatable="false">文件大小 : </string>
+    <string name="lfile_OutSize" translatable="false">已经达到最大选择数量</string>
+    <string name="lfile_Cancel" translatable="false">取消全选</string>
+    <string name="lfile_ChooseTip" translatable="false">请选择文件夹</string>
+
+    <string name="importdata" translatable="false">正在导入数据</string>
+    <string name="importsuccess" translatable="false">导入成功！</string>
+    <string name="notfggditemlist" translatable="false">非分光检测项目</string>
+    <string name="skipitemmessage" translatable="false">是否保留现有的检测项目？</string>
+    <string name="keep" translatable="false">保留</string>
+    <string name="replace" translatable="false">替换</string>
+    <string name="preparingdata" translatable="false">正在准备数据</string>
+    <string name="nodatatoexport" translatable="false">没有需要导出的数据</string>
+    <string name="exportingdata" translatable="false">正在导出数据</string>
+    <string name="exportsuccess" translatable="false">导出成功</string>
+    <string name="jxlerro" translatable="false">jxl组件创建表格时发生异常</string>
+    <string name="standnumber" translatable="false">标准号</string>
+    <string name="standvalue" translatable="false">标准值</string>
+    <string name="operate" translatable="false">操作</string>
+    <string name="input_data" translatable="false">导入数据</string>
+    <string name="output_data" translatable="false">导出数据</string>
+    <string name="sample_jxl_title_1" translatable="false">ID,样品ID,对比符号,限量值单位,父类编号,</string>
+    <string name="sample_jxl_title_2" translatable="false">检测项目,样品名称,样品编号,标准名称,标准值,更新时间,FLAG</string>
+    <string name="Sample_ID" translatable="false">样品ID</string>
+    <string name="nosamplelist" translatable="false">非样品标准与检测项目表</string>
+    <string name="sampleversionnmessage" translatable="false">样品版本信息</string>
+    <string name="sampleandproject" translatable="false">样品标准与检测项目</string>
+    <string name="skipsamplemessage" translatable="false">是否保留现有的样品信息？</string>
+    <string name="title_samplemessage" translatable="false">样品信息</string>
+    <string name="str_back">返回</string>
+    <string name="str_yure_time">预热时间</string>
+    <string name="str_wavelength_range">波长段</string>
+    <string name="method_name">方法名称</string>
+    <string name="not_jtj_project">非胶体金检测项目</string>
+    <string name="T1A_value">T1A值</string>
+    <string name="c1_value">C1值</string>
+    <string name="methods_xiaoxian_bise">方法（1消线;2比色）</string>
 
 
 </resources>

@@ -277,7 +277,7 @@ public class TestRecordMessageActivity extends BaseActivity<TestRecordMessagePre
 
     private void setTextMessage() {
         mSamplename.setText(appendStr(R.string.samplename, mData.getSamplename()));
-        mTestproject.setText(appendStr(R.string.project, mData.getTest_project()));
+        mTestproject.setText(appendStr(R.string.testproject, mData.getTest_project()));
         String method = mData.getTest_method();
         if ("0".equals(method)) {
             mTestmethod.setText(R.string.print_mothed1);
@@ -296,7 +296,7 @@ public class TestRecordMessageActivity extends BaseActivity<TestRecordMessagePre
         }
         mTestresult.setText(appendStr(R.string.testresult, mData.getTestresult()));
         mTeststandnum.setText(appendStr(R.string.judgment_criteria, mData.getStand_num()));
-        mInspectedunit.setText(appendStr(R.string.units, mData.getProsecutedunits()));
+        mInspectedunit.setText(appendStr(R.string.inspectedunit, mData.getProsecutedunits()));
         mTestsite.setText(appendStr(R.string.testplace, mData.getTestsite()));
         mTestunit.setText(appendStr(R.string.detect_unit, mData.getTest_unit_name()));
 

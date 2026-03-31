@@ -85,7 +85,7 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:gravity="start|center_vertical"
-                    android:hint="@string/project"
+                    android:hint="@string/testproject"
                     android:paddingStart="2dp"
                     android:textColorHint="#FF0000"
                     android:textSize="14sp" />
@@ -118,7 +118,7 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:gravity="start|center_vertical"
-                    android:hint="@string/units"
+                    android:hint="@string/inspectedunit"
                     android:paddingLeft="2dp"
                     android:textColor="#1F1F1F"
                     android:textSize="14sp" />

@@ -90,7 +90,7 @@
                         android:background="@drawable/s_paas"
                         android:button="@null"
                         android:gravity="center"
-                        android:text="@string/project"
+                        android:text="@string/testproject"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
 
@@ -189,7 +189,7 @@
                         android:background="@drawable/s_paas"
                         android:button="@null"
                         android:gravity="center"
-                        android:text="@string/units"
+                        android:text="@string/inspectedunit"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
 

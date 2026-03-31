@@ -21,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.apkfuns.logutils.LogUtils;
 import com.dy.colony.Constants;
 import com.dy.colony.R;
+import com.dy.colony.app.utils.DataUtils;
+import com.dy.colony.app.utils.JxlUtils;
 import com.dy.colony.di.component.DaggerEditorProjectComponent;
 import com.dy.colony.greendao.DBHelper;
 import com.dy.colony.greendao.beans.FGGDTestItem;
@@ -316,18 +318,18 @@ public class EditorProjectActivity extends BaseActivity<EditorProjectPresenter> 
         list.add(file.getAbsolutePath());
         if ("fggd".equals(from)) {
             if (mData.isEmpty()) {
-                //mPresenter.inPutFGGDItem(list, true);
+                mPresenter.inPutFGGDItem(list, true);
 
             } else {
-                //mPresenter.makeCheckDialog(list, from);
+                mPresenter.makeCheckDialog(list, from);
 
             }
         } else if (from.contains("jtj")) {
             if (mData.isEmpty()) {
-                //mPresenter.inPutJTJitem(list, true);
+                mPresenter.inPutJTJitem(list, true);
 
             } else {
-                //mPresenter.makeCheckDialog(list, from);
+                mPresenter.makeCheckDialog(list, from);
 
             }
         }
@@ -357,10 +359,10 @@ public class EditorProjectActivity extends BaseActivity<EditorProjectPresenter> 
 
                 break;
             case R.id.menu_input_testitem:
-                //JxlUtils.openFilechose_File(getActivity());
+                JxlUtils.openFileChose_File(getActivity());
                 break;
             case R.id.menu_output_testitem:
-                //JxlUtils.openFilechose_Folder(getActivity());
+                JxlUtils.openFileChose_Folder(getActivity());
                 break;
 
             case R.id.action_updata:
@@ -371,5 +373,50 @@ public class EditorProjectActivity extends BaseActivity<EditorProjectPresenter> 
         }
 
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == Constants.FOLDER_REQUESTCODE) {
+                //文件夹选择模式，需要获取选择的文件夹路径
+                String path = data.getStringExtra("path");
+                //导出检测项目
+
+                if ("fggd".equals(mFrom)) {
+                    mPresenter.outPutItem(path, getString(R.string.moudleproject_fggd) + DataUtils.getFIleNameNowtimeyyymmddhhmmss() + ".xls", getString(R.string.moudleproject_fggd), 1);
+                } else if (mFrom.contains("jtj")) {
+
+                    mPresenter.outPutItem(path, getString(R.string.moudleproject_jtj) + DataUtils.getFIleNameNowtimeyyymmddhhmmss() + ".xls", getString(R.string.moudleproject_jtj), 2);
+
+                }
+
+
+            }
+            if (requestCode == Constants.FILE_REQUESTCODE) {
+                //文件选择模式，需要获取选择的所有文件的路径集合
+                List<String> list = data.getStringArrayListExtra("paths");
+                LogUtils.d(list);
+                if ("fggd".equals(mFrom)) {
+                    if (mData.isEmpty()) {
+                        mPresenter.inPutFGGDItem(list, true);
+                        //showLoading();
+                    } else {
+                        mPresenter.makeCheckDialog(list, mFrom);
+
+                    }
+                } else if (mFrom.contains("jtj")) {
+                    if (mData.isEmpty()) {
+                        mPresenter.inPutJTJitem(list, true);
+                    } else {
+                        mPresenter.makeCheckDialog(list, mFrom);
+
+                    }
+                }
+
+            }
+        }
+
     }
 }

@@ -67,10 +67,10 @@ public class FoodItemAndStandard extends BaseSampleMessage implements Parcelable
         return MyAppLocation.myAppLocation.getString(resId);
     }
 
-   /* public OutMoudle<String> toJxlTitle() {
+    public OutMoudle<String> toJxlTitle() {
         return new OutMoudle<String>(MyAppLocation.myAppLocation.getString(R.string.sample_jxl_title_1) +
                 MyAppLocation.myAppLocation.getString(R.string.sample_jxl_title_2));
-    }*/
+    }
 
     public OutMoudle<String> toJxlString() {
         return new OutMoudle<String>(id + "," + checkId + "," + checkSign + "," + checkValueUnit + "," + foodPCode + ","

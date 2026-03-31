@@ -90,14 +90,14 @@
                 android:id="@+id/btn_sampletest"
                 style="@style/button_base"
                 android:background="@drawable/btn_bottom_confirm_bg"
-                android:text="@string/str_sample"
+                android:text="@string/makesample"
                 android:visibility="visible" />
 
             <Button
                 android:id="@+id/btn_controtest"
                 style="@style/button_base"
                 android:background="@drawable/btn_bottom_confirm_bg"
-                android:text="@string/str_contrast" />
+                android:text="@string/makecontrole" />
 
 
             <Button

@@ -69,6 +69,13 @@ public class Constants {
     public static String KEY_MINHDIFFERENCEVALUE = "KEY_MINHDIFFERENCEVALUE";
 
     /**
+     * 请求打开文件浏览器时的 请求码
+     * {@link #FOLDER_REQUESTCODE} 文件夹 <p>
+     * {@link #FILE_REQUESTCODE} 文件 <p>
+     */
+    public static int FOLDER_REQUESTCODE = 1, FILE_REQUESTCODE = 2;
+
+    /**
      * 该编号保留，作为用户可以自行输入，后续使用的devicenum使用@AppUtils.getSN()
      * {@link #DEVICENUM}仪器编号<p>
      * {@link #KEY_DEVICENUM}仪器编号KEY<p>
@@ -93,6 +100,18 @@ public class Constants {
      * 仪器列表一页显示行数
      */
     public static int page_num_unit = 15;
+
+    //胶体金检测项目表名称                            e
+    public static String KEY_JTJLINK = "KEY_JTJLINK";
+    public static String JTJLINK = "";
+
+    //分光光度检测项目表名称
+    public static String KEY_FGITEMLINK = "KEY_FGITEMLINK";
+    public static String FGITEMLINK = "";
+
+    //样品表名称
+    public static String KEY_FOOLINKNAME = "KEY_FOOLINKNAME";
+    public static String FOOLINKNAME = "";
 
     /**
      * 分光光度流水号
@@ -185,6 +204,8 @@ public class Constants {
         //仪器编号
         Constants.DEVICENUM = (String) SPUtils.get(application, Constants.KEY_DEVICENUM, "");
         Constants.AUTO_UPLOAD = (boolean) SPUtils.get(application, Constants.KEY_AUTO_UPLOAD, false);
+        Constants.JTJLINK = (String) SPUtils.get(application, Constants.KEY_JTJLINK, "");
+        Constants.FGITEMLINK = (String) SPUtils.get(application, Constants.KEY_FGITEMLINK, "");
 
     }
 

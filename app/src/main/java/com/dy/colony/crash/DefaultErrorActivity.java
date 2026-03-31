@@ -100,7 +100,7 @@ public final class DefaultErrorActivity extends FragmentActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             copyErrorToClipboard();
-                                            Toast.makeText(DefaultErrorActivity.this, R.string.customactivityoncrash_error_activity_error_details_copied, Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DefaultErrorActivity.this, R.string.customactivityoncrash_error_activity_error_details_copy, Toast.LENGTH_SHORT).show();
                                         }
                                     })
                             .show();
