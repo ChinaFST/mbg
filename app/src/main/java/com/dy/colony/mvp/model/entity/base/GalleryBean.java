@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.hardware.usb.UsbDevice;
 
 import com.apkfuns.logutils.LogUtils;
+import com.blankj.utilcode.util.StringUtils;
 import com.dy.colony.Constants;
 import com.dy.colony.MyAppLocation;
 import com.dy.colony.R;
@@ -1618,7 +1619,7 @@ public abstract class GalleryBean implements UsbReadWriteHelper.onUsbReciver {
         detection_record_fggd_nc.setPlatform_tag(Constants.PLATFORM_TAG + "");
         //对照值
         //detection_record_fggd_nc.setControlvalue(Constants.FGGD_YIZHILV_CONTROL_VALUE + "");
-        String userName=Constants.getUserName();
+        String userName = Constants.getUserName();
 
         //检测人员   这里填的是本地登录的账号名称
         detection_record_fggd_nc.setInspector(userName);
@@ -1678,6 +1679,59 @@ public abstract class GalleryBean implements UsbReadWriteHelper.onUsbReciver {
         if (Constants.AUTO_UPLOAD && !Constants.IS_OFFLINE_MODE) {
             UpLoadIntentService.startUpLoad(MyAppLocation.myAppLocation, insert);
         }
+
+    }
+
+    public void newResult(String s_result1, String s_decome1) {
+        LogUtils.d("judgeAndSaveMultiCard");
+        LogUtils.d(getJTJCardModel());
+        Detection_Record_FGGD_NC detection_record_fggd_nc = (Detection_Record_FGGD_NC) this;
+        BaseProjectMessage message = null;
+        StringBuffer testmethod = new StringBuffer();
+        message = getProjectMessage();
+        LogUtils.d(message);
+        testmethod.append(message.getMethod() + " ");
+
+        detection_record_fggd_nc.setTest_method(testmethod.toString());
+        detection_record_fggd_nc.setTestresult(s_result1);
+        detection_record_fggd_nc.setDecisionoutcome(s_decome1);
+
+        //设置盐酸克伦特罗的检测方法
+        if (getJTJCardModel() == 0) {
+            detection_record_fggd_nc.setTest_project(message.getProjectName());
+        }
+
+
+        //检测完成时间
+        long testingtime = System.currentTimeMillis();
+        LogUtils.d(testingtime);
+        detection_record_fggd_nc.setTestingtime(testingtime);
+        //检测地点
+        detection_record_fggd_nc.setTestsite(Constants.ADDR_WF);
+        detection_record_fggd_nc.setLatitude(Constants.LATITUDE);
+        detection_record_fggd_nc.setLongitude(Constants.LONTITUDE);
+        //当前平台
+        detection_record_fggd_nc.setPlatform_tag(Constants.PLATFORM_TAG + "");
+        //对照值
+        //detection_record_fggd_nc.setControlvalue(Constants.FGGD_YIZHILV_CONTROL_VALUE + "");
+        //检测人员   这里填的是本地登录的账号名称
+        String userName = Constants.getUserName();
+        detection_record_fggd_nc.setInspector(userName);
+        //设置检测模块
+        detection_record_fggd_nc.setTest_Moudle(StringUtils.getString(R.string.JTJ_TestMoudle_P));
+        // 保存至数据库
+        detection_record_fggd_nc.setId(null);//自增ID
+        //设置状态为检测完成 2
+        detection_record_fggd_nc.setState(2);
+        //detection_record_fggd_nc.setDowhat(0);
+        LogUtils.d(detection_record_fggd_nc);
+        detection_record_fggd_nc.setSysCode(UUID.randomUUID().toString());
+        detection_record_fggd_nc.setSerialNumber(Constants.getJtjSearinum());
+
+
+        printAndUpload(detection_record_fggd_nc);
+        ArmsUtils.snackbarText("数据生成成功！");
+
 
     }
 }

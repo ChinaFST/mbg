@@ -23,9 +23,7 @@ public interface EditorProjectContract {
 
         void RefreshList();
 
-        void inputProject(File file, String filename, String from);
 
-        void makeDialogNewVersion(String filename, String local, String from, String linkurl, UpdateFileMessage message);
     }
 
     //Model层定义接口,外部只需关心Model返回的数据,无需关心内部细节,即是否使用缓存
@@ -35,8 +33,6 @@ public interface EditorProjectContract {
 
         Observable<List<OutMoudle>> getJTJJXLs();
 
-
-        Observable<UpdateFileMessage> upgradeFile(String appName);
 
     }
 }

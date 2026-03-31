@@ -25,11 +25,5 @@
         android:title="@string/seach"
         app:showAsAction="always" />
 
-    <item
-        android:id="@+id/action_updata"
-        android:icon="@drawable/basedataupdata_icn"
-        android:orderInCategory="100"
-        android:title="@string/updata_database"
-        android:visible="false"
-        app:showAsAction="always" />
+
 </menu>

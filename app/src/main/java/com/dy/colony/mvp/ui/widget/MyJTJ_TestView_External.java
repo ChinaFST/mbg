@@ -15,15 +15,12 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -42,14 +39,12 @@ import com.dy.colony.mvp.model.entity.base.GalleryBean;
 import com.dy.colony.mvp.model.entity.eventbus.ExternTestMessageBean;
 import com.dy.colony.mvp.ui.activity.ChoseProjectActivity;
 import com.dy.colony.mvp.ui.activity.ChoseSampleActivity;
-import com.dy.colony.mvp.ui.activity.ChoseUnitActivity;
 import com.dy.colony.mvp.ui.activity.JTJ_TestActivity;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.google.android.material.textfield.TextInputLayout;
 import com.jess.arms.utils.ArmsUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -235,24 +230,17 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
         }
     }
 
-    private void makeNewResultDialog(GalleryBean item, int i) {
+    private void makeNewResultDialog(GalleryBean item) {
         android.app.AlertDialog.Builder mAlertDialog = new android.app.AlertDialog.Builder(mContext);
         View view2 = View.inflate(mContext, R.layout.dialog_newresult_multcard_layout, null);
         Button save = (Button) view2.findViewById(R.id.save);
         Button cancle = (Button) view2.findViewById(R.id.cancle);
-        LinearLayout card1 = (LinearLayout) view2.findViewById(R.id.card1);
-        LinearLayout card2 = (LinearLayout) view2.findViewById(R.id.card2);
-        LinearLayout card3 = (LinearLayout) view2.findViewById(R.id.card3);
-        LinearLayout card4 = (LinearLayout) view2.findViewById(R.id.card4);
+
         Spinner result1 = (Spinner) view2.findViewById(R.id.result1);
-        Spinner result2 = (Spinner) view2.findViewById(R.id.result2);
-        Spinner result3 = (Spinner) view2.findViewById(R.id.result3);
-        Spinner result4 = (Spinner) view2.findViewById(R.id.result4);
+
 
         Spinner decome1 = (Spinner) view2.findViewById(R.id.decome1);
-        Spinner decome2 = (Spinner) view2.findViewById(R.id.decome2);
-        Spinner decome3 = (Spinner) view2.findViewById(R.id.decome3);
-        Spinner decome4 = (Spinner) view2.findViewById(R.id.decome4);
+
         result1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -264,47 +252,8 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
 
             }
         });
-        result2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                decome2.setSelection(position, true);
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-        });
-        result3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                decome3.setSelection(position, true);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        result4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                decome4.setSelection(position, true);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        if (i == 0) {
-            card2.setVisibility(View.GONE);
-            card3.setVisibility(View.GONE);
-            card4.setVisibility(View.GONE);
-        } else if (i == 3) {
-            card4.setVisibility(View.GONE);
-        }
         mAlertDialog.setTitle("提示");
         mAlertDialog.setView(view2);
         android.app.AlertDialog dialog = mAlertDialog.create();
@@ -313,34 +262,18 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
             @Override
             public void onClick(View v) {
                 String s_result1 = result1.getSelectedItem().toString();
-                String s_result2 = result2.getSelectedItem().toString();
-                String s_result3 = result3.getSelectedItem().toString();
-                String s_result4 = result4.getSelectedItem().toString();
+
                 String s_decome1 = decome1.getSelectedItem().toString();
-                String s_decome2 = decome2.getSelectedItem().toString();
-                String s_decome3 = decome3.getSelectedItem().toString();
-                String s_decome4 = decome4.getSelectedItem().toString();
-                if (i == 0) {
-                    if (s_result1.isEmpty()
-                            || s_decome1.isEmpty()) {
-                        ArmsUtils.snackbarText("请填写结果信息");
-                        return;
-                    }
-                } else if (i == 3) {
-                    if (s_result1.isEmpty() || s_result2.isEmpty() || s_result3.isEmpty()
-                            || s_decome1.isEmpty() || s_decome2.isEmpty() || s_decome3.isEmpty()) {
-                        ArmsUtils.snackbarText("请填写结果信息");
-                        return;
-                    }
-                } else if (i == 4) {
-                    if (s_result1.isEmpty() || s_result2.isEmpty() || s_result3.isEmpty() || s_result4.isEmpty()
-                            || s_decome1.isEmpty() || s_decome2.isEmpty() || s_decome3.isEmpty() || s_decome4.isEmpty()) {
-                        ArmsUtils.snackbarText("请填写结果信息");
-                        return;
-                    }
+
+
+                if (s_result1.isEmpty()
+                        || s_decome1.isEmpty()) {
+                    ArmsUtils.snackbarText("请填写结果信息");
+                    return;
                 }
 
-                //item.newResult(s_result1, s_result2, s_result3, s_result4, s_decome1, s_decome2, s_decome3, s_decome4, i);
+
+                item.newResult(s_result1, s_decome1);
 
             }
         });
@@ -400,7 +333,7 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
                     ArmsUtils.snackbarText(mContext.getString(R.string.pleacechoseitemfirst));
                     return true;
                 }
-                makeNewResultDialog(getGallery(), getGallery().getJTJCardModel());
+                makeNewResultDialog(getGallery());
                 return true;
             }
         });
@@ -827,7 +760,7 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
         editText.requestFocus();
 
         editText.postDelayed(() -> {
-            InputMethodManager imm = (InputMethodManager)  mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
             if (imm != null) {
                 // 3. 显式调用 showSoftInput，并传入强制显示的标志
                 // 注意：第一个参数必须是当前获得焦点的 View

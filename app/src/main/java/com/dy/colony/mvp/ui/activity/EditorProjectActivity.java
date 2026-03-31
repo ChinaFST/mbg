@@ -265,36 +265,6 @@ public class EditorProjectActivity extends BaseActivity<EditorProjectPresenter> 
         mAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void makeDialogNewVersion(String filename, String local, String from, String linkurl, UpdateFileMessage message) {
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                LogUtils.d("makeDialogNewVersion");
-                androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(getActivity());
-                builder.setPositiveButton(getString(R.string.download), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mPresenter.downLoadProject(filename, from, linkurl);
-
-                    }
-                });
-                builder.setNeutralButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-                builder.setTitle(getString(R.string.projectversionnmessage))
-                        .setMessage(getString(R.string.serviceversion) + filename + "\r\n" + getString(R.string.localversion) + (local.equals("") ? getString(R.string.whihoutnewversion) : local))
-                        //.setIcon(R.mipmap.ic)
-                        .setCancelable(false);
-                androidx.appcompat.app.AlertDialog dialog = builder.create();
-                dialog.setCanceledOnTouchOutside(true);//设置弹出框失去焦点是否隐藏
-                dialog.show();
-            }
-        });
-    }
 
     @Override
     public void onBackPressed() {
@@ -312,30 +282,6 @@ public class EditorProjectActivity extends BaseActivity<EditorProjectPresenter> 
 
     }
 
-    @Override
-    public void inputProject(File file, String filename, String from) {
-        List<String> list = new ArrayList<>();
-        list.add(file.getAbsolutePath());
-        if ("fggd".equals(from)) {
-            if (mData.isEmpty()) {
-                mPresenter.inPutFGGDItem(list, true);
-
-            } else {
-                mPresenter.makeCheckDialog(list, from);
-
-            }
-        } else if (from.contains("jtj")) {
-            if (mData.isEmpty()) {
-                mPresenter.inPutJTJitem(list, true);
-
-            } else {
-                mPresenter.makeCheckDialog(list, from);
-
-            }
-        }
-
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -365,9 +311,7 @@ public class EditorProjectActivity extends BaseActivity<EditorProjectPresenter> 
                 JxlUtils.openFileChose_Folder(getActivity());
                 break;
 
-            case R.id.action_updata:
-                mPresenter.checkNewVersion(mFrom);
-                break;
+
             default:
                 break;
         }

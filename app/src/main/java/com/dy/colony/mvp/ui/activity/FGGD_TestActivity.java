@@ -128,10 +128,7 @@ public class FGGD_TestActivity extends BaseActivity<FGGD_TestPresenter> implemen
     @BindView(R.id.btn_controtest)
     Button mBtnControtest;
 
-    @BindView(R.id.btn_step)
-    Button mBtnStep;
-    @BindView(R.id.btn_video)
-    Button mBtnVideo;
+
     @BindView(R.id.btn_adjust)
     Button mBtnAdjust;
     @BindView(R.id.btn_query)
@@ -176,10 +173,10 @@ public class FGGD_TestActivity extends BaseActivity<FGGD_TestPresenter> implemen
                 launchActivity(intent);
                 break;
             case 3:
-                intent.setClass(getActivity(), ChoseUnitActivity.class);
+                /*intent.setClass(getActivity(), ChoseUnitActivity.class);
                 intent.putExtra("from", "fggd");
                 intent.putExtra("index", bean.getGalleryNum());
-                launchActivity(intent);
+                launchActivity(intent);*/
                 break;
 
             case 5:
@@ -351,7 +348,7 @@ public class FGGD_TestActivity extends BaseActivity<FGGD_TestPresenter> implemen
     }
 
 
-    @OnClick({R.id.btn_adjust, R.id.btn_clear, R.id.btn_sampletest, R.id.btn_controtest, R.id.btn_step, R.id.btn_video, R.id.btn_query, R.id.btn_change_di_dro})
+    @OnClick({R.id.btn_adjust, R.id.btn_clear, R.id.btn_sampletest, R.id.btn_controtest,  R.id.btn_query, R.id.btn_change_di_dro})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_adjust:
@@ -367,12 +364,7 @@ public class FGGD_TestActivity extends BaseActivity<FGGD_TestPresenter> implemen
             case R.id.btn_controtest:
                 mPresenter.controlTest();
                 break;
-            case R.id.btn_step:
-                //startActivity(new Intent(getActivity(), StepActivity.class).putExtra("data", 1));
-                break;
-            case R.id.btn_video:
-                //startActivity(new Intent(getActivity(), VideoActivity.class).putExtra("data", 1));
-                break;
+
             case R.id.btn_query:
                 startActivity(new Intent(getActivity(), TestRecordNewActivity.class));
                 break;

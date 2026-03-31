@@ -147,7 +147,7 @@
             android:layout_weight="1"
             android:background="@drawable/background_item_gray"
             android:gravity="start|center_vertical"
-            android:hint="@string/retest"
+            android:hint=""
             android:paddingLeft="6dp"
             android:textColor="#1F1F1F"
             android:textSize="14sp"

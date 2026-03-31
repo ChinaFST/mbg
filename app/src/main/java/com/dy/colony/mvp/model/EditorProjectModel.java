@@ -83,12 +83,5 @@ public class EditorProjectModel extends BaseModel implements EditorProjectContra
     }
 
 
-    @Override
-    public Observable<UpdateFileMessage> upgradeFile(String appName) {
-        return mRepositoryManager
-                .obtainRetrofitService(YQWLW_Service.class)
-                .upgradeFile(appName)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io());
-    }
+
 }

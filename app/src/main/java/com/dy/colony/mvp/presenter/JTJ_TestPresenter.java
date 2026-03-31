@@ -56,7 +56,6 @@ public class JTJ_TestPresenter extends BasePresenter<JTJ_TestContract.Model, JTJ
     AppManager mAppManager;
     @Inject
     AlertDialog.Builder mAlertDialog;
-    private List<UsbDevice> mDeviceList;
 
 
     @Inject
@@ -146,71 +145,4 @@ public class JTJ_TestPresenter extends BasePresenter<JTJ_TestContract.Model, JTJ
         mAlertDialog.show();
     }
 
-    public void makeChoseSeachMethodDialog(List<BaseJTJTestView> views) {
-        List<BaseJTJTestView> reStartviews = new ArrayList<>();
-        List<BaseJTJTestView> startviews = new ArrayList<>();
-
-        View view = View.inflate(mRootView.getActivity(), R.layout.chose_scanner_method_layout_jtj_s_p, null);
-        LinearLayout group = (LinearLayout) view.findViewById(R.id.group);
-        for (int i = 0; i < views.size(); i++) {
-            BaseJTJTestView bean = views.get(i);
-            int state = bean.getGallery().getState();
-            if (state == 1) {
-                startviews.add(bean);
-            }
-            if (state != 1 && bean.checkMessageState()) {
-                View gallery = View.inflate(mRootView.getActivity(), R.layout.chose_timer_layout, null);
-                ((TextView) gallery.findViewById(R.id.jtj_gallerynum)).setText(mApplication.getResources().getString(R.string.gallery) + bean.getGallery().getJTJ_MAC() + mApplication.getResources().getString(R.string.will_be));
-                EditText times = (EditText) gallery.findViewById(R.id.tiemrs);
-                BaseProjectMessage message = bean.getGallery().getProjectMessage();
-                times.setText(message.getTestTime() + "");
-                gallery.setTag(i);
-                group.addView(gallery);
-                reStartviews.add(bean);
-            }
-        }
-        if (startviews.size() == MyAppLocation.myAppLocation.mSerialDataService.mJTJGalleryBeanList.size()) {
-            ArmsUtils.snackbarText(mApplication.getResources().getString(R.string.no_free_channel));
-            return;
-        }
-        if (reStartviews.size() == 0) {
-            ArmsUtils.snackbarText(mApplication.getString(R.string.pleacechoseitemfirst));
-            return;
-        }
-
-        mAlertDialog.setTitle(mApplication.getResources().getString(R.string.select_detection_mode)).setView(view);
-        mAlertDialog.setPositiveButton(mApplication.getText(R.string.start_countdown), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                for (int i = 0; i < group.getChildCount(); i++) {
-                    View at = group.getChildAt(i);
-                    int tag = (int) at.getTag();
-                    BaseJTJTestView view1 = views.get(tag);
-                    String s = ((EditText) at.findViewById(R.id.tiemrs)).getText().toString();
-                    if ("".equals(s)) {
-                        ArmsUtils.snackbarText(mApplication.getResources().getString(R.string.invalid_input_value));
-                        continue;
-                    }
-                    int integer = Integer.parseInt(s);
-                    view1.getGallery().startCountdown_JTJ(integer);
-                }
-
-            }
-        }).setNegativeButton(mApplication.getText(R.string.cancel), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        }).setNeutralButton(R.string.start_detection, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                for (int i = 0; i < reStartviews.size(); i++) {
-                    BaseJTJTestView view1 = reStartviews.get(i);
-                    view1.startTest();
-                }
-            }
-        });
-        mAlertDialog.show();
-
-    }
 }

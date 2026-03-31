@@ -240,48 +240,9 @@ public class SampleMessageActivity extends BaseActivity<SampleMessagePresenter> 
         }
     }
 
-    @Override
-    public void makeDialogNewVersion(String filename, String local, String linkurl, UpdateFileMessage message) {
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                LogUtils.d("makeDialogNewVersion");
-                androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(getActivity());
-                builder.setPositiveButton(getString(R.string.download), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mPresenter.downLoadProject(filename, linkurl);
 
-                    }
-                });
-                builder.setNeutralButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
 
-                    }
-                });
-                builder.setTitle(R.string.sampleversionnmessage)
-                        .setMessage(getString(R.string.serviceversion) + filename + "\r\n" + getString(R.string.localversion) + (local.equals("") ? getString(R.string.whihoutnewversion) : local))
-                        .setCancelable(false);
-                androidx.appcompat.app.AlertDialog dialog = builder.create();
-                dialog.setCanceledOnTouchOutside(true);//设置弹出框失去焦点是否隐藏
-                dialog.show();
-            }
-        });
-    }
 
-    @Override
-    public void inputProject(File file, String filename) {
-        List<String> list = new ArrayList<>();
-        list.add(file.getAbsolutePath());
-        LogUtils.d(list);
-
-        if (mList.isEmpty()) { //导入
-            mPresenter.inPutJxl(list, true);
-        } else {
-            makeChoseDialog(list);//当前数据集如果不是空的弹框提示用户是否需要保留当前数据
-        }
-    }
 
     //控件触发刷新
     @Override
@@ -437,8 +398,7 @@ public class SampleMessageActivity extends BaseActivity<SampleMessagePresenter> 
             case R.id.menu_input_testitem:
                 JxlUtils.openFileChose_File(getActivity());
                 break;
-            case R.id.action_updata:
-                break;
+
         }
 
         return true;

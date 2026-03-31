@@ -1,0 +1,389 @@
+<resources>
+    <string name="app_name">IA600</string>
+    <string name="device_name" translatable="false">IA600 Smart-Check Reader</string>
+    <string name="customactivityoncrash_error_activity_error_occurred_explanation" translatable="false">An unexpected error occurred. We apologize for the inconvenience.</string>
+    <string name="customactivityoncrash_error_activity_restart_app" translatable="false">Restart</string>
+    <string name="customactivityoncrash_error_activity_close_app" translatable="false">Close program</string>
+    <string name="customactivityoncrash_error_activity_error_details" translatable="false">Error Log</string>
+    <string name="customactivityoncrash_error_activity_error_details_title" translatable="false">Error Details</string>
+    <string name="customactivityoncrash_error_activity_error_details_close" translatable="false">Close</string>
+    <string name="customactivityoncrash_error_activity_error_details_copy" translatable="false">Copy log</string>
+    <string name="customactivityoncrash_error_activity_error_details_clipboard_label" translatable="false">error message</string>
+    <string name="openserialfirst">Please open the serial port first.</string>
+    <string name="login_username_hint">Please enter your username.</string>
+    <string name="login_password_hint">Please enter your password.</string>
+    <string name="login_cb_text">Remember account password</string>
+    <string name="login">Log in</string>
+    <string name="callus">Contact Us</string>
+    <string name="register_online">User Registration</string>
+    <string name="login_company_name">Guangdong Dayuan Oasis Food Safety Technology Co., Ltd.</string>
+    <string name="register_username">Register an account</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="confirmpassword">Confirm Password</string>
+    <string name="name">Name</string>
+    <string name="phone">Telephone</string>
+    <string name="belong_units">Affiliated Unit</string>
+    <string name="jobname">Position</string>
+    <string name="register_now">Register now</string>
+    <string name="hint_usenamenotempty">Username cannot be empty.</string>
+    <string name="hint_passwordnotempty">Password cannot be empty</string>
+    <string name="hint_passwordnotsample">Passwords do not match</string>
+    <string name="hint_usermalesuccess">User created successfully!</string>
+    <string name="hint_loginsuccess">Login successful</string>
+    <string name="hint_loginfail1">Login failed, username does not exist.</string>
+    <string name="hint_loginfail2">Login failed, incorrect password.</string>
+    <string name="login_toast_nousername">Please enter your username!</string>
+    <string name="login_toast_nopassword">Please enter your password!</string>
+    <string name="hint_exit_app">Press exit program again</string>
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="test_record">Test Records</string>
+    <string name="conventional_food_safety">Conventional food safety</string>
+    <string name="start_test">Spectrophotometry</string>
+    <string name="halal_verification">Halal verification</string>
+    <string name="pork_alcohol">Pig source testing</string>
+    <string name="login_out">Log out</string>
+    <string name="auto_upload">Automatic upload</string>
+    <string name="mothod1" translatable="false">Inhibition rate method</string>
+    <string name="mothod2" translatable="false">Standard curve method</string>
+    <string name="mothod3" translatable="false">kinetic method</string>
+    <string name="mothod4" translatable="false">Coefficient method</string>
+    <string name="method_xiaoxian" translatable="false">Qualitative line elimination method</string>
+    <string name="method_bise" translatable="false">Qualitative colorimetry</string>
+    <string name="txt_invalid" translatable="false">invalid</string>
+    <string name="yin" translatable="false">Negative</string>
+    <string name="yang" translatable="false">Positive</string>
+    <string name="keyi" translatable="false">suspicious</string>
+    <string name="ok" translatable="false">qualified</string>
+    <string name="ng" translatable="false">Unqualified</string>
+    <string name="JTJ_TestMoudle_P" translatable="false">Colloidal gold</string>
+    <string name="FGGD_TestMoudle" translatable="false">Spectrophotometer</string>
+    <string name="str_clear">Clear</string>
+    <string name="str_adjust">calibration</string>
+    <string name="controlvalue">control value</string>
+    <string name="errormesage1" translatable="false">The channel is malfunctioning; zeroing or calibration is recommended.</string>
+    <string name="testproject" translatable="false">Testing items</string>
+    <string name="inspectedunit" translatable="false">Inspected unit</string>
+    <string name="makecontrole" translatable="false">contrast</string>
+    <string name="makesample" translatable="false">sample</string>
+    <string name="errormessage2" translatable="false">If the channel %s is abnormal, it is recommended to zero or calibrate it.</string>
+    <string name="errormessage3" translatable="false">Channel %s is abnormal; the AD value for the wavelength range corresponding to the detection item selected for this channel is 0.</string>
+    <string name="place_choseproject" translatable="false">Please select the test items.</string>
+    <string name="doingcontrol" translatable="false">Controlled testing is underway.</string>
+    <string name="samplename" translatable="false">Sample Name</string>
+    <string name="method" translatable="false">Detection methods</string>
+    <string name="fyy_number" translatable="false">Number of reaction drops / dilution factor</string>
+    <string name="change" translatable="false">modify</string>
+    <string name="searinumber" translatable="false">serial number</string>
+    <string name="edit_samplename" translatable="false">Edit Sample Name</string>
+    <string name="EditorProjectActivity" translatable="false">Editing test items</string>
+    <string name="standnum" translatable="false">Judgment basis</string>
+    <string name="limitvalue" translatable="false">Limited Edition</string>
+    <string name="testresult" translatable="false">Test results</string>
+    <string name="jujerment" translatable="false">Judgment Result</string>
+    <string name="testtime" translatable="false">Detection time</string>
+    <string name="testplace" translatable="false">Testing locations</string>
+    <string name="testpeople" translatable="false">Inspectors</string>
+    <string name="sampleplace" translatable="false">Sample origin</string>
+    <string name="loading" translatable="false">Loading</string>
+    <string name="contro_ad" translatable="false">Compare AD values</string>
+    <string name="now_ad" translatable="false">Real-time AD value</string>
+    <string name="transmittance" translatable="false">Light transmittance</string>
+    <string name="absorbance" translatable="false">absorbance</string>
+    <string name="channel_undetected_hint" translatable="false">The current channel did not detect the cuvette (the test liquid has high transmittance). Should we continue the test?</string>
+    <string name="continue_testing" translatable="false">Continue testing</string>
+    <string name="cancel" translatable="false">Cancel</string>
+    <string name="sure" translatable="false">Sure</string>
+    <string name="hint" translatable="false">hint</string>
+    <string name="controlled_needed_first" translatable="false">A control test is required first.</string>
+    <string name="sample_testing" translatable="false">Sample testing is underway.</string>
+    <string name="testinng" translatable="false">During testing！</string>
+    <string name="titledetailnomore" translatable="false">Channel details</string>
+    <string name="cleansuccess" translatable="false">Cleared successfully</string>
+    <string name="allgalleryistesting" translatable="false">All channels are being tested.</string>
+    <string name="hint_howtousermessage1" translatable="false">Please first select the corresponding test items and sample information for the test channel (the control channel defaults to the first channel with the same test items selected; for the control channel, you only need to select the test items). Then place the cuvette into the channel. After the channel color turns light blue, click the "Control" button below to start the test simultaneously.</string>
+    <string name="hint_howtousermessage2" translatable="false">Please first select the corresponding test items and sample information for the test channel, and then place the cuvette into the channel. After the channel color turns light blue, click the "Sample" button below to start the test.</string>
+    <string name="hint_pleaceselectgallery" translatable="false">Please select the appropriate channel first.</string>
+    <string name="hint_inputsampleplace" translatable="false">Please enter the sample country of origin.</string>
+    <string name="select_all">Select All</string>
+    <string name="select_standard_limit">Please select the testing standard and limit value.</string>
+    <string name="testing_standards">Testing standards</string>
+    <string name="contrast_symbols">Contrast symbols</string>
+    <string name="limit_unit">Limited quantity unit</string>
+    <string name="camera_module">camera module</string>
+    <string name="channel_label">Channel %1$d</string>
+    <string name="no_standard_found">No suitable standard was found. Please update your local sample.</string>
+    <string name="inputdirnumber" translatable="false">Please enter the dilution factor.</string>
+    <string name="enter_number_reaction_drops" translatable="false">Please enter the number of reaction droplets.</string>
+    <string name="hintnotnull" translatable="false">Invalid input; input cannot be empty.</string>
+    <string name="channeldetails" translatable="false">Detailed information for channel %s</string>
+    <string name="gallery" translatable="false">aisle</string>
+    <string name="detail_msg" translatable="false">Detailed information</string>
+    <string name="hideresult" translatable="false">Hide Results</string>
+    <string name="showresult" translatable="false">Display results</string>
+    <string name="testing" translatable="false">Under testing</string>
+    <string name="choseprojectFirst" translatable="false">Please select the test items first.</string>
+    <string name="testing_wait" translatable="false">The channel is being tested, please wait.</string>
+    <string name="select_appropriate_channel" translatable="false">Please select the appropriate channel first.</string>
+    <string name="pleacechoseitemfirst" translatable="false">Please select the testing items and samples first.</string>
+    <string name="projectname" translatable="false">project:</string>
+    <string name="project_method" translatable="false">method:</string>
+    <string name="project_remark" translatable="false">Remark:</string>
+    <string name="editor" translatable="false">edit</string>
+    <string name="delete" translatable="false">delete</string>
+    <string name="areyousuretodeletesample" translatable="false">Are you sure you want to delete this sample data?</string>
+    <string name="nomore_data">No more data available.</string>
+    <string name="chose" translatable="false">choose</string>
+    <string name="seach" translatable="false">search</string>
+    <string name="type" translatable="false">type</string>
+    <string name="wave410" translatable="false">410\n波长段</string>
+    <string name="wava536" translatable="false">536\n波长段</string>
+    <string name="wava595" translatable="false">595\n波长段</string>
+    <string name="wava620" translatable="false">620\n波长段</string>
+    <string name="adjust_message1" translatable="false">Please perform calibration only after the testing is complete.</string>
+    <string name="failed_open" translatable="false">Failed to open！</string>
+    <string name="contro_erromessage1" translatable="false">If the absorbance is infinite at the beginning or end, this control is invalid.！</string>
+    <string name="lastcontrovalue" translatable="false">The test is invalid due to the lack of a control value.！</string>
+    <string name="sampleerro_message2" translatable="false">The absorbance before detection was greater than the absorbance after detection, therefore this control is invalid.！</string>
+    <string name="sampleerro_message3" translatable="false">The control value is less than the specified value, therefore this control is invalid.！</string>
+    <string name="absorbance_infinite_end">The absorbance was infinite at the end, so the test was invalid.！</string>
+    <string name="control_less_0">If the control value is less than 0, the test is invalid.！</string>
+    <string name="absorbance_outside_range">If the absorbance exceeds the acceptable range, please check if the detection method parameters are correct.！</string>
+    <string name="reference_national_standards">Reference national standards</string>
+    <string name="use_appropriate">Use in appropriate amounts</string>
+    <string name="no_limit_set">No limit has been set; please determine the quantity yourself.</string>
+    <string name="rice_freshness">Rice freshness</string>
+    <string name="Fresh_rice">Fresh rice</string>
+    <string name="Chen_Mi">Chen Mi</string>
+    <string name="Aged_rice">Aged rice</string>
+    <string name="parerror" translatable="false">Parameter error</string>
+    <string name="newsample" translatable="false">New sample</string>
+    <string name="editersample" translatable="false">Edit Sample</string>
+    <string name="enter_or_select_item" translatable="false">Please enter or select the test item first.！</string>
+    <string name="local_standards_not_found" translatable="false">No relevant local testing standards were found. Please contact the instrument manufacturer.</string>
+    <string name="please_enter_keyword" translatable="false">Please enter keywords.</string>
+    <string name="hintmessage_requiredfieldscannotbeempty" translatable="false">Required fields cannot be empty.</string>
+    <string name="str_number">Serial Number</string>
+    <string name="category_name">Food/Category Name</string>
+    <string name="food_alias">Food/Category Name</string>
+    <string name="dialog_message_top" translatable="false">It is already at the top level.</string>
+    <string name="dialog_message_nomordata" translatable="false">There is no more content.！</string>
+    <string name="edit_hint1" translatable="false">*Test items (long press the input box to select)</string>
+    <string name="edit_hint2" translatable="false">*Sample type number (long press to select from input box)</string>
+    <string name="edit_hint3" translatable="false">*Sample type name</string>
+    <string name="edit_hint4" translatable="false">*Sample Name</string>
+    <string name="edit_hint5" translatable="false">*Sample number</string>
+    <string name="edit_hint6" translatable="false">*Standard basis (long press the input box to select)</string>
+    <string name="edit_hint7" translatable="false">*Decision symbol</string>
+    <string name="edit_hint8" translatable="false">*Limited Edition</string>
+    <string name="edit_hint9" translatable="false">*Limited edition</string>
+    <string name="channel_data_loss">Channel data loss</string>
+    <string name="FGGDAdjustingActivity" translatable="false">Spectrophotometer AD value calibration</string>
+    <string name="JTJ_TestActivity" translatable="false">Colloidal gold detection</string>
+    <string name="FGGD_TestActivity" translatable="false">Spectrophotometric detection</string>
+    <string name="ChoseProjectActivity" translatable="false">Select testing items</string>
+    <string name="ChoseSampleActivity" translatable="false">Select sample name</string>
+    <string name="EdtorSampleActivity" translatable="false">Edit Sample</string>
+    <string name="ChoseSampleTypeActivity" translatable="false">Select sample type</string>
+    <string name="auto_upload_enabled">Automatic upload is enabled.</string>
+    <string name="autoupload_disabled">Automatic upload is now disabled.</string>
+    <string name="select_time" translatable="false">Please select time</string>
+    <string name="testmoudle" translatable="false">Detection module</string>
+    <string name="all" translatable="false">all</string>
+    <string name="details" translatable="false">Details</string>
+    <string name="hint_pleaceselecedeletedata" translatable="false">Please select the detection records you wish to delete.</string>
+    <string name="testresultitem" translatable="false">Is there a test record?？</string>
+    <string name="areyousuredelete" translatable="false">Determine if you need to delete the currently selected items.</string>
+    <string name="deleteing" translatable="false">Deleting data</string>
+    <string name="general" translatable="false">common</string>
+    <string name="page" translatable="false">page，</string>
+    <string name="item" translatable="false">item</string>
+    <string name="offline_use">Offline use</string>
+    <string name="other" translatable="false">other</string>
+    <string name="pleaceinputkeyword" translatable="false">Please enter your search keywords.</string>
+    <string name="save" translatable="false">save</string>
+    <string name="seachresult" translatable="false">Search results for %s</string>
+    <string name="upload" translatable="false">Upload</string>
+    <string name="record_has_uploaded" translatable="false">The test record has been uploaded.</string>
+    <string name="Upload_not_supported">Upload not supported</string>
+    <string name="sel_need_test_record">Please select the test record you wish to upload. Uploaded test results are only accepted as either "pass" or "fail".</string>
+    <string name="selected_data_has_upload">The currently selected data has already been uploaded and cannot be uploaded again.</string>
+    <string name="TestRecordMessageActivity" translatable="false">Test record details</string>
+    <string name="look_fail" translatable="false">View failed</string>
+    <string name="qr_code_result" translatable="false">QR code of test results</string>
+    <string name="detection_curve" translatable="false">Detection curve</string>
+    <string name="judgment_criteria" translatable="false">Judgment criteria</string>
+    <string name="detect_unit" translatable="false">Testing unit</string>
+    <string name="detection_value">Detection value</string>
+    <string name="enter_test_value">Please enter the test value and test result.</string>
+    <string name="print_mothed1" translatable="false">Detection method: Inhibition rate method</string>
+    <string name="print_mothed2" translatable="false">Detection method: Standard curve method</string>
+    <string name="print_mothed3" translatable="false">Detection method: Kinetic method</string>
+    <string name="print_mothed4" translatable="false">Detection method: Coefficient method</string>
+    <string name="query_fail" translatable="false">Query failed</string>
+    <string name="txt_red_green_blue" translatable="false">1-Red 2-Green 3-Blue 4-Black</string>
+    <string name="detect_unit_name" translatable="false">Name of testing unit：</string>
+    <string name="detect_unit_id" translatable="false">Testing unitID：</string>
+    <string name="local_sample_not_found" translatable="false">This information was not found in the local sample library.</string>
+    <string name="file_is_empty" translatable="false">The file is empty.</string>
+    <string name="dilution_factor" translatable="false">Dilution factor：</string>
+    <string name="number_reaction_drops" translatable="false">Number of reaction drops：</string>
+    <string name="pdf_file_corruption" translatable="false">PDF file corrupted</string>
+    <string name="sample_details" translatable="false">Sample details</string>
+    <string name="unique_id" translatable="false">Unique ID：</string>
+    <string name="sample_name_colon" translatable="false">Sample Name：</string>
+    <string name="test_project_colon" translatable="false">Testing items：</string>
+    <string name="test_method_colon" translatable="false">Detection methods：</string>
+    <string name="sample_number_colon" translatable="false">Sample number：</string>
+    <string name="serial_number_colon" translatable="false">serial number：</string>
+    <string name="channel_number_colon" translatable="false">Channel number：</string>
+    <string name="judgment_basis_colon" translatable="false">Judgment basis：</string>
+    <string name="control_value_colon" translatable="false">control value：</string>
+    <string name="code_testing_card" translatable="false">QR code on the testing card：</string>
+    <string name="test_result_colon" translatable="false">Test results：</string>
+    <string name="judgment_result_colon" translatable="false">Judgment Result：</string>
+    <string name="sample_origin_colon" translatable="false">Sample origin：</string>
+    <string name="inspectors_colon" translatable="false">Inspectors：</string>
+    <string name="reading_time_colon" translatable="false">Reading time：</string>
+    <string name="detect_time_colon" translatable="false">Detection time：</string>
+    <string name="testing_locations_colon" translatable="false">Testing locations：</string>
+    <string name="longitude_colon" translatable="false">longitude：</string>
+    <string name="latitude_colon" translatable="false">latitude：</string>
+    <string name="parent_class_number_colon" translatable="false">Parent class number：</string>
+    <string name="testing_standards_colon" translatable="false">Testing standards：</string>
+    <string name="limit_value_colon" translatable="false">Limited Edition：</string>
+    <string name="update_date_colon" translatable="false">Update date：</string>
+    <string name="manually_add_colon" translatable="false">Manually add?：</string>
+    <string name="txt_yes" translatable="false">yes</string>
+    <string name="txt_no" translatable="false">no</string>
+    <string name="inspected_unit_colon" translatable="false">Inspected unit:</string>
+    <string name="detect_result_split" translatable="false">------Test Results------</string>
+    <string name="testmoudle_colon" translatable="false">Detection module:</string>
+    <string name="not_login_hint" translatable="false">Currently in offline mode, would you like to log in?</string>
+    <string name="fggd_module" translatable="false">Spectrophotometer module</string>
+    <string name="jtj_module" translatable="false">Colloidal gold module</string>
+    <string name="handheld_device" translatable="false">Handheld digital inspection device</string>
+    <string name="offline_mode_hint" translatable="false">This is currently in offline mode. Please log in first.</string>
+    <string name="enter_inspect_unit" translatable="false">Enter the inspected unit</string>
+    <string name="fg_data_anomaly">fg_data_anomaly</string>
+    <string name="projectpassword" translatable="false">Detection item password</string>
+    <string name="deletesuccess" translatable="false">Deletion successful!</string>
+    <string name="passworderro" translatable="false">Incorrect password, please re-enter!</string>
+    <string name="moudleproject_fggd" translatable="false">Spectrophotometric detection items</string>
+    <string name="moudleproject_jtj" translatable="false">Colloidal gold testing items</string>
+    <string name="weichartnum" translatable="false">WeChat ID：shiankeji</string>
+    <string name="qqnum" translatable="false">connectQQ：2851265715</string>
+    <string name="service_phone" translatable="false">Service Hotline：400-696-6968</string>
+    <string name="ed_projectname" translatable="false">Test item name</string>
+    <string name="ed_serinumber" translatable="false">Serial Number</string>
+    <string name="ed_waves" translatable="false">Wavelength range:</string>
+    <string name="yure_tiem" translatable="false">Warm-up time (s)</string>
+    <string name="test_time" translatable="false">Detection time (s)</string>
+    <string name="unit_input" translatable="false">Unit of test value</string>
+    <string name="yin_from" translatable="false">Negative range (from)</string>
+    <string name="yin_to" translatable="false">Negative range (to)</string>
+    <string name="yang_from" translatable="false">Positive range (from)</string>
+    <string name="yang_to" translatable="false">Positive range (to)</string>
+    <string name="keyi_from" translatable="false">Suspicious range (from)</string>
+    <string name="keyi_to" translatable="false">Suspicious range (to)</string>
+    <string name="jiaozhenga" translatable="false">Correction A</string>
+    <string name="jiaozhengb" translatable="false">Correction B</string>
+    <string name="use_tuise" translatable="false">Should the fading method be used?</string>
+    <string name="jiaozhuna" translatable="false">Calibration curve A</string>
+    <string name="jiaozhunb" translatable="false">Calibration curve B</string>
+    <string name="jiaozhengc" translatable="false">Correction C</string>
+    <string name="jiaozhengd" translatable="false">Correction D</string>
+    <string name="fggditem_message1" translatable="false">The test items were successfully modified!</string>
+    <string name="fggditem_message2" translatable="false">The testing project was created successfully!</string>
+    <string name="fggditem_message3" translatable="false">Please enter the name of the test item.</string>
+    <string name="fggditem_message4" translatable="false">Please enter the password for the test item.</string>
+    <string name="fggditem_message5" translatable="false">Please enter the serial number.</string>
+    <string name="enter_yure_time" translatable="false">Please enter the preheating time.</string>
+    <string name="enter_detect_time" translatable="false">Please enter the detection time.</string>
+    <string name="enter_unit_value" translatable="false">Please enter the unit of measurement value.</string>
+    <string name="enter_yin_range" translatable="false">Please enter the negative range.</string>
+    <string name="enter_yang_range" translatable="false">Please enter the positive range.</string>
+    <string name="enter_keyi_range" translatable="false">Please enter the scope of suspicion.</string>
+    <string name="fggditem_message18" translatable="false">Please enter the AX0 parameter.</string>
+    <string name="fggditem_message19" translatable="false">Please enter the AX1 parameter.</string>
+    <string name="fggditem_message20" translatable="false">Please enter the AX2 parameter.</string>
+    <string name="fggditem_message21" translatable="false">Please enter the AX3 parameter.</string>
+    <string name="fggditem_message22" translatable="false">Please enter the AFROM parameters.</string>
+    <string name="fggditem_message23" translatable="false">Please enter the ATO parameters.</string>
+    <string name="fggditem_message24" translatable="false">Please enter parameter BX0.</string>
+    <string name="fggditem_message25" translatable="false">Please enter parameter BX1.</string>
+    <string name="fggditem_message26" translatable="false">Please enter the BX2 parameter.</string>
+    <string name="fggditem_message27" translatable="false">Please enter the BX3 parameter.</string>
+    <string name="fggditem_message28" translatable="false">Please enter the BFROM parameters.</string>
+    <string name="fggditem_message29" translatable="false">Please enter the BTO parameters.</string>
+    <string name="enter_jz_curve_a" translatable="false">Please enter the calibration curve A.</string>
+    <string name="enter_jz_curve_b" translatable="false">Please enter calibration curve B.</string>
+    <string name="fggditem_message35" translatable="false">Please enter calibration curve A.</string>
+    <string name="fggditem_message36" translatable="false">Please enter calibration curve B.</string>
+    <string name="enter_jz_curve_c" translatable="false">Please enter the calibration curve C.</string>
+    <string name="enter_jz_curve_d" translatable="false">Please enter the calibration curve D.</string>
+    <string name="new_testing_items" translatable="false">New testing items</string>
+    <string name="jtj_hint_2" translatable="false">* Project Name</string>
+    <string name="jtj_hint_3" translatable="false">* Detection methods (1 is the qualitative extinction method, 2 is the qualitative colorimetric method)</string>
+    <string name="jtj_hint_4" translatable="false">* Channel 1 C line output value</string>
+    <string name="jtj_hint_5" translatable="false">* Channel 1 T-line interval A</string>
+    <string name="jtj_hint_6" translatable="false">* Channel 1 T-line section B</string>
+    <string name="jtj_hint_7" translatable="false">* Channel 1 T/C section A</string>
+    <string name="jtj_hint_8" translatable="false">* Channel 1 T/C section B</string>
+    <string name="jtj_hint_9" translatable="false">* Channel 2 C line output value</string>
+    <string name="jtj_hint_10" translatable="false">* Channel 2 T-line section A</string>
+    <string name="jtj_hint_11" translatable="false">* Channel 2 T-line section B</string>
+    <string name="jtj_hint_12" translatable="false">* Channel 2 T/C section A</string>
+    <string name="jtj_hint_13" translatable="false">* Channel 2 T/C Interval B</string>
+    <string name="jtj_hint_14" translatable="false">* Detection time</string>
+    <string name="jtj_hint_15" translatable="false">* Project Password</string>
+    <string name="hintmessage_mustinput" translatable="false">The options marked with an asterisk (*) are required.</string>
+    <string name="new_project" translatable="false">New</string>
+    <string name="input_project" translatable="false">Import</string>
+    <string name="output_project" translatable="false">Export</string>
+    <string name="start_time">Start time</string>
+    <string name="end_time">End time</string>
+    <string name="pleacechosefile" translatable="false">Please select a file</string>
+    <string name="lfile_NotFoundBooks" translatable="false">Please select the file to import.</string>
+    <string name="lfile_NotFoundPath" translatable="false">SD memory card status is unavailable</string>
+    <string name="lfile_UpOneLevel" translatable="false">Previous level</string>
+    <string name="lfile_Selected" translatable="false">Selected</string>
+    <string name="lfile_LItem" translatable="false">item</string>
+    <string name="lfile_FileSize" translatable="false">File size: </string>
+    <string name="lfile_OutSize" translatable="false">Maximum number of selections has been reached.</string>
+    <string name="lfile_Cancel" translatable="false">Cancel Select All</string>
+    <string name="lfile_ChooseTip" translatable="false">Please select a folder</string>
+    <string name="importdata" translatable="false">Importing data</string>
+    <string name="importsuccess" translatable="false">Import successful!</string>
+    <string name="notfggditemlist" translatable="false">Non-spectral detection items</string>
+    <string name="skipitemmessage" translatable="false">Should we retain the existing testing items?</string>
+    <string name="keep" translatable="false">reserve</string>
+    <string name="replace" translatable="false">replace</string>
+    <string name="preparingdata" translatable="false">Data is being prepared.</string>
+    <string name="nodatatoexport" translatable="false">No data needs to be exported.</string>
+    <string name="exportingdata" translatable="false">Exporting data</string>
+    <string name="exportsuccess" translatable="false">Export successful</string>
+    <string name="jxlerro" translatable="false">An exception occurred while creating a table using the jxl component.</string>
+    <string name="standnumber" translatable="false">Standard number</string>
+    <string name="standvalue" translatable="false">Standard value</string>
+    <string name="operate" translatable="false">operate</string>
+    <string name="input_data" translatable="false">Import data</string>
+    <string name="output_data" translatable="false">Export data</string>
+    <string name="sample_jxl_title_1" translatable="false">ID, Sample ID, Comparison Symbol, Limit Value Unit, Parent Category Number</string>
+    <string name="sample_jxl_title_2" translatable="false">Test Item, Sample Name, Sample Number, Standard Name, Standard Value, Update Time, FLAG</string>
+    <string name="Sample_ID" translatable="false">Sample ID</string>
+    <string name="nosamplelist" translatable="false">Non-sample standards and testing items table</string>
+    <string name="sampleandproject" translatable="false">Sample standards and testing items</string>
+    <string name="skipsamplemessage" translatable="false">Should we retain existing sample information?</string>
+    <string name="title_samplemessage" translatable="false">Sample Information</string>
+    <string name="str_back">return</string>
+    <string name="str_yure_time">preheating time</string>
+    <string name="str_wavelength_range">wavelength range</string>
+    <string name="method_name">Method Name</string>
+    <string name="not_jtj_project">Non-colloidal gold testing items</string>
+    <string name="T1A_value">T1A value</string>
+    <string name="c1_value">C1 value</string>
+    <string name="methods_xiaoxian_bise">Methods (1. Line elimination; 2. Colorimetric comparison)</string>
+
+</resources>

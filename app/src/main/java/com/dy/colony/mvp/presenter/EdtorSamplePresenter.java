@@ -65,55 +65,9 @@ public class EdtorSamplePresenter extends BasePresenter<EdtorSampleContract.Mode
         this.mApplication = null;
     }
 
-    public void loadLocaProject() {
 
-        mModel.loadLocaProject("")
-                .subscribeOn(Schedulers.io())
-                .retryWhen(new RetryWithDelay(2, 1))//遇到错误时重试,第一个参数为重试几次,第二个参数为重试的间隔
-                .doOnSubscribe(disposable -> {
-                    mRootView.showLoading();
-                }).subscribeOn(AndroidSchedulers.mainThread())
-                .doFinally(() -> {
-                    mRootView.hideLoading();
-                }).compose(RxLifecycleUtils.bindToLifecycle(mRootView))
-                .subscribe(new ErrorHandleSubscriber<List<String>>(mErrorHandler) {
-                    @Override
-                    public void onNext(List<String> messages) {
-                        if (messages.size() == 0) {
-                            ArmsUtils.snackbarText(mApplication.getString(R.string.ea_sampleerro1));
-                            return;
-                        }
-                        mRootView.getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                makeChoseProjectDialog(messages);
-                            }
-                        });
 
-                    }
-                });
-    }
 
-    private void makeChoseProjectDialog(List<String> messages) {
-        String[] strings = new String[messages.size()];
-        for (int i = 0; i < messages.size(); i++) {
-            strings[i] = messages.get(i);
-        }
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(mRootView.getActivity());
-        //builder.setIcon(R.mipmap.ic);
-        builder.setTitle(R.string.place_choseproject);
-
-        builder.setSingleChoiceItems(strings, 0, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                mRootView.setChosedProject(strings[which]);
-                dialog.dismiss();
-            }
-        });
-        builder.show();
-
-    }
 
     public void loadLocaStandNumber(String projectName) {
         LogUtils.d(projectName);

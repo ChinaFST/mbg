@@ -76,10 +76,7 @@
             android:name=".mvp.ui.activity.EdtorSampleActivity"
             android:label="@string/EdtorSampleActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.ui.activity.ChoseUnitActivity"
-            android:label="@string/ChoseUnitActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.ui.activity.ChoseSampleActivity"
             android:label="@string/ChoseSampleActivity"

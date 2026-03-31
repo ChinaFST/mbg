@@ -41,9 +41,7 @@ public interface SampleMessageContract {
 
         void onRefreshList();
 
-        void makeDialogNewVersion(String filename, String local, String linkurl, UpdateFileMessage message);
 
-        void inputProject(File file, String filename);
     }
 
     //Model层定义接口,外部只需关心Model返回的数据,无需关心内部细节,即是否使用缓存
@@ -54,7 +52,6 @@ public interface SampleMessageContract {
         Observable<List<OutMoudle>> getJXLs();
 
 
-        Observable<UpdateFileMessage> upgradeFile(String appName);
 
     }
 }

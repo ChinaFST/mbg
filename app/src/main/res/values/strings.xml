@@ -38,23 +38,19 @@
     <string name="hint_exit_app">再按一次退出程序</string>
     <string name="home">首页</string>
     <string name="settings">设置</string>
-    <string name="sync_data">同步数据</string>
     <string name="test_record">检测记录</string>
     <string name="conventional_food_safety">常规食品安全</string>
     <string name="start_test">分光</string>
-    <string name="conventional_formaldehyde">常规食品安全筛查</string>
     <string name="halal_verification">清真核查</string>
     <string name="pork_alcohol">猪源检测</string>
     <string name="login_out">退出登录</string>
     <string name="auto_upload">自动上传</string>
-
     <string name="mothod1" translatable="false">抑制率法</string>
     <string name="mothod2" translatable="false">标准曲线法</string>
     <string name="mothod3" translatable="false">动力学法</string>
     <string name="mothod4" translatable="false">系数法</string>
     <string name="method_xiaoxian" translatable="false">定性消线法</string>
     <string name="method_bise" translatable="false">定性比色法</string>
-
     <string name="txt_invalid" translatable="false">无效</string>
     <string name="yin" translatable="false">阴性</string>
     <string name="yang" translatable="false">阳性</string>
@@ -64,14 +60,11 @@
     <string name="JTJ_TestMoudle_P" translatable="false">胶体金</string>
     <string name="FGGD_TestMoudle" translatable="false">分光光度</string>
     <string name="str_clear">清零</string>
-    <string name="str_step">步骤</string>
-    <string name="str_video">视频</string>
     <string name="str_adjust">校准</string>
     <string name="controlvalue">对照值</string>
     <string name="errormesage1" translatable="false">通道异常，建议进行清零或校准</string>
     <string name="testproject" translatable="false">检测项目</string>
     <string name="inspectedunit" translatable="false">被检单位</string>
-    <string name="testtask" translatable="false">检测任务</string>
     <string name="makecontrole" translatable="false">对照</string>
     <string name="makesample" translatable="false">样品</string>
     <string name="errormessage2" translatable="false">通道%s异常，建议进行清零或校准</string>
@@ -93,7 +86,6 @@
     <string name="testplace" translatable="false">检测地点</string>
     <string name="testpeople" translatable="false">检测人员</string>
     <string name="sampleplace" translatable="false">样品产地</string>
-    <string name="retest" translatable="false">复检</string>
     <string name="loading" translatable="false">正在加载</string>
     <string name="contro_ad" translatable="false">对照AD值</string>
     <string name="now_ad" translatable="false">实时AD值</string>
@@ -132,16 +124,8 @@
     <string name="showresult" translatable="false">显示结果</string>
     <string name="testing" translatable="false">正在检测中</string>
     <string name="choseprojectFirst" translatable="false">请先选择检测项目</string>
-    <string name="Module_initialization" translatable="false">模块初始化</string>
     <string name="testing_wait" translatable="false">该通道正在检测，请稍后</string>
     <string name="select_appropriate_channel" translatable="false">请先选择相应的通道</string>
-    <string name="start_detection" translatable="false">开始检测</string>
-    <string name="select_detection_mode" translatable="false">请选择检测方式</string>
-    <string name="start_countdown" translatable="false">开始倒计时</string>
-    <string name="invalid_input_value" translatable="false">输入值无效</string>
-    <string name="check_test_card" translatable="false">*请检查测试卡条是否放入通道内</string>
-    <string name="will_be" translatable="false">将在</string>
-    <string name="no_free_channel" translatable="false">暂无空闲通道</string>
     <string name="pleacechoseitemfirst" translatable="false">请先选择检测项目和样品</string>
     <string name="projectname" translatable="false">项目:</string>
     <string name="project_method" translatable="false">方法:</string>
@@ -150,24 +134,13 @@
     <string name="delete" translatable="false">删除</string>
     <string name="areyousuretodeletesample" translatable="false">确定要删除该条样品数据吗</string>
     <string name="nomore_data">没有更多数据了</string>
-    <string name="unitname" translatable="false">*企业名称</string>
-    <string name="unitadress" translatable="false">详细地址</string>
-    <string name="legalpersonname" translatable="false">法人名称</string>
-    <string name="linkman" translatable="false">联系人</string>
-    <string name="organizationnumber" translatable="false">所属组织机构编号</string>
     <string name="chose" translatable="false">选择</string>
-    <string name="busynisiss_name" translatable="false">经营户名称</string>
-    <string name="operat_number" translatable="false">档口编号</string>
-    <string name="keyword" translatable="false">搜索关键字</string>
     <string name="seach" translatable="false">搜索</string>
-    <string name="start_scanning_second" translatable="false">秒后开始扫描</string>
     <string name="type" translatable="false">类型</string>
     <string name="wave410" translatable="false">410\n波长段</string>
     <string name="wava536" translatable="false">536\n波长段</string>
     <string name="wava595" translatable="false">595\n波长段</string>
     <string name="wava620" translatable="false">620\n波长段</string>
-    <string name="adjustmoudle1" translatable="false">模块一校准</string>
-    <string name="adjustmoudle2" translatable="false">模块二校准</string>
     <string name="adjust_message1" translatable="false">请在检测完成后再进行校准</string>
     <string name="failed_open" translatable="false">打开失败！</string>
     <string name="contro_erromessage1" translatable="false">开始或结束时吸光度无穷大，此次对照无效！</string>
@@ -188,7 +161,6 @@
     <string name="newsample" translatable="false">新建样品</string>
     <string name="editersample" translatable="false">编辑样品</string>
     <string name="enter_or_select_item" translatable="false">请先输入或选择检测项目！</string>
-    <string name="ea_sampleerro1" translatable="false">未找到本地检测项目，请联系仪器厂家</string>
     <string name="local_standards_not_found" translatable="false">未找到本地相关检测标准，请联系仪器厂家</string>
     <string name="please_enter_keyword" translatable="false">请输入关键字</string>
     <string name="hintmessage_requiredfieldscannotbeempty" translatable="false">必填项不能为空</string>
@@ -211,7 +183,6 @@
     <string name="JTJ_TestActivity" translatable="false">胶体金检测</string>
     <string name="FGGD_TestActivity" translatable="false">分光光度检测</string>
     <string name="ChoseProjectActivity" translatable="false">选择检测项目</string>
-    <string name="ChoseUnitActivity" translatable="false">选择被检单位</string>
     <string name="ChoseSampleActivity" translatable="false">选择样品名称</string>
     <string name="EdtorSampleActivity" translatable="false">编辑样品</string>
     <string name="ChoseSampleTypeActivity" translatable="false">选择样品种类</string>
@@ -232,16 +203,9 @@
     <string name="other" translatable="false">其它</string>
     <string name="pleaceinputkeyword" translatable="false">请输入搜索关键字</string>
     <string name="save" translatable="false">保存</string>
-    <string name="card_4" translatable="false">卡条4</string>
-    <string name="card_3" translatable="false">卡条3</string>
-    <string name="card_2" translatable="false">卡条2</string>
-    <string name="card_1" translatable="false">卡条1</string>
-    <string name="pork_testing" translatable="false">猪肉成分/酒精检测</string>
     <string name="seachresult" translatable="false">搜索%s结果</string>
     <string name="upload" translatable="false">上传</string>
     <string name="record_has_uploaded" translatable="false">该条检测记录已上传</string>
-    <string name="str_continue" translatable="false">继续</string>
-    <string name="contain_positive_data">所选的检测记录包含阳性数据，是否继续上传？</string>
     <string name="Upload_not_supported">不支持上传</string>
     <string name="sel_need_test_record">请选择需要上传的检测记录，上传检测结果只支持合格与不合格</string>
     <string name="selected_data_has_upload">当前所选数据已经上传，不可重复上传</string>
@@ -262,12 +226,10 @@
     <string name="detect_unit_name" translatable="false">检测单位名称：</string>
     <string name="detect_unit_id" translatable="false">检测单位ID：</string>
     <string name="local_sample_not_found" translatable="false">本地样品库未查询到该信息</string>
-    <string name="standard_file_not_found" translatable="false">未找到相关标准文件</string>
     <string name="file_is_empty" translatable="false">文件为空</string>
     <string name="dilution_factor" translatable="false">稀释倍数：</string>
     <string name="number_reaction_drops" translatable="false">反应液滴数：</string>
     <string name="pdf_file_corruption" translatable="false">pdf文件损坏</string>
-
     <string name="sample_details" translatable="false">样品详细信息</string>
     <string name="unique_id" translatable="false">唯一ID：</string>
     <string name="sample_name_colon" translatable="false">样品名称：</string>
@@ -310,13 +272,6 @@
     <string name="passworderro" translatable="false">密码输入错误，请重新输入！</string>
     <string name="moudleproject_fggd" translatable="false">分光光度检测项目</string>
     <string name="moudleproject_jtj" translatable="false">胶体金检测项目</string>
-    <string name="projectversionnmessage" translatable="false">检测项目版本信息</string>
-    <string name="serviceversion" translatable="false">服务器版本：</string>
-    <string name="localversion" translatable="false">仪器本地版本：</string>
-    <string name="whihoutnewversion" translatable="false">暂无版本</string>
-    <string name="download" translatable="false">立即下载</string>
-    <string name="downloadfail" translatable="false">下载失败</string>
-    <string name="filetypeerro" translatable="false">文件类型错误</string>
     <string name="weichartnum" translatable="false">微信号：shiankeji</string>
     <string name="qqnum" translatable="false">联系QQ：2851265715</string>
     <string name="service_phone" translatable="false">服务热线：400-696-6968</string>
@@ -369,7 +324,6 @@
     <string name="enter_jz_curve_c" translatable="false">请输入校正曲线C</string>
     <string name="enter_jz_curve_d" translatable="false">请输入校正曲线D</string>
     <string name="new_testing_items" translatable="false">新建检测项目</string>
-    <string name="jtj_hint_1" translatable="false">* 模块类型(1为扫描模块，2为摄像头模块，3为真菌毒素模块)</string>
     <string name="jtj_hint_2" translatable="false">* 项目名称</string>
     <string name="jtj_hint_3" translatable="false">* 检测方法(1为定性消线法，2为定性比色法)</string>
     <string name="jtj_hint_4" translatable="false">* 通道一C线出线值</string>
@@ -388,23 +342,18 @@
     <string name="new_project" translatable="false">新增</string>
     <string name="input_project" translatable="false">导入</string>
     <string name="output_project" translatable="false">导出</string>
-    <string name="updata_database" translatable="false">数据库更新</string>
-    <string name="withoutnewversionn" translatable="false">暂无更新</string>
-    <string name="fileaddressexception" translatable="false">文件地址异常\r\n</string>
     <string name="start_time">开始时间</string>
     <string name="end_time">终止时间</string>
-
     <string name="pleacechosefile" translatable="false">请选择文件</string>
     <string name="lfile_NotFoundBooks" translatable="false">请选择导入的文件</string>
     <string name="lfile_NotFoundPath" translatable="false">SD 存储卡状态不可用</string>
     <string name="lfile_UpOneLevel" translatable="false">上一级</string>
     <string name="lfile_Selected" translatable="false">选中</string>
     <string name="lfile_LItem" translatable="false">项</string>
-    <string name="lfile_FileSize" translatable="false">文件大小 : </string>
+    <string name="lfile_FileSize" translatable="false">文件大小: </string>
     <string name="lfile_OutSize" translatable="false">已经达到最大选择数量</string>
     <string name="lfile_Cancel" translatable="false">取消全选</string>
     <string name="lfile_ChooseTip" translatable="false">请选择文件夹</string>
-
     <string name="importdata" translatable="false">正在导入数据</string>
     <string name="importsuccess" translatable="false">导入成功！</string>
     <string name="notfggditemlist" translatable="false">非分光检测项目</string>
@@ -425,7 +374,6 @@
     <string name="sample_jxl_title_2" translatable="false">检测项目,样品名称,样品编号,标准名称,标准值,更新时间,FLAG</string>
     <string name="Sample_ID" translatable="false">样品ID</string>
     <string name="nosamplelist" translatable="false">非样品标准与检测项目表</string>
-    <string name="sampleversionnmessage" translatable="false">样品版本信息</string>
     <string name="sampleandproject" translatable="false">样品标准与检测项目</string>
     <string name="skipsamplemessage" translatable="false">是否保留现有的样品信息？</string>
     <string name="title_samplemessage" translatable="false">样品信息</string>
@@ -437,6 +385,5 @@
     <string name="T1A_value">T1A值</string>
     <string name="c1_value">C1值</string>
     <string name="methods_xiaoxian_bise">方法（1消线;2比色）</string>
-
 
 </resources>

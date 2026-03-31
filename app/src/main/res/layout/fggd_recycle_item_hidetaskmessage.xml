@@ -113,7 +113,6 @@
                 android:layout_below="@id/fg_item_chose_units"
                 android:background="@null"
                 android:gravity="center"
-                android:hint="@string/testtask"
                 android:textColor="#1a1a1a"
                 android:textSize="12sp" />
         </RelativeLayout>

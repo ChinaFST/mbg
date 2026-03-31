@@ -90,14 +90,6 @@ public class SampleMessageModel extends BaseModel implements SampleMessageContra
     }
 
 
-    @Override
-    public Observable<UpdateFileMessage> upgradeFile(String appName) {
-        return mRepositoryManager
-                .obtainRetrofitService(YQWLW_Service.class)
-                .upgradeFile(appName)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io());
-    }
 
 
 }

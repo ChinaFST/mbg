@@ -81,8 +81,7 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
     UsbManager mUsbManager;
     @Inject
     Dialog mDialog;
-    @Inject
-    View mView;
+
     @Inject
     RecyclerView.LayoutManager mLayoutManager;
     @BindView(R.id.toolbar_back)
@@ -478,7 +477,7 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
                 break;
             case R.id.unit_btn:
                 //选择被检单位
-                state = nowShowBean.getState();
+                /*state = nowShowBean.getState();
                 if (state == 1) {
                     ArmsUtils.snackbarText(getString(R.string.testing_wait));
                     return;
@@ -486,7 +485,7 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
                 intent = new Intent(getActivity(), ChoseUnitActivity.class);
                 intent.putExtra("from", "jtj");
                 intent.putExtra("index", mIndex);
-                startActivity(intent);
+                startActivity(intent);*/
                 break;
 
             case R.id.start_test:

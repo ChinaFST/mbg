@@ -100,19 +100,9 @@
                 android:text="@string/makecontrole" />
 
 
-            <Button
-                android:id="@+id/btn_step"
-                style="@style/button_base"
-                android:background="@drawable/btn_bottom_confirm_bg"
-                android:text="@string/str_step"
-                android:visibility="gone" />
 
-            <Button
-                android:id="@+id/btn_video"
-                style="@style/button_base"
-                android:background="@drawable/btn_bottom_confirm_bg"
-                android:text="@string/str_video"
-                android:visibility="gone" />
+
+
 
             <Button
                 android:id="@+id/btn_adjust"

@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import androidx.annotation.StringRes;
 
 
+import com.blankj.utilcode.util.StringUtils;
 import com.dy.colony.MyAppLocation;
 import com.dy.colony.R;
 import com.dy.colony.mvp.model.entity.OutMoudle;
@@ -68,8 +69,8 @@ public class FoodItemAndStandard extends BaseSampleMessage implements Parcelable
     }
 
     public OutMoudle<String> toJxlTitle() {
-        return new OutMoudle<String>(MyAppLocation.myAppLocation.getString(R.string.sample_jxl_title_1) +
-                MyAppLocation.myAppLocation.getString(R.string.sample_jxl_title_2));
+        return new OutMoudle<String>(StringUtils.getString(R.string.sample_jxl_title_1) +
+                StringUtils.getString(R.string.sample_jxl_title_2));
     }
 
     public OutMoudle<String> toJxlString() {

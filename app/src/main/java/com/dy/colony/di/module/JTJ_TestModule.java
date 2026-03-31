@@ -58,11 +58,7 @@ public abstract class JTJ_TestModule {
     static  AlertDialog.Builder getAlertDialog (JTJ_TestContract.View view) {
         return  new AlertDialog.Builder(view.getActivity());
     }
-    @ActivityScope
-    @Provides
-    static View getView (JTJ_TestContract.View view) {
-        return LayoutInflater.from(view.getActivity()).inflate(R.layout.countdownview_layout,null);
-    }
+
     @ActivityScope
     @Provides
     static RecyclerView.LayoutManager provideLayoutManager(JTJ_TestContract.View view) {

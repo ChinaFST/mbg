@@ -56,8 +56,7 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
     LinearLayout mNavRecord;
     @BindView(R.id.nav_settings)
     LinearLayout mNavSettings;
-    @BindView(R.id.nav_sync)
-    LinearLayout mNavSync;
+
 
     private FragmentManager mFragmentManager;
     private MainFragment mMainFragment;
@@ -220,7 +219,7 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
         finish();
     }
 
-    @OnClick({R.id.nav_main, R.id.nav_record, R.id.nav_settings, R.id.nav_sync})
+    @OnClick({R.id.nav_main, R.id.nav_record, R.id.nav_settings})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.nav_main:
@@ -232,9 +231,7 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
             case R.id.nav_settings:
                 showFragment(2);
                 break;
-            case R.id.nav_sync:
-                ArmsUtils.snackbarText("Syncing data...");
-                break;
+
             default:
                 break;
         }
@@ -247,7 +244,6 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
         mNavMain.setSelected(false);
         mNavRecord.setSelected(false);
         mNavSettings.setSelected(false);
-        mNavSync.setSelected(false);
         switch (index) {
             case 0:
                 mNavMain.setSelected(true);
