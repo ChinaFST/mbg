@@ -16,6 +16,8 @@ import dagger.Provides;
 import dmax.dialog.SpotsDialog;
 
 import com.dy.colony.R;
+import com.dy.colony.greendao.DBHelper;
+import com.dy.colony.greendao.daos.JTJTestItemDao;
 import com.dy.colony.mvp.contract.JTJ_TestContract;
 import com.dy.colony.mvp.model.JTJ_TestModel;
 import com.dy.colony.mvp.model.entity.base.GalleryBean;
@@ -32,8 +34,8 @@ public abstract class JTJ_TestModule {
 
     @ActivityScope
     @Provides
-    static List<GalleryBean> getGalleryBeano(){
-        return  new ArrayList<>();
+    static List<GalleryBean> getGalleryBeano() {
+        return new ArrayList<>();
     }
 
     @ActivityScope
@@ -41,6 +43,7 @@ public abstract class JTJ_TestModule {
     static AlertDialog getSportDialog(JTJ_TestContract.View view) {
         return new SpotsDialog.Builder().setContext(view.getActivity()).setCancelable(true).build();
     }
+
     @ActivityScope
     @Provides
     static Dialog getDialog(JTJ_TestContract.View view) {
@@ -49,19 +52,25 @@ public abstract class JTJ_TestModule {
 
     @ActivityScope
     @Provides
-    static UsbManager getUsbManager (JTJ_TestContract.View view) {
+    static UsbManager getUsbManager(JTJ_TestContract.View view) {
         return (UsbManager) view.getActivity().getSystemService(Context.USB_SERVICE);
     }
 
     @ActivityScope
     @Provides
-    static  AlertDialog.Builder getAlertDialog (JTJ_TestContract.View view) {
-        return  new AlertDialog.Builder(view.getActivity());
+    static AlertDialog.Builder getAlertDialog(JTJ_TestContract.View view) {
+        return new AlertDialog.Builder(view.getActivity());
     }
 
     @ActivityScope
     @Provides
     static RecyclerView.LayoutManager provideLayoutManager(JTJ_TestContract.View view) {
         return new GridLayoutManager(view.getActivity(), 1);
+    }
+
+    @ActivityScope
+    @Provides
+    static JTJTestItemDao getJtjDao(JTJ_TestContract.View view) {
+        return DBHelper.getJTJTestItemDao(view.getActivity());
     }
 }

@@ -61,8 +61,8 @@
                 android:background="@null"
                 android:gravity="center"
                 android:hint="@string/testproject"
-                android:textColor="#1a1a1a"
-                android:textColorHint="#FC0303"
+                android:textColor="@color/color_1a1a1a"
+                android:textColorHint="@color/colorAccent"
                 android:textSize="14sp" />
 
             <Button
@@ -73,8 +73,8 @@
                 android:background="@null"
                 android:gravity="center"
                 android:hint="@string/samplename"
-                android:textColor="#1a1a1a"
-                android:textColorHint="#FC0303"
+                android:textColor="@color/color_1a1a1a"
+                android:textColorHint="@color/colorAccent"
                 android:textSize="14sp" />
 
             <Button
@@ -85,7 +85,7 @@
                 android:background="@null"
                 android:gravity="center"
                 android:hint="@string/inspectedunit"
-                android:textColor="#1a1a1a"
+                android:textColor="@color/color_1a1a1a"
                 android:textSize="14sp" />
         </RelativeLayout>
 
@@ -103,7 +103,7 @@
                 android:background="@null"
                 android:gravity="center"
                 android:hint="@string/inspectedunit"
-                android:textColor="#1a1a1a"
+                android:textColor="@color/color_1a1a1a"
                 android:textSize="12sp" />
 
             <Button
@@ -113,7 +113,7 @@
                 android:layout_below="@id/fg_item_chose_units"
                 android:background="@null"
                 android:gravity="center"
-                android:textColor="#1a1a1a"
+                android:textColor="@color/color_1a1a1a"
                 android:textSize="12sp" />
         </RelativeLayout>
 
@@ -131,7 +131,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:hint=""
-                android:textColor="#1a1a1a"
+                android:textColor="@color/color_1a1a1a"
                 android:textSize="14sp" />
 
             <TextView
@@ -141,7 +141,7 @@
                 android:layout_weight="2"
                 android:gravity="center"
                 android:hint=""
-                android:textColor="#1a1a1a"
+                android:textColor="@color/color_1a1a1a"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -163,7 +163,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@drawable/lan_yuan"
-            android:text="@string/makecontrole"
+            android:text="@string/makecontrole_"
             android:textSize="14sp" />
 
         <Button
@@ -172,7 +172,7 @@
             android:layout_height="40dp"
             android:layout_marginStart="24dp"
             android:background="@drawable/lan_yuan"
-            android:text="@string/makesample"
+            android:text="@string/makesample_"
             android:textSize="14sp" />
 
     </LinearLayout>

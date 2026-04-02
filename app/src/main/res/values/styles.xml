@@ -18,7 +18,7 @@
         <item name="android:layout_height">36dp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginStart">8dp</item>
     </style>
 
     <!-- 统一的标题栏布局样式 -->
@@ -60,7 +60,7 @@
         <item name="android:textColor">@color/white</item>
 
         <!-- Change hint text color for edit text -->
-        <item name="android:textColorHint">@color/red</item>
+        <item name="android:textColorHint">@color/white</item>
 
         <!-- Hint for edit text -->
         <item name="android:hint">@string/search_hint</item>

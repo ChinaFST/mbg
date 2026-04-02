@@ -56,8 +56,8 @@ public class ChoseProjectPresenter extends BasePresenter<ChoseProjectContract.Mo
     public void loadProject(String from, String... keyword) {
         if ("fggd".equals(from)) {
             loaFGGDItem(0, keyword);
-        } else if ("jtj_1".equals(from)) {
-            loadJTJItem(1, keyword);
+        } else if ("jtj".equals(from)) {
+            loadJTJItem(2, keyword);
         } else {
             ArmsUtils.snackbarText("参数错误");
             mRootView.killMyself();

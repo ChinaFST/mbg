@@ -57,14 +57,12 @@ public class SampleMessageModel extends BaseModel implements SampleMessageContra
             @Override
             public void subscribe(ObservableEmitter<List<? extends BaseSampleMessage>> emitter) throws Exception {
                 List<? extends BaseSampleMessage> list = builder.offset(lastpage * pagenum).limit(pagenum).orderDesc(FoodItemAndStandardDao.Properties.Id).orderDesc(FoodItemAndStandardDao.Properties.UDate).list();
+                LogUtils.d(list.size());
                 emitter.onNext(list);
                 emitter.onComplete();
             }
 
-            /*@Override
-            public void subscribe(ObservableEmitter<List<FoodItemAndStandard_KJFW>> emitter) throws Exception {
 
-            }*/
         });
     }
 

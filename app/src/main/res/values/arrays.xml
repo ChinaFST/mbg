@@ -6,35 +6,33 @@
     </string-array>
 
     <string-array name="results">
-        <item>全部</item>
-        <item>合格</item>
-        <item>不合格</item>
-        <item>其它</item>
+        <item>All</item>
+        <item>qualified</item>
+        <item>Unqualified</item>
+        <item>other</item>
     </string-array>
 
     <string-array name="moudles">
-        <item>全部</item>
-        <item>分光光度</item>
-        <item>胶体金</item>
+        <item>All</item>
+        <item>Spectrophotometry</item>
+        <item>Colloidal Gold</item>
     </string-array>
 
     <string-array name="checkdecome">
-
-        <item>合格</item>
-        <item>不合格</item>
+        <item>Qualified</item>
+        <item>Unqualified</item>
     </string-array>
 
     <string-array name="checkresult">
-
-        <item>阴性</item>
-        <item>阳性</item>
+        <item>Negative</item>
+        <item>Positive</item>
     </string-array>
 
     <string-array name="methods">
-        <item>抑制率法</item>
-        <item>标准曲线法</item>
-        <item>动力学法</item>
-        <item>系数法</item>
+        <item>Inhibition rate method</item>
+        <item>Standard curve method</item>
+        <item>kinetic method</item>
+        <item>Coefficient method</item>
     </string-array>
 
     <string-array name="lengths">

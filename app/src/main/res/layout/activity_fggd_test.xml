@@ -22,10 +22,10 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
-                android:layout_marginTop="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dp_4"
+                android:layout_marginTop="2dp"
                 android:layout_marginEnd="@dimen/dp_4"
                 android:scrollbars="none"
                 tools:listitem="@layout/fggd_recycle_item_hidetaskmessage" />
@@ -33,9 +33,9 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:visibility="gone"
                 android:layout_marginTop="@dimen/dimen_6dp"
-                android:background="#DDDDDD" />
+                android:background="#DDDDDD"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/contro_value_parent"
@@ -59,9 +59,9 @@
                 android:id="@+id/scrollView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:visibility="gone"
                 android:layout_weight="2"
-                android:scrollbars="none">
+                android:scrollbars="none"
+                android:visibility="gone">
 
                 <include layout="@layout/include_gallery_message_fggd" />
 
@@ -76,7 +76,10 @@
             android:layout_alignParentBottom="true"
             android:background="@drawable/btn_bottom_confirm_bg"
             android:gravity="center"
-            android:padding="8dp">
+            android:paddingStart="6dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="6dp"
+            android:paddingBottom="8dp">
 
             <Button
                 android:id="@+id/btn_clear"
@@ -98,10 +101,6 @@
                 style="@style/button_base"
                 android:background="@drawable/btn_bottom_confirm_bg"
                 android:text="@string/makecontrole" />
-
-
-
-
 
 
             <Button

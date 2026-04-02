@@ -54,6 +54,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -82,16 +83,8 @@ public class ChoseProjectActivity extends BaseActivity<ChoseProjectPresenter> im
     ChoseProjectMessageAdapter mAdapter;
     @BindView(R.id.cb_all)
     CheckBox mCbAll;
-    @BindView(R.id.sp01)
-    Spinner mSp01;
-    @BindView(R.id.sp02)
-    Spinner mSp02;
-    @BindView(R.id.sp03)
-    Spinner mSp03;
     @BindView(R.id.btn_determine)
     Button mBtnDetermine;
-    @BindView(R.id.linearLayout5)
-    LinearLayout mLinearLayout5;
     @BindView(R.id.search_view)
     MaterialSearchView mSearchView;
     @BindView(R.id.toolbar_container)
@@ -101,6 +94,14 @@ public class ChoseProjectActivity extends BaseActivity<ChoseProjectPresenter> im
     private int mIndex;
     private boolean isSeaching;
     private String keyWord;
+
+   /* @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //getWindow().getDecorView().findViewById(android.R.id.content).getChildAt(0)
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }*/
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {

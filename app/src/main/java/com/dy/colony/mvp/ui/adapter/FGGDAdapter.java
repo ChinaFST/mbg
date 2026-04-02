@@ -281,8 +281,8 @@ public class FGGDAdapter extends BaseQuickAdapter<GalleryBean, BaseViewHolder> {
                 });
 
 
-        String makecontrole = mContext.getString(R.string.makecontrole);
-        String makesample = mContext.getString(R.string.makesample);
+        String makecontrole = mContext.getString(R.string.makecontrole_);
+        String makesample = mContext.getString(R.string.makesample_);
         if (item.getState() == 0) {  //等待测试 可能是刚进入界面或者清零后的状态
             helper.setBackgroundRes(R.id.parent_layout, R.drawable.background_item_gray);
             helper.setText(R.id.fg_item_btn_control, makecontrole)

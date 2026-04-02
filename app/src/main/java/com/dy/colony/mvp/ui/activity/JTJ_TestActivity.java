@@ -35,7 +35,10 @@ import com.dy.colony.MyAppLocation;
 import com.dy.colony.R;
 import com.dy.colony.di.component.DaggerJTJ_TestComponent;
 import com.dy.colony.greendao.beans.Detection_Record_FGGD_NC;
+import com.dy.colony.greendao.beans.JTJTestItem;
+import com.dy.colony.greendao.daos.JTJTestItemDao;
 import com.dy.colony.mvp.contract.JTJ_TestContract;
+import com.dy.colony.mvp.model.entity.base.BaseProjectMessage;
 import com.dy.colony.mvp.model.entity.base.GalleryBean;
 import com.dy.colony.mvp.model.entity.eventbus.ExternTestMessageBean;
 import com.dy.colony.mvp.presenter.JTJ_TestPresenter;
@@ -81,6 +84,8 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
     UsbManager mUsbManager;
     @Inject
     Dialog mDialog;
+    @Inject
+    JTJTestItemDao mJTJTestItemDao;
 
     @Inject
     RecyclerView.LayoutManager mLayoutManager;
@@ -265,6 +270,7 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
         mGroupChart.removeAllViews();
         mJTJTestViews.clear();
         MyAppLocation.myAppLocation.mSerialDataService.mJTJGalleryBeanList.clear();
+        JTJTestItem project = getProject();
 
         for (int i = 0; i < 2; i++) {
             GalleryBean e = new Detection_Record_FGGD_NC();
@@ -272,10 +278,8 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
             e.setTestMoudle(2 + "");
             e.setJTJModel(1);
             e.setJTJCardModel(0);
-            if (type == 1) {
-                ((Detection_Record_FGGD_NC) e).setTest_project(getString(R.string.halal_verification));
-            } else if (type == 2) {
-                ((Detection_Record_FGGD_NC) e).setTest_project(getString(R.string.pork_alcohol));
+            if (project != null) {
+                ((Detection_Record_FGGD_NC) e).setProjectMessage(project);
             }
             MyAppLocation.myAppLocation.mSerialDataService.mJTJGalleryBeanList.add(e);
             MyJTJ_TestView_External p = new MyJTJ_TestView_External(this, i); //新建通道，将baan与该自定义view绑定
@@ -287,6 +291,23 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
         }
 
         EventBus.getDefault().post(new ExternTestMessageBean(0, mIndex));
+    }
+
+
+    private JTJTestItem getProject() {
+        JTJTestItem projectMessage = null;
+        if (type == 1) {
+            List<JTJTestItem> list = mJTJTestItemDao.queryBuilder().where(JTJTestItemDao.Properties.ProjectName.eq(getString(R.string.halal_verification))).list();
+            if (!list.isEmpty()) {
+                projectMessage = list.get(0);
+            }
+        } else if (type == 2) {
+            List<JTJTestItem> list = mJTJTestItemDao.queryBuilder().where(JTJTestItemDao.Properties.ProjectName.eq(getString(R.string.pork_alcohol))).list();
+            if (!list.isEmpty()) {
+                projectMessage = list.get(0);
+            }
+        }
+        return projectMessage;
     }
 
     @Override
@@ -450,7 +471,7 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
                 }
 
                 intent = new Intent(getActivity(), ChoseProjectActivity.class);
-                intent.putExtra("from", "jtj_1");
+                intent.putExtra("from", "jtj");
                 intent.putExtra("index", mIndex);
                 startActivity(intent);
 

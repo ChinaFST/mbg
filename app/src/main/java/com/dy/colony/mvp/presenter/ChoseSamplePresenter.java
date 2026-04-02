@@ -3,7 +3,9 @@ package com.dy.colony.mvp.presenter;
 import android.app.Application;
 
 import com.apkfuns.logutils.LogUtils;
+import com.blankj.utilcode.util.StringUtils;
 import com.dy.colony.Constants;
+import com.dy.colony.R;
 import com.dy.colony.greendao.DBHelper;
 import com.dy.colony.greendao.beans.Company_Point;
 import com.dy.colony.greendao.daos.FoodItemAndStandardDao;
@@ -137,7 +139,7 @@ public class ChoseSamplePresenter extends BasePresenter<ChoseSampleContract.Mode
                         } else {
                             ll = count / Constants.page_num + 1;
                         }
-                        mRootView.setShowPgeText("共" + ll + "页，" + count + "条");
+                        mRootView.setShowPgeText(StringUtils.getString(R.string.general) + ll + StringUtils.getString(R.string.page) + count +StringUtils.getString(R.string.item) );
                     }
 
 
@@ -218,7 +220,8 @@ public class ChoseSamplePresenter extends BasePresenter<ChoseSampleContract.Mode
                         } else {
                             ll = count / Constants.page_num + 1;
                         }
-                        mRootView.setShowPgeText("共" + ll + "页，" + count + "条");
+                        mRootView.setShowPgeText(StringUtils.getString(R.string.general) + ll + StringUtils.getString(R.string.page) + count +StringUtils.getString(R.string.item) );
+
 
 
                     }

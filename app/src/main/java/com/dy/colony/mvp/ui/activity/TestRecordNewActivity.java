@@ -110,11 +110,9 @@ public class TestRecordNewActivity extends BaseActivity<TestRecordNewPresenter> 
     private boolean mTestResult_flag = true;
     private boolean isSeaching;
     private Paginate mPaginate;
-    private String index;
     private String keyWord = "";
     private boolean isLoadingMore;
     private boolean hasLoadedAllItems;
-    private MenuItem mMenuItemInput;
     private MenuItem mMenuItemDelete;
     private boolean firstLoad = true;
 
@@ -594,11 +592,11 @@ public class TestRecordNewActivity extends BaseActivity<TestRecordNewPresenter> 
                 if (time1.getTime() > time2.getTime()) {
                     starttime = getTime(time2);
                     stoptime = getTime(time1);
-                    mTestTime.setText(starttime + "-" + stoptime);
+                    mTestTime.setText(starttime + "-\n" + stoptime);
                 } else if (time1.getTime() < time2.getTime()) {
                     starttime = getTime(time1);
                     stoptime = getTime(time2);
-                    mTestTime.setText(starttime + "-" + stoptime);
+                    mTestTime.setText(starttime + "-\n" + stoptime);
 
                 } else {
                     starttime = getTime(time1);

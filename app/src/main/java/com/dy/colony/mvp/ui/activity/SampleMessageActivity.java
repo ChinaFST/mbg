@@ -25,26 +25,21 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.apkfuns.logutils.LogUtils;
 import com.dy.colony.Constants;
+import com.dy.colony.R;
 import com.dy.colony.app.utils.DataUtils;
 import com.dy.colony.app.utils.JxlUtils;
-import com.dy.colony.mvp.model.entity.UpdateFileMessage;
+import com.dy.colony.di.component.DaggerSampleMessageComponent;
+import com.dy.colony.mvp.contract.SampleMessageContract;
 import com.dy.colony.mvp.model.entity.base.BaseSampleMessage;
+import com.dy.colony.mvp.presenter.SampleMessagePresenter;
 import com.dy.colony.mvp.ui.adapter.SampleMessageAdapter;
 import com.google.android.material.appbar.AppBarLayout;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
-
-import com.dy.colony.di.component.DaggerSampleMessageComponent;
-import com.dy.colony.mvp.contract.SampleMessageContract;
-import com.dy.colony.mvp.presenter.SampleMessagePresenter;
-
-import com.dy.colony.R;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.paginate.Paginate;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -79,8 +74,7 @@ public class SampleMessageActivity extends BaseActivity<SampleMessagePresenter> 
     FrameLayout mToolbarContainer;
     @BindView(R.id.group)
     LinearLayout mGroup;
-    /*@Inject
-    FoodItemAndStandardDao mFoodItemAndStandardDao;*/
+
     @Inject
     RecyclerView.LayoutManager mLayoutManager;
 
@@ -239,9 +233,6 @@ public class SampleMessageActivity extends BaseActivity<SampleMessagePresenter> 
             mPresenter.lodaMore(true);
         }
     }
-
-
-
 
 
     //控件触发刷新

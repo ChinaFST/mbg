@@ -537,7 +537,8 @@ public class JxlUtils implements LifecycleObserver {
                     LogUtils.d(result2);
                     LogUtils.d(result3);
                     LogUtils.d(columns);
-                    if (!MyAppLocation.myAppLocation.getString(R.string.parent_class_number_colon).equals(result3) || !MyAppLocation.myAppLocation.getString(R.string.contrast_symbols).equals(result2) || !MyAppLocation.myAppLocation.getString(R.string.Sample_ID).equals(result1) || columns < 12) {
+                    LogUtils.d(rows);
+                    if (!MyAppLocation.myAppLocation.getString(R.string.parent_class_number).equals(result3) || !MyAppLocation.myAppLocation.getString(R.string.contrast_symbols).equals(result2) || !MyAppLocation.myAppLocation.getString(R.string.Sample_ID).equals(result1) || columns < 12) {
                         booleanList.add(s + MyAppLocation.myAppLocation.getString(R.string.nosamplelist));
                         continue;
                     }
@@ -547,6 +548,7 @@ public class JxlUtils implements LifecycleObserver {
                         for (int j = 0; j < columns; j++) {
                             Cell cell = sheet.getCell(j, i);
                             String result = cell.getContents();
+                            LogUtils.d(result);
 
                             if (result != null && !"".equals(result.trim()) && !"null".equals(result.trim())) {
                                 switch (j) {

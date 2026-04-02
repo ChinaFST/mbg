@@ -19,9 +19,9 @@
         <LinearLayout
             android:id="@+id/layout_moudle"
             android:layout_width="0dp"
-            android:gravity="center_vertical"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -43,9 +43,9 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:layout_marginStart="6dp"
             android:layout_weight="1"
+            android:gravity="center_vertical"
             android:visibility="gone">
 
             <TextView
@@ -71,14 +71,14 @@
             android:id="@+id/layout_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:layout_marginStart="4dp"
-            android:layout_weight="1.2">
+            android:layout_weight="1.2"
+            android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/testtime"
+                android:text="@string/testtime_"
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -98,14 +98,14 @@
             android:id="@+id/layout_result"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:layout_marginStart="4dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/testresult"
+                android:text="@string/result"
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -140,7 +140,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="1.4"
             android:text="@string/str_number"
             android:textSize="12sp" />
 

@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Message;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,8 +23,6 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -35,22 +32,19 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.apkfuns.logutils.LogUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dy.colony.Constants;
+import com.dy.colony.R;
+import com.dy.colony.di.component.DaggerTestRecordComponent;
 import com.dy.colony.greendao.beans.Detection_Record_FGGD_NC;
 import com.dy.colony.mvp.contract.IBackPressed;
+import com.dy.colony.mvp.contract.TestRecordContract;
+import com.dy.colony.mvp.presenter.TestRecordPresenter;
 import com.dy.colony.mvp.ui.activity.TestRecordMessageActivity;
-import com.dy.colony.mvp.ui.activity.TestRecordNewActivity;
 import com.dy.colony.mvp.ui.adapter.TestRecordAdapter;
 import com.dy.colony.mvp.ui.widget.MyDatePickerDialog;
 import com.google.android.material.appbar.AppBarLayout;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
-
-import com.dy.colony.di.component.DaggerTestRecordComponent;
-import com.dy.colony.mvp.contract.TestRecordContract;
-import com.dy.colony.mvp.presenter.TestRecordPresenter;
-
-import com.dy.colony.R;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.paginate.Paginate;
 
@@ -119,11 +113,9 @@ public class TestRecordFragment extends BaseFragment<TestRecordPresenter> implem
     private boolean mTestResult_flag = true;
     private boolean isSeaching;
     private Paginate mPaginate;
-    private String index;
     private String keyWord = "";
     private boolean isLoadingMore;
     private boolean hasLoadedAllItems;
-    private MenuItem mMenuItemInput;
     private MenuItem mMenuItemDelete;
     private boolean firstLoad = true;
 
@@ -164,7 +156,6 @@ public class TestRecordFragment extends BaseFragment<TestRecordPresenter> implem
     }
 
 
-
     @Override
     public boolean onBackPressed() {
         // 核心判断：如果正在搜索且有关键词
@@ -175,7 +166,7 @@ public class TestRecordFragment extends BaseFragment<TestRecordPresenter> implem
             mPresenter.loadMore(true);
             mToolbarTitle.setText(R.string.test_record);
 
-            if (mSearchView != null&& mSearchView.isSearchOpen()) {
+            if (mSearchView != null && mSearchView.isSearchOpen()) {
                 mSearchView.closeSearch();
             }
 
@@ -599,11 +590,11 @@ public class TestRecordFragment extends BaseFragment<TestRecordPresenter> implem
                 if (time1.getTime() > time2.getTime()) {
                     starttime = getTime(time2);
                     stoptime = getTime(time1);
-                    mTestTime.setText(starttime + "-" + stoptime);
+                    mTestTime.setText(starttime + "-\n" + stoptime);
                 } else if (time1.getTime() < time2.getTime()) {
                     starttime = getTime(time1);
                     stoptime = getTime(time2);
-                    mTestTime.setText(starttime + "-" + stoptime);
+                    mTestTime.setText(starttime + "-\n" + stoptime);
 
                 } else {
                     starttime = getTime(time1);

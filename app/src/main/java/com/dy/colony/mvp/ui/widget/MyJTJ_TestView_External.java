@@ -226,7 +226,7 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
                 }
             });
         } else {
-            ArmsUtils.snackbarText("请选择检测项目和样品名称");
+            ArmsUtils.snackbarText(mContext.getString(R.string.hint_sel_project_sample));
         }
     }
 
@@ -376,26 +376,15 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
 
     }
 
-    private void autoResult() {
-        //判断检测所需信息是否完整
-        if (checkMessageState()) {
-            autoResult(getGallery());
-        } else {
-            ArmsUtils.snackbarText("请选择检测项目和样品名称");
-        }
-    }
-
 
     @Override
     public boolean checkMessageState() {
         String samplename = ((Detection_Record_FGGD_NC) getGallery()).getSamplename();
         if (null == getGallery().getProjectMessage()) {
-            //ArmsUtils.snackbarText("请选择检测项目");
             return false;
         }
 
         if ("".equals(samplename)) {
-            // ArmsUtils.snackbarText("请选择或输入样品");
             return false;
         }
 
@@ -678,7 +667,7 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
                 if (judgeState(0)) return;
 
                 intent = new Intent(mContext, ChoseProjectActivity.class);
-                intent.putExtra("from", "jtj_1");
+                intent.putExtra("from", "jtj");
                 intent.putExtra("index", mIndex);
                 mContext.startActivity(intent);
 

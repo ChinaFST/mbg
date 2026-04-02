@@ -1120,152 +1120,6 @@ public abstract class GalleryBean implements UsbReadWriteHelper.onUsbReciver {
     }
 
 
-    protected void judgeAndSaveJTJData_P(double[] data) {
-        LogUtils.d(data);
-        Detection_Record_FGGD_NC detection_record_fggd_nc = (Detection_Record_FGGD_NC) this;
-
-        //根据胶体金检测项目的相关参数 判定是否合格
-        int method = mProjectMessage.getTestMethod();
-        LogUtils.d(mProjectMessage);
-        //根据通道号来取不同的参数（其实两个参数都是一样的，防止通道偏差造成结果不准）
-        int i = JTJ_MAC % 2;
-        double mCValue;
-        double mTValueA;
-        double mTValueB;
-        double mCTValueA;
-        double mCTValueB;
-        mCValue = mProjectMessage.getC2();
-        mTValueA = mProjectMessage.getT2A();
-        mTValueB = mProjectMessage.getT2B();
-        mCTValueA = mProjectMessage.getC2_t2A();
-        mCTValueB = mProjectMessage.getC2_t2B();
-        if (i == 1) { //取通道一的参数
-            mCValue = mProjectMessage.getC1();
-            mTValueA = mProjectMessage.getT1A();
-            mTValueB = mProjectMessage.getT1B();
-            mCTValueA = mProjectMessage.getC1_t1A();
-            mCTValueB = mProjectMessage.getC1_t1B();
-        }
-
-
-        if (method == 1) {//消线法
-
-            if (data[1] <= mCValue) { //无c线
-                //无效卡
-                if (data[3] <= mTValueA) {  //无c无t线
-                    detection_record_fggd_nc.setTestresult(MyAppLocation.myAppLocation.getString(R.string.txt_invalid));
-                    detection_record_fggd_nc.setDecisionoutcome(MyAppLocation.myAppLocation.getString(R.string.txt_invalid));
-                    backgroundResous = 1;
-                } else { //无c 有t线
-                    detection_record_fggd_nc.setTestresult(MyAppLocation.myAppLocation.getString(R.string.txt_invalid));
-                    detection_record_fggd_nc.setDecisionoutcome(MyAppLocation.myAppLocation.getString(R.string.txt_invalid));
-                    backgroundResous = 2;
-                }
-            } else {//有c线/  判断t线
-                if (data[3] <= mTValueA) {//有c无t线 /阳性
-                    detection_record_fggd_nc.setTestresult(MyAppLocation.myAppLocation.getString(R.string.yang));
-                    detection_record_fggd_nc.setDecisionoutcome(MyAppLocation.myAppLocation.getString(R.string.ng));
-                    backgroundResous = 3;
-                } else if (data[3] >= mTValueB) {//有c 有t线 阴性y
-                    detection_record_fggd_nc.setTestresult(MyAppLocation.myAppLocation.getString(R.string.yin));
-                    detection_record_fggd_nc.setDecisionoutcome(MyAppLocation.myAppLocation.getString(R.string.ok));
-                    backgroundResous = 4;
-                } else {
-                    detection_record_fggd_nc.setTestresult(MyAppLocation.myAppLocation.getString(R.string.keyi));
-                    detection_record_fggd_nc.setDecisionoutcome(MyAppLocation.myAppLocation.getString(R.string.keyi));
-                    backgroundResous = 7;
-                }
-            }
-
-        } else if (method == 2) {//比色法
-
-            if (data[1] <= mCValue) { //无c线
-                //无效卡
-                if (data[3] <= mTValueA) {  //无c无t线
-                    detection_record_fggd_nc.setTestresult(MyAppLocation.myAppLocation.getString(R.string.txt_invalid));
-                    detection_record_fggd_nc.setDecisionoutcome(MyAppLocation.myAppLocation.getString(R.string.txt_invalid));
-                    backgroundResous = 1;
-                } else { //无c 有t线
-                    detection_record_fggd_nc.setTestresult(MyAppLocation.myAppLocation.getString(R.string.txt_invalid));
-                    detection_record_fggd_nc.setDecisionoutcome(MyAppLocation.myAppLocation.getString(R.string.txt_invalid));
-                    backgroundResous = 2;
-                }
-            } else {
-                if (data[3] / data[1] <= mCTValueA) {  //阳性
-                    detection_record_fggd_nc.setTestresult(MyAppLocation.myAppLocation.getString(R.string.yang));
-                    detection_record_fggd_nc.setDecisionoutcome(MyAppLocation.myAppLocation.getString(R.string.ng));
-                    backgroundResous = 5;
-                } else if (data[3] / data[1] >= mCTValueB) {  //阴性
-                    detection_record_fggd_nc.setTestresult(MyAppLocation.myAppLocation.getString(R.string.yin));
-                    detection_record_fggd_nc.setDecisionoutcome(MyAppLocation.myAppLocation.getString(R.string.ok));
-                    backgroundResous = 6;
-                } else {
-                    detection_record_fggd_nc.setTestresult(MyAppLocation.myAppLocation.getString(R.string.keyi));
-                    detection_record_fggd_nc.setDecisionoutcome(MyAppLocation.myAppLocation.getString(R.string.keyi));
-                    backgroundResous = 8;
-                }
-            }
-
-
-        }
-
-
-        //检测完成时间
-        detection_record_fggd_nc.setTestingtime(System.currentTimeMillis());
-        //检测地点
-        detection_record_fggd_nc.setTestsite(Constants.ADDR_WF);
-        detection_record_fggd_nc.setLatitude(Constants.LATITUDE);
-        detection_record_fggd_nc.setLongitude(Constants.LONTITUDE);
-        //当前平台
-        detection_record_fggd_nc.setPlatform_tag("");
-
-        //检测人员   这里填的是本地登录的账号名称
-        detection_record_fggd_nc.setInspector(Constants.NOWUSER.getUsername());
-        //设置检测模块
-        detection_record_fggd_nc.setTest_Moudle(ArmsUtils.getString(MyAppLocation.myAppLocation, R.string.JTJ_TestMoudle_P));
-        // 保存至数据库
-        detection_record_fggd_nc.setId(null);//自增ID
-        if (backgroundResous == 1 || backgroundResous == 2) {
-            detection_record_fggd_nc.setState(3);
-            LogUtils.d("结果无效");
-        } else {
-            //设置状态为检测完成 2
-            detection_record_fggd_nc.setState(2);
-        }
-
-
-        String s = "C:" + new DecimalFormat("##0.000").format(data[1])
-                + "  T:" + new DecimalFormat("##0.000").format(data[3])
-                + "  T/C:" + new DecimalFormat("##0.000").format(data[3] / data[1]);
-
-        detection_record_fggd_nc.setControlvalue(s);
-        StringBuilder builder = new StringBuilder(); //使用线程安全的StringBuffer
-        for (int i1 = 0; i1 < mUserfullData.size(); i1++) {
-            builder.append(mUserfullData.get(i1) + ",");
-        }
-        JTJPoint entity = new JTJPoint();
-        entity.setId(null);
-        entity.setPointData(builder.toString());
-        entity.setUuid(detection_record_fggd_nc.getSysCode());
-        DBHelper.getJTJPointDao(MyAppLocation.myAppLocation).insertOrReplace(entity);
-
-        FileUtils.saveBitmaplevel1(mBitmapList.get(0), detection_record_fggd_nc.getSysCode());
-        FileUtils.saveBitmaplevel2(mBitmapList.get(1), detection_record_fggd_nc.getSysCode() + 1);
-
-
-        LogUtils.d(detection_record_fggd_nc);
-
-
-    }
-
-
-    private double[] getData_P(List<Float> bytes) {
-
-        return new JTJDataModel_P(bytes).getData_S();
-
-    }
-
-
     public boolean isCountedDown() {
         return isCountedDown;
     }
@@ -1483,48 +1337,34 @@ public abstract class GalleryBean implements UsbReadWriteHelper.onUsbReciver {
                 mCTValueA = message.getC1_t1A();
                 mCTValueB = message.getC1_t1B();
             }
-            String result = "";
-            String decom = "";
             if (method == 1) {//消线法
                 if (data[0] == 0) {
-                    testresult.append("无效 ");
-                    decisionoutcome.append("无效 ");
-                    result = "无效";
-                    decom = "无效";
+                    testresult.append(StringUtils.getString(R.string.txt_invalid));
+                    decisionoutcome.append(StringUtils.getString(R.string.txt_invalid));
                 } else {
                     if (data[1] <= mCValue) { //无c线
                         //无效卡
                         if (data[3] <= mTValueA) {  //无c无t线
-                            testresult.append("无效 ");
-                            decisionoutcome.append("无效 ");
-                            result = "无效";
-                            decom = "无效";
+                            testresult.append(StringUtils.getString(R.string.txt_invalid));
+                            decisionoutcome.append(StringUtils.getString(R.string.txt_invalid));
                             backgroundResous = 1;
                         } else { //无c 有t线
-                            testresult.append("无效 ");
-                            decisionoutcome.append("无效 ");
-                            result = "无效";
-                            decom = "无效";
+                            testresult.append(StringUtils.getString(R.string.txt_invalid));
+                            decisionoutcome.append(StringUtils.getString(R.string.txt_invalid));
                             backgroundResous = 2;
                         }
                     } else {//有c线/  判断t线
                         if (data[3] <= mTValueA) {//有c无t线 /阳性
-                            testresult.append("阳性 ");
-                            decisionoutcome.append("不合格 ");
-                            result = "阳性";
-                            decom = "不合格";
+                            testresult.append(StringUtils.getString(R.string.yang));
+                            decisionoutcome.append(StringUtils.getString(R.string.ng));
                             backgroundResous = 3;
                         } else if (data[3] >= mTValueB) {//有c 有t线 阴性y
-                            testresult.append("阴性 ");
-                            decisionoutcome.append("合格 ");
-                            result = "阴性";
-                            decom = "合格";
+                            testresult.append(StringUtils.getString(R.string.yin));
+                            decisionoutcome.append(StringUtils.getString(R.string.ok));
                             backgroundResous = 4;
                         } else {
-                            testresult.append("可疑 ");
-                            decisionoutcome.append("可疑 ");
-                            result = "可疑";
-                            decom = "可疑";
+                            testresult.append(StringUtils.getString(R.string.keyi));
+                            decisionoutcome.append(StringUtils.getString(R.string.keyi));
                             backgroundResous = 7;
                         }
                     }
@@ -1533,52 +1373,38 @@ public abstract class GalleryBean implements UsbReadWriteHelper.onUsbReciver {
 
             } else if (method == 2) {//比色法
                 if (data[0] == 0) {
-                    testresult.append("无效 ");
-                    decisionoutcome.append("无效 ");
-                    result = "无效";
-                    decom = "无效";
+                    testresult.append(StringUtils.getString(R.string.txt_invalid));
+                    decisionoutcome.append(StringUtils.getString(R.string.txt_invalid));
                 } else {
                     if (data[1] <= mCValue) { //无c线
                         //无效卡
                         if (data[3] <= mTValueA) {  //无c无t线
-                            testresult.append("无效 ");
-                            decisionoutcome.append("无效 ");
-                            result = "无效";
-                            decom = "无效";
+                            testresult.append(StringUtils.getString(R.string.txt_invalid));
+                            decisionoutcome.append(StringUtils.getString(R.string.txt_invalid));
                             backgroundResous = 1;
                         } else { //无c 有t线
-                            testresult.append("无效 ");
-                            decisionoutcome.append("无效 ");
-                            result = "无效";
-                            decom = "无效";
+                            testresult.append(StringUtils.getString(R.string.txt_invalid));
+                            decisionoutcome.append(StringUtils.getString(R.string.txt_invalid));
                             backgroundResous = 2;
                         }
                     } else {
                         //无T线判阳性
                         if (data[3] <= mTValueA) {//有c无t线 /阳性
-                            testresult.append("阳性 ");
-                            decisionoutcome.append("不合格 ");
-                            result = "阳性";
-                            decom = "不合格";
+                            testresult.append(StringUtils.getString(R.string.yang));
+                            decisionoutcome.append(StringUtils.getString(R.string.ng));
                             backgroundResous = 3;
                         } else {
                             if (data[3] / data[1] <= mCTValueA) {  //阳性
-                                testresult.append("阳性 ");
-                                decisionoutcome.append("不合格 ");
-                                result = "阳性";
-                                decom = "不合格";
+                                testresult.append(StringUtils.getString(R.string.yang));
+                                decisionoutcome.append(StringUtils.getString(R.string.ng));
                                 backgroundResous = 5;
                             } else if (data[3] / data[1] >= mCTValueB) {  //阴性
-                                testresult.append("阴性 ");
-                                decisionoutcome.append("合格 ");
-                                result = "阴性";
-                                decom = "合格";
+                                testresult.append(StringUtils.getString(R.string.yin));
+                                decisionoutcome.append(StringUtils.getString(R.string.ok));
                                 backgroundResous = 6;
                             } else {
-                                testresult.append("可疑 ");
-                                decisionoutcome.append("可疑 ");
-                                result = "可疑";
-                                decom = "可疑";
+                                testresult.append(StringUtils.getString(R.string.keyi));
+                                decisionoutcome.append(StringUtils.getString(R.string.keyi));
                                 backgroundResous = 8;
                             }
                         }
@@ -1597,14 +1423,14 @@ public abstract class GalleryBean implements UsbReadWriteHelper.onUsbReciver {
         detection_record_fggd_nc.setControlvalue(testdata.toString());
 
         String decisionoutcome1 = decisionoutcome.toString().trim();
-        if (decisionoutcome1.contains("不合格")) {
-            detection_record_fggd_nc.setDecisionoutcome("不合格");
-        } else if (decisionoutcome1.contains("无效")) {
-            detection_record_fggd_nc.setDecisionoutcome("无效");
-        } else if (decisionoutcome1.equals("可疑")) {
-            detection_record_fggd_nc.setDecisionoutcome("可疑");
+        if (decisionoutcome1.contains(StringUtils.getString(R.string.ng))) {
+            detection_record_fggd_nc.setDecisionoutcome(StringUtils.getString(R.string.ng));
+        } else if (decisionoutcome1.contains(StringUtils.getString(R.string.txt_invalid))) {
+            detection_record_fggd_nc.setDecisionoutcome(StringUtils.getString(R.string.txt_invalid));
+        } else if (decisionoutcome1.equals(StringUtils.getString(R.string.keyi))) {
+            detection_record_fggd_nc.setDecisionoutcome(StringUtils.getString(R.string.keyi));
         } else {
-            detection_record_fggd_nc.setDecisionoutcome("合格");
+            detection_record_fggd_nc.setDecisionoutcome(StringUtils.getString(R.string.ok));
         }
 
         //检测完成时间

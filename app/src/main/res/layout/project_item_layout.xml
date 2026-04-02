@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="160dp"
     android:layout_margin="5dp"
     android:gravity="center"
     app:cardBackgroundColor="@color/tm55"
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/title"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="12dp"
                 android:text="@string/test_method_colon"
                 android:textColor="#333333"
@@ -70,11 +70,10 @@
 
             <TextView
                 android:id="@+id/editText20"
-                android:layout_width="114sp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView45"
-                android:layout_alignBottom="@+id/textView45"
-                android:layout_toRightOf="@+id/textView45"
+                android:layout_below="@+id/textView45"
+                android:layout_marginStart="10dp"
                 android:textColor="#474747"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -83,10 +82,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editText20"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="6dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:paddingStart="10dp"
+                android:paddingTop="@dimen/dp_4"
+                android:paddingEnd="10dp"
+                android:paddingBottom="@dimen/dp_4">
 
                 <Button
                     android:id="@+id/edtor_item"
