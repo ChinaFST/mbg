@@ -25,7 +25,7 @@ import com.dy.colony.R;
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 public class SplashActivity extends BaseActivity<SplashPresenter> implements SplashContract.View {
-    private Handler mHandler = new Handler();
+    private final Handler mHandler = new Handler();
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
@@ -47,20 +47,8 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (Constants.ISREMBERUSERNAME) {
-                    String userJson = (String) SPUtils.get(SplashActivity.this, Constants.KEY_USERINFOR_JSON, new Gson().toJson(new User()));
-                    User user = new Gson().fromJson(userJson, User.class);
-                    if (null != user) {
-                        mPresenter.login(user.getUsername(), user.getPassword());
-                    } else {
-                        killMyself();
-                        launchActivity(new Intent(SplashActivity.this, LoginActivity.class));
-                    }
-                } else {
-                    killMyself();
-                    launchActivity(new Intent(SplashActivity.this, LoginActivity.class));
-
-                }
+                killMyself();
+                launchActivity(new Intent(SplashActivity.this, LoginActivity.class));
             }
         }, 100);
 
@@ -118,6 +106,5 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
             mHandler.removeCallbacksAndMessages(null);
         }
     }
-
 
 }

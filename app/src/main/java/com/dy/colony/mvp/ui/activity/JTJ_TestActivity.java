@@ -510,11 +510,11 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
                 break;
 
             case R.id.start_test:
-                //mPresenter.makeChoseSeachMethodDialog(mJTJTestViews);
                 startTest();
                 break;
             case R.id.iv_record:
-                startActivity(new Intent(getActivity(), TestRecordNewActivity.class));
+                //startActivity(new Intent(getActivity(), TestRecordNewActivity.class));
+                dealImage();
                 break;
             default:
                 break;
@@ -524,28 +524,30 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
     }
 
     private void dealImage() {
-        String path = "/storage/emulated/0/dayuan/001.jpg";
-        makeTransparentSmooth(this, path, "001_1.png");
-        String path1 = "/storage/emulated/0/dayuan/002.jpg";
-        makeTransparentSmooth(this, path1, "002_1.png");
-        String path2 = "/storage/emulated/0/dayuan/003.jpg";
-        makeTransparentSmooth(this, path2, "003_1.png");
+        String path = "/storage/emulated/0/dayuan/ic_.jpg";
+        makeTransparentSmooth(this, path, "ic_1.png");
+        //makeTransparentWithWhiteBase(this, path, "ic_001.png");
+
     }
 
     public String makeTransparentSmooth(Context context, String inputPath, String fileName) {
         // 1. 加载原图（注意：大图可能导致 OOME，建议在实际项目中根据需求做采样缩放）
+        LogUtils.d("开始处理图片");
         Bitmap source = BitmapFactory.decodeFile(inputPath);
-        if (source == null) return null;
+        if (source == null) {
+            LogUtils.d("图片为空");
+            return null;
+        }
 
         // 2. 创建一个支持透明度的副本
         int width = source.getWidth();
         int height = source.getHeight();
         Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-
+        LogUtils.d("1");
         // 3. 批量读取像素
         int[] pixels = new int[width * height];
         source.getPixels(pixels, 0, width, 0, 0, width, height);
-
+        LogUtils.d("2");
         // 4. 定义平滑处理的亮度阈值
         // 亮度 > 250 的认为是纯背景（全透明）
         // 亮度 < 200 的认为是物体核心（不透明）
@@ -580,16 +582,18 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
                 pixels[i] = Color.argb(alpha, r, g, b);
             }
         }
-
+        LogUtils.d("3");
         // 5. 写回并保存
         result.setPixels(pixels, 0, width, 0, 0, width, height);
 
         File outFile = new File(context.getFilesDir(), fileName);
+        LogUtils.d("4");
         try (FileOutputStream fos = new FileOutputStream(outFile)) {
             // 必须 PNG 才能保存透明通道
             result.compress(Bitmap.CompressFormat.PNG, 100, fos);
             return outFile.getAbsolutePath();
         } catch (IOException e) {
+            LogUtils.d("处理图片异常");
             e.printStackTrace();
             return null;
         } finally {
@@ -599,6 +603,80 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
         }
     }
 
+    /**
+     * 将图片中的白色背景转换为透明，并针对圆角黑边进行优化
+     * * @param context 上下文
+     *
+     * @param inputPath 原图路径
+     * @param fileName  保存的文件名
+     * @return 处理后的图片绝对路径
+     */
+    public String makeTransparentWithWhiteBase(Context context, String inputPath, String fileName) {
+        // 1. 加载原图
+        Bitmap source = BitmapFactory.decodeFile(inputPath);
+        if (source == null) return null;
+
+        int width = source.getWidth();
+        int height = source.getHeight();
+
+        // 2. 创建支持透明度的副本 (ARGB_8888 是必须的)
+        Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+
+        // 3. 批量读取像素
+        int[] pixels = new int[width * height];
+        source.getPixels(pixels, 0, width, 0, 0, width, height);
+
+        // 4. 定义阈值
+        float maxLuminance = 250f; // 高于此亮度设为全透明
+        float minLuminance = 200f; // 低于此亮度保持不透明
+
+        // 关键：构建“透明白”而不是默认的“透明黑”
+        // 0x00FFFFFF -> Alpha为0，但RGB全为255
+        int transparentWhite = Color.argb(0, 255, 255, 255);
+
+        for (int i = 0; i < pixels.length; i++) {
+            int color = pixels[i];
+            int r = Color.red(color);
+            int g = Color.green(color);
+            int b = Color.blue(color);
+
+            // 使用感知亮度公式
+            float luminance = 0.2126f * r + 0.7152f * g + 0.0722f * b;
+
+            if (luminance > maxLuminance) {
+                // 【改进点】背景区域：设为透明白，解决圆角变黑问题
+                pixels[i] = transparentWhite;
+            } else if (luminance < minLuminance) {
+                // 物体核心：保持原色，强制不透明
+                pixels[i] = Color.argb(255, r, g, b);
+            } else {
+                // 边缘过渡地带：计算平滑 Alpha
+                float alphaScale = 1f - (luminance - minLuminance) / (maxLuminance - minLuminance);
+                int alpha = (int) (255 * alphaScale);
+
+                // 【改进点】保持边缘像素的 RGB 为原始色（通常是接近白色的色值）
+                // 这样它在透明背景下会自然过渡，而不会因为底色变黑而产生黑边
+                pixels[i] = Color.argb(alpha, r, g, b);
+            }
+        }
+
+        // 5. 写回并保存
+        result.setPixels(pixels, 0, width, 0, 0, width, height);
+
+        File outFile = new File(context.getFilesDir(), fileName);
+        try (FileOutputStream fos = new FileOutputStream(outFile)) {
+            // 压缩为 PNG 以保留透明通道
+            result.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            return outFile.getAbsolutePath();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            // 及时释放内存，防止 OOM
+            if (source != null && !source.isRecycled()) source.recycle();
+            if (result != null && !result.isRecycled()) result.recycle();
+        }
+    }
 
     private void startTest() {
         for (BaseJTJTestView mJTJTestView : mJTJTestViews) {

@@ -798,7 +798,7 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
             return;
         }
         if (!mSurfaceHolder.getSurface().isValid()) {
-            LogUtils.w("SurfaceCheck: Surface is INVALID");
+            //LogUtils.w("SurfaceCheck: Surface is INVALID");
             return;
         }
         Canvas canvas = mSurfaceHolder.lockCanvas();

@@ -37,24 +37,6 @@
         <item name="android:paddingEnd">6dp</item>
     </style>
 
-    <!-- 全屏主题样式 -->
-    <!--<style name="FullScreenTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:windowFullscreen">true</item>
-        &lt;!&ndash; 窗口背景颜色 &ndash;&gt;
-        <item name="android:windowBackground">@color/common_window_background_color</item>
-    </style>
-
-    &lt;!&ndash; 闪屏页主题样式 &ndash;&gt;
-    <style name="SplashTheme" parent="FullScreenTheme">
-        &lt;!&ndash; https://www.jianshu.com/p/d0d907754603 &ndash;&gt;
-        <item name="android:windowIsTranslucent">false</item>
-        <item name="android:windowDisablePreview">true</item>
-        &lt;!&ndash; 适配 Android 12 SplashScreen 特性  &ndash;&gt;
-        &lt;!&ndash;<item name="android:windowSplashScreenBackground" tools:targetApi="31">@color/transparent</item>
-        <item name="android:windowSplashScreenIconBackgroundColor" tools:targetApi="31">@color/transparent</item>
-        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="31">@color/transparent</item>
-        <item name="android:windowSplashScreenBrandingImage" tools:targetApi="31">@color/transparent</item>&ndash;&gt;
-    </style>-->
 
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/black</item>
@@ -63,6 +45,12 @@
         <item name="android:windowTranslucentNavigation">false</item>
         <!--<item name="android:windowTranslucentStatus">true</item>-->
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:windowBackground">@drawable/bg_splash_new</item>
+        <!-- 使用透明窗口属性，在 Android 12+ 系统上诱导其跳过带图标的启动页 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 禁用系统层级的默认预览窗口 -->
+        <item name="android:windowDisablePreview">true</item>
     </style>
+
+
 </resources>

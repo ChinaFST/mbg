@@ -554,7 +554,6 @@ public class TestRecordNewActivity extends BaseActivity<TestRecordNewPresenter> 
     @OnClick({R.id.test_time, R.id.re_allcheck})
     public void onClick(View view) {
         switch (view.getId()) {
-
             case R.id.test_time:
                 choseTime1();
                 break;

@@ -102,15 +102,21 @@
             android:name=".mvp.ui.activity.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme" />
-        <activity
-            android:name=".mvp.ui.activity.LoginActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:theme="@style/SplashTheme">
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".mvp.ui.activity.LoginActivity"
+            android:screenOrientation="portrait">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
         <activity
             android:name=".mvp.ui.activity.CountActivity"
