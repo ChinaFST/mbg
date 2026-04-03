@@ -4,6 +4,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
+import androidx.annotation.IdRes;
+
+import com.blankj.utilcode.util.StringUtils;
+import com.dy.colony.R;
 import com.dy.colony.mvp.model.entity.OutMoudle;
 import com.dy.colony.mvp.model.entity.base.BaseProjectMessage;
 
@@ -46,8 +50,8 @@ public class JTJTestItem extends BaseProjectMessage implements Parcelable {
     @Override
     public String toMyStringProject() {
         return projectName + "\r\n" +
-                "检测项目唯一ID：" + unique_testproject + "\r\n" +
-                "检测方法：" + (testMethod == 1 ? "定性消线法" : "定性比色法") + "\r\n";
+                StringUtils.getString(R.string.project_unique_id) + unique_testproject + "\r\n" +
+                StringUtils.getString(R.string.test_method_colon) + (testMethod == 1 ? StringUtils.getString(R.string.method_xiaoxian) : StringUtils.getString(R.string.method_bise)) + "\r\n";
     }
 
     @Override
@@ -55,35 +59,40 @@ public class JTJTestItem extends BaseProjectMessage implements Parcelable {
         String s = null;
         switch (testMethod) {
             case 1:
-                s = "定性消线法" + "\r\n" +
-                        "C线出线值：" + c1 + "\r\n" +
-                        "T线出线值：" + t1A + "--" + t1B + "\r\n";
+                s = StringUtils.getString(R.string.method_xiaoxian) + "\r\n" +
+                        StringUtils.getString(R.string.line_c_output_value) + c1 + "\r\n" +
+                        StringUtils.getString(R.string.line_t_output_value)  + t1A + "--" + t1B + "\r\n";
                 break;
             case 2:
-                s = "定性比色法" + "\r\n" +
-                        "C线出线值：" + c1 + "\r\n" +
-                        "T线出线值：" + t1A + "--" + t1B + "\r\n" +
-                        "C/T出线值：" + c1_t1A + "--" + c1_t1B;
+                s = StringUtils.getString(R.string.method_bise) + "\r\n" +
+                       StringUtils.getString(R.string.line_c_output_value) + c1 + "\r\n" +
+                        StringUtils.getString(R.string.line_t_output_value) + t1A + "--" + t1B + "\r\n" +
+                        StringUtils.getString(R.string.C_T_outgoing_value) + c1_t1A + "--" + c1_t1B;
                 break;
         }
         return s;
     }
 
     public OutMoudle<String> toJxlTitle() {
-        return new OutMoudle<String>("编号," + "项目名称," + "方法（1消线;2比色）," + "C1值," + "T1A值," + "T1B值," + "T1/C1A值," + "T1/C1B值," + "C2值,"
-                + "T2A值," + "T2B值," + "T2/C2A值," + "T2/C2B值," + "流水号," + "检测时间," + "密码," + "唯一编号," + "检测项目类型,"+"最后更新时间");
+        return new OutMoudle<String>(appendStr(R.string.serial_number) + appendStr(R.string.project_name) + appendStr(R.string.methods_xiaoxian_bise)  + appendStr(R.string.c1_value) + appendStr(R.string.T1A_value)
+                + appendStr(R.string.T1B_value) + appendStr(R.string.T1_C1A_value) + appendStr(R.string.T1_C1B_value) + appendStr(R.string.C2_value) + appendStr(R.string.T2A_value)
+                + appendStr(R.string.T2B_value) + appendStr(R.string.T2_C2A_value) + appendStr(R.string.T2_C2B_value) +appendStr(R.string.searinumber)
+                + appendStr(R.string.testtime)  +appendStr(R.string.password)   + appendStr(R.string.unique_number) + appendStr(R.string.type_testing_item) + StringUtils.getString(R.string.Last_updated));
     }
 
     public OutMoudle<String> toJxlString() {
-        return new OutMoudle<String>(number + "," + projectName.replaceAll(",","#") + "," + testMethod + "," + c1 + "," + t1A + "," + t1B + "," + c1_t1A + "," +
+        return new OutMoudle<String>(number + "," + projectName.replaceAll(",", "#") + "," + testMethod + "," + c1 + "," + t1A + "," + t1B + "," + c1_t1A + "," +
                 c1_t1B + "," + c2 + "," + t2A + "," + t2B + "," + c2_t2A + "," +
-                c2_t2B + "," + serialNumber + "," + testTime + "," + password + "," + unique_testproject +","+ item_type+","+version);
+                c2_t2B + "," + serialNumber + "," + testTime + "," + password + "," + unique_testproject + "," + item_type + "," + version);
+    }
+
+    private String appendStr(@IdRes int id){
+        return StringUtils.getString(id)+",";
     }
 
 
     public JTJTestItem() {
     }
-
 
 
     public Long getId() {
@@ -272,7 +281,7 @@ public class JTJTestItem extends BaseProjectMessage implements Parcelable {
     }
 
     public void setPriority(Long priority) {
-        this.priority=priority;
+        this.priority = priority;
     }
 
     @Override
@@ -331,8 +340,8 @@ public class JTJTestItem extends BaseProjectMessage implements Parcelable {
 
     @Generated(hash = 1699490018)
     public JTJTestItem(Long id, String number, String projectName, int testMethod, double c1, double t1A, double t1B, double c1_t1A, double c1_t1B, double c2,
-            double t2A, double t2B, double c2_t2A, double c2_t2B, int testTime, String password, int serialNumber, String unique_testproject, String item_type,
-            String version, Long priority) {
+                       double t2A, double t2B, double c2_t2A, double c2_t2B, int testTime, String password, int serialNumber, String unique_testproject, String item_type,
+                       String version, Long priority) {
         this.id = id;
         this.number = number;
         this.projectName = projectName;
@@ -356,7 +365,6 @@ public class JTJTestItem extends BaseProjectMessage implements Parcelable {
         this.priority = priority;
     }
 
-    
 
     public static final Creator<JTJTestItem> CREATOR = new Creator<JTJTestItem>() {
         @Override

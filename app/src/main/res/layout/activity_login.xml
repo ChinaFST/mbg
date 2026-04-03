@@ -13,19 +13,23 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true">
 
-        <!--<ImageView
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/iv_top"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/logo_login_icn" />-->
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="40dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitStart"
+            android:src="@drawable/icon_login_top" />
 
         <TextView
             android:id="@+id/appname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/iv_top"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="30dp"
             android:gravity="center"
             android:text="@string/device_name"
             android:textColor="@color/colorPrimaryDark"

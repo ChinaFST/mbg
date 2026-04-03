@@ -1012,7 +1012,7 @@ public class Detection_Record_FGGD_NC extends GalleryBean implements Parcelable 
         builder.append(getTxt(R.string.serial_number_colon) + (serialNumber) + "\n");
         builder.append(getTxt(R.string.sample_name_colon) + (samplename) + "\n");
         builder.append(getTxt(R.string.channel_number_colon) + (gallery) + "\n");
-        builder.append(getTxt(R.string.judgment_basis_colon) + (stand_num) + "\n");
+        //builder.append(getTxt(R.string.judgment_basis_colon) + (stand_num) + "\n");
         builder.append(getTxt(R.string.dilution_factor) + (dilutionratio) + "\n");
         builder.append(getTxt(R.string.number_reaction_drops) + (everyresponse) + "\n");
         builder.append(getTxt(R.string.control_value_colon) + (controlvalue) + "\n");

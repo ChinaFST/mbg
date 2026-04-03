@@ -59,9 +59,7 @@ public class TestRecordAdapter extends BaseQuickAdapter<Detection_Record_FGGD_NC
         if (moudle.contains(mContext.getString(R.string.JTJ_TestMoudle_P))) {
             helper.setText(R.id.testresult, item.getTestresult());
         }
-        if (test_project.equals("大米新鲜度")) {
-            helper.setText(R.id.testresult, item.getTestresult());
-        }
+
 
         if (item.getRetest() == 1) {
             helper.setVisible(R.id.retest_icn, true);

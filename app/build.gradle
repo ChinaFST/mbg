@@ -29,9 +29,9 @@ android {
 
     signingConfigs {
         release {
-            storeFile file('/Users/wangzhenxiong/android_project/wangzhx.jks')
+            storeFile file('mbg.jks')
             storePassword '123456'
-            keyAlias 'key'
+            keyAlias 'mbg'
             keyPassword '123456'
         }
     }

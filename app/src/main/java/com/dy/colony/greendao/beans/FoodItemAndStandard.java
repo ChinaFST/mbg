@@ -42,7 +42,7 @@ public class FoodItemAndStandard extends BaseSampleMessage implements Parcelable
                 getMyString(R.string.test_project_colon) + itemName + "\r\n" +
                 getMyString(R.string.sample_number_colon) + sampleNum + "\r\n" +
                 getMyString(R.string.parent_class_number_colon) + foodPCode + "\r\n" +
-                getMyString(R.string.testing_standards_colon) + standardName + "\r\n" +
+                //getMyString(R.string.testing_standards_colon) + standardName + "\r\n" +
                 getMyString(R.string.limit_value_colon) + checkSign + standardValue + checkValueUnit + "\r\n" +
                 getMyString(R.string.update_date_colon) + uDate + "\r\n" +
                 getMyString(R.string.manually_add_colon) + (flag == 2 ? getMyString(R.string.txt_yes) : getMyString(R.string.txt_no));

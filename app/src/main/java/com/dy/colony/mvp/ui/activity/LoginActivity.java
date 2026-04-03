@@ -105,14 +105,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         initCb();
         initUserInfor();
         initVersion();
-
-        /*if (Constants.ISREMBERUSERNAME) {
-            login();
-        }*/
-        if (BuildConfig.DEBUG) {
-            mUsename.setText("Scy001");
-            mPassword.setText("Scy@12346");
-        }
+        mUsename.setText("Scy001");
+        mPassword.setText("Scy@12346");
     }
 
 

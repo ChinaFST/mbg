@@ -391,5 +391,31 @@
     <string name="c1_value">C1 value</string>
     <string name="methods_xiaoxian_bise">Methods (1. Line elimination; 2. Colorimetric comparison)</string>
     <string name="hint_sel_project_sample">Please select the test items and sample name.</string>
+    <string name="project_unique_id">Unique ID of the test item：</string>
+    <string name="str_test">test</string>
+    <string name="str_brief_tips">Brief Tips</string>
+    <string name="negative_range_colon">negative range：</string>
+    <string name="positive_range_colon">positive range：</string>
+    <string name="keyi_range_colon">Suspicious range：</string>
+    <string name="standard_curve_a_param">Standard curve A parameters：</string>
+    <string name="standard_curve_b_param">Standard curve B parameters：</string>
+    <string name="correction_curve_param">Correction curve parameters：</string>
+    <string name="standard_curve_colon">Standard curve：</string>
+    <string name="line_c_output_value">C-line outgoing value：</string>
+    <string name="line_t_output_value">T-line outgoing value：</string>
+    <string name="C_T_outgoing_value">C/T outgoing value：</string>
+    <string name="T1B_value">T1B value</string>
+    <string name="T1_C1A_value">T1/C1A value</string>
+    <string name="T1_C1B_value">T1/C1B value</string>
+    <string name="C2_value">C2 value</string>
+    <string name="T2A_value">T2A value</string>
+    <string name="T2B_value">T2B value</string>
+    <string name="T2_C2A_value">T2/C2A value</string>
+    <string name="T2_C2B_value">T2/C2B value</string>
+    <string name="unique_number">Unique number</string>
+    <string name="type_testing_item">Types of testing items</string>
+    <string name="Last_updated">Last updated</string>
+    <string name="serial_number">Serial Number</string>
+    <string name="project_name">Project Name</string>
 
 </resources>

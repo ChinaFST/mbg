@@ -4,6 +4,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
+import androidx.annotation.IdRes;
+
+import com.blankj.utilcode.util.StringUtils;
+import com.dy.colony.R;
 import com.dy.colony.mvp.model.entity.OutMoudle;
 import com.dy.colony.mvp.model.entity.base.BaseProjectMessage;
 
@@ -66,9 +70,9 @@ public class FGGDTestItem extends BaseProjectMessage implements Parcelable {
     @Override
     public String toMyStringProject() {
         return project_name + "\r\n" +
-                "检测项目唯一ID：" + unique_testproject + "\r\n" +
-                "波长段：" + wavelength + "\r\n" +
-                "检测方法：" + method;
+                StringUtils.getString(R.string.project_unique_id) + unique_testproject + "\r\n" +
+                StringUtils.getString(R.string.ed_waves) + wavelength + "\r\n" +
+                StringUtils.getString(R.string.test_method_colon) + method;
     }
 
     @Override
@@ -76,60 +80,63 @@ public class FGGDTestItem extends BaseProjectMessage implements Parcelable {
         String s = null;
         switch (method) {
             case "0":
-                s = "抑制率法" + "\r\n" +
-                        "预热时间：" + yuretime + "\r\n" +
-                        "检测时间：" + jiancetime + "\r\n" +
-                        "检测值单位：" + unit_input + "\r\n" +
-                        "阴性范围：" + yin_a + "--" + yin_b + "\r\n" +
-                        "阳性范围：" + yang_a + "--" + yang_b + "\r\n" +
-                        "可疑范围：" + keyi_a + "--" + keyi_b;
+                s = StringUtils.getString(R.string.mothod1) + "\r\n" +
+                        getAppendStr(R.string.str_yure_time)   + yuretime + "\r\n" +
+                        getAppendStr(R.string.testtime) + jiancetime + "\r\n" +
+                        getAppendStr(R.string.unit_input) + unit_input + "\r\n" +
+                    StringUtils.getString(R.string.negative_range_colon) + yin_a + "--" + yin_b + "\r\n" +
+                    StringUtils.getString(R.string.positive_range_colon) + yang_a + "--" + yang_b + "\r\n" +
+                    StringUtils.getString(R.string.keyi_range_colon) + keyi_a + "--" + keyi_b;
                 break;
             case "1":
-                s = "标准曲线法" + "\r\n" +
-                        "预热时间：" + yuretime + "\r\n" +
-                        "检测时间：" + jiancetime + "\r\n" +
-                        "检测值单位：" + unit_input + "\r\n" +
-                        "标准曲线A参数：" + "  X0：" + biaozhun_a0 + "  X1：" + biaozhun_b0 + "  X2：" + biaozhun_c0 + "  X3：" + biaozhun_d0 + "  FROM0：" + biaozhun_from0 + "  TO0：" + biaozhun_to0 + "\r\n" +
-                        "标准曲线B参数：" + "  X0：" + biaozhun_a1 + "  X1：" + biaozhun_b1 + "  X2：" + biaozhun_c1 + "  X3：" + biaozhun_d1 + "  FROM1：" + biaozhun_from1 + "  TO1：" + biaozhun_to1 + "\r\n" +
-                        "校正曲线参数：" + "  A：" + jiaozhen_a + "  B：" + jiaozhen_b +
-                        "是否使用褪色法：" + (usetuise ? "是" : "否");
+                s = StringUtils.getString(R.string.mothod2) + "\r\n" +
+                        getAppendStr(R.string.str_yure_time) + yuretime + "\r\n" +
+                        getAppendStr(R.string.testtime) + jiancetime + "\r\n" +
+                        getAppendStr(R.string.unit_input) + unit_input + "\r\n" +
+                        StringUtils.getString(R.string.standard_curve_a_param) + "  X0：" + biaozhun_a0 + "  X1：" + biaozhun_b0 + "  X2：" + biaozhun_c0 + "  X3：" + biaozhun_d0 + "  FROM0：" + biaozhun_from0 + "  TO0：" + biaozhun_to0 + "\r\n" +
+                        StringUtils.getString(R.string.standard_curve_b_param) + "  X0：" + biaozhun_a1 + "  X1：" + biaozhun_b1 + "  X2：" + biaozhun_c1 + "  X3：" + biaozhun_d1 + "  FROM1：" + biaozhun_from1 + "  TO1：" + biaozhun_to1 + "\r\n" +
+                        StringUtils.getString(R.string.correction_curve_param) + "  A：" + jiaozhen_a + "  B：" + jiaozhen_b +
+                        StringUtils.getString(R.string.use_tuise)  + (usetuise ? StringUtils.getString(R.string.txt_yes)  : StringUtils.getString(R.string.txt_no));
                 break;
             case "2":
-                s = "动力学法" + "\r\n" +
-                        "预热时间：" + yuretime + "\r\n" +
-                        "检测时间：" + jiancetime + "\r\n" +
-                        "检测值单位：" + unit_input + "\r\n" +
-                        "标准曲线：" + "  A：" + jiaozhen_a + "  B：" + jiaozhen_b +
-                        "阴性范围：" + yin_a + "--" + yin_b + "\r\n" +
-                        "阳性范围：" + yang_a + "--" + yang_b + "\r\n" +
-                        "可疑范围：" + keyi_a + "--" + keyi_b +
-                        "是否使用褪色法：" + (usetuise ? "是" : "否");
-                ;
+                s = StringUtils.getString(R.string.mothod3) + "\r\n" +
+                        getAppendStr(R.string.str_yure_time) + yuretime + "\r\n" +
+                        getAppendStr(R.string.testtime) + jiancetime + "\r\n" +
+                        getAppendStr(R.string.unit_input) + unit_input + "\r\n" +
+                        StringUtils.getString(R.string.standard_curve_colon) + "  A：" + jiaozhen_a + "  B：" + jiaozhen_b +
+                        StringUtils.getString(R.string.negative_range_colon) + yin_a + "--" + yin_b + "\r\n" +
+                        StringUtils.getString(R.string.positive_range_colon)+ yang_a + "--" + yang_b + "\r\n" +
+                        StringUtils.getString(R.string.keyi_range_colon)+ keyi_a + "--" + keyi_b +
+                        StringUtils.getString(R.string.use_tuise) + (usetuise ? StringUtils.getString(R.string.txt_yes)  : StringUtils.getString(R.string.txt_no));
                 break;
             case "3":
-                s = "系数法" + "\r\n" +
+                s = StringUtils.getString(R.string.mothod4) + "\r\n" +
 
-                        "检测值单位：" + unit_input + "\r\n" +
-                        "校正曲线参数：" + "  A：" + jiaozhen_a + "  B：" + jiaozhen_b + "  C：" + jiaozhen_c + "  D：" + jiaozhen_d;
+                        getAppendStr(R.string.unit_input) + unit_input + "\r\n" +
+                        StringUtils.getString(R.string.correction_curve_param)+ "  A：" + jiaozhen_a + "  B：" + jiaozhen_b + "  C：" + jiaozhen_c + "  D：" + jiaozhen_d;
                 break;
         }
         return s;
+    }
+
+    private String getAppendStr(@IdRes int id) {
+        return StringUtils.getString(id) + ": ";
     }
 
     public String getUseMethod() {
         String s = null;
         switch (method) {
             case "0":
-                s = "抑制率法";
+                s = StringUtils.getString(R.string.mothod1);
                 break;
             case "1":
-                s = "标准曲线法";
+                s = StringUtils.getString(R.string.mothod2);
                 break;
             case "2":
-                s = "动力学法";
+                s = StringUtils.getString(R.string.mothod3);
                 break;
             case "3":
-                s = "系数法";
+                s = StringUtils.getString(R.string.mothod4);
                 break;
         }
         return s;
@@ -150,7 +157,7 @@ public class FGGDTestItem extends BaseProjectMessage implements Parcelable {
                 biaozhun_a1 + "," + biaozhun_b1 + "," + biaozhun_c1 + "," + biaozhun_d1 + "," + biaozhun_from1 + "," + biaozhun_to1 + "," +
                 jiaozhen_a + "," + jiaozhen_b + "," + jiaozhen_c + "," + jiaozhen_d + "," +
                 yin_a + "," + yin_b + "," + yang_a + "," + yang_b + "," + keyi_a + "," + keyi_b + "," +
-                usetuise + "," + "测试" + "," + "简要提示" + "," + unit_input + "," + serialNumber + "," + unique_testproject + "," + version);
+                usetuise + "," + StringUtils.getString(R.string.str_test) + "," + StringUtils.getString(R.string.str_brief_tips) + "," + unit_input + "," + serialNumber + "," + unique_testproject + "," + version);
     }
 
     public FGGDTestItem() {
@@ -592,9 +599,9 @@ public class FGGDTestItem extends BaseProjectMessage implements Parcelable {
 
     @Generated(hash = 1395506498)
     public FGGDTestItem(Long id, String project_name, String password, String method, int wavelength, int yuretime, int jiancetime, String unit_input, int serialNumber, float controValue,
-            String controValue_lastTime, String biaozhun_a0, String biaozhun_b0, String biaozhun_c0, String biaozhun_d0, String biaozhun_from0, String biaozhun_to0, String biaozhun_a1, String biaozhun_b1,
-            String biaozhun_c1, String biaozhun_d1, String biaozhun_from1, String biaozhun_to1, double jiaozhen_a, double jiaozhen_b, double jiaozhen_c, double jiaozhen_d, double yin_a, double yin_b,
-            double yang_a, double yang_b, double keyi_a, double keyi_b, boolean usetuise, String ceshi, String unique_testproject, String version, Long priority) {
+                        String controValue_lastTime, String biaozhun_a0, String biaozhun_b0, String biaozhun_c0, String biaozhun_d0, String biaozhun_from0, String biaozhun_to0, String biaozhun_a1, String biaozhun_b1,
+                        String biaozhun_c1, String biaozhun_d1, String biaozhun_from1, String biaozhun_to1, double jiaozhen_a, double jiaozhen_b, double jiaozhen_c, double jiaozhen_d, double yin_a, double yin_b,
+                        double yang_a, double yang_b, double keyi_a, double keyi_b, boolean usetuise, String ceshi, String unique_testproject, String version, Long priority) {
         this.id = id;
         this.project_name = project_name;
         this.password = password;
