@@ -1,0 +1,430 @@
+<resources>
+    <string name="app_name">IA600</string>
+    <string name="device_name" translatable="false">IA600 Smart-Check Reader</string>
+    <string name="customactivityoncrash_error_activity_error_occurred_explanation" translatable="false">发生意外错误。\n抱歉，给您带来不便。</string>
+    <string name="customactivityoncrash_error_activity_restart_app" translatable="false">重新启动</string>
+    <string name="customactivityoncrash_error_activity_close_app" translatable="false">关闭程序</string>
+    <string name="customactivityoncrash_error_activity_error_details" translatable="false">错误日志</string>
+    <string name="customactivityoncrash_error_activity_error_details_title" translatable="false">错误详情</string>
+    <string name="customactivityoncrash_error_activity_error_details_close" translatable="false">关闭</string>
+    <string name="customactivityoncrash_error_activity_error_details_copy" translatable="false">复制日志</string>
+    <string name="customactivityoncrash_error_activity_error_details_clipboard_label" translatable="false">错误信息</string>
+    <string name="openserialfirst">请先打开串口</string>
+    <string name="login_username_hint">请输入用户名</string>
+    <string name="login_password_hint">请输入密码</string>
+    <string name="login_cb_text">记住账户密码</string>
+    <string name="login">登录</string>
+    <string name="callus">联系我们</string>
+    <string name="register_online">用户注册</string>
+    <string name="login_company_name">广东达元绿洲食品安全科技股份有限公司</string>
+    <string name="register_username">注册账号</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+    <string name="confirmpassword">确认密码</string>
+    <string name="name">姓名</string>
+    <string name="phone">电话</string>
+    <string name="belong_units">所属单位</string>
+    <string name="jobname">职位</string>
+    <string name="register_now">立即注册</string>
+    <string name="hint_usenamenotempty">用户名不能为空</string>
+    <string name="hint_passwordnotempty">密码不能为空</string>
+    <string name="hint_passwordnotsample">密码输入不一致</string>
+    <string name="hint_usermalesuccess">用户创建成功！</string>
+    <string name="hint_loginsuccess">登录成功</string>
+    <string name="hint_loginfail1">登录失败，用户名不存在</string>
+    <string name="hint_loginfail2">登录失败，密码不正确</string>
+    <string name="login_toast_nousername">请输入用户名！</string>
+    <string name="login_toast_nopassword">请输入密码！</string>
+    <string name="hint_exit_app">再按一次退出程序</string>
+    <string name="home">首页</string>
+    <string name="settings">设置</string>
+    <string name="test_record">检测记录</string>
+    <string name="conventional_food_safety">常规食品安全</string>
+    <string name="start_test">分光</string>
+    <string name="halal_verification">清真核查</string>
+    <string name="pork_alcohol">猪源检测</string>
+    <string name="login_out">退出登录</string>
+    <string name="auto_upload">自动上传</string>
+    <string name="mothod1" translatable="false">抑制率法</string>
+    <string name="mothod2" translatable="false">标准曲线法</string>
+    <string name="mothod3" translatable="false">动力学法</string>
+    <string name="mothod4" translatable="false">系数法</string>
+    <string name="method_xiaoxian" translatable="false">定性消线法</string>
+    <string name="method_bise" translatable="false">定性比色法</string>
+    <string name="txt_invalid" translatable="false">无效</string>
+    <string name="yin" translatable="false">阴性</string>
+    <string name="yang" translatable="false">阳性</string>
+    <string name="keyi" translatable="false">可疑</string>
+    <string name="ok" translatable="false">合格</string>
+    <string name="ng" translatable="false">不合格</string>
+    <string name="JTJ_TestMoudle_P" translatable="false">胶体金</string>
+    <string name="FGGD_TestMoudle" translatable="false">分光光度</string>
+    <string name="str_clear">清零</string>
+    <string name="str_adjust">校准</string>
+    <string name="controlvalue">对照值</string>
+    <string name="errormesage1" translatable="false">通道异常，建议进行清零或校准</string>
+    <string name="testproject" translatable="false">检测项目</string>
+    <string name="inspectedunit" translatable="false">被检单位</string>
+    <string name="makecontrole" translatable="false">对照</string>
+    <string name="makesample" translatable="false">样品</string>
+    <string name="makecontrole_" translatable="false">对照</string>
+    <string name="makesample_" translatable="false">样品</string>
+    <string name="errormessage2" translatable="false">通道%s异常，建议进行清零或校准</string>
+    <string name="errormessage3" translatable="false">通道%s异常，该通道选用的检测项目对应的波长段AD值为0</string>
+    <string name="place_choseproject" translatable="false">请选择检测项目</string>
+    <string name="doingcontrol" translatable="false">正在进行对照测试</string>
+    <string name="samplename" translatable="false">样品名称</string>
+    <string name="method" translatable="false">检测方法</string>
+    <string name="fyy_number" translatable="false">反应液滴数/稀释倍数</string>
+    <string name="change" translatable="false">修改</string>
+    <string name="searinumber" translatable="false">流水号</string>
+    <string name="edit_samplename" translatable="false">编辑样品名称</string>
+    <string name="EditorProjectActivity" translatable="false">编辑检测项目</string>
+    <string name="standnum" translatable="false">判定依据</string>
+    <string name="limitvalue" translatable="false">限量值</string>
+    <string name="testresult" translatable="false">检测结果</string>
+    <string name="result" translatable="false">检测结果</string>
+    <string name="jujerment" translatable="false">判定结果</string>
+    <string name="testtime" translatable="false">检测时间</string>
+    <string name="testtime_" translatable="false">检测时间</string>
+    <string name="testplace" translatable="false">检测地点</string>
+    <string name="testpeople" translatable="false">检测人员</string>
+    <string name="sampleplace" translatable="false">样品产地</string>
+    <string name="loading" translatable="false">正在加载</string>
+    <string name="contro_ad" translatable="false">对照AD值</string>
+    <string name="now_ad" translatable="false">实时AD值</string>
+    <string name="transmittance" translatable="false">透光率</string>
+    <string name="absorbance" translatable="false">吸光度</string>
+    <string name="channel_undetected_hint" translatable="false">当前通道未检测到比色皿（测试液透光率较高），是否继续进行测试？</string>
+    <string name="continue_testing" translatable="false">继续测试</string>
+    <string name="cancel" translatable="false">取消</string>
+    <string name="sure" translatable="false">确定</string>
+    <string name="hint" translatable="false">提示</string>
+    <string name="controlled_needed_first" translatable="false">需要先进行对照测试</string>
+    <string name="sample_testing" translatable="false">正在进行样品测试</string>
+    <string name="testinng" translatable="false">测试中！</string>
+    <string name="titledetailnomore" translatable="false">通道详细信息</string>
+    <string name="cleansuccess" translatable="false">清零成功</string>
+    <string name="allgalleryistesting" translatable="false">所有通道正在测试</string>
+    <string name="hint_howtousermessage1" translatable="false">请先给检测通道选择相应的检测项目，样品信息等（对照通道默认为选择了相同检测项目的首个通道，做对照的通道只需要选择检测项目即可），然后再将比色皿放入通道内\r\n等待通道颜色变为淡蓝色后，点击下方【对照】按钮就可以同时开始检测</string>
+    <string name="hint_howtousermessage2" translatable="false">请先给检测通道选择相应的检测项目，样品信息等，然后再将比色皿放入通道内\r\n等待通道颜色变为淡蓝色后，点击下方【样品】按钮就可以同时开始检测</string>
+    <string name="hint_pleaceselectgallery" translatable="false">请先选择相应的通道</string>
+    <string name="hint_inputsampleplace" translatable="false">请输入样品产地</string>
+    <string name="select_all">全选</string>
+    <string name="select_standard_limit">请选择检测标准与限量值</string>
+    <string name="testing_standards">检测标准</string>
+    <string name="contrast_symbols">对比符号</string>
+    <string name="limit_unit">限量值单位</string>
+    <string name="camera_module">摄像头模块</string>
+    <string name="channel_label">通道%1$d</string>
+    <string name="no_standard_found">未找到适合的标准依据，请更新本地样品</string>
+    <string name="inputdirnumber" translatable="false">请输入稀释倍数</string>
+    <string name="enter_number_reaction_drops" translatable="false">请输入反应液滴数</string>
+    <string name="hintnotnull" translatable="false">非法输入，输入不能为空</string>
+    <string name="channeldetails" translatable="false">第%s通道详细信息</string>
+    <string name="gallery" translatable="false">通道</string>
+    <string name="detail_msg" translatable="false">详细信息</string>
+    <string name="hideresult" translatable="false">隐藏结果</string>
+    <string name="showresult" translatable="false">显示结果</string>
+    <string name="testing" translatable="false">正在检测中</string>
+    <string name="choseprojectFirst" translatable="false">请先选择检测项目</string>
+    <string name="testing_wait" translatable="false">该通道正在检测，请稍后</string>
+    <string name="select_appropriate_channel" translatable="false">请先选择相应的通道</string>
+    <string name="pleacechoseitemfirst" translatable="false">请先选择检测项目和样品</string>
+    <string name="projectname" translatable="false">项目:</string>
+    <string name="project_method" translatable="false">方法:</string>
+    <string name="project_remark" translatable="false">备注:</string>
+    <string name="editor" translatable="false">编辑</string>
+    <string name="delete" translatable="false">删除</string>
+    <string name="areyousuretodeletesample" translatable="false">确定要删除该条样品数据吗</string>
+    <string name="nomore_data">没有更多数据了</string>
+    <string name="chose" translatable="false">选择</string>
+    <string name="seach" translatable="false">搜索</string>
+    <string name="type" translatable="false">类型</string>
+    <string name="wave410" translatable="false">410\n波长段</string>
+    <string name="wava536" translatable="false">536\n波长段</string>
+    <string name="wava595" translatable="false">595\n波长段</string>
+    <string name="wava620" translatable="false">620\n波长段</string>
+    <string name="adjust_message1" translatable="false">请在检测完成后再进行校准</string>
+    <string name="failed_open" translatable="false">打开失败！</string>
+    <string name="contro_erromessage1" translatable="false">开始或结束时吸光度无穷大，此次对照无效！</string>
+    <string name="lastcontrovalue" translatable="false">缺少对照值，检测无效！</string>
+    <string name="sampleerro_message2" translatable="false">检测前吸光度大于检测后吸光度，此次对照无效！</string>
+    <string name="sampleerro_message3" translatable="false">对照值小于规定值，此次对照无效！</string>
+    <string name="absorbance_infinite_end">结束时吸光度无穷大，此次检测无效！</string>
+    <string name="control_less_0">对照值小于0，检测无效！</string>
+    <string name="absorbance_outside_range">吸光度超出判断范围，请检查检测方法参数是否正确！</string>
+    <string name="reference_national_standards">参考国标</string>
+    <string name="use_appropriate">适量使用</string>
+    <string name="no_limit_set">没有设置限量值，请自行判断</string>
+    <string name="rice_freshness">大米新鲜度</string>
+    <string name="Fresh_rice">新鲜米</string>
+    <string name="Chen_Mi">陈米</string>
+    <string name="Aged_rice">陈化米</string>
+    <string name="parerror" translatable="false">参数错误</string>
+    <string name="newsample" translatable="false">新建样品</string>
+    <string name="editersample" translatable="false">编辑样品</string>
+    <string name="enter_or_select_item" translatable="false">请先输入或选择检测项目！</string>
+    <string name="local_standards_not_found" translatable="false">未找到本地相关检测标准，请联系仪器厂家</string>
+    <string name="please_enter_keyword" translatable="false">请输入关键字</string>
+    <string name="hintmessage_requiredfieldscannotbeempty" translatable="false">必填项不能为空</string>
+    <string name="str_number">序号</string>
+    <string name="category_name">食品/种类名称</string>
+    <string name="food_alias">食品/种类别名</string>
+    <string name="dialog_message_top" translatable="false">当前已经是顶层</string>
+    <string name="dialog_message_nomordata" translatable="false">已经没有内容了！</string>
+    <string name="edit_hint1" translatable="false">*检测项目（长按输入框选择）</string>
+    <string name="edit_hint2" translatable="false">*样品种类编号（长按输入框选择）</string>
+    <string name="edit_hint3" translatable="false">*样品种类名称</string>
+    <string name="edit_hint4" translatable="false">*样品名称</string>
+    <string name="edit_hint5" translatable="false">*样品编号</string>
+    <string name="edit_hint6" translatable="false">*标准依据（长按输入框选择）</string>
+    <string name="edit_hint7" translatable="false">*判定符号</string>
+    <string name="edit_hint8" translatable="false">*限量值</string>
+    <string name="edit_hint9" translatable="false">*限量单位</string>
+    <string name="channel_data_loss">通道数据丢失</string>
+    <string name="FGGDAdjustingActivity" translatable="false">分光AD值校准</string>
+    <string name="JTJ_TestActivity" translatable="false">胶体金检测</string>
+    <string name="FGGD_TestActivity" translatable="false">分光光度检测</string>
+    <string name="ChoseProjectActivity" translatable="false">选择检测项目</string>
+    <string name="ChoseSampleActivity" translatable="false">选择样品名称</string>
+    <string name="EdtorSampleActivity" translatable="false">编辑样品</string>
+    <string name="ChoseSampleTypeActivity" translatable="false">选择样品种类</string>
+    <string name="auto_upload_enabled">自动上传已开启</string>
+    <string name="autoupload_disabled">自动上传已关闭</string>
+    <string name="select_time" translatable="false">请选择时间</string>
+    <string name="testmoudle" translatable="false">检测模块</string>
+    <string name="all" translatable="false">全部</string>
+    <string name="details" translatable="false">详情</string>
+    <string name="hint_pleaceselecedeletedata" translatable="false">请选择需要删除的检测记录</string>
+    <string name="testresultitem" translatable="false">条检测记录吗？</string>
+    <string name="areyousuredelete" translatable="false">确定需要删除当前所选中的</string>
+    <string name="deleteing" translatable="false">删除数据中</string>
+    <string name="general" translatable="false">共</string>
+    <string name="page" translatable="false">页，</string>
+    <string name="item" translatable="false">条</string>
+    <string name="offline_use">离线使用</string>
+    <string name="other" translatable="false">其它</string>
+    <string name="pleaceinputkeyword" translatable="false">请输入搜索关键字</string>
+    <string name="save" translatable="false">保存</string>
+    <string name="seachresult" translatable="false">搜索%s结果</string>
+    <string name="upload" translatable="false">上传</string>
+    <string name="record_has_uploaded" translatable="false">该条检测记录已上传</string>
+    <string name="Upload_not_supported">不支持上传</string>
+    <string name="sel_need_test_record">请选择需要上传的检测记录，上传检测结果只支持合格与不合格</string>
+    <string name="selected_data_has_upload">当前所选数据已经上传，不可重复上传</string>
+    <string name="TestRecordMessageActivity" translatable="false">检测记录详情</string>
+    <string name="look_fail" translatable="false">查看失败</string>
+    <string name="qr_code_result" translatable="false">检测结果二维码</string>
+    <string name="detection_curve" translatable="false">检测曲线</string>
+    <string name="judgment_criteria" translatable="false">判定标准</string>
+    <string name="detect_unit" translatable="false">检测单位</string>
+    <string name="detection_value">检测值</string>
+    <string name="enter_test_value">请输入检测值和检测结果</string>
+    <string name="print_mothed1" translatable="false">检测方法：抑制率法</string>
+    <string name="print_mothed2" translatable="false">检测方法：标准曲线法</string>
+    <string name="print_mothed3" translatable="false">检测方法：动力学法</string>
+    <string name="print_mothed4" translatable="false">检测方法：系数法</string>
+    <string name="query_fail" translatable="false">查询失败</string>
+    <string name="txt_red_green_blue" translatable="false">1-红 2-绿 3-蓝 4-黑</string>
+    <string name="detect_unit_name" translatable="false">检测单位名称：</string>
+    <string name="detect_unit_id" translatable="false">检测单位ID：</string>
+    <string name="local_sample_not_found" translatable="false">本地样品库未查询到该信息</string>
+    <string name="file_is_empty" translatable="false">文件为空</string>
+    <string name="dilution_factor" translatable="false">稀释倍数：</string>
+    <string name="number_reaction_drops" translatable="false">反应液滴数：</string>
+    <string name="pdf_file_corruption" translatable="false">pdf文件损坏</string>
+    <string name="sample_details" translatable="false">样品详细信息</string>
+    <string name="unique_id" translatable="false">唯一ID：</string>
+    <string name="sample_name_colon" translatable="false">样品名称：</string>
+    <string name="test_project_colon" translatable="false">检测项目：</string>
+    <string name="test_method_colon" translatable="false">检测方法：</string>
+    <string name="sample_number_colon" translatable="false">样品编号：</string>
+    <string name="serial_number_colon" translatable="false">流水号：</string>
+    <string name="channel_number_colon" translatable="false">通道编号：</string>
+    <string name="judgment_basis_colon" translatable="false">判定依据：</string>
+    <string name="control_value_colon" translatable="false">对照值：</string>
+    <string name="code_testing_card" translatable="false">检测卡二维码：</string>
+    <string name="test_result_colon" translatable="false">检测结果：</string>
+    <string name="judgment_result_colon" translatable="false">判定结果：</string>
+    <string name="sample_origin_colon" translatable="false">样品产地：</string>
+    <string name="inspectors_colon" translatable="false">检测人员：</string>
+    <string name="reading_time_colon" translatable="false">读取时间：</string>
+    <string name="detect_time_colon" translatable="false">检测时间：</string>
+    <string name="testing_locations_colon" translatable="false">检测地点：</string>
+    <string name="longitude_colon" translatable="false">经度：</string>
+    <string name="latitude_colon" translatable="false">纬度：</string>
+    <string name="parent_class_number" translatable="false">父类编号</string>
+    <string name="parent_class_number_colon" translatable="false">父类编号：</string>
+    <string name="testing_standards_colon" translatable="false">检测标准：</string>
+    <string name="limit_value_colon" translatable="false">限量值：</string>
+    <string name="update_date_colon" translatable="false">更新日期：</string>
+    <string name="manually_add_colon" translatable="false">是否手动新增：</string>
+    <string name="txt_yes" translatable="false">是</string>
+    <string name="txt_no" translatable="false">否</string>
+    <string name="inspected_unit_colon" translatable="false">被检单位：</string>
+    <string name="detect_result_split" translatable="false">------检测结果------</string>
+    <string name="testmoudle_colon" translatable="false">检测模块：</string>
+    <string name="not_login_hint" translatable="false">当前为离线使用模式，是否登录？</string>
+    <string name="fggd_module" translatable="false">分光光度模块</string>
+    <string name="jtj_module" translatable="false">胶体金模块</string>
+    <string name="offline_mode_hint" translatable="false">当前为离线使用模式，请先登录</string>
+    <string name="enter_inspect_unit" translatable="false">输入被检单位</string>
+    <string name="fg_data_anomaly">分光数据异常</string>
+    <string name="projectpassword" translatable="false">检测项目密码</string>
+    <string name="deletesuccess" translatable="false">删除成功！</string>
+    <string name="passworderro" translatable="false">密码输入错误，请重新输入！</string>
+    <string name="moudleproject_fggd" translatable="false">分光光度检测项目</string>
+    <string name="moudleproject_jtj" translatable="false">胶体金检测项目</string>
+    <string name="weichartnum" translatable="false">微信号：shiankeji</string>
+    <string name="qqnum" translatable="false">联系QQ：2851265715</string>
+    <string name="service_phone" translatable="false">服务热线：400-696-6968</string>
+    <string name="ed_projectname" translatable="false">检测项目名称</string>
+    <string name="ed_serinumber" translatable="false">流水编号</string>
+    <string name="ed_waves" translatable="false">波长段：</string>
+    <string name="yure_tiem" translatable="false">预热时间(S)</string>
+    <string name="test_time" translatable="false">检测时间(S)</string>
+    <string name="unit_input" translatable="false">检测值单位</string>
+    <string name="yin_from" translatable="false">阴性范围(from)</string>
+    <string name="yin_to" translatable="false">阴性范围(to)</string>
+    <string name="yang_from" translatable="false">阳性范围(from)</string>
+    <string name="yang_to" translatable="false">阳性范围(to)</string>
+    <string name="keyi_from" translatable="false">可疑范围(from)</string>
+    <string name="keyi_to" translatable="false">可疑范围(to)</string>
+    <string name="jiaozhenga" translatable="false">校正A</string>
+    <string name="jiaozhengb" translatable="false">校正B</string>
+    <string name="use_tuise" translatable="false">是否使用褪色法：</string>
+    <string name="jiaozhuna" translatable="false">校准曲线A</string>
+    <string name="jiaozhunb" translatable="false">校准曲线B</string>
+    <string name="jiaozhengc" translatable="false">校正C</string>
+    <string name="jiaozhengd" translatable="false">校正D</string>
+    <string name="fggditem_message1" translatable="false">检测项目修改成功！</string>
+    <string name="fggditem_message2" translatable="false">检测项目新建成功！</string>
+    <string name="fggditem_message3" translatable="false">请输入检测项目名称</string>
+    <string name="fggditem_message4" translatable="false">请输入检测项目密码</string>
+    <string name="fggditem_message5" translatable="false">请输入流水编号</string>
+    <string name="enter_yure_time" translatable="false">请输入预热时间</string>
+    <string name="enter_detect_time" translatable="false">请输入检测时间</string>
+    <string name="enter_unit_value" translatable="false">请输入检测值单位</string>
+    <string name="enter_yin_range" translatable="false">请输入阴性范围</string>
+    <string name="enter_yang_range" translatable="false">请输入阳性范围</string>
+    <string name="enter_keyi_range" translatable="false">请输入可疑范围</string>
+    <string name="fggditem_message18" translatable="false">请输入AX0参数</string>
+    <string name="fggditem_message19" translatable="false">请输入AX1参数</string>
+    <string name="fggditem_message20" translatable="false">请输入AX2参数</string>
+    <string name="fggditem_message21" translatable="false">请输入AX3参数</string>
+    <string name="fggditem_message22" translatable="false">请输入AFROM参数</string>
+    <string name="fggditem_message23" translatable="false">请输入ATO参数</string>
+    <string name="fggditem_message24" translatable="false">请输入BX0参数</string>
+    <string name="fggditem_message25" translatable="false">请输入BX1参数</string>
+    <string name="fggditem_message26" translatable="false">请输入BX2参数</string>
+    <string name="fggditem_message27" translatable="false">请输入BX3参数</string>
+    <string name="fggditem_message28" translatable="false">请输入BFROM参数</string>
+    <string name="fggditem_message29" translatable="false">请输入BTO参数</string>
+    <string name="enter_jz_curve_a" translatable="false">请输入校正曲线A</string>
+    <string name="enter_jz_curve_b" translatable="false">请输入校正曲线B</string>
+    <string name="fggditem_message35" translatable="false">请输入校准曲线A</string>
+    <string name="fggditem_message36" translatable="false">请输入校准曲线B</string>
+    <string name="enter_jz_curve_c" translatable="false">请输入校正曲线C</string>
+    <string name="enter_jz_curve_d" translatable="false">请输入校正曲线D</string>
+    <string name="new_testing_items" translatable="false">新建检测项目</string>
+    <string name="jtj_hint_2" translatable="false">* 项目名称</string>
+    <string name="jtj_hint_3" translatable="false">* 检测方法(1为定性消线法，2为定性比色法)</string>
+    <string name="jtj_hint_4" translatable="false">* 通道一C线出线值</string>
+    <string name="jtj_hint_5" translatable="false">* 通道一T线区间A</string>
+    <string name="jtj_hint_6" translatable="false">* 通道一T线区间B</string>
+    <string name="jtj_hint_7" translatable="false">* 通道一T/C区间A</string>
+    <string name="jtj_hint_8" translatable="false">* 通道一T/C区间B</string>
+    <string name="jtj_hint_9" translatable="false">* 通道二C线出线值</string>
+    <string name="jtj_hint_10" translatable="false">* 通道二T线区间A</string>
+    <string name="jtj_hint_11" translatable="false">* 通道二T线区间B</string>
+    <string name="jtj_hint_12" translatable="false">* 通道二T/C区间A</string>
+    <string name="jtj_hint_13" translatable="false">* 通道二T/C区间B</string>
+    <string name="jtj_hint_14" translatable="false">* 检测时间</string>
+    <string name="jtj_hint_15" translatable="false">* 项目密码</string>
+    <string name="hintmessage_mustinput" translatable="false">红色带*的选项为必填</string>
+    <string name="new_project" translatable="false">新增</string>
+    <string name="input_project" translatable="false">导入</string>
+    <string name="output_project" translatable="false">导出</string>
+    <string name="start_time">开始时间</string>
+    <string name="end_time">终止时间</string>
+    <string name="pleacechosefile" translatable="false">请选择文件</string>
+    <string name="lfile_NotFoundBooks" translatable="false">请选择导入的文件</string>
+    <string name="lfile_NotFoundPath" translatable="false">SD 存储卡状态不可用</string>
+    <string name="lfile_UpOneLevel" translatable="false">上一级</string>
+    <string name="lfile_Selected" translatable="false">选中</string>
+    <string name="lfile_LItem" translatable="false">项</string>
+    <string name="lfile_FileSize" translatable="false">文件大小: </string>
+    <string name="lfile_OutSize" translatable="false">已经达到最大选择数量</string>
+    <string name="lfile_Cancel" translatable="false">取消全选</string>
+    <string name="lfile_ChooseTip" translatable="false">请选择文件夹</string>
+    <string name="importdata" translatable="false">正在导入数据</string>
+    <string name="importsuccess" translatable="false">导入成功！</string>
+    <string name="notfggditemlist" translatable="false">非分光检测项目</string>
+    <string name="skipitemmessage" translatable="false">是否保留现有的检测项目？</string>
+    <string name="keep" translatable="false">保留</string>
+    <string name="replace" translatable="false">替换</string>
+    <string name="preparingdata" translatable="false">正在准备数据</string>
+    <string name="nodatatoexport" translatable="false">没有需要导出的数据</string>
+    <string name="exportingdata" translatable="false">正在导出数据</string>
+    <string name="exportsuccess" translatable="false">导出成功</string>
+    <string name="jxlerro" translatable="false">jxl组件创建表格时发生异常</string>
+    <string name="standnumber" translatable="false">标准号</string>
+    <string name="standvalue" translatable="false">标准值</string>
+    <string name="operate" translatable="false">操作</string>
+    <string name="input_data" translatable="false">导入数据</string>
+    <string name="output_data" translatable="false">导出数据</string>
+    <string name="sample_jxl_title_1" translatable="false">ID,样品ID,对比符号,限量值单位,父类编号,</string>
+    <string name="sample_jxl_title_2" translatable="false">检测项目,样品名称,样品编号,标准名称,标准值,更新时间,FLAG</string>
+    <string name="Sample_ID" translatable="false">样品ID</string>
+    <string name="nosamplelist" translatable="false">非样品标准与检测项目表</string>
+    <string name="sampleandproject" translatable="false">样品标准与检测项目</string>
+    <string name="skipsamplemessage" translatable="false">是否保留现有的样品信息？</string>
+    <string name="title_samplemessage" translatable="false">样品信息</string>
+    <string name="str_back">返回</string>
+    <string name="str_yure_time">预热时间</string>
+    <string name="str_wavelength_range">波长段</string>
+    <string name="method_name">方法名称</string>
+    <string name="not_jtj_project">非胶体金检测项目</string>
+    <string name="T1A_value">T1A值</string>
+    <string name="c1_value">C1值</string>
+    <string name="methods_xiaoxian_bise">方法（1消线;2比色）</string>
+	<string name="hint_sel_project_sample">请选择检测项目和样品名称</string>
+	<string name="project_unique_id">检测项目唯一ID：</string>
+    <string name="str_test">测试</string>
+    <string name="str_brief_tips">简要提示</string>
+    <string name="negative_range_colon">阴性范围：</string>
+    <string name="positive_range_colon">阳性范围：</string>
+    <string name="keyi_range_colon">可疑范围：</string>
+    <string name="standard_curve_a_param">标准曲线A参数：</string>
+    <string name="standard_curve_b_param">标准曲线B参数：</string>
+    <string name="correction_curve_param">校正曲线参数：</string>
+    <string name="standard_curve_colon">标准曲线：</string>
+	<string name="line_c_output_value">C线出线值：</string>
+    <string name="line_t_output_value">T线出线值：</string>
+    <string name="C_T_outgoing_value">C/T出线值：</string>
+    <string name="T1B_value">T1B值</string>
+    <string name="T1_C1A_value">T1/C1A值</string>
+    <string name="T1_C1B_value">T1/C1B值</string>
+    <string name="C2_value">C2值</string>
+    <string name="T2A_value">T2A值</string>
+    <string name="T2B_value">T2B值</string>
+    <string name="T2_C2A_value">T2/C2A值</string>
+    <string name="T2_C2B_value">T2/C2B值</string>
+    <string name="unique_number">唯一编号</string>
+    <string name="type_testing_item">检测项目类型</string>
+    <string name="Last_updated">最后更新时间</string>
+    <string name="serial_number">编号</string>
+    <string name="project_name">项目名称</string>
+    <string name="Card_recognition_error">卡识别异常</string>
+    <string name="image_being_received">图像正在接收，请稍后</string>
+    <string name="fill_result_info">请填写结果信息</string>
+    <string name="Original_value_C">&#160;C原始值:</string>
+    <string name="Original_value_T">&#160;T原始值:</string>
+    <string name="T_C_value">&#160;T/C值:</string>
+    <string name="Image_copy_failed">图片拷贝失败！</string>
+    <string name="data_generation_successful">数据生成成功！</string>
+    <string name="check_QQ_installed">请检查是否安装QQ！</string>
+    <string name="Bundle_empty">Bundle为空</string>
+
+</resources>

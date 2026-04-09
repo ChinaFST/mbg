@@ -516,8 +516,8 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
                 startTest();
                 break;
             case R.id.iv_record:
-                //startActivity(new Intent(getActivity(), TestRecordNewActivity.class));
-                dealImage();
+                startActivity(new Intent(getActivity(), TestRecordNewActivity.class));
+                //dealImage();
                 break;
             default:
                 break;
@@ -528,7 +528,6 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
 
     private void dealImage() {
         //String path = "/storage/emulated/0/dayuan/ic_.jpg";
-        //makeTransparentSmooth(this, path, "ic_1.png");
         //makeTransparentWithScale(this, path, "ic_001.png", 0.4f);
         String path = "/storage/emulated/0/dayuan/ic_splash.png";
         processAndSaveSplashIcon(this, path, "ic_splash_001.png");
@@ -537,8 +536,9 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
 
     /**
      * 处理原始 PNG 并保存到应用的 files 目录中
-     * @param context 上下文
-     * @param inputPath 原图的绝对路径 (例如外部存储或缓存路径)
+     *
+     * @param context        上下文
+     * @param inputPath      原图的绝对路径 (例如外部存储或缓存路径)
      * @param outputFileName 保存的文件名 (例如 "ic_splash_adaptive.png")
      * @return 成功保存后的文件对象，失败返回 null
      */
@@ -580,92 +580,14 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
             return null;
         } finally {
             if (fos != null) {
-                try { fos.close(); } catch (IOException ignored) {}
+                try {
+                    fos.close();
+                } catch (IOException ignored) {
+                }
             }
             // 释放内存
             originalBitmap.recycle();
             outputBitmap.recycle();
-        }
-    }
-
-    /**
-     * 将图片转为透明底
-     *
-     * @param context
-     * @param inputPath
-     * @param fileName
-     * @return
-     */
-    public String makeTransparentSmooth(Context context, String inputPath, String fileName) {
-        // 1. 加载原图（注意：大图可能导致 OOME，建议在实际项目中根据需求做采样缩放）
-        LogUtils.d("开始处理图片");
-        Bitmap source = BitmapFactory.decodeFile(inputPath);
-        if (source == null) {
-            LogUtils.d("图片为空");
-            return null;
-        }
-
-        // 2. 创建一个支持透明度的副本
-        int width = source.getWidth();
-        int height = source.getHeight();
-        Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        LogUtils.d("1");
-        // 3. 批量读取像素
-        int[] pixels = new int[width * height];
-        source.getPixels(pixels, 0, width, 0, 0, width, height);
-        LogUtils.d("2");
-        // 4. 定义平滑处理的亮度阈值
-        // 亮度 > 250 的认为是纯背景（全透明）
-        // 亮度 < 200 的认为是物体核心（不透明）
-        // 200-250 之间进行线性 Alpha 映射（平滑边缘）
-        float maxLuminance = 250f;
-        float minLuminance = 200f;
-
-        for (int i = 0; i < pixels.length; i++) {
-            int color = pixels[i];
-            int r = Color.red(color);
-            int g = Color.green(color);
-            int b = Color.blue(color);
-
-            // 计算亮度 (感知亮度公式)
-            float luminance = 0.2126f * r + 0.7152f * g + 0.0722f * b;
-
-            if (luminance > maxLuminance) {
-                // 纯白背景：全透明
-                pixels[i] = Color.TRANSPARENT;
-            } else if (luminance < minLuminance) {
-                // 物体内部：保持原色，不透明
-                // 注意：由于原本可能是 JPG，没有 Alpha，这里强制设为 255
-                pixels[i] = Color.argb(255, r, g, b);
-            } else {
-                // 边缘过渡地带：根据亮度计算 Alpha
-                // 亮度越高（越接近白色），Alpha 越小（越透明）
-                float alphaScale = 1f - (luminance - minLuminance) / (maxLuminance - minLuminance);
-                int alpha = (int) (255 * alphaScale);
-
-                // 关键优化：为了防止边缘出现“白边”，我们可以轻微调暗边缘像素的 RGB
-                // 这样半透明的像素就不会带着明显的白色底色
-                pixels[i] = Color.argb(alpha, r, g, b);
-            }
-        }
-        LogUtils.d("3");
-        // 5. 写回并保存
-        result.setPixels(pixels, 0, width, 0, 0, width, height);
-
-        File outFile = new File(context.getFilesDir(), fileName);
-        LogUtils.d("4");
-        try (FileOutputStream fos = new FileOutputStream(outFile)) {
-            // 必须 PNG 才能保存透明通道
-            result.compress(Bitmap.CompressFormat.PNG, 100, fos);
-            return outFile.getAbsolutePath();
-        } catch (IOException e) {
-            LogUtils.d("处理图片异常");
-            e.printStackTrace();
-            return null;
-        } finally {
-            // 及时回收大图内存
-            if (!source.isRecycled()) source.recycle();
-            if (!result.isRecycled()) result.recycle();
         }
     }
 
