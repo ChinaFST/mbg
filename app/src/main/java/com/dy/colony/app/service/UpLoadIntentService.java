@@ -206,7 +206,7 @@ public class UpLoadIntentService extends IntentService {
                 //检测仪器相关信息
                 //bean.setStatusFalg(1 + "");
 
-                bean.setDeviceName(getString(R.string.handheld_device));
+                bean.setDeviceName(getString(R.string.device_name));
                 String moudle = nc.getTest_Moudle();
                 if ("1".equals(moudle)) {
                     bean.setDeviceModel(getString(R.string.fggd_module));

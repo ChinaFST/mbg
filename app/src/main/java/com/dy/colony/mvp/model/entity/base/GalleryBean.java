@@ -274,10 +274,7 @@ public abstract class GalleryBean implements UsbReadWriteHelper.onUsbReciver {
             onReciverSuccess(bitmap);
         }
 
-        /**
-         * 接收失败
-         */
-        void onReciverfail();
+
 
         /**
          * @param timer 倒计时
@@ -344,7 +341,7 @@ public abstract class GalleryBean implements UsbReadWriteHelper.onUsbReciver {
 
     public void cleanJTJ() {
         if (state == 1) {
-            ArmsUtils.snackbarText("正在检测中，请稍后");
+            ArmsUtils.snackbarText(StringUtils.getString(R.string.testing_wait));
             return;
         }
         state = 0;
@@ -1236,7 +1233,7 @@ public abstract class GalleryBean implements UsbReadWriteHelper.onUsbReciver {
         LogUtils.d("CardType.ONE--" + bitmaps.size());
         if (bitmaps.size() != 1) {
             saveErrorCard(bitmap1, 1, bitmaps.size());
-            ArmsUtils.snackbarText("卡识别异常");
+            ArmsUtils.snackbarText(StringUtils.getString(R.string.Card_recognition_error));
             for (int i = 0; i < bitmaps.size(); i++) {
                 bitmaps.get(i).recycle();
             }
@@ -1249,14 +1246,14 @@ public abstract class GalleryBean implements UsbReadWriteHelper.onUsbReciver {
             return;
         }
 
-        LogUtils.d("lyl--开始检测1");
+        //LogUtils.d("lyl--开始检测1");
         startJTJTest();
         String filename = ((Detection_Record_FGGD_NC) this).getSysCode();
         FileUtils.saveBitmaplevel1(bitmap1, filename);
         hashMap_MultiCard.clear();
         hashMap_userfuldata.clear();
         //LogUtils.d("checkData_External--"+bitmaps.size());
-        LogUtils.d("lyl--开始检测1--" + bitmaps.size());
+        //LogUtils.d("lyl--开始检测1--" + bitmaps.size());
         for (int i = 0; i < bitmaps.size(); i++) {
             Bitmap bitmap = bitmaps.get(i);
             int i1 = i + 1;
@@ -1276,9 +1273,9 @@ public abstract class GalleryBean implements UsbReadWriteHelper.onUsbReciver {
             hashMap_userfuldata.put(i1, userfuldata);
             FileUtils.saveBitmaplevel2(bitmap, filename + i1);
         }
-        LogUtils.d("lyl--开始检测2");
+        //LogUtils.d("lyl--开始检测2");
         judgeAndSaveMultiCard(hashMap_MultiCard, filename, hashMap_userfuldata, 1);
-        LogUtils.d("lyl--开始检测3");
+        //LogUtils.d("lyl--开始检测3");
 
         //System.gc();
         if (mReciveWeakReference != null) {
@@ -1556,7 +1553,7 @@ public abstract class GalleryBean implements UsbReadWriteHelper.onUsbReciver {
 
 
         printAndUpload(detection_record_fggd_nc);
-        ArmsUtils.snackbarText("数据生成成功！");
+        ArmsUtils.snackbarText(StringUtils.getString(R.string.data_generation_successful));
 
 
     }

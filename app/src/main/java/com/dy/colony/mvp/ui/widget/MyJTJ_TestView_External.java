@@ -27,6 +27,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.apkfuns.logutils.LogUtils;
+import com.blankj.utilcode.util.StringUtils;
 import com.daimajia.swipe.SwipeLayout;
 import com.dy.colony.BuildConfig;
 import com.dy.colony.MyAppLocation;
@@ -187,11 +188,11 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
 
         int state = getGallery().getState();
         if (state == 1) {
-            ArmsUtils.snackbarText("该通道正在检测，请稍后");
+            ArmsUtils.snackbarText(StringUtils.getString(R.string.testing_wait));
             return;
         }
         if (mBitmaps.size() < 1) {
-            ArmsUtils.snackbarText("图像正在接收，请稍后");
+            ArmsUtils.snackbarText(StringUtils.getString(R.string.image_being_received));
         }
         //判断检测所需信息是否完整
         if (checkMessageState()) {
@@ -254,7 +255,7 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
         });
 
 
-        mAlertDialog.setTitle("提示");
+        mAlertDialog.setTitle(mContext.getString(R.string.hint));
         mAlertDialog.setView(view2);
         android.app.AlertDialog dialog = mAlertDialog.create();
         dialog.show();
@@ -268,7 +269,7 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
 
                 if (s_result1.isEmpty()
                         || s_decome1.isEmpty()) {
-                    ArmsUtils.snackbarText("请填写结果信息");
+                    ArmsUtils.snackbarText(mContext.getString(R.string.fill_result_info));
                     return;
                 }
 
@@ -285,11 +286,6 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
         });
     }
 
-    private void autoResult(GalleryBean item) {
-        Detection_Record_FGGD_NC nc = (Detection_Record_FGGD_NC) item;
-        LogUtils.d(nc.getTestresult() + "---" + nc.getDecisionoutcome() + "---" + getGallery().getJTJCardModel());
-        //item.newResult(nc.getTestresult(), nc.getDecisionoutcome(), nc.getTest_method(), nc.getTest_project(), nc.getSysCode(), 1);
-    }
 
     boolean clickStart = false;
 
@@ -551,9 +547,9 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
             getData(hashMap_userfuldata.get(integer), mViewHolder.mChart, ((Double) data1[0]).intValue(), ((Double) data1[2]).intValue(), setList.get(integer - 1));
             if (showTestResultNumber) {
                 double v = data1[3] / data1[1];
-                stringBuffer.append(integer + "  C原始值:" + new DecimalFormat("##0.000").format(data1[1])
-                        + "  T原始值:" + new DecimalFormat("##0.000").format(data1[3])
-                        + "  T/C值" + new DecimalFormat("##0.000").format(v) + "\r\n");
+                stringBuffer.append(integer + mContext.getString(R.string.Original_value_C) + new DecimalFormat("##0.000").format(data1[1])
+                        + mContext.getString(R.string.Original_value_T) + new DecimalFormat("##0.000").format(data1[3])
+                        + mContext.getString(R.string.T_C_value) + new DecimalFormat("##0.000").format(v) + "\r\n");
             } else {
                 mViewHolder.mTestResult.setText("");
             }
@@ -588,9 +584,9 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
 
             if (showTestResultNumber) {
                 double v = data1[3] / data1[1];
-                mViewHolder.mTestResult.setText("C原始值:" + new DecimalFormat("##0.000").format(data1[1])
-                        + "  T原始值:" + new DecimalFormat("##0.000").format(data1[3])
-                        + "  T/C值" + new DecimalFormat("##0.000").format(v));
+                mViewHolder.mTestResult.setText(mContext.getString(R.string.Original_value_C) + new DecimalFormat("##0.000").format(data1[1])
+                        + mContext.getString(R.string.Original_value_T) + new DecimalFormat("##0.000").format(data1[3])
+                        + mContext.getString(R.string.T_C_value) + new DecimalFormat("##0.000").format(v));
             } else {
                 mViewHolder.mTestResult.setText("");
             }
@@ -776,7 +772,7 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
 
             Bitmap copy = bitmap.copy(bitmap.getConfig(), true);
             if (copy == null) {
-                ArmsUtils.snackbarText("图片拷贝失败！");
+                ArmsUtils.snackbarText(mContext.getString(R.string.Image_copy_failed));
                 return;
             }
             mBitmaps.add(copy);
@@ -824,11 +820,6 @@ public class MyJTJ_TestView_External extends BaseJTJTestView implements SurfaceH
         //LogUtils.d("setPicture");
     }
 
-
-    @Override
-    public void onReciverfail() {
-        ArmsUtils.snackbarText("图片接收失败，请重新扫描");
-    }
 
     @Override
     public void onTimer(int timer) {

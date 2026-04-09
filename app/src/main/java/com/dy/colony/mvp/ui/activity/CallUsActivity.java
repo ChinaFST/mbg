@@ -89,7 +89,7 @@ public class CallUsActivity extends BaseActivity<CallUsPresenter> implements Cal
                     Intent intent = getPackageManager().getLaunchIntentForPackage("com.tencent.mobileqq");
                     startActivity(intent);
                 } catch (Exception e) {
-                    ArmsUtils.snackbarText("请检查是否安装QQ！");
+                    ArmsUtils.snackbarText(getString(R.string.check_QQ_installed));
                 }
                 break;
             case R.id.emeail:

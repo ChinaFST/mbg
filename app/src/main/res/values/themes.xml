@@ -45,11 +45,13 @@
         <item name="android:windowTranslucentNavigation">false</item>
         <!--<item name="android:windowTranslucentStatus">true</item>-->
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@drawable/bg_splash_new</item>
+        <item name="android:windowBackground">@drawable/bg_splash_layer</item>
         <!-- 使用透明窗口属性，在 Android 12+ 系统上诱导其跳过带图标的启动页 -->
-        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowIsTranslucent">false</item>
         <!-- 禁用系统层级的默认预览窗口 -->
-        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowDisablePreview">false</item>
+
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="o_mr1">shortEdges</item>
     </style>
 
 

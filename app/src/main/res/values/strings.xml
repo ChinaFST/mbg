@@ -42,7 +42,7 @@
     <string name="conventional_food_safety">General Food Safety</string>
     <string name="start_test">Spectrophotometry</string>
     <string name="halal_verification">Halal Verification</string>
-    <string name="pork_alcohol">Pork Source Detection</string>
+    <string name="pork_alcohol">Porcine</string>
     <string name="login_out">Log out</string>
     <string name="auto_upload">Automatic upload</string>
     <string name="mothod1" translatable="false">Inhibition rate method</string>
@@ -51,12 +51,12 @@
     <string name="mothod4" translatable="false">Coefficient method</string>
     <string name="method_xiaoxian" translatable="false">Qualitative line elimination method</string>
     <string name="method_bise" translatable="false">Qualitative colorimetry</string>
-    <string name="txt_invalid" translatable="false">invalid</string>
+    <string name="txt_invalid" translatable="false">Invalid</string>
     <string name="yin" translatable="false">Negative</string>
     <string name="yang" translatable="false">Positive</string>
-    <string name="keyi" translatable="false">suspicious</string>
-    <string name="ok" translatable="false">qualified</string>
-    <string name="ng" translatable="false">Unqualified</string>
+    <string name="keyi" translatable="false">Suspicious</string>
+    <string name="ok" translatable="false">Pass</string>
+    <string name="ng" translatable="false">Fail</string>
     <string name="JTJ_TestMoudle_P" translatable="false">Colloidal Gold</string>
     <string name="FGGD_TestMoudle" translatable="false">Spectrophotometry</string>
     <string name="str_clear">Clear</string>
@@ -268,7 +268,6 @@
     <string name="not_login_hint" translatable="false">Currently in offline mode, would you like to log in?</string>
     <string name="fggd_module" translatable="false">Spectrophotometer module</string>
     <string name="jtj_module" translatable="false">Colloidal gold module</string>
-    <string name="handheld_device" translatable="false">Handheld digital inspection device</string>
     <string name="offline_mode_hint" translatable="false">This is currently in offline mode. Please log in first.</string>
     <string name="enter_inspect_unit" translatable="false">Enter the inspected unit</string>
     <string name="fg_data_anomaly">fg_data_anomaly</string>
@@ -417,5 +416,16 @@
     <string name="Last_updated">Last updated</string>
     <string name="serial_number">Serial Number</string>
     <string name="project_name">Project Name</string>
+    <string name="Card_recognition_error">Card recognition error</string>
+    <string name="image_being_received">Image is being received, please wait.</string>
+    <string name="fill_result_info">Please fill in the result information.</string>
+    <string name="Original_value_C">&#160;Original value of C:</string>
+    <string name="Original_value_T">&#160;Original value of T:</string>
+    <string name="T_C_value">&#160; T/C value:</string>
+    <string name="Image_copy_failed">Image copy failed.</string>
+    <string name="data_generation_successful">Data generation successful!</string>
+    <string name="check_QQ_installed">Please check if QQ is installed.</string>
+    <string name="Bundle_empty">Bundle is empty</string>
+
 
 </resources>

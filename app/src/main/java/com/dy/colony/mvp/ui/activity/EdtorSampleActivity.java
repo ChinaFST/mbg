@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
 import com.apkfuns.logutils.LogUtils;
+import com.blankj.utilcode.util.StringUtils;
 import com.dy.colony.Constants;
 import com.dy.colony.app.utils.DataUtils;
 import com.dy.colony.greendao.DBHelper;
@@ -131,7 +132,7 @@ public class EdtorSampleActivity extends BaseActivity<EdtorSamplePresenter> impl
                 setTitle(getString(R.string.editersample));
                 Bundle extras = mIntent.getExtras();
                 if (null == extras) {
-                    ArmsUtils.snackbarText("Bundle 为空");
+                    ArmsUtils.snackbarText(StringUtils.getString(R.string.Bundle_empty));
                     killMyself();
                 }
                 mBaseSampleMessage = ((BaseSampleMessage) extras.get("databean"));

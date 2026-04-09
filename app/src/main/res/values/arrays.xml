@@ -7,8 +7,8 @@
 
     <string-array name="results">
         <item>All</item>
-        <item>qualified</item>
-        <item>Unqualified</item>
+        <item>Pass</item>
+        <item>Fail</item>
         <item>other</item>
     </string-array>
 
@@ -19,8 +19,8 @@
     </string-array>
 
     <string-array name="checkdecome">
-        <item>Qualified</item>
-        <item>Unqualified</item>
+        <item>Pass</item>
+        <item>Fail</item>
     </string-array>
 
     <string-array name="checkresult">

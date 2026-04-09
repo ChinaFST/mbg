@@ -8,7 +8,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.text.Editable;
@@ -524,12 +527,75 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
     }
 
     private void dealImage() {
-        String path = "/storage/emulated/0/dayuan/ic_.jpg";
-        makeTransparentSmooth(this, path, "ic_1.png");
-        //makeTransparentWithWhiteBase(this, path, "ic_001.png");
+        //String path = "/storage/emulated/0/dayuan/ic_.jpg";
+        //makeTransparentSmooth(this, path, "ic_1.png");
+        //makeTransparentWithScale(this, path, "ic_001.png", 0.4f);
+        String path = "/storage/emulated/0/dayuan/ic_splash.png";
+        processAndSaveSplashIcon(this, path, "ic_splash_001.png");
 
     }
 
+    /**
+     * 处理原始 PNG 并保存到应用的 files 目录中
+     * @param context 上下文
+     * @param inputPath 原图的绝对路径 (例如外部存储或缓存路径)
+     * @param outputFileName 保存的文件名 (例如 "ic_splash_adaptive.png")
+     * @return 成功保存后的文件对象，失败返回 null
+     */
+    public static File processAndSaveSplashIcon(Context context, String inputPath, String outputFileName) {
+        // 1. 从路径加载原始位图
+        Bitmap originalBitmap = BitmapFactory.decodeFile(inputPath);
+        if (originalBitmap == null) return null;
+
+        int origWidth = originalBitmap.getWidth();
+        int origHeight = originalBitmap.getHeight();
+
+        // 2. 计算正方形画布大小
+        // 为了确保圆不切到 Logo，我们让画布比 Logo 长边大出约 40% (即 Logo 占比约 60%)
+        int maxSide = Math.max(origWidth, origHeight);
+        int targetSize = (int) (maxSide * 1.6f);
+
+        // 3. 创建透明正方形画布
+        Bitmap outputBitmap = Bitmap.createBitmap(targetSize, targetSize, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(outputBitmap);
+
+        // 4. 计算居中位置
+        int left = (targetSize - origWidth) / 2;
+        int top = (targetSize - origHeight) / 2;
+
+        // 5. 绘制（保持原图大小居中，四周留出空白）
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+        canvas.drawBitmap(originalBitmap, left, top, paint);
+
+        // 6. 保存到应用的 /data/user/0/包名/files 目录
+        File outputFile = new File(context.getFilesDir(), outputFileName);
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(outputFile);
+            outputBitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.flush();
+            return outputFile;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (fos != null) {
+                try { fos.close(); } catch (IOException ignored) {}
+            }
+            // 释放内存
+            originalBitmap.recycle();
+            outputBitmap.recycle();
+        }
+    }
+
+    /**
+     * 将图片转为透明底
+     *
+     * @param context
+     * @param inputPath
+     * @param fileName
+     * @return
+     */
     public String makeTransparentSmooth(Context context, String inputPath, String fileName) {
         // 1. 加载原图（注意：大图可能导致 OOME，建议在实际项目中根据需求做采样缩放）
         LogUtils.d("开始处理图片");
@@ -603,35 +669,48 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
         }
     }
 
+
     /**
-     * 将图片中的白色背景转换为透明，并针对圆角黑边进行优化
-     * * @param context 上下文
+     * 带有缩放功能的透明处理方法
      *
-     * @param inputPath 原图路径
-     * @param fileName  保存的文件名
-     * @return 处理后的图片绝对路径
+     * @param scale 缩放比例 (0.0 < scale <= 1.0)
      */
-    public String makeTransparentWithWhiteBase(Context context, String inputPath, String fileName) {
-        // 1. 加载原图
-        Bitmap source = BitmapFactory.decodeFile(inputPath);
-        if (source == null) return null;
+    public String makeTransparentWithScale(Context context, String inputPath, String fileName, float scale) {
+        // 1. 加载并缩放原图
+        BitmapFactory.Options options = new BitmapFactory.Options();
+
+        // 性能优化：如果缩放比例很小，先通过采样率减少内存占用
+        if (scale < 0.5f) {
+            options.inSampleSize = 2; // 缩小为原来的 1/2
+        }
+
+        Bitmap tempSource = BitmapFactory.decodeFile(inputPath, options);
+        if (tempSource == null) return null;
+
+        // 精确缩放：如果需要更精确的比例，使用 Matrix
+        Bitmap source;
+        if (scale != 1.0f) {
+            int targetWidth = Math.round(tempSource.getWidth() * (scale * (options.inSampleSize > 0 ? options.inSampleSize : 1)));
+            int targetHeight = Math.round(tempSource.getHeight() * (scale * (options.inSampleSize > 0 ? options.inSampleSize : 1)));
+            source = Bitmap.createScaledBitmap(tempSource, targetWidth, targetHeight, true);
+            if (tempSource != source) tempSource.recycle(); // 释放临时位图
+        } else {
+            source = tempSource;
+        }
 
         int width = source.getWidth();
         int height = source.getHeight();
 
-        // 2. 创建支持透明度的副本 (ARGB_8888 是必须的)
+        // 2. 创建副本
         Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 
         // 3. 批量读取像素
         int[] pixels = new int[width * height];
         source.getPixels(pixels, 0, width, 0, 0, width, height);
 
-        // 4. 定义阈值
-        float maxLuminance = 250f; // 高于此亮度设为全透明
-        float minLuminance = 200f; // 低于此亮度保持不透明
-
-        // 关键：构建“透明白”而不是默认的“透明黑”
-        // 0x00FFFFFF -> Alpha为0，但RGB全为255
+        // 4. 透明化逻辑处理
+        float maxLuminance = 250f;
+        float minLuminance = 200f;
         int transparentWhite = Color.argb(0, 255, 255, 255);
 
         for (int i = 0; i < pixels.length; i++) {
@@ -640,39 +719,29 @@ public class JTJ_TestActivity extends BaseActivity<JTJ_TestPresenter> implements
             int g = Color.green(color);
             int b = Color.blue(color);
 
-            // 使用感知亮度公式
             float luminance = 0.2126f * r + 0.7152f * g + 0.0722f * b;
 
             if (luminance > maxLuminance) {
-                // 【改进点】背景区域：设为透明白，解决圆角变黑问题
                 pixels[i] = transparentWhite;
             } else if (luminance < minLuminance) {
-                // 物体核心：保持原色，强制不透明
                 pixels[i] = Color.argb(255, r, g, b);
             } else {
-                // 边缘过渡地带：计算平滑 Alpha
                 float alphaScale = 1f - (luminance - minLuminance) / (maxLuminance - minLuminance);
                 int alpha = (int) (255 * alphaScale);
-
-                // 【改进点】保持边缘像素的 RGB 为原始色（通常是接近白色的色值）
-                // 这样它在透明背景下会自然过渡，而不会因为底色变黑而产生黑边
                 pixels[i] = Color.argb(alpha, r, g, b);
             }
         }
 
-        // 5. 写回并保存
+        // 5. 保存
         result.setPixels(pixels, 0, width, 0, 0, width, height);
-
         File outFile = new File(context.getFilesDir(), fileName);
         try (FileOutputStream fos = new FileOutputStream(outFile)) {
-            // 压缩为 PNG 以保留透明通道
             result.compress(Bitmap.CompressFormat.PNG, 100, fos);
             return outFile.getAbsolutePath();
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         } finally {
-            // 及时释放内存，防止 OOM
             if (source != null && !source.isRecycled()) source.recycle();
             if (result != null && !result.isRecycled()) result.recycle();
         }
